@@ -1,0 +1,16 @@
+### Django ###
+*.log
+*.pot
+*.pyc
+__pycache__/
+settings/prod.py
+db.sqlite3
+static_files/media_files
+
+
+### Sass ###
+.sass-cache/
+*.css.map
+
+### OSX ###
+*.DS_Store

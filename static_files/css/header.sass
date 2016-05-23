@@ -1,0 +1,60 @@
+
+/* Colors */
+$instavets_green: #00a099
+$instavets_grey: #9b9e9e
+
+/*-------------------- Navbar Styles START--------------*/
+nav
+  background-color: white
+  background-image: none
+
+  & > div
+    &.container-fluid
+      width: 90%
+
+    margin: auto
+    & > div
+      &.navbar-header
+        width: 20%
+        & > a
+          &.navbar-brand
+            & > img
+              max-height: 35px !important
+
+      &.collapse.navbar-collapse
+        & > nav
+          & > ul
+            width: 80%
+            & > li
+              text-align: center
+              width: 20%
+              margin: auto
+              & > a
+                font-family: "Gotham-Black"
+                font-size: 18px
+                text-transform: uppercase
+                color: $instavets_grey !important
+                background-color: transparent !important
+                background-image: none
+                border-top: 2px solid white
+                border-bottom: 2px solid white
+                text-shadow: none
+                &:hover
+                  color: $instavets_green !important
+                  background-image: none
+                  border-bottom: 2px solid $instavets_green
+
+              &:last-child
+                width: 30%
+                padding-left: 10%
+                & > a
+                  padding-top: 10px
+                  padding-bottom: 10px
+                  margin-top: 5px
+                  margin-bottom: 5px
+                  border-width: 2px
+                  border-style: solid
+                  border-color: $instavets_green
+                  &:hover
+                    background-color: $instavets_green !important
+                    color: white !important
