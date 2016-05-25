@@ -1,5 +1,4 @@
-/* Colors */
-/*-------------------- Navbar Styles START-------------- */
+/*-------------------- Navbar Styles START--------------*/
 nav {
   background-color: white;
   background-image: none; }
@@ -9,15 +8,17 @@ nav {
       width: 90%; }
     nav > div > div.navbar-header {
       width: 20%; }
-      nav > div > div.navbar-header > a.navbar-brand > img {
-        max-height: 35px !important; }
-    nav > div > div.collapse.navbar-collapse > nav > ul {
+      nav > div > div.navbar-header > a.logo.navbar-btn.pull-left > img {
+        height: 35px; }
+      nav > div > div.navbar-header > a.name.navbar-brand {
+        display: none; }
+    nav > div > div.collapse.navbar-collapse > ul {
       width: 80%; }
-      nav > div > div.collapse.navbar-collapse > nav > ul > li {
+      nav > div > div.collapse.navbar-collapse > ul > li {
         text-align: center;
         width: 20%;
         margin: auto; }
-        nav > div > div.collapse.navbar-collapse > nav > ul > li > a {
+        nav > div > div.collapse.navbar-collapse > ul > li > a {
           font-family: "Gotham-Black";
           font-size: 18px;
           text-transform: uppercase;
@@ -27,14 +28,14 @@ nav {
           border-top: 2px solid white;
           border-bottom: 2px solid white;
           text-shadow: none; }
-          nav > div > div.collapse.navbar-collapse > nav > ul > li > a:hover {
+          nav > div > div.collapse.navbar-collapse > ul > li > a:hover {
             color: #00a099 !important;
             background-image: none;
             border-bottom: 2px solid #00a099; }
-        nav > div > div.collapse.navbar-collapse > nav > ul > li:last-child {
+        nav > div > div.collapse.navbar-collapse > ul > li:last-child {
           width: 30%;
           padding-left: 10%; }
-          nav > div > div.collapse.navbar-collapse > nav > ul > li:last-child > a {
+          nav > div > div.collapse.navbar-collapse > ul > li:last-child > a {
             padding-top: 10px;
             padding-bottom: 10px;
             margin-top: 5px;
@@ -42,7 +43,7 @@ nav {
             border-width: 2px;
             border-style: solid;
             border-color: #00a099; }
-            nav > div > div.collapse.navbar-collapse > nav > ul > li:last-child > a:hover {
+            nav > div > div.collapse.navbar-collapse > ul > li:last-child > a:hover {
               background-color: #00a099 !important;
               color: white !important; }
 
