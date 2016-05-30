@@ -21,12 +21,13 @@ from django.http import HttpResponse
 def Index(request):
     return render(request, "booking/index.html", {'time' : datetime.datetime.now()})
 
+def VetProfile(request, coach_id):
+	#return HttpResponse("You are looking at Coach: %s." % coach_id)
+	coach = get_object_or_404(Vet, pk=vet_id)
+	return render(request, 'vet.html', {'vet': vet})
 
-# Api Views
-class VetViewSet(generics.RetrieveUpdateDestroyAPIView):
-    queryset = Vet.objects.all()
-    serializer_class = VetSerializer
 
-def Vet(request, vet_id):
-    vet = Vet.objects.get(pk=band_id)
-    return render(request, "booking/vet.html", {'vet':vet})
+## Api Views
+class VetViewSet(viewsets.ModelViewSet):
+	queryset = Vet.objects.all()
+	serializer_class = VetSerializer

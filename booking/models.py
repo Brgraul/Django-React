@@ -15,3 +15,5 @@ class Vet(models.Model):
     description = models.TextField(max_length=5000, default='Escribe aqui la descripcion del Veterinario.')
 
     #Vet Profile Image
+    
+    #Vet Contact Details
