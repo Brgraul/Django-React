@@ -1,24 +1,25 @@
 /*-------------------- Navbar Styles START--------------*/
-nav {
+header > nav.navbar.navbar-default {
   background-color: white;
-  background-image: none; }
-  nav > div {
+  background-image: none;
+  margin-bottom: 0px; }
+  header > nav.navbar.navbar-default > div {
     margin: auto; }
-    nav > div.container-fluid {
+    header > nav.navbar.navbar-default > div.container-fluid {
       width: 90%; }
-    nav > div > div.navbar-header {
+    header > nav.navbar.navbar-default > div > div.navbar-header {
       width: 20%; }
-      nav > div > div.navbar-header > a.logo.navbar-btn.pull-left > img {
+      header > nav.navbar.navbar-default > div > div.navbar-header > a.logo.navbar-btn.pull-left > img {
         height: 35px; }
-      nav > div > div.navbar-header > a.name.navbar-brand {
+      header > nav.navbar.navbar-default > div > div.navbar-header > a.name.navbar-brand {
         display: none; }
-    nav > div > div.collapse.navbar-collapse > ul {
+    header > nav.navbar.navbar-default > div > div.collapse.navbar-collapse > ul {
       width: 80%; }
-      nav > div > div.collapse.navbar-collapse > ul > li {
+      header > nav.navbar.navbar-default > div > div.collapse.navbar-collapse > ul > li {
         text-align: center;
         width: 20%;
         margin: auto; }
-        nav > div > div.collapse.navbar-collapse > ul > li > a {
+        header > nav.navbar.navbar-default > div > div.collapse.navbar-collapse > ul > li > a {
           font-family: "Gotham-Black";
           font-size: 18px;
           text-transform: uppercase;
@@ -28,14 +29,14 @@ nav {
           border-top: 2px solid white;
           border-bottom: 2px solid white;
           text-shadow: none; }
-          nav > div > div.collapse.navbar-collapse > ul > li > a:hover {
+          header > nav.navbar.navbar-default > div > div.collapse.navbar-collapse > ul > li > a:hover {
             color: #00a099 !important;
             background-image: none;
             border-bottom: 2px solid #00a099; }
-        nav > div > div.collapse.navbar-collapse > ul > li:last-child {
+        header > nav.navbar.navbar-default > div > div.collapse.navbar-collapse > ul > li:last-child {
           width: 30%;
           padding-left: 10%; }
-          nav > div > div.collapse.navbar-collapse > ul > li:last-child > a {
+          header > nav.navbar.navbar-default > div > div.collapse.navbar-collapse > ul > li:last-child > a {
             padding-top: 10px;
             padding-bottom: 10px;
             margin-top: 5px;
@@ -43,8 +44,20 @@ nav {
             border-width: 2px;
             border-style: solid;
             border-color: #00a099; }
-            nav > div > div.collapse.navbar-collapse > ul > li:last-child > a:hover {
+            header > nav.navbar.navbar-default > div > div.collapse.navbar-collapse > ul > li:last-child > a:hover {
               background-color: #00a099 !important;
               color: white !important; }
+
+/*SCSS for the index page*/
+div.container.container-slide {
+  width: auto;
+  padding-left: 0px;
+  padding-right: 0px;
+  margin-left: 0px;
+  margin-right: 0px; }
+  div.container.container-slide > img[id="index_slide"] {
+    width: 100%;
+    padding: 0px;
+    margin: 0px; }
 
 /*# sourceMappingURL=custom.css.map */

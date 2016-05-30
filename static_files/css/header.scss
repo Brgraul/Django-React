@@ -3,14 +3,15 @@ $instavets_green: #00a099;
 $instavets_grey: #9b9e9e;
 
 /*-------------------- Navbar Styles START--------------*/
-nav{
+header > nav.navbar.navbar-default{
   background-color: white;
   background-image: none;
+  margin-bottom: 0px;
   & > div{
     &.container-fluid{
       width: 90%;
     }
-    margin: auto;;
+    margin: auto;
     & > div{
       &.navbar-header{
         width: 20%;

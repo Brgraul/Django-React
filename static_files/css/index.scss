@@ -1,0 +1,17 @@
+/*SCSS for the index page*/
+div{
+  &.container.container-slide{
+    width: auto;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: 0px;
+    margin-right: 0px;
+    & > img[id="index_slide"]{
+      width: 100%;
+      padding: 0px;
+      margin: 0px;
+    }
+
+  }
+
+}
