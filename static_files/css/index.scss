@@ -11,6 +11,16 @@ div{
       padding: 0px;
       margin: 0px;
     }
+    & > div.container-slide-overlay{
+      position: absolute;;
+      top: 35%;
+      text-align: center;
+      width: 100%;
+      & > h1, h3{
+        text-transform: uppercase;
+        color: white;
+      }
+    }
 
   }
 

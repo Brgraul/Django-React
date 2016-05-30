@@ -60,5 +60,13 @@ div.container.container-slide {
     width: 100%;
     padding: 0px;
     margin: 0px; }
+  div.container.container-slide > div.container-slide-overlay {
+    position: absolute;
+    top: 35%;
+    text-align: center;
+    width: 100%; }
+    div.container.container-slide > div.container-slide-overlay > h1, div.container.container-slide > div.container-slide-overlay h3 {
+      text-transform: uppercase;
+      color: white; }
 
 /*# sourceMappingURL=custom.css.map */
