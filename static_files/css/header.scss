@@ -3,69 +3,48 @@ $instavets_green: #00a099;
 $instavets_grey: #9b9e9e;
 
 /*-------------------- Navbar Styles START--------------*/
-header > nav.navbar.navbar-default{
+header > nav{
   border: 0px;
   background-color: white;
   background-image: none;
   margin-bottom: 0px;
-  & > div{
-    &.container-fluid{
-      width: 90%;
-    }
-    margin: auto;
-    & > div{
-      &.navbar-header{
+  padding-bottom: 0px;
+  width: 100%;
+  & > div.collapse.navbar-toggleable-xs{
+    & > ul.nav.navbar-nav{
+      background-color: white;
+      padding-bottom: 0px;
+      & > li{
+        text-align: center;
         width: 20%;
-        & > a{
-            &.logo.navbar-btn.pull-left{
-                  & > img{
-                      height: 35px;
-                    }
-                }
-            &.name.navbar-brand{
-                display: none;
-              }
-            }
-      }
-      &.collapse.navbar-collapse{
-        & > ul{
-          width: 80%;
-          & > li{
-            text-align: center;
-            width: 20%;
-            margin: auto;
-            & > a{
-              font-family: "Gotham-Black";
-              font-size: 18px;
-              text-transform: uppercase;
-              color: $instavets_grey !important;
-              background-color: transparent !important;
+        margin: auto;
+        &.nav-item > a.nav-link{
+          font-family: "Gotham-Black";
+          font-size: 18px;
+          text-transform: uppercase;
+          color: $instavets_grey !important;
+          background-color: transparent !important;
+          background-image: none;
+          border-top: 2px solid white;
+          border-bottom: 2px solid white;
+          text-shadow: none;
+          &:hover{
+              color: $instavets_green !important;
               background-image: none;
-              border-top: 2px solid white;
-              border-bottom: 2px solid white;
-              text-shadow: none;
-              &:hover{
-                  color: $instavets_green !important;
-                  background-image: none;
-                  border-bottom: 2px solid $instavets_green;
-                }
+              border-bottom: 2px solid $instavets_green;
             }
-            &:last-child{
-              width: 30%;
-              padding-left: 10%;
-              & > a{
-                padding-top: 10px;
-                padding-bottom: 10px;
-                margin-top: 5px;
-                margin-bottom: 5px;
-                border-width: 2px;
-                border-style: solid;
-                border-color: $instavets_green;
-                &:hover{
-                  background-color: $instavets_green !important;
-                  color: white !important;
-                }
-              }
+        }
+        &.nav-item:last-child{
+          width: 20%;
+          float: right;
+          & > a.nav-link{
+            //padding-top: 10px;
+            //padding-bottom: 10px;
+            border: 2px solid $instavets_green;
+            border-radius: 10px;
+            &:hover{
+              background-color: $instavets_green !important;
+              color: white !important;
             }
           }
         }

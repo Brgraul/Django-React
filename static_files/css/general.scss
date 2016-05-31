@@ -1,0 +1,19 @@
+h1, h2 ,h3{
+  font-family: "Gotham-Medium";
+}
+
+/* CTA'S */
+.btn-cta-white{
+  border: 2px solid white;
+  border-radius: 0px;
+  background-color: transparent;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: white;
+  &:hover{
+    background-color: white;
+    color: transparent !important;
+  }
+}

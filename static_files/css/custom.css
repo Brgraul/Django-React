@@ -1,71 +1,98 @@
+/*-------------------- Loading Fonts START--------------*/
+@font-face {
+  font-family: "Gotham-Black";
+  font-style: normal;
+  font-weight: normal;
+  src: url("fonts/Gotham-Black.eot?#iefix") format("embedded-opentype"), url("fonts/Gotham-Black.woff") format("woff"), url("fonts/Gotham-Black.ttf") format("truetype"), url("fonts/Gotham-Black.svg#Gotham-Blackregular") format("svg"); }
+@font-face {
+  font-family: "Gotham-Bold";
+  font-style: normal;
+  font-weight: normal;
+  src: url("fonts/Gotham-Bold.eot?#iefix") format("embedded-opentype"), url("fonts/Gotham-Bold.woff") format("woff"), url("fonts/Gotham-Bold.ttf") format("truetype"), url("fonts/Gotham-Bold.svg#Gotham-Boldregular") format("svg"); }
+@font-face {
+  font-family: "Gotham-Light";
+  font-style: normal;
+  font-weight: normal;
+  src: url("fonts/Gotham-Light.eot?#iefix") format("embedded-opentype"), url("fonts/Gotham-Light.ttf") format("truetype"), url("fonts/Gotham-Light.svg#Gotham-Lightregular") format("svg"); }
+@font-face {
+  font-family: "gothhtfm-webfont";
+  font-style: normal;
+  font-weight: normal;
+  src: url("fonts/gothhtfm-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/gothhtfm-webfont.woff") format("woff"), url("fonts/gothhtfm-webfont.ttf") format("truetype"), url("fonts/gothhtfm-webfont.svg#gothhtfm-webfontregular") format("svg"); }
+/*-------------------- Loading Fonts END--------------*/
+h1, h2, h3 {
+  font-family: "Gotham-Medium"; }
+
+/* CTA'S */
+.btn-cta-white {
+  border: 2px solid white;
+  border-radius: 0px;
+  background-color: transparent;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: white; }
+  .btn-cta-white:hover {
+    background-color: white;
+    color: transparent !important; }
+
 /*-------------------- Navbar Styles START--------------*/
-header > nav.navbar.navbar-default {
+header > nav {
   border: 0px;
   background-color: white;
   background-image: none;
-  margin-bottom: 0px; }
-  header > nav.navbar.navbar-default > div {
-    margin: auto; }
-    header > nav.navbar.navbar-default > div.container-fluid {
-      width: 90%; }
-    header > nav.navbar.navbar-default > div > div.navbar-header {
-      width: 20%; }
-      header > nav.navbar.navbar-default > div > div.navbar-header > a.logo.navbar-btn.pull-left > img {
-        height: 35px; }
-      header > nav.navbar.navbar-default > div > div.navbar-header > a.name.navbar-brand {
-        display: none; }
-    header > nav.navbar.navbar-default > div > div.collapse.navbar-collapse > ul {
-      width: 80%; }
-      header > nav.navbar.navbar-default > div > div.collapse.navbar-collapse > ul > li {
-        text-align: center;
-        width: 20%;
-        margin: auto; }
-        header > nav.navbar.navbar-default > div > div.collapse.navbar-collapse > ul > li > a {
-          font-family: "Gotham-Black";
-          font-size: 18px;
-          text-transform: uppercase;
-          color: #9b9e9e !important;
-          background-color: transparent !important;
+  margin-bottom: 0px;
+  padding-bottom: 0px;
+  width: 100%; }
+  header > nav > div.collapse.navbar-toggleable-xs > ul.nav.navbar-nav {
+    background-color: white;
+    padding-bottom: 0px; }
+    header > nav > div.collapse.navbar-toggleable-xs > ul.nav.navbar-nav > li {
+      text-align: center;
+      width: 20%;
+      margin: auto; }
+      header > nav > div.collapse.navbar-toggleable-xs > ul.nav.navbar-nav > li.nav-item > a.nav-link {
+        font-family: "Gotham-Black";
+        font-size: 18px;
+        text-transform: uppercase;
+        color: #9b9e9e !important;
+        background-color: transparent !important;
+        background-image: none;
+        border-top: 2px solid white;
+        border-bottom: 2px solid white;
+        text-shadow: none; }
+        header > nav > div.collapse.navbar-toggleable-xs > ul.nav.navbar-nav > li.nav-item > a.nav-link:hover {
+          color: #00a099 !important;
           background-image: none;
-          border-top: 2px solid white;
-          border-bottom: 2px solid white;
-          text-shadow: none; }
-          header > nav.navbar.navbar-default > div > div.collapse.navbar-collapse > ul > li > a:hover {
-            color: #00a099 !important;
-            background-image: none;
-            border-bottom: 2px solid #00a099; }
-        header > nav.navbar.navbar-default > div > div.collapse.navbar-collapse > ul > li:last-child {
-          width: 30%;
-          padding-left: 10%; }
-          header > nav.navbar.navbar-default > div > div.collapse.navbar-collapse > ul > li:last-child > a {
-            padding-top: 10px;
-            padding-bottom: 10px;
-            margin-top: 5px;
-            margin-bottom: 5px;
-            border-width: 2px;
-            border-style: solid;
-            border-color: #00a099; }
-            header > nav.navbar.navbar-default > div > div.collapse.navbar-collapse > ul > li:last-child > a:hover {
-              background-color: #00a099 !important;
-              color: white !important; }
+          border-bottom: 2px solid #00a099; }
+      header > nav > div.collapse.navbar-toggleable-xs > ul.nav.navbar-nav > li.nav-item:last-child {
+        width: 20%;
+        float: right; }
+        header > nav > div.collapse.navbar-toggleable-xs > ul.nav.navbar-nav > li.nav-item:last-child > a.nav-link {
+          border: 2px solid #00a099;
+          border-radius: 10px; }
+          header > nav > div.collapse.navbar-toggleable-xs > ul.nav.navbar-nav > li.nav-item:last-child > a.nav-link:hover {
+            background-color: #00a099 !important;
+            color: white !important; }
 
 /*SCSS for the index page*/
-div.container.container-slide {
-  width: auto;
+div.container {
+  max-width: 100%;
   padding-left: 0px;
   padding-right: 0px;
   margin-left: 0px;
   margin-right: 0px; }
-  div.container.container-slide > img[id="index_slide"] {
+  div.container > img[id="index_slide"] {
     width: 100%;
     padding: 0px;
     margin: 0px; }
-  div.container.container-slide > div.container-slide-overlay {
+  div.container > div.container-slide-overlay {
     position: absolute;
     top: 35%;
     text-align: center;
     width: 100%; }
-    div.container.container-slide > div.container-slide-overlay > h1, div.container.container-slide > div.container-slide-overlay h3 {
+    div.container > div.container-slide-overlay > h1, div.container > div.container-slide-overlay h3 {
       text-transform: uppercase;
       color: white; }
 

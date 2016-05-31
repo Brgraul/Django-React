@@ -1,0 +1,41 @@
+/*-------------------- Loading Fonts START--------------*/
+@font-face {
+	font-family: "Gotham-Black";
+	font-style: normal;
+	font-weight: normal;
+	src: url("fonts/Gotham-Black.eot?#iefix") format("embedded-opentype"),
+       url("fonts/Gotham-Black.woff") format("woff"),
+       url("fonts/Gotham-Black.ttf") format("truetype"),
+       url("fonts/Gotham-Black.svg#Gotham-Blackregular") format("svg");
+}
+
+@font-face {
+	font-family: "Gotham-Bold";
+	font-style: normal;
+	font-weight: normal;
+	src: url("fonts/Gotham-Bold.eot?#iefix") format("embedded-opentype"),
+       url("fonts/Gotham-Bold.woff") format("woff"),
+       url("fonts/Gotham-Bold.ttf") format("truetype"),
+       url("fonts/Gotham-Bold.svg#Gotham-Boldregular") format("svg");
+}
+
+@font-face {
+	font-family: "Gotham-Light";
+	font-style: normal;
+	font-weight: normal;
+	src: url("fonts/Gotham-Light.eot?#iefix") format("embedded-opentype")
+       /*, url("../fonts/Gotham-Light.woff") format("woff")*/,
+       url("fonts/Gotham-Light.ttf") format("truetype"),
+       url("fonts/Gotham-Light.svg#Gotham-Lightregular") format("svg");
+}
+
+@font-face {
+	font-family: "gothhtfm-webfont";
+	font-style: normal;
+	font-weight: normal;
+	src: url("fonts/gothhtfm-webfont.eot?#iefix") format("embedded-opentype"),
+       url("fonts/gothhtfm-webfont.woff") format("woff"),
+       url("fonts/gothhtfm-webfont.ttf") format("truetype"),
+       url("fonts/gothhtfm-webfont.svg#gothhtfm-webfontregular") format("svg");
+}
+/*-------------------- Loading Fonts END--------------*/
