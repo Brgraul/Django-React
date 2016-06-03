@@ -24,3 +24,18 @@ h1, h2 ,h3{
     color: $instavets_green !important;
   }
 }
+
+.btn-cta-green{
+  border: 2px solid $instavets_green;
+  border-radius: 0px;
+  background-color: white;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: $instavets_green;
+  &:hover{
+    background-color: $instavets_green;
+    color: white;
+  }
+}

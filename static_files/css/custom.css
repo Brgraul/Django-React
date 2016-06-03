@@ -2225,6 +2225,19 @@ h1, h2, h3 {
     background-color: white;
     color: #00a099 !important; }
 
+.btn-cta-green {
+  border: 2px solid #00a099;
+  border-radius: 0px;
+  background-color: white;
+  padding-left: 10%;
+  padding-right: 10%;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  color: #00a099; }
+  .btn-cta-green:hover {
+    background-color: #00a099;
+    color: white; }
+
 /*-------------------- Navbar Styles START--------------*/
 header > nav {
   border: 0px;
@@ -2332,7 +2345,10 @@ div.container.container-slide {
       text-transform: uppercase;
       color: white; }
 
+/* Green Section*/
 div.section-green {
+  padding-top: 10%;
+  padding-bottom: 10%;
   max-width: 100%;
   text-align: center;
   background-color: #00a099;
@@ -2343,6 +2359,16 @@ div.section-green {
     div.section-green > div > div > img {
       width: auto;
       max-height: 40px; }
+
+.container-grey-background {
+  max-width: 100%;
+  padding-left: 15%;
+  padding-right: 15%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  background-color: #F5F5F5;
+  border-top: 3px solid #E9E9E9;
+  border-bottom: 3px solid #E9E9E9; }
 
 /* Estilos Ventajas Index*/
 div.container.container-ventajas > div.row {

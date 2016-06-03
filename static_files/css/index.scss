@@ -26,7 +26,10 @@ div{
   }
 }
 
+/* Green Section*/
 div.section-green{
+  padding-top: 10%;
+  padding-bottom: 10%;
   max-width: 100%;
   text-align: center;
   background-color: $instavets_green;
@@ -39,6 +42,17 @@ div.section-green{
         max-height: 40px;
     }
   }
+}
+
+.container-grey-background{
+  max-width: 100%;
+  padding-left: 15%;
+  padding-right: 15%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  background-color: #F5F5F5;
+  border-top: 3px solid #E9E9E9;
+  border-bottom: 3px solid #E9E9E9;
 }
 
 /* Estilos Ventajas Index*/
