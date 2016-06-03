@@ -1,0 +1,64 @@
+
+/* Footer Styles*/
+footer{
+  background-color: $instavets_footer_grey;
+  padding-left: 20%;
+  padding-right: 20%;
+  padding-top: 2%;
+  padding-bottom: 1%;
+  & > div.container{
+    & > div.row:first-child{
+      border-bottom: 1px solid $instavets_footer_grey_text;
+      padding-bottom: 2%;
+      & > div {
+        margin-left: 0px;
+        margin-right: 0px;
+        padding-right: 0px;
+        padding-left: 0px;
+        & > ul > li {
+          font-size: 14px;
+          font-weight: 300;
+          & > a{
+            color: $instavets_footer_grey_text;
+            &:hover{
+              color: white;
+              text-decoration: none;
+            }
+          }
+          &:first-child{
+            font-size: 16px;
+            font-weight: 600;
+          }
+        }
+        & > ul > li > i {
+          color: $instavets_footer_grey_text;
+          padding-top: 5px;
+          padding-left: 5px;
+          &:hover{
+            color: white;
+          }
+        }
+        & > ul > li > i:first-child{
+          padding-left: 0px;
+        }
+      }
+    }
+    & > div.row.row-footer-last{
+      & > p{
+        font-size: 12px;
+        color: $instavets_footer_grey_text;
+        &:hover{
+          color: white;
+        }
+      }
+      & > p:first-child{
+        float: left;
+        display: inline-block;
+      }
+      & > p:nth-child(2){
+        float: right;;
+        display: inline-block;
+      }
+    }
+  }
+}

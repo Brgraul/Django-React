@@ -1,6 +1,7 @@
 /*SCSS for the index page*/
 div{
-  &.container{
+  &.container.container-slide{
+    text-align: center;
     max-width: 100%;
     padding-left: 0px;
     padding-right: 0px;
@@ -11,8 +12,9 @@ div{
       padding: 0px;
       margin: 0px;
     }
-    & > div.container-slide-overlay{
-      position: absolute;;
+    & > div.container.container-slide-overlay{
+      max-width: 100%;
+      position: absolute;
       top: 35%;
       text-align: center;
       width: 100%;
@@ -21,7 +23,35 @@ div{
         color: white;
       }
     }
-
   }
-
 }
+
+div.section-green{
+  max-width: 100%;
+  text-align: center;
+  background-color: $instavets_green;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  & > div{
+    text-align: center;
+    &  > div > img{
+        width: auto;
+        max-height: 40px;
+    }
+  }
+}
+
+/* Estilos Ventajas Index*/
+div.container.container-ventajas{
+  & > div.row{
+    text-align: center;
+    & > div{
+      & > img{
+        max-width: 100%;
+        height: 100px;
+      }
+    }
+  }
+}
+
+/* ESTILOS PIDE TU CITA INDEX*/

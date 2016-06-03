@@ -2,7 +2,7 @@
 {% load staticfiles %}
 
 {% block body_content %}
-	<div class="container">
+	<div class="container container-slide">
 		<div class="container container-slide-overlay">
 			<h1>Veterinario a domicilio</h1>
 			<h3>menos estrés para tu mascota, mayor comodidad para ti</h3>
@@ -10,5 +10,129 @@
 		</div>
 		<img id="index_slide"  alt="Veterinaria a Domicilio" src="{% static 'images/index/index_slide.jpg' %}"/>
 	</div>
+	<!-- Prensa Start-->
+	<div class="container section-green">
+		<div class="row row-press">
+			<div class="col-md-3">
+				<img class="img-press" src="{% static 'images/index/cronica_norte.png'%} "/>
+			</div>
+			<div class="col-md-3">
+				<img class="img-press" src="{% static 'images/index/abc.png'%} " />
+			</div>
+			<div class="col-md-3">
+				<img class="img-press" src="{% static 'images/index/xl_semana.png'%} " />
+			</div>
+			<div class="col-md-3">
+				<img class="img-press" src="{% static 'images/index/la_moraleja.png'%} " />
+			</div>
+		</div>
+	</div>
+	<!-- Prensa END-->
+
+	<!-- Ventajas Start -->
+	<div class="container container-ventajas">
+		<div class="row">
+			<h2>BENEFICIOS</h2>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<img class="img-responsive" src="{%static 'images/index/gato.png'%}"/>
+				<h4>Menos estrés para tu mascota. Sin otros animales.</h4>
+			</div>
+			<div class="col-md-3">
+				<img class="img-responsive" src="{%static 'images/index/reloj.png'%}"/>
+				<h4>Cita cuando quieras, sin esperas. En tu casa.</h4>
+			</div>
+			<div class="col-md-3">
+				<img class="img-responsive" src="{%static 'images/index/dias-semana.png'%}"/>
+				<h4></h4>
+			</div>
+			<div class="col-md-3">
+				<img class="img-responsive" src="{%static 'images/index/credit-card.png'%}"/>
+				<h4></h4>
+			</div>
+		</div>
+	</div>
+	<!-- Ventajas END -->
+
+	<!-- Pide tu cita START -->
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<img src="{%static 'images/index/frenchi-gato-cortador.png'%}"/>
+			</div>
+			<div class="col-md-6">
+				<h3>39€</h3>
+				<h2>CONSULTA A DOMICILIO</h2>
+				<h3>Incluye visita + Revisión completa + Ayudarte con todas las dudas que tengas sobre el cuidado de tu mascota.</h3>
+				<button>PIDE TU CITA</button>
+			</div>
+		</div>
+	</div>
+	<!-- Pide tu cita END -->
+
+
+	<!-- NUSETROS CLIENTES START -->
+	<div class="container">
+		<div class="row">
+			<h2>NUESTROS CLIENTES</h2>
+			<div class="col-md-12">
+				<div class="owl-carousel">
+					<div> Your Content </div>
+					<div> Your Content </div>
+					<div> Your Content </div>
+					<div> Your Content </div>
+					<div> Your Content </div>
+					<div> Your Content </div>
+					<div> Your Content </div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- NUSETROS CLIENTES END -->
+
+
+	<!-- COMO FUNCIONA Start -->
+	<div class="container container-ventajas">
+		<div class="row">
+			<h2>CÓMO FUNCIONA</h2>
+		</div>
+		<div class="row">
+			<div class="col-md-3">
+				<img class="img-responsive" src="{%static 'images/index/gato.png'%}"/>
+				<h4>Donde nos necesites.</h4>
+			</div>
+			<div class="col-md-3">
+				<img class="img-responsive" src="{%static 'images/index/reloj.png'%}"/>
+				<h4>Cita cuando quieras, sin esperas. En tu casa.</h4>
+			</div>
+			<div class="col-md-3">
+				<img class="img-responsive" src="{%static 'images/index/dias-semana.png'%}"/>
+				<h4></h4>
+			</div>
+			<div class="col-md-3">
+				<img class="img-responsive" src="{%static 'images/index/credit-card.png'%}"/>
+				<h4></h4>
+			</div>
+		</div>
+	</div>
+	<!-- COMO FUNCIONA END -->
+
+
+	<!-- NUSETRAS VETERINARIAS START -->
+	<div class="container">
+		<div class="row">
+			<h2>owl carousel aqui</h2>
+		</div>
+	</div>
+	<!-- NUSETROS VETERINARIAS END -->
+
 	<!--div id='content'></div-->
 {% endblock %}
+
+<!-- custom Javascript -->
+{% block javascript %}
+<script type="text/javascript">
+	$(".owl-carousel").owlCarousel();
+</script>
+{% endblock javascript %}
