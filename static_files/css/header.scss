@@ -1,12 +1,17 @@
 
 /*-------------------- Navbar Styles START--------------*/
+
 header > nav{
   border: 0px;
   background-color: white;
   background-image: none;
   margin-bottom: 0px;
   padding-bottom: 0px;
-  width: 100%;
+  text-align: center;
+  max-width: 1140px;
+  margin-left: auto;
+  margin-right: auto;
+  position: fixed;
   & > div.collapse.navbar-toggleable-xs{
     & > ul.nav.navbar-nav{
       background-color: white;
