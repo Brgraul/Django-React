@@ -1,12 +1,21 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
-
+{% load static %}
 {% block body_content %}
 
-<div class="container">
+<div class="container container-slide">
+  <div class="container container-slide-overlay">
+    <h1>{{ service.headline}}</h1>
+    <h3>{{ service.short_description }}</h3>
+    <button class="btn btn-cta-white"> PIDE TU CITA</button>
+  </div>
+  <img id="index_slide"  alt="Veterinaria a Domicilio" src="{{ MEDIA_URL }}{{ service.image }}"/>
+</div>
+
+<div class="container-fluid">
   <div class="row">
-    <div class="col-md-12">
-      <h1><center>{{ service.name }}</center></h1>
+    <div class="col-md-6 col-md-offset-3">
+      <h4>{{ service.long_description }}</h4>
     </div>
   </div>
 </div>
