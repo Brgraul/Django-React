@@ -19,6 +19,7 @@ from django.contrib import admin
 urlpatterns = [
     url(r'^sermepa/', include('sermepa.urls')),
     url(r'^', include('booking.urls')),
+    url(r'^servicios/', include('services_app.urls')),
     url(r'^product/', include('products_app.urls')),
     url(r'^jet/', include('jet.urls', 'jet')),  # Django JET URLS
     url(r'^jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),  # Django JET dashboard URLS

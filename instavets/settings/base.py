@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'booking',
     'products_app',
+    'services_app',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -67,6 +68,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'services_app.context_processors.services_processor',
             ],
         },
     },
@@ -138,7 +140,7 @@ STATICFILES_DIRS = [
     os.path.join(os.path.dirname(BASE_DIR), "static_files"),
 ]
 
-MEDIA_ROOT = os.path.join(BASE_DIR,"static_files", "media_files")
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR),"static_files", "media_files")
 
 MEDIA_URL = '/media/'
 
