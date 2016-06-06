@@ -5,7 +5,7 @@
 __pycache__/
 settings/prod.py
 db.sqlite3
-static_files/media_files
+#static_files/media_files
 
 
 ### Sass ###

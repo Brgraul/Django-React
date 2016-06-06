@@ -15,12 +15,15 @@ Including another URLconf
 """
 from django.conf.urls import include, url
 from django.contrib import admin
-
+from django.conf.urls.static import  static
+from django.conf import settings 
 urlpatterns = [
     url(r'^sermepa/', include('sermepa.urls')),
     url(r'^', include('booking.urls')),
+    url(r'^servicios/', include('services_app.urls')),
     url(r'^product/', include('products_app.urls')),
     url(r'^jet/', include('jet.urls', 'jet')),  # Django JET URLS
     url(r'^jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),  # Django JET dashboard URLS
     url(r'^admin/', admin.site.urls),
 ]
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
