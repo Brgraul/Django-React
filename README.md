@@ -1,6 +1,5 @@
-# README #
+# Instavets #
 
-This README would normally document whatever steps are necessary to get your application up and running.
 
 ### What is this repository for? ###
 
@@ -23,7 +22,12 @@ This README would normally document whatever steps are necessary to get your app
 * Code review
 * Other guidelines
 
-### Who do I talk to? ###
+### Media Files ###
 
-* Repo owner or admin
-* Other community or team contact
+In order for the media url to work a set up is needed in url.py main file. See the code bellow:
+In the Templates context_processors OPTIONS
+`'django.template.context_processors.media'`
+In the main URL.py
+`from django.conf.urls.static import  static
+from django.conf import settings `
+`urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)`
