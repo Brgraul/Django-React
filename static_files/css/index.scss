@@ -54,7 +54,15 @@ div.section-green{
   border-top: 3px solid #E9E9E9;
   border-bottom: 3px solid #E9E9E9;
 }
-
+.container-white-background{
+  max-width: 100%;
+  padding-left: 15%;
+  padding-right: 15%;
+  padding-top: 2%;
+  padding-bottom: 2%;
+  border-top: 3px solid #E9E9E9;
+  border-bottom: 3px solid #E9E9E9;
+}
 /* Estilos Ventajas Index*/
 div.container.container-ventajas{
   & > div.row{

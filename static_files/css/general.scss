@@ -4,6 +4,8 @@ $instavets_green: #00a099;
 $instavets_grey: #9b9e9e;
 $instavets_footer_grey: #535353;
 $instavets_footer_grey_text: #9B9B9B;
+$instavets_section_background_grey: #F5F5F5;
+$instavets_section_border_grey: #E9E9E9;
 
 h1, h2 ,h3{
   font-family: "Gotham-Medium";
@@ -12,7 +14,7 @@ h1, h2 ,h3{
 /* CTA'S */
 .btn-cta-white{
   border: 2px solid white;
-  border-radius: 0px;
+  border-radius: 4px;
   background-color: transparent;
   padding-left: 10%;
   padding-right: 10%;
@@ -27,7 +29,6 @@ h1, h2 ,h3{
 
 .btn-cta-green{
   border: 2px solid $instavets_green;
-  border-radius: 0px;
   background-color: white;
   padding-left: 10%;
   padding-right: 10%;
@@ -38,4 +39,8 @@ h1, h2 ,h3{
     background-color: $instavets_green;
     color: white;
   }
+}
+.portrait{
+  border-radius: 100%;
+  border: 4px solid grey;
 }
