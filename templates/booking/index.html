@@ -6,7 +6,7 @@
 		<div class="container container-slide-overlay">
 			<h1>Veterinario a domicilio</h1>
 			<h3>menos estrés para tu mascota, mayor comodidad para ti</h3>
-			<button class="btn btn-cta-white"> PIDE TU CITA</button>
+			<button class="btn btn-cta-white" > PIDE TU CITA</button>
 		</div>
 		<img id="index_slide"  alt="Veterinaria a Domicilio" src="{% static 'images/index/index_slide.jpg' %}"/>
 	</div>
@@ -77,8 +77,8 @@
 		<div class="row">
 			<h2>NUESTROS CLIENTES</h2>
 			<div class="col-md-12">
-				<div class="owl-carousel">
-					<div> Your Content </div>
+				<div id="carousel_customers" class="owl-carousel">
+					<div> <img class="img-responsive portrait" src="{{ MEDIA_URL }}{{ customers.image }}"/></div>
 					<div> Your Content </div>
 					<div> Your Content </div>
 					<div> Your Content </div>
@@ -124,7 +124,7 @@
 		<div class="row">
 			<h2>NUESTROS VETERINARIOS</h2>
 			<div class="col-md-12">
-				<div class="owl-carousel">
+				<div id="carousel_vets"class="owl-carousel">
 					<div> Your Content </div>
 					<div> Your Content </div>
 					<div> Your Content </div>
@@ -144,6 +144,17 @@
 <!-- custom Javascript -->
 {% block javascript %}
 <script type="text/javascript">
-	$(".owl-carousel").owlCarousel();
+	$("#carousel_vets").owlCarousel({
+		items:1,
+		pagination:false,
+		navigation:true,
+   	navigationText: [
+			"<i class='icon-arrow-left icon-white'><</i>",
+      "<i class='icon-arrow-right icon-white'>></i>"
+		],
+	});
+	$("#carousel_customers").owlCarousel({
+		items:3,
+	});
 </script>
 {% endblock javascript %}

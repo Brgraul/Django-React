@@ -15,3 +15,20 @@ class Service(models.Model):
     image = models.ImageField(upload_to='services_app',max_length=100)
     #Published on the web ( in service )
     published = models.BooleanField('Publicado', default = True)
+
+#Products
+class CustomerDisplay(models.Model):
+    name = models.CharField(max_length = 100, blank = False, null = False)
+    city = models.CharField(max_length = 20, blank = False, null = False)
+    opinion = models.TextField(max_length = 250, blank = False, null = False)
+    image = models.ImageField(upload_to='services_app/customers_display',max_length=100)
+    #Published on the web ( in service )
+    published = models.BooleanField('Publicado', default = True)
+
+
+#Products
+class VetsDisplay(models.Model):
+    name = models.CharField(max_length = 100, blank = False, null = False)
+    image = models.ImageField(upload_to='services_app/vets_display',max_length=100)
+    #Published on the web ( in service )
+    published = models.BooleanField('Publicado', default = True)

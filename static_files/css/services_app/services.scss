@@ -33,10 +33,10 @@ section.full-wrapp{
   & > h1{
   font-weight: bold;}
   & > h3{
-    text-align: center;
+    text-align: justify;
     font-size: 28px;
     line-height: 125%;
-    margin: 50px auto 0px;
+    margin: 30px auto 0px;
     max-width: 780px;
   }
 }
@@ -47,20 +47,17 @@ div div div h4{
   margin: 60px auto 60px;
   max-width: 1200px;
 }
-.container_info{
-padding: 20px 20px;
-background-color: $instavets_section_background_grey;
-border-top: 3px solid $instavets_section_border_grey;
-border-bottom: 3px solid $instavets_section_border_grey;
-}
+
 div.container_info{
+  padding: 40px 20px;
+  background-color: $instavets_section_background_grey;
+  border-top: 3px solid $instavets_section_border_grey;
+  border-bottom: 3px solid $instavets_section_border_grey;
   & > span{
-  font-size: 30px;
-  line-height: 125%;
-  display: block;
-}
-}
-div.container_info{
+    text-align: center;
+    font-size: 30px;
+    line-height: 125%;
+    display: block;}
   & > ul{
     margin: 0 auto;
     max-width: 1100px;
@@ -74,6 +71,12 @@ div.container_info{
     padding: 10px;
     & > li.container_card{
       margin-right: 15px;
+      & > img {
+        margin-left: auto;
+        margin-right: auto;
+        text-align: center;
+        display: block;
+      }
       & > span.card_title{
         text-align:center;
         font-size: 20px;
@@ -88,6 +91,84 @@ div.container_info{
         line-height: 125%;
         display: block;
       }
+    }
+  }
+}
+
+.image-vet-slider{
+  max-height: 250px;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin-bottom: 15px;
+}
+
+.image-customer-slider{
+  max-height: 200px;
+  border-radius: 50%;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+  margin-bottom: 15px;
+  max-width: 100%;
+}
+
+.text-vet-slider{
+  text-align: center;
+  font-size: 25px;
+  line-height: 125%;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.text-customer-city{
+  text-align: center;
+  font-size: 15px;
+  line-height: 125%;
+  display: block;
+  margin-bottom: 30px;
+}
+
+.text-customer-name{
+  text-align: center;
+  font-size: 20px;
+  line-height: 125%;
+  display: block;
+  margin-bottom: 0px;
+}
+
+.text-customer-opinion{
+  text-align: center;
+  font-size: 20px;
+  line-height: 125%;
+  margin-bottom: 0px;
+  display: inline;
+}
+
+div.container.container-white-background{
+  & > div.row{
+    h2{
+      text-align: center;
+      font-size: 30px;
+      line-height: 125%;
+      display: block;
+      margin-bottom: 15px;
+    }
+    div.linebreak{
+      margin-top: 0px;
+    }
+  }
+}
+
+div.container.container-grey-background{
+  & > div.row{
+    h2{
+      text-align: center;
+      font-size: 30px;
+      line-height: 125%;
+      display: block;
+      margin-bottom: 20px;
     }
   }
 }

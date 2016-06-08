@@ -16,10 +16,16 @@ from rest_framework.decorators import detail_route
 
 # Create your views here.
 from django.http import HttpResponse
-
+from services_app.models import VetsDisplay, CustomerDisplay
 
 def Index(request):
-    return render(request, "booking/index.html", {'time' : datetime.datetime.now()})
+    vets = VetsDisplay.objects.filter(published=True)
+    customers = CustomerDisplay.objects.filter(published=True)
+    context={
+        'vets':vets,
+        'customers':customers,
+    }
+    return render(request, "booking/index.html", context)
 
 def VetProfile(request, coach_id):
 	#return HttpResponse("You are looking at Coach: %s." % coach_id)

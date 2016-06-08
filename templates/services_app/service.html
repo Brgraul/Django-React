@@ -3,21 +3,127 @@
 {% load static %}
 {% block body_content %}
 
-<div class="container container-slide">
-  <div class="container container-slide-overlay">
-    <h1>{{ service.headline}}</h1>
-    <h3>{{ service.short_description }}</h3>
-    <button class="btn btn-cta-white"> PIDE TU CITA</button>
-  </div>
-  <img id="index_slide"  alt="Veterinaria a Domicilio" src="{{ MEDIA_URL }}{{ service.image }}"/>
-</div>
 
-<div class="container-fluid">
+
+<section class="full-wrapp" style="background-image: url({{ MEDIA_URL }}{{ service.image }})">
+  <h1>{{ service.headline}}</h1>
+  <h3>{{ service.short_description }}</h3>
+  <br/>
+  <button class="btn btn-cta-white"> PIDE TU CITA</button>
+</section>
+
+<div class="container-fluid container-services-long-description">
   <div class="row">
-    <div class="col-md-6 col-md-offset-3">
-      <h4>{{ service.long_description }}</h4>
+    <div class="col-md-10 col-md-offset-1">
+      <h4>{{ service.long_description|linebreaks }}</h4>
     </div>
   </div>
 </div>
 
+<div class="container_info">
+  <span>La mejor atención sólo en casa</span>
+  <ul>
+    <li class="container_card">
+        <img  alt="File logo" src="{% static 'images/services_app/Logo-01.png' %}"/>
+        <span class="card_title">Estudiamos el historial médico de tu mascota</span>
+        <span class="card_body">La continuidad en los tratamientos es muy importante. Revisamos el historial médico de tu mascota antes de cada cita.</span>
+    </li>
+    <li class="container_card">
+        <img  alt="File logo" src="{% static 'images/services_app/Logo-01.png' %}"/>
+        <span class="card_title">Estudiamos el historial médico de tu mascota</span>
+        <span class="card_body">La continuidad en los tratamientos es muy importante. Revisamos el historial médico de tu mascota antes de cada cita.</span>
+    </li>
+    <li class="container_card">
+        <img  alt="File logo" src="{% static 'images/services_app/Logo-01.png' %}"/>
+        <span class="card_title">Estudiamos el historial médico de tu mascota</span>
+        <span class="card_body">La continuidad en los tratamientos es muy importante. Revisamos el historial médico de tu mascota antes de cada cita.</span>
+    </li>
+  </ul>
+</div>
+
+<!-- NUSETRAS VETERINARIAS START -->
+<div class="container container-white-background">
+  <div class="row">
+    <h2>NUESTROS VETERINARIOS</h2>
+    <div class="linebreak"></div>
+    </div>
+    <div class="col-md-12">
+      <div id="carousel_vets" class="owl-carousel">
+        {% for vet in vets %}
+        <div class="item">
+          <img  class="image-vet-slider" alt="{{vet.name}}"  src="{{ MEDIA_URL }}{{ vet.image }}"/>
+            <p class="text-vet-slider">{{vet.name}}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+<!-- NUSETROS VETERINARIAS END -->
+
+<!-- Prensa Start-->
+<div class="container section-green">
+  <div class="row row-press">
+    <div class="col-md-3">
+      <img class="img-press" src="{% static 'images/index/logos-02.png'%} "/>
+    </div>
+    <div class="col-md-3">
+      <img class="img-press" src="{% static 'images/index/logos-03.png'%} " />
+    </div>
+    <div class="col-md-3">
+      <img class="img-press" src="{% static 'images/index/logos-04.png'%} " />
+    </div>
+    <div class="col-md-3">
+      <img class="img-press" src="{% static 'images/index/logos-01.png'%} " />
+    </div>
+  </div>
+</div>
+<!-- Prensa END-->
+
+<!-- NUSETROS CLIENTES START -->
+<div class="container container-grey-background">
+  <div class="row">
+    <!-- <h2>NUESTROS CLIENTES</h2> -->
+    <div class="col-md-12">
+      <div id="carousel_customers" class="owl-carousel">
+        {% for customer in customers %}
+        <div class="item">
+          <i class="fa fa-quote-left quote-icon"></i>
+          <p class="text-customer-opinion">{{customer.opinion}}</p>
+          <i class="fa fa-quote-right quote-icon"></i>
+          <div class="linebreak"></div>
+          <p class="text-customer-name">{{customer.name}}</p>
+          <p class="text-customer-city">{{customer.city}}</p>
+          <img  class="image-customer-slider" alt="{{customer.name}}"  src="{{ MEDIA_URL }}{{ customer.image }}"/>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+<!-- NUSETROS CLIENTES END -->
+
 {% endblock body_content %}
+
+{% block javascript %}
+<script type="text/javascript">
+	$("#carousel_vets").owlCarousel({
+		items:1,
+		pagination:false,
+		navigation:true,
+   	navigationText: [
+			"<i class='icon-arrow-left icon-white'><</i>",
+      "<i class='icon-arrow-right icon-white'>></i>"
+		],
+	});
+	$("#carousel_customers").owlCarousel({
+		items:1,
+    pagination:false,
+		navigation:true,
+    navigationText: [
+			"<i class='icon-arrow-left icon-white'><</i>",
+      "<i class='icon-arrow-right icon-white'>></i>"
+		],
+	});
+</script>
+{% endblock javascript %}
