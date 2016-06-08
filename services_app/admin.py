@@ -7,7 +7,7 @@ class ServiceAdmin(admin.ModelAdmin):
     list_display = ('name', 'menu_link')
 
 class VetsDisplayAdmin(admin.ModelAdmin):
-    list_display = ('name', 'published')
+    list_display = ('name', 'published_slider','published_lasvets')
 
 class CustomerDisplayAdmin(admin.ModelAdmin):
     list_display = ('name', 'published')

@@ -19,7 +19,7 @@ from django.http import HttpResponse
 from services_app.models import VetsDisplay, CustomerDisplay
 
 def Index(request):
-    vets = VetsDisplay.objects.filter(published=True)
+    vets = VetsDisplay.objects.filter(published_slider=True)
     customers = CustomerDisplay.objects.filter(published=True)
     context={
         'vets':vets,

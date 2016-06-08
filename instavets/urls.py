@@ -16,7 +16,9 @@ Including another URLconf
 from django.conf.urls import include, url
 from django.contrib import admin
 from django.conf.urls.static import  static
-from django.conf import settings 
+from django.conf import settings
+from services_app.views import MeetTheVetsPage
+
 urlpatterns = [
     url(r'^sermepa/', include('sermepa.urls')),
     url(r'^', include('booking.urls')),
@@ -25,5 +27,8 @@ urlpatterns = [
     url(r'^jet/', include('jet.urls', 'jet')),  # Django JET URLS
     url(r'^jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),  # Django JET dashboard URLS
     url(r'^admin/', admin.site.urls),
+    # Meet the vets#
+    url(r'^veterinarias/$', MeetTheVetsPage, name='meet_vets_url'),
+
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
