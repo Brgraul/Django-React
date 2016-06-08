@@ -4,7 +4,6 @@
 *.pyc
 __pycache__/
 settings/prod.py
-db.sqlite3
 #static_files/media_files
 
 
