@@ -22,7 +22,6 @@ var VetComponent = React.createClass({
 								<Vet name={vet.name} image={vet.image} />
 						)
 					})}
-					<Vet name="Bayside" image="https://static.pexels.com/photos/6468/animal-brown-horse.jpg" />
 				</div>
 			)
 	}
@@ -31,7 +30,7 @@ var VetComponent = React.createClass({
 var Vet = React.createClass({
 	render: function() {
 		return (
-			<div>
+			<div className="container">
 				<h2>{this.props.name}</h2>
 				<img src={this.props.image}/>
 			</div>
@@ -41,5 +40,5 @@ var Vet = React.createClass({
 
 ReactDOM.render(
 	<VetComponent vets={vets}/>,
-	document.getElementById('content')
+	document.getElementById('react-vet-profile')
 	)

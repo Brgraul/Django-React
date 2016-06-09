@@ -3,6 +3,7 @@ import datetime
 from models import Vet
 from rest_framework import generics
 from serializers import VetSerializer
+from django.shortcuts import get_object_or_404
 
 #Api imports
 from serializers import VetSerializer
@@ -27,10 +28,10 @@ def Index(request):
     }
     return render(request, "booking/index.html", context)
 
-def VetProfile(request, coach_id):
+def VetProfile(request, vet_id):
 	#return HttpResponse("You are looking at Coach: %s." % coach_id)
-	coach = get_object_or_404(Vet, pk=vet_id)
-	return render(request, 'vet.html', {'vet': vet})
+	vet = get_object_or_404(Vet, pk=vet_id)
+	return render(request, 'booking/vet.html', {'vet': vet})
 
 
 ## Api Views
