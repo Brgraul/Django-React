@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'rest_framework',
+    'ckeditor',
     'booking',
     'products_app',
     'services_app',
@@ -158,3 +159,5 @@ SERMEPA_SIGNATURE_VERSION = 'HMAC_SHA256_V1' # This value is fixed
 SERMEPA_SITE_DOMAIN = 'localhost:8000/'    # Your site domain
 SERMEPA_SECRET_KEY = ''     # Your Redsys Secret Key
 SERMEPA_MERCHANT_CODE = ''  # Your Redsys Merchant code
+
+# CKEDITOR SETTINGS
