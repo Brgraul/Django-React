@@ -1,33 +1,36 @@
 var vets = [
-	{name: "Bayside", image: "http://www.google.es "},
-	{name: "Bayside", image: "http://www.google.es "},
-	{name: "Bayside", image: "http://www.google.es "},
 ]
 
 var VetComponent = React.createClass({
 	getInitialState: function() {
-		return {customText: "Text before the click"};
+		return {customText: "Text before the click", zipCode: "00000"};
 	},
-	customClickFunction: function() {
-		this.setState({customText: "You clicked the button"});
+	onChange: function() {
+		this.setState({zipCode: event.target.value});
+		console.log(this.state.zipCode);
 	},
-	render: function() {
-		var testStyle = {fontSize: '36px', marginRight: '20px' };
-		return (
-				<div nameClass="container">
-					<div className="column col-md-12">
-						<h1>Cual es tu código postal?</h1>
-					</div>
 
-				</div>
-				<div style={testStyle}>
-					<h1>{this.state.customText}</h1>
-					<button onClick={this.customClickFunction}>Click Me!!!</button>
-					{this.props.vets.map(function (vet) {
-						return (
-								<Vet name={vet.name} image={vet.image} />
-						)
-					})}
+	render: function() {
+		var titleStyle = {fontSize: '36px', marginRight: '20px', float: 'left'};
+
+		return (
+				<div className="container">
+					<div className="row">
+						<div className="column col-md-12 col-sm-12 col-xs-12" style={titleStyle}>
+							<h1>¿Cual es tu código postal?</h1>
+							<input
+					      type="text"
+					      value={this.state.zipCode}
+								onChange={this.onChange}
+					    />
+							<button onClick={this.onChange, this.nextComponent}>Click Me!!!</button>
+							{this.props.vets.map(function (vet) {
+								return (
+										<Vet name={vet.name} image={vet.image} />
+									)
+								})}
+						</div>
+					</div>
 				</div>
 			)
 	}
