@@ -14,6 +14,12 @@ var VetComponent = React.createClass({
 	render: function() {
 		var testStyle = {fontSize: '36px', marginRight: '20px' };
 		return (
+				<div nameClass="container">
+					<div className="column col-md-12">
+						<h1>Cual es tu código postal?</h1>
+					</div>
+
+				</div>
 				<div style={testStyle}>
 					<h1>{this.state.customText}</h1>
 					<button onClick={this.customClickFunction}>Click Me!!!</button>
