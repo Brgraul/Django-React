@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'booking',
     'products_app',
     'services_app',
+    'debug_toolbar',
+
 ]
 
 MIDDLEWARE_CLASSES = [

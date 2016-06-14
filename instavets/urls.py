@@ -19,10 +19,12 @@ from django.conf.urls.static import  static
 from django.conf import settings
 from services_app.views import MeetTheVetsPage
 from django.conf.urls import url
+from booking_app import views
 urlpatterns = [
     url(r'^sermepa/', include('sermepa.urls')),
     url(r'^', include('booking.urls')),
-    url(r'^register', views.UserFormView.as_view(), name ='index'),
+    url(r'^register', views.RegisterFormView.as_view(), name ='register'),
+    url(r'^login', views.LoginFormView.as_view(), name ='login'),
     url(r'^servicios/', include('services_app.urls')),
     url(r'^product/', include('products_app.urls')),
     url(r'^jet/', include('jet.urls', 'jet')),  # Django JET URLS
