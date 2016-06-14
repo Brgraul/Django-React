@@ -34,6 +34,7 @@ INSTALLED_APPS = [
     'jet',
     'django.contrib.admin',
     'django.contrib.auth',
+    'registration',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -44,7 +45,6 @@ INSTALLED_APPS = [
     'products_app',
     'services_app',
     'debug_toolbar',
-
 ]
 
 MIDDLEWARE_CLASSES = [
