@@ -1,8 +1,11 @@
 from django.shortcuts import render , redirect
 from django.shortcuts import get_object_or_404
-from django.contrib.auth import authenticate, login
 from django.views.generic import View
-
+from .forms import CheckoutForm
 # Create your views here.
-def UserProfile(request):
-    return render(request, "booking_app/profile.html", {})
+
+def CheckoutPage(request):
+    context = {
+    'form':CheckoutForm
+    }
+    return render(request, "booking_app/checkout.html", context)
