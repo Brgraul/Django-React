@@ -21,7 +21,7 @@ from services_app.views import MeetTheVetsPage
 from django.conf.urls import url
 from booking_app import views
 urlpatterns = [
-    url(r'^accounts/', include('registration.backends.simple.urls')),
+    url(r'^accounts/', include('allauth.urls')),
     url(r'^sermepa/', include('sermepa.urls')),
     url(r'^', include('booking.urls')),
     url(r'^', include('booking_app.urls')),

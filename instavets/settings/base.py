@@ -32,9 +32,9 @@ INSTALLED_APPS = [
     'jet.dashboard',
     'sermepa',
     'jet',
+    'django.contrib.sites',
     'django.contrib.admin',
     'django.contrib.auth',
-    'registration',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -45,6 +45,13 @@ INSTALLED_APPS = [
     'products_app',
     'services_app',
     'debug_toolbar',
+    'booking_app',
+    #All Auth
+    'allauth',
+    'allauth.account',
+    'allauth.socialaccount',
+     # ... include the providers you want to enable:
+    'allauth.socialaccount.providers.facebook',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -70,6 +77,7 @@ TEMPLATES = [
                 'django.template.context_processors.debug',
                 'django.template.context_processors.request',
                 'django.template.context_processors.media',
+                'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
                 'services_app.context_processors.services_processor',
@@ -163,3 +171,22 @@ SERMEPA_SECRET_KEY = ''     # Your Redsys Secret Key
 SERMEPA_MERCHANT_CODE = ''  # Your Redsys Merchant code
 
 # CKEDITOR SETTINGS
+
+SITE_ID = 1;
+
+#All-Auth
+AUTHENTICATION_BACKENDS = (
+    # Needed to login by username in Django admin, regardless of `allauth`
+    'django.contrib.auth.backends.ModelBackend',
+
+    # `allauth` specific authentication methods, such as login by e-mail
+    'allauth.account.auth_backends.AuthenticationBackend',
+)
+
+#All Auth Configurations:
+
+ACCOUNT_SIGNUP_FORM_CLASS = 'booking_app.forms.SignupForm'
+
+#ACCOUNT_FORMS = {
+#    'login': 'booking_app.forms.SignupForm',
+#}
