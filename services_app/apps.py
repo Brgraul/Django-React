@@ -5,3 +5,4 @@ from django.apps import AppConfig
 
 class ServicesAppConfig(AppConfig):
     name = 'services_app'
+    verbose_name = 'Servicios Web'
