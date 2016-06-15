@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'bootstrapform',
     'rest_framework',
     'ckeditor',
     'booking',
@@ -51,7 +52,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
      # ... include the providers you want to enable:
-    'allauth.socialaccount.providers.facebook',
+    #'allauth.socialaccount.providers.facebook',
 ]
 
 MIDDLEWARE_CLASSES = [
@@ -185,7 +186,7 @@ AUTHENTICATION_BACKENDS = (
 
 #All Auth Configurations:
 
-ACCOUNT_SIGNUP_FORM_CLASS = 'booking_app.forms.SignupForm'
+#ACCOUNT_SIGNUP_FORM_CLASS = 'booking_app.forms.SignupForm'
 
 #ACCOUNT_FORMS = {
 #    'login': 'booking_app.forms.SignupForm',
