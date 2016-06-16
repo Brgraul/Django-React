@@ -35,9 +35,9 @@ class CheckoutForm(forms.Form):
     )
     pet_gender = forms.ChoiceField(required = False, choices = GENDER)
     pet_breed = forms.CharField(max_length=100, required = False)
-    #Step 3: Apointment
+    #Step 4: Apointment
     booking_reason = forms.CharField(max_length=3000, required = False)
     accept_terms = forms.BooleanField()
     accept_charge = forms.BooleanField()
-    #Step 4: Payment details
+    #Step 5: Payment details
     payment_ok = forms.BooleanField()
