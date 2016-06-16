@@ -50,6 +50,6 @@ var Vet = React.createClass({
 });
 
 ReactDOM.render(
-	<VetComponent vets={vets}/>,
+	<Vet/>,
 	document.getElementById('container-checkout')
 	)
