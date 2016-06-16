@@ -1,3 +1,5 @@
+var forms = require('newforms')
+
 var vets = [
 ]
 
@@ -49,5 +51,5 @@ var Vet = React.createClass({
 
 ReactDOM.render(
 	<VetComponent vets={vets}/>,
-	document.getElementById('react-vet-profile')
+	document.getElementById('container-checkout')
 	)
