@@ -1,2 +1,2 @@
-require('./component.js');
-require('./index.js');
+var forms = require('newforms');
+require('./checkout.js');
