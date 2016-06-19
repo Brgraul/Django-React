@@ -1,5 +1,16 @@
 var forms = require('newforms')
 
+var CheckoutContainer =React.createClass({
+  render: function() {
+    return (
+      <div>
+        <ProgressColumn/>
+    	   <Signup/>
+      </div>
+    );
+  }
+})
+
 var SignupForm = forms.Form.extend({
   booking: forms.DateTimeField(),
   phone_number: forms.CharField(),
@@ -15,7 +26,7 @@ var Signup = React.createClass({
   render: function() {
     return <form onSubmit={this._onSubmit}>
       <forms.RenderForm form={SignupForm} ref="signupForm"/>
-      <button>Sign Up</button>
+      <button class="btn-cta-green">Guardar y continuar</button>
     </form>
   },
   onSignup: function() {
@@ -52,14 +63,18 @@ var Signup = React.createClass({
       this.props.onSignup(form.cleanedData)
     }
   },
+})
 
-
-
-
+var ProgressColumn = React.createClass({
+  render: function(){
+    return <div class="row">
+    <h3>Summary</h3>
+    </div>
+  }
 })
 
 
 ReactDOM.render(
-	<Signup/>,
-	document.getElementById('container-checkout')
-	)
+	<CheckoutContainer/>,
+	document.getElementById('container-checkout-form')
+)

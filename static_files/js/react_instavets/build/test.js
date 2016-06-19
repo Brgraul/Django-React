@@ -14770,6 +14770,19 @@
 
 	var forms = __webpack_require__(1);
 
+	var CheckoutContainer = React.createClass({
+	  displayName: "CheckoutContainer",
+
+	  render: function () {
+	    return React.createElement(
+	      "div",
+	      null,
+	      React.createElement(ProgressColumn, null),
+	      React.createElement(Signup, null)
+	    );
+	  }
+	});
+
 	var SignupForm = forms.Form.extend({
 	  booking: forms.DateTimeField(),
 	  phone_number: forms.CharField(),
@@ -14782,17 +14795,17 @@
 	});
 
 	var Signup = React.createClass({
-	  displayName: 'Signup',
+	  displayName: "Signup",
 
 	  render: function () {
 	    return React.createElement(
-	      'form',
+	      "form",
 	      { onSubmit: this._onSubmit },
-	      React.createElement(forms.RenderForm, { form: SignupForm, ref: 'signupForm' }),
+	      React.createElement(forms.RenderForm, { form: SignupForm, ref: "signupForm" }),
 	      React.createElement(
-	        'button',
-	        null,
-	        'Sign Up'
+	        "button",
+	        { className: "btn-cta-green" },
+	        "Guardar y continuar"
 	      )
 	    );
 	  },
@@ -14829,10 +14842,25 @@
 	      this.props.onSignup(form.cleanedData);
 	    }
 	  }
-
 	});
 
-	ReactDOM.render(React.createElement(Signup, null), document.getElementById('container-checkout'));
+	var ProgressColumn = React.createClass({
+	  displayName: "ProgressColumn",
+
+	  render: function () {
+	    return React.createElement(
+	      "div",
+	      { className: "row" },
+	      React.createElement(
+	        "h3",
+	        null,
+	        "Summary"
+	      )
+	    );
+	  }
+	});
+
+	ReactDOM.render(React.createElement(CheckoutContainer, null), document.getElementById('container-checkout-form'));
 
 /***/ }
 /******/ ]);
