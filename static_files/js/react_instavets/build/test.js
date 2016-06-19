@@ -14770,19 +14770,6 @@
 
 	var forms = __webpack_require__(1);
 
-	var CheckoutContainer = React.createClass({
-	  displayName: "CheckoutContainer",
-
-	  render: function () {
-	    return React.createElement(
-	      "div",
-	      null,
-	      React.createElement(ProgressColumn, null),
-	      React.createElement(Signup, null)
-	    );
-	  }
-	});
-
 	var SignupForm = forms.Form.extend({
 	  booking: forms.DateTimeField(),
 	  phone_number: forms.CharField(),
@@ -14799,13 +14786,17 @@
 
 	  render: function () {
 	    return React.createElement(
-	      "form",
-	      { onSubmit: this._onSubmit },
-	      React.createElement(forms.RenderForm, { form: SignupForm, ref: "signupForm" }),
+	      "div",
+	      { className: "col-md-9" },
 	      React.createElement(
-	        "button",
-	        { className: "btn-cta-green" },
-	        "Guardar y continuar"
+	        "form",
+	        { onSubmit: this._onSubmit },
+	        React.createElement(forms.RenderForm, { form: SignupForm, ref: "signupForm" }),
+	        React.createElement(
+	          "button",
+	          { className: "btn-cta-green" },
+	          "Guardar y continuar"
+	        )
 	      )
 	    );
 	  },
@@ -14850,12 +14841,25 @@
 	  render: function () {
 	    return React.createElement(
 	      "div",
-	      { className: "row" },
+	      { className: "col-md-3" },
 	      React.createElement(
 	        "h3",
 	        null,
 	        "Summary"
 	      )
+	    );
+	  }
+	});
+
+	var CheckoutContainer = React.createClass({
+	  displayName: "CheckoutContainer",
+
+	  render: function () {
+	    return React.createElement(
+	      "div",
+	      { className: "row" },
+	      React.createElement(Signup, null),
+	      React.createElement(ProgressColumn, null)
 	    );
 	  }
 	});

@@ -1,16 +1,5 @@
 var forms = require('newforms')
 
-var CheckoutContainer =React.createClass({
-  render: function() {
-    return (
-      <div>
-        <ProgressColumn/>
-    	   <Signup/>
-      </div>
-    );
-  }
-})
-
 var SignupForm = forms.Form.extend({
   booking: forms.DateTimeField(),
   phone_number: forms.CharField(),
@@ -24,10 +13,12 @@ var SignupForm = forms.Form.extend({
 
 var Signup = React.createClass({
   render: function() {
-    return <form onSubmit={this._onSubmit}>
-      <forms.RenderForm form={SignupForm} ref="signupForm"/>
-      <button class="btn-cta-green">Guardar y continuar</button>
-    </form>
+    return <div class="col-md-9">
+            <form onSubmit={this._onSubmit}>
+              <forms.RenderForm form={SignupForm} ref="signupForm"/>
+              <button class="btn-cta-green">Guardar y continuar</button>
+            </form>
+          </div>
   },
   onSignup: function() {
     console.log('on isgnup')
@@ -67,9 +58,20 @@ var Signup = React.createClass({
 
 var ProgressColumn = React.createClass({
   render: function(){
-    return <div class="row">
+    return <div class="col-md-3">
     <h3>Summary</h3>
     </div>
+  }
+})
+
+var CheckoutContainer =React.createClass({
+  render: function() {
+    return (
+      <div class="row">
+    	  <Signup/>
+        <ProgressColumn/>
+      </div>
+    );
   }
 })
 
