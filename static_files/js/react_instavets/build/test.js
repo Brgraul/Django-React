@@ -14770,6 +14770,13 @@
 
 	var forms = __webpack_require__(1);
 
+	var PaymentForm = forms.Form.extend({
+	  card_name: forms.CharField({ label: 'Nombre del titular:' }),
+	  card_number: forms.CharField({ label: 'Número Tarjeta:' }),
+	  csv: forms.CharField({ label: 'CSV:' }),
+	  exp_date: forms.DateTimeField({ label: 'Fecha Caducidad:', widget: forms.DateInput({ format: '%m/%Y' }) })
+	});
+
 	var SignupForm = forms.Form.extend({
 	  booking: forms.DateTimeField(),
 	  phone_number: forms.CharField(),
@@ -14781,21 +14788,58 @@
 	  acceptTerms: forms.BooleanField({ required: true })
 	});
 
-	var Signup = React.createClass({
-	  displayName: "Signup",
+	var Payment = React.createClass({
+	  displayName: 'Payment',
 
 	  render: function () {
 	    return React.createElement(
-	      "div",
-	      { className: "col-md-9" },
+	      'div',
+	      { className: 'col-md-9' },
 	      React.createElement(
-	        "form",
+	        'form',
 	        { onSubmit: this._onSubmit },
-	        React.createElement(forms.RenderForm, { form: SignupForm, ref: "signupForm" }),
+	        React.createElement(forms.RenderForm, { form: PaymentForm, ref: 'paymentForm' }),
 	        React.createElement(
-	          "button",
-	          { className: "btn-cta-green" },
-	          "Guardar y continuar"
+	          'button',
+	          { className: 'btn-cta-green' },
+	          'Pagar'
+	        )
+	      )
+	    );
+	  },
+	  //Esta funcion que hace?
+	  onSignup: function () {
+	    console.log('on isgnup');
+	    //Handle payment right here with the tpv
+	  },
+	  propTypes: {
+	    onSignup: React.PropTypes.func.isRequired
+	  },
+	  _onSubmit: function (e) {
+	    e.preventDefault();
+	    //Que es lo de la e?
+	    //Aqui hacer un Ajax que a una vista determinada de python que maneja el pago
+	    var form = this.refs.signupForm.getForm();
+	    console.log(form.cleanedData);
+	  }
+
+	});
+
+	var Signup = React.createClass({
+	  displayName: 'Signup',
+
+	  render: function () {
+	    return React.createElement(
+	      'div',
+	      { className: 'col-md-9' },
+	      React.createElement(
+	        'form',
+	        { onSubmit: this._onSubmit },
+	        React.createElement(forms.RenderForm, { form: SignupForm, ref: 'signupForm' }),
+	        React.createElement(
+	          'button',
+	          { className: 'btn-cta-green' },
+	          'Guardar y continuar'
 	        )
 	      )
 	    );
@@ -14836,29 +14880,30 @@
 	});
 
 	var ProgressColumn = React.createClass({
-	  displayName: "ProgressColumn",
+	  displayName: 'ProgressColumn',
 
 	  render: function () {
 	    return React.createElement(
-	      "div",
-	      { className: "col-md-3" },
+	      'div',
+	      { className: 'col-md-3' },
 	      React.createElement(
-	        "h3",
+	        'h3',
 	        null,
-	        "Summary"
+	        'Summary'
 	      )
 	    );
 	  }
 	});
 
 	var CheckoutContainer = React.createClass({
-	  displayName: "CheckoutContainer",
+	  displayName: 'CheckoutContainer',
 
 	  render: function () {
 	    return React.createElement(
-	      "div",
-	      { className: "row" },
+	      'div',
+	      { className: 'row' },
 	      React.createElement(Signup, null),
+	      React.createElement(Payment, null),
 	      React.createElement(ProgressColumn, null)
 	    );
 	  }

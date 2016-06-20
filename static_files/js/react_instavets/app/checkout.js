@@ -1,5 +1,12 @@
 var forms = require('newforms')
 
+var PaymentForm = forms.Form.extend({
+  card_name: forms.CharField({label: 'Nombre del titular:'}),
+  card_number: forms.CharField({label: 'Número Tarjeta:'}),
+  csv: forms.CharField({label: 'CSV:'}),
+  exp_date: forms.DateTimeField({label: 'Fecha Caducidad:', widget: forms.DateInput({format: '%m/%Y'})}),
+})
+
 var SignupForm = forms.Form.extend({
   booking: forms.DateTimeField(),
   phone_number: forms.CharField(),
@@ -9,6 +16,34 @@ var SignupForm = forms.Form.extend({
   adress: forms.CharField(),
   city: forms.CharField(),
   acceptTerms: forms.BooleanField({required: true})
+})
+
+var Payment = React.createClass({
+  render: function() {
+    return <div class="col-md-9">
+            <form onSubmit={this._onSubmit}>
+              <forms.RenderForm form={PaymentForm} ref="paymentForm"/>
+              <button class="btn-cta-green">Pagar</button>
+            </form>
+          </div>
+  },
+  //Esta funcion que hace?
+  onSignup: function() {
+    console.log('on isgnup')
+    //Handle payment right here with the tpv
+  },
+  propTypes: {
+    onSignup: React.PropTypes.func.isRequired
+  },
+  _onSubmit: function(e) {
+    e.preventDefault()
+    //Que es lo de la e?
+    //Aqui hacer un Ajax que a una vista determinada de python que maneja el pago
+    var form = this.refs.signupForm.getForm()
+    console.log(form.cleanedData)
+  },
+
+
 })
 
 var Signup = React.createClass({
@@ -69,6 +104,7 @@ var CheckoutContainer =React.createClass({
     return (
       <div class="row">
     	  <Signup/>
+        <Payment/>
         <ProgressColumn/>
       </div>
     );
