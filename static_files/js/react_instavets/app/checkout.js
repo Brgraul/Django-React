@@ -50,14 +50,8 @@ var SignupForm = forms.Form.extend({
   adress: forms.CharField({label: 'Dirección:'}),
   */
   city: forms.CharField({label: 'Ciudad:'}),
-  onFormChange: function(){
-    console.log('form changed')
-  },
   acceptTerms: forms.BooleanField({label: 'Acepto los términos de usuario:',
-                                  required: true,
-                                  controlled: true,
-                                  onChange: this.onFormChange.bind(this)}),
-
+                                  required: true}),
 
 })
 
@@ -130,16 +124,44 @@ var Payment = React.createClass({
 })
 
 var Signup = React.createClass({
+  getInitialState: function(){
+    //Ajax Request for translated cookie
+    //if cookie nulll automplete with default data
+    return{
+      form_to_load: SignupForm,
+      signupFormData: {city: 'Incompleto'},
+    }
+  },
+  onFormChange: function() {
+    this.setState({
+      signupFormData: this.refs.SignupForm.getForm().data,
+    })
+    localStorage.setItem('signupFormData', this.refs.signupForm.getForm().data)
+    console.log(this.state.signupFormData);
+    this.forceUpdate()
+  },
   render: function() {
-    console.log('dasd')
+    switch (this.state.step) {
+      case 1:
+        this.state.form_to_load = SignupForm
+        break;
+      case 2:
+        this.state.form_to_load = NewPetForm
+        break;
+      case 3:
+        this.state.form_to_load = PaymentForm
+        break;
+      default:
+        this.state.form_to_load = SignupForm
+    }
     return <div class="row">
               <div class="col-md-9">
-                <form onSubmit={this._onSubmit}>
-                <forms.RenderForm form={SignupForm} ref="signupForm"/>
+                <form onSubmit={this._onSubmit} onChange={this.onFormChange}>
+                <forms.RenderForm form={this.state.form_to_load} ref="signupForm"/>
                 <button class="btn-cta-green">Guardar y continuar</button>
               </form>
             </div>
-            <ProgressColumn />
+            <ProgressColumn signupFormData={this.state.signupFormData}/>
           </div>
 
   },
@@ -227,13 +249,13 @@ var NewPet = React.createClass({
   },
 })
 
-
 var ProgressColumn = React.createClass({
   render: function(){
+    console.log(this.props.formData)
     return <div class="col-md-3 col-progress">
             <div class="row">
               <h2>Step Name</h2>
-              <h4>Step Description and all that .....</h4>
+              <h4>{this.props.signupFormData.city}</h4>
             </div>
             <div class="row">
               <h2>Step Name</h2>
@@ -273,24 +295,15 @@ var CheckoutContainer = React.createClass({
   },
 
   render: function() {
-		switch (this.state.step) {
-			case 1:
 				return(
           <div class="container">
             <Header step={this.state.step} />
             <div class="checkout-body">
-              <Signup nextStep={this.nextStep} />
+              <Signup step={this.state.step} nextStep={this.nextStep} />
             </div>
           </div>
               );
-			case 2:
-				return <Payment nextStep={this.nextStep}
-                            previousStep={this.previousStep} />
-      case 3:
-  			return <NewPet nextStep={this.nextStep}
-                            previousStep={this.previousStep} />
 		}
-	}
 })
 
 

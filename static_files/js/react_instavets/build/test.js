@@ -14844,13 +14844,8 @@
 	  adress: forms.CharField({label: 'Dirección:'}),
 	  */
 	  city: forms.CharField({ label: 'Ciudad:' }),
-	  onFormChange: function () {
-	    console.log('form changed');
-	  },
 	  acceptTerms: forms.BooleanField({ label: 'Acepto los términos de usuario:',
-	    required: true,
-	    controlled: true,
-	    onChange: this.onFormChange.bind(this) })
+	    required: true })
 
 	});
 
@@ -14925,8 +14920,36 @@
 	var Signup = React.createClass({
 	  displayName: "Signup",
 
+	  getInitialState: function () {
+	    //Ajax Request for translated cookie
+	    //if cookie nulll automplete with default data
+	    return {
+	      form_to_load: SignupForm,
+	      signupFormData: { city: 'Incompleto' }
+	    };
+	  },
+	  onFormChange: function () {
+	    this.setState({
+	      signupFormData: this.refs.SignupForm.getForm().data
+	    });
+	    localStorage.setItem('signupFormData', this.refs.signupForm.getForm().data);
+	    console.log(this.state.signupFormData);
+	    this.forceUpdate();
+	  },
 	  render: function () {
-	    console.log('dasd');
+	    switch (this.state.step) {
+	      case 1:
+	        this.state.form_to_load = SignupForm;
+	        break;
+	      case 2:
+	        this.state.form_to_load = NewPetForm;
+	        break;
+	      case 3:
+	        this.state.form_to_load = PaymentForm;
+	        break;
+	      default:
+	        this.state.form_to_load = SignupForm;
+	    }
 	    return React.createElement(
 	      "div",
 	      { className: "row" },
@@ -14935,8 +14958,8 @@
 	        { className: "col-md-9" },
 	        React.createElement(
 	          "form",
-	          { onSubmit: this._onSubmit },
-	          React.createElement(forms.RenderForm, { form: SignupForm, ref: "signupForm" }),
+	          { onSubmit: this._onSubmit, onChange: this.onFormChange },
+	          React.createElement(forms.RenderForm, { form: this.state.form_to_load, ref: "signupForm" }),
 	          React.createElement(
 	            "button",
 	            { className: "btn-cta-green" },
@@ -14944,7 +14967,7 @@
 	          )
 	        )
 	      ),
-	      React.createElement(ProgressColumn, null)
+	      React.createElement(ProgressColumn, { signupFormData: this.state.signupFormData })
 	    );
 	  },
 	  onSignup: function (cleanedData) {
@@ -15043,6 +15066,7 @@
 	  displayName: "ProgressColumn",
 
 	  render: function () {
+	    console.log(this.props.formData);
 	    return React.createElement(
 	      "div",
 	      { className: "col-md-3 col-progress" },
@@ -15057,7 +15081,7 @@
 	        React.createElement(
 	          "h4",
 	          null,
-	          "Step Description and all that ....."
+	          this.props.signupFormData.city
 	        )
 	      ),
 	      React.createElement(
@@ -15130,25 +15154,16 @@
 	  },
 
 	  render: function () {
-	    switch (this.state.step) {
-	      case 1:
-	        return React.createElement(
-	          "div",
-	          { className: "container" },
-	          React.createElement(Header, { step: this.state.step }),
-	          React.createElement(
-	            "div",
-	            { className: "checkout-body" },
-	            React.createElement(Signup, { nextStep: this.nextStep })
-	          )
-	        );
-	      case 2:
-	        return React.createElement(Payment, { nextStep: this.nextStep,
-	          previousStep: this.previousStep });
-	      case 3:
-	        return React.createElement(NewPet, { nextStep: this.nextStep,
-	          previousStep: this.previousStep });
-	    }
+	    return React.createElement(
+	      "div",
+	      { className: "container" },
+	      React.createElement(Header, { step: this.state.step }),
+	      React.createElement(
+	        "div",
+	        { className: "checkout-body" },
+	        React.createElement(Signup, { step: this.state.step, nextStep: this.nextStep })
+	      )
+	    );
 	  }
 	});
 
