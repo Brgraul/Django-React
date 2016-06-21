@@ -75,104 +75,75 @@ var NewPetForm = forms.Form.extend({
   pet_breed: forms.CharField({label: 'Raza:'}),
 })
 
-var Payment = React.createClass({
-  render: function() {
-    return <div class="col-md-9">
-            <form onSubmit={this._onSubmit}>
-              <forms.RenderForm form={PaymentForm} ref="paymentForm"/>
-              <button class="btn-cta-green">Pagar</button>
-            </form>
-          </div>
-  },
-  //Esta funcion que hace?
-  onSignup: function(cleanedData) {
-    console.log('on isgnup')
-    //Handle payment right here with the tpv
-  },
-  propTypes: {
-    onSignup: React.PropTypes.func.isRequired
-  },
-  _onSubmit: function(e) {
-    e.preventDefault()
-    var form = this.refs.paymentForm.getForm()
-    //console.log(form.cleanedData)
-    $.ajax({
-         url : "http://localhost:8000/checkout/", // the endpoint
-         type : "POST", // http method
-         data : { data : form.cleanedData }, // data sent with the post request
-
-         // handle a successful response
-         success : function(json) {
-             $('#post-text').val(''); // remove the value from the input
-             console.log(json); // log the returned json to the console
-             console.log("success"); // another sanity check
-         },
-
-         // handle a non-successful response
-         error : function(xhr,errmsg,err) {
-             $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
-                 " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
-             console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
-         }
-     });
-    var isValid = form.validate()
-    if (isValid) {
-      this.onSignup(form.cleanedData)
-      this.props.nextStep()
-    }
-  },
-})
-
 var Signup = React.createClass({
   getInitialState: function(){
     //Ajax Request for translated cookie
     //if cookie nulll automplete with default data
     return{
-      form_to_load: SignupForm,
+      form_to_load: form,
+      form_to_load_ref: "signupForm",
       signupFormData: {city: 'Incompleto'},
     }
   },
+
+  formToRender: function(){
+    return SignupForm
+  },
+
   onFormChange: function() {
-    this.setState({
-      signupFormData: this.refs.SignupForm.getForm().data,
-    })
-    localStorage.setItem('signupFormData', this.refs.signupForm.getForm().data)
-    console.log(this.state.signupFormData);
+    if ( this.props.step == 1){
+      this.setState({
+        //signupFormData: this.refs.signupForm.getForm().data,
+      })
+    }
     this.forceUpdate()
   },
   render: function() {
-    switch (this.state.step) {
+    console.log(this.props.step)
+    switch (this.props.step) {
       case 1:
-        this.state.form_to_load = SignupForm
-        break;
+        console.log('tira al caso uso')
+        var form = this.formToRender()
+        console.log(form)
+        return <div class="row">
+                  <div class="col-md-9">
+                    <form onSubmit={this._onSubmit} onChange={this.onFormChange}>
+                    <forms.RenderForm form={form} ref="signupForm"/>
+                    <button class="btn-cta-green">Guardar y continuar</button>
+                  </form>
+                </div>
+                <ProgressColumn signupFormData={this.state.signupFormData}/>
+              </div>
       case 2:
-        this.state.form_to_load = NewPetForm
-        break;
+        console.log('tira al caso dos')
+        return <div class="row">
+                  <div class="col-md-9">
+                    <form onSubmit={this._onSubmit} onChange={this.onFormChange}>
+                    <forms.RenderForm form={NewPetForm} ref="newPetForm"/>
+                    <button class="btn-cta-green">Guardar y continuar</button>
+                  </form>
+                </div>
+                <ProgressColumn signupFormData={this.state.signupFormData}/>
+              </div>
       case 3:
-        this.state.form_to_load = PaymentForm
-        break;
-      default:
-        this.state.form_to_load = SignupForm
+        console.log('tira al caso res')
+        return <div class="row">
+                  <div class="col-md-9">
+                    <form onSubmit={this._onSubmit} onSignup={this.onSignup} onChange={this.onFormChange}>
+                    <forms.RenderForm form={PaymentForm} ref="paymentForm"/>
+                    <button class="btn-cta-green">Guardar y continuar</button>
+                  </form>
+                </div>
+                <ProgressColumn signupFormData={this.state.signupFormData}/>
+              </div>
     }
-    return <div class="row">
-              <div class="col-md-9">
-                <form onSubmit={this._onSubmit} onChange={this.onFormChange}>
-                <forms.RenderForm form={this.state.form_to_load} ref="signupForm"/>
-                <button class="btn-cta-green">Guardar y continuar</button>
-              </form>
-            </div>
-            <ProgressColumn signupFormData={this.state.signupFormData}/>
-          </div>
-
-  },
-  onSignup: function(cleanedData) {
-    console.log('on isgnup')
   },
   propTypes: {
     onSignup: React.PropTypes.func.isRequired
   },
   _onSubmit: function(e) {
     e.preventDefault()
+    /*
     var form = this.refs.signupForm.getForm()
     console.log(form.cleanedData)
     $.ajax({
@@ -198,60 +169,14 @@ var Signup = React.createClass({
     if (isValid) {
       this.onSignup(form.cleanedData)
       this.props.nextStep()
-    }
+    }*/
+    this.props.nextStep()
   },
 })
 
-var NewPet = React.createClass({
-  render: function() {
-    console.log('dasd')
-    return <div class="col-md-9">
-            <form onSubmit={this._onSubmit}>
-              <forms.RenderForm form={NewPetForm} ref="newpetForm"/>
-              <button class="btn-cta-green">Guardar y continuar</button>
-            </form>
-          </div>
-  },
-  onSignup: function(cleanedData) {
-    console.log('on isgnup')
-  },
-  propTypes: {
-    onSignup: React.PropTypes.func.isRequired
-  },
-  _onSubmit: function(e) {
-    e.preventDefault()
-    var form = this.refs.newpetForm.getForm()
-    console.log(form.cleanedData)
-    $.ajax({
-         url : "http://localhost:8000/checkout/", // the endpoint
-         type : "POST", // http method
-         data : { data : form.cleanedData }, // data sent with the post request
-
-         // handle a successful response
-         success : function(json) {
-             $('#post-text').val(''); // remove the value from the input
-             console.log(json); // log the returned json to the console
-             console.log("success"); // another sanity check
-         },
-
-         // handle a non-successful response
-         error : function(xhr,errmsg,err) {
-             $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
-                 " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
-             console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
-         }
-     });
-    var isValid = form.validate()
-    if (isValid) {
-      this.onSignup(form.cleanedData)
-      this.props.nextStep()
-    }
-  },
-})
 
 var ProgressColumn = React.createClass({
   render: function(){
-    console.log(this.props.formData)
     return <div class="col-md-3 col-progress">
             <div class="row">
               <h2>Step Name</h2>
@@ -279,6 +204,10 @@ var CheckoutContainer = React.createClass({
 			step: 1
 		}
 	},
+
+  onSignup: function() {
+    console.log('container signup')
+  },
 
   // Increases the state counter in 1
   nextStep: function() {

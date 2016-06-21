@@ -14860,63 +14860,6 @@
 	  pet_breed: forms.CharField({ label: 'Raza:' })
 	});
 
-	var Payment = React.createClass({
-	  displayName: "Payment",
-
-	  render: function () {
-	    return React.createElement(
-	      "div",
-	      { className: "col-md-9" },
-	      React.createElement(
-	        "form",
-	        { onSubmit: this._onSubmit },
-	        React.createElement(forms.RenderForm, { form: PaymentForm, ref: "paymentForm" }),
-	        React.createElement(
-	          "button",
-	          { className: "btn-cta-green" },
-	          "Pagar"
-	        )
-	      )
-	    );
-	  },
-	  //Esta funcion que hace?
-	  onSignup: function (cleanedData) {
-	    console.log('on isgnup');
-	    //Handle payment right here with the tpv
-	  },
-	  propTypes: {
-	    onSignup: React.PropTypes.func.isRequired
-	  },
-	  _onSubmit: function (e) {
-	    e.preventDefault();
-	    var form = this.refs.paymentForm.getForm();
-	    //console.log(form.cleanedData)
-	    $.ajax({
-	      url: "http://localhost:8000/checkout/", // the endpoint
-	      type: "POST", // http method
-	      data: { data: form.cleanedData }, // data sent with the post request
-
-	      // handle a successful response
-	      success: function (json) {
-	        $('#post-text').val(''); // remove the value from the input
-	        console.log(json); // log the returned json to the console
-	        console.log("success"); // another sanity check
-	      },
-
-	      // handle a non-successful response
-	      error: function (xhr, errmsg, err) {
-	        $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: " + errmsg + " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
-	        console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
-	      }
-	    });
-	    var isValid = form.validate();
-	    if (isValid) {
-	      this.onSignup(form.cleanedData);
-	      this.props.nextStep();
-	    }
-	  }
-	});
-
 	var Signup = React.createClass({
 	  displayName: "Signup",
 
@@ -14924,141 +14867,125 @@
 	    //Ajax Request for translated cookie
 	    //if cookie nulll automplete with default data
 	    return {
-	      form_to_load: SignupForm,
+	      form_to_load: form,
+	      form_to_load_ref: "signupForm",
 	      signupFormData: { city: 'Incompleto' }
 	    };
 	  },
+
+	  formToRender: function () {
+	    return SignupForm;
+	  },
+
 	  onFormChange: function () {
-	    this.setState({
-	      signupFormData: this.refs.SignupForm.getForm().data
-	    });
-	    localStorage.setItem('signupFormData', this.refs.signupForm.getForm().data);
-	    console.log(this.state.signupFormData);
+	    if (this.props.step == 1) {
+	      this.setState({
+	        //signupFormData: this.refs.signupForm.getForm().data,
+	      });
+	    }
 	    this.forceUpdate();
 	  },
 	  render: function () {
-	    switch (this.state.step) {
+	    console.log(this.props.step);
+	    switch (this.props.step) {
 	      case 1:
-	        this.state.form_to_load = SignupForm;
-	        break;
-	      case 2:
-	        this.state.form_to_load = NewPetForm;
-	        break;
-	      case 3:
-	        this.state.form_to_load = PaymentForm;
-	        break;
-	      default:
-	        this.state.form_to_load = SignupForm;
-	    }
-	    return React.createElement(
-	      "div",
-	      { className: "row" },
-	      React.createElement(
-	        "div",
-	        { className: "col-md-9" },
-	        React.createElement(
-	          "form",
-	          { onSubmit: this._onSubmit, onChange: this.onFormChange },
-	          React.createElement(forms.RenderForm, { form: this.state.form_to_load, ref: "signupForm" }),
+	        console.log('tira al caso uso');
+	        var form = this.formToRender();
+	        console.log(form);
+	        return React.createElement(
+	          "div",
+	          { className: "row" },
 	          React.createElement(
-	            "button",
-	            { className: "btn-cta-green" },
-	            "Guardar y continuar"
-	          )
-	        )
-	      ),
-	      React.createElement(ProgressColumn, { signupFormData: this.state.signupFormData })
-	    );
-	  },
-	  onSignup: function (cleanedData) {
-	    console.log('on isgnup');
+	            "div",
+	            { className: "col-md-9" },
+	            React.createElement(
+	              "form",
+	              { onSubmit: this._onSubmit, onChange: this.onFormChange },
+	              React.createElement(forms.RenderForm, { form: form, ref: "signupForm" }),
+	              React.createElement(
+	                "button",
+	                { className: "btn-cta-green" },
+	                "Guardar y continuar"
+	              )
+	            )
+	          ),
+	          React.createElement(ProgressColumn, { signupFormData: this.state.signupFormData })
+	        );
+	      case 2:
+	        console.log('tira al caso dos');
+	        return React.createElement(
+	          "div",
+	          { className: "row" },
+	          React.createElement(
+	            "div",
+	            { className: "col-md-9" },
+	            React.createElement(
+	              "form",
+	              { onSubmit: this._onSubmit, onChange: this.onFormChange },
+	              React.createElement(forms.RenderForm, { form: NewPetForm, ref: "newPetForm" }),
+	              React.createElement(
+	                "button",
+	                { className: "btn-cta-green" },
+	                "Guardar y continuar"
+	              )
+	            )
+	          ),
+	          React.createElement(ProgressColumn, { signupFormData: this.state.signupFormData })
+	        );
+	      case 3:
+	        console.log('tira al caso res');
+	        return React.createElement(
+	          "div",
+	          { className: "row" },
+	          React.createElement(
+	            "div",
+	            { className: "col-md-9" },
+	            React.createElement(
+	              "form",
+	              { onSubmit: this._onSubmit, onSignup: this.onSignup, onChange: this.onFormChange },
+	              React.createElement(forms.RenderForm, { form: PaymentForm, ref: "paymentForm" }),
+	              React.createElement(
+	                "button",
+	                { className: "btn-cta-green" },
+	                "Guardar y continuar"
+	              )
+	            )
+	          ),
+	          React.createElement(ProgressColumn, { signupFormData: this.state.signupFormData })
+	        );
+	    }
 	  },
 	  propTypes: {
 	    onSignup: React.PropTypes.func.isRequired
 	  },
 	  _onSubmit: function (e) {
 	    e.preventDefault();
-	    var form = this.refs.signupForm.getForm();
-	    console.log(form.cleanedData);
+	    /*
+	    var form = this.refs.signupForm.getForm()
+	    console.log(form.cleanedData)
 	    $.ajax({
-	      url: "http://localhost:8000/checkout/", // the endpoint
-	      type: "POST", // http method
-	      data: { data: form.cleanedData }, // data sent with the post request
-
-	      // handle a successful response
-	      success: function (json) {
-	        $('#post-text').val(''); // remove the value from the input
-	        console.log(json); // log the returned json to the console
-	        console.log("success"); // another sanity check
-	      },
-
-	      // handle a non-successful response
-	      error: function (xhr, errmsg, err) {
-	        $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: " + errmsg + " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
-	        console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
-	      }
-	    });
-	    var isValid = form.validate();
+	         url : "http://localhost:8000/checkout/", // the endpoint
+	         type : "POST", // http method
+	         data : { data : form.cleanedData }, // data sent with the post request
+	          // handle a successful response
+	         success : function(json) {
+	             $('#post-text').val(''); // remove the value from the input
+	             console.log(json); // log the returned json to the console
+	             console.log("success"); // another sanity check
+	         },
+	          // handle a non-successful response
+	         error : function(xhr,errmsg,err) {
+	             $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
+	                 " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
+	             console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+	         }
+	     });
+	    var isValid = form.validate()
 	    if (isValid) {
-	      this.onSignup(form.cleanedData);
-	      this.props.nextStep();
-	    }
-	  }
-	});
-
-	var NewPet = React.createClass({
-	  displayName: "NewPet",
-
-	  render: function () {
-	    console.log('dasd');
-	    return React.createElement(
-	      "div",
-	      { className: "col-md-9" },
-	      React.createElement(
-	        "form",
-	        { onSubmit: this._onSubmit },
-	        React.createElement(forms.RenderForm, { form: NewPetForm, ref: "newpetForm" }),
-	        React.createElement(
-	          "button",
-	          { className: "btn-cta-green" },
-	          "Guardar y continuar"
-	        )
-	      )
-	    );
-	  },
-	  onSignup: function (cleanedData) {
-	    console.log('on isgnup');
-	  },
-	  propTypes: {
-	    onSignup: React.PropTypes.func.isRequired
-	  },
-	  _onSubmit: function (e) {
-	    e.preventDefault();
-	    var form = this.refs.newpetForm.getForm();
-	    console.log(form.cleanedData);
-	    $.ajax({
-	      url: "http://localhost:8000/checkout/", // the endpoint
-	      type: "POST", // http method
-	      data: { data: form.cleanedData }, // data sent with the post request
-
-	      // handle a successful response
-	      success: function (json) {
-	        $('#post-text').val(''); // remove the value from the input
-	        console.log(json); // log the returned json to the console
-	        console.log("success"); // another sanity check
-	      },
-
-	      // handle a non-successful response
-	      error: function (xhr, errmsg, err) {
-	        $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: " + errmsg + " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
-	        console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
-	      }
-	    });
-	    var isValid = form.validate();
-	    if (isValid) {
-	      this.onSignup(form.cleanedData);
-	      this.props.nextStep();
-	    }
+	      this.onSignup(form.cleanedData)
+	      this.props.nextStep()
+	    }*/
+	    this.props.nextStep();
 	  }
 	});
 
@@ -15066,7 +14993,6 @@
 	  displayName: "ProgressColumn",
 
 	  render: function () {
-	    console.log(this.props.formData);
 	    return React.createElement(
 	      "div",
 	      { className: "col-md-3 col-progress" },
@@ -15137,6 +15063,10 @@
 	    return {
 	      step: 1
 	    };
+	  },
+
+	  onSignup: function () {
+	    console.log('container signup');
 	  },
 
 	  // Increases the state counter in 1
