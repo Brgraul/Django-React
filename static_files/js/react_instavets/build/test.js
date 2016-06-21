@@ -14860,132 +14860,190 @@
 	  pet_breed: forms.CharField({ label: 'Raza:' })
 	});
 
-	var Signup = React.createClass({
-	  displayName: "Signup",
+	var Payment = React.createClass({
+	  displayName: "Payment",
 
-	  getInitialState: function () {
-	    //Ajax Request for translated cookie
-	    //if cookie nulll automplete with default data
-	    return {
-	      form_to_load: form,
-	      form_to_load_ref: "signupForm",
-	      signupFormData: { city: 'Incompleto' }
-	    };
-	  },
-
-	  formToRender: function () {
-	    return SignupForm;
-	  },
-
-	  onFormChange: function () {
-	    if (this.props.step == 1) {
-	      this.setState({
-	        //signupFormData: this.refs.signupForm.getForm().data,
-	      });
-	    }
-	    this.forceUpdate();
-	  },
 	  render: function () {
-	    console.log(this.props.step);
-	    switch (this.props.step) {
-	      case 1:
-	        console.log('tira al caso uso');
-	        var form = this.formToRender();
-	        console.log(form);
-	        return React.createElement(
-	          "div",
-	          { className: "row" },
-	          React.createElement(
-	            "div",
-	            { className: "col-md-9" },
-	            React.createElement(
-	              "form",
-	              { onSubmit: this._onSubmit, onChange: this.onFormChange },
-	              React.createElement(forms.RenderForm, { form: form, ref: "signupForm" }),
-	              React.createElement(
-	                "button",
-	                { className: "btn-cta-green" },
-	                "Guardar y continuar"
-	              )
-	            )
-	          ),
-	          React.createElement(ProgressColumn, { signupFormData: this.state.signupFormData })
-	        );
-	      case 2:
-	        console.log('tira al caso dos');
-	        return React.createElement(
-	          "div",
-	          { className: "row" },
-	          React.createElement(
-	            "div",
-	            { className: "col-md-9" },
-	            React.createElement(
-	              "form",
-	              { onSubmit: this._onSubmit, onChange: this.onFormChange },
-	              React.createElement(forms.RenderForm, { form: NewPetForm, ref: "newPetForm" }),
-	              React.createElement(
-	                "button",
-	                { className: "btn-cta-green" },
-	                "Guardar y continuar"
-	              )
-	            )
-	          ),
-	          React.createElement(ProgressColumn, { signupFormData: this.state.signupFormData })
-	        );
-	      case 3:
-	        console.log('tira al caso res');
-	        return React.createElement(
-	          "div",
-	          { className: "row" },
-	          React.createElement(
-	            "div",
-	            { className: "col-md-9" },
-	            React.createElement(
-	              "form",
-	              { onSubmit: this._onSubmit, onSignup: this.onSignup, onChange: this.onFormChange },
-	              React.createElement(forms.RenderForm, { form: PaymentForm, ref: "paymentForm" }),
-	              React.createElement(
-	                "button",
-	                { className: "btn-cta-green" },
-	                "Guardar y continuar"
-	              )
-	            )
-	          ),
-	          React.createElement(ProgressColumn, { signupFormData: this.state.signupFormData })
-	        );
-	    }
+	    return React.createElement(
+	      "div",
+	      { className: "col-md-9" },
+	      React.createElement(
+	        "form",
+	        { onSubmit: this._onSubmit },
+	        React.createElement(forms.RenderForm, { form: PaymentForm, ref: "paymentForm" }),
+	        React.createElement(
+	          "button",
+	          { className: "btn-cta-green" },
+	          "Pagar"
+	        )
+	      )
+	    );
+	  },
+	  //Esta funcion que hace?
+	  onSignup: function (cleanedData) {
+	    console.log('on isgnup');
+	    //Handle payment right here with the tpv
 	  },
 	  propTypes: {
 	    onSignup: React.PropTypes.func.isRequired
 	  },
 	  _onSubmit: function (e) {
 	    e.preventDefault();
-	    /*
-	    var form = this.refs.signupForm.getForm()
-	    console.log(form.cleanedData)
+	    var form = this.refs.paymentForm.getForm();
+	    //console.log(form.cleanedData)
 	    $.ajax({
-	         url : "http://localhost:8000/checkout/", // the endpoint
-	         type : "POST", // http method
-	         data : { data : form.cleanedData }, // data sent with the post request
-	          // handle a successful response
-	         success : function(json) {
-	             $('#post-text').val(''); // remove the value from the input
-	             console.log(json); // log the returned json to the console
-	             console.log("success"); // another sanity check
-	         },
-	          // handle a non-successful response
-	         error : function(xhr,errmsg,err) {
-	             $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
-	                 " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
-	             console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
-	         }
-	     });
-	    var isValid = form.validate()
+	      url: "http://localhost:8000/checkout/", // the endpoint
+	      type: "POST", // http method
+	      data: { data: form.cleanedData }, // data sent with the post request
+
+	      // handle a successful response
+	      success: function (json) {
+	        $('#post-text').val(''); // remove the value from the input
+	        console.log(json); // log the returned json to the console
+	        console.log("success"); // another sanity check
+	      },
+
+	      // handle a non-successful response
+	      error: function (xhr, errmsg, err) {
+	        $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: " + errmsg + " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
+	        console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+	      }
+	    });
+	    var isValid = form.validate();
 	    if (isValid) {
-	      this.onSignup(form.cleanedData)
-	      this.props.nextStep()
-	    }*/
-	    this.props.nextStep();
+	      this.onSignup(form.cleanedData);
+	      this.props.nextStep();
+	    }
+	  }
+	});
+
+	var Signup = React.createClass({
+	  displayName: "Signup",
+
+	  getInitialState: function () {
+	    //Ajax Re
+	    return {
+	      signupFormData: { city: 'Ciudad' }
+	    };
+	  },
+	  onFormChange: function () {
+	    this.setState({
+	      signupFormData: this.refs.signupForm.getForm().data
+	    });
+	    console.log(this.state.signupFormData);
+	    this.forceUpdate();
+	  },
+	  render: function () {
+	    console.log('dasd');
+	    return React.createElement(
+	      "div",
+	      { className: "row" },
+	      React.createElement(
+	        "div",
+	        { className: "col-md-9" },
+	        React.createElement(
+	          "form",
+	          { onSubmit: this._onSubmit, onChange: this.onFormChange },
+	          React.createElement(forms.RenderForm, { form: SignupForm, ref: "signupForm" }),
+	          React.createElement(
+	            "button",
+	            { className: "btn-cta-green" },
+	            "Guardar y continuar"
+	          )
+	        )
+	      )
+	    );
+	  },
+	  onSignup: function (cleanedData) {
+	    console.log('on isgnup');
+	  },
+	  propTypes: {
+	    onSignup: React.PropTypes.func.isRequired
+	  },
+	  _onSubmit: function (e) {
+	    e.preventDefault();
+	    var form = this.refs.signupForm.getForm();
+	    this.props.updateContactFormParams(this.state.signupFormData);
+	    console.log();
+	    $.ajax({
+	      url: "http://localhost:8000/checkout/", // the endpoint
+	      type: "POST", // http method
+	      data: { data: form.cleanedData }, // data sent with the post request
+
+	      // handle a successful response
+	      success: function (json) {
+	        $('#post-text').val(''); // remove the value from the input
+	        console.log(json); // log the returned json to the console
+	        console.log("success"); // another sanity check
+	      },
+
+	      // handle a non-successful response
+	      error: function (xhr, errmsg, err) {
+	        $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: " + errmsg + " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
+	        console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+	      }
+	    });
+	    var isValid = form.validate();
+	    if (isValid) {
+	      this.onSignup(form.cleanedData);
+	      this.props.nextStep();
+	    }
+	  }
+	});
+
+	var NewPet = React.createClass({
+	  displayName: "NewPet",
+
+	  render: function () {
+	    console.log('dasd');
+	    return React.createElement(
+	      "div",
+	      { className: "col-md-8" },
+	      React.createElement(
+	        "form",
+	        { onSubmit: this._onSubmit, onChange: this.onFormChange },
+	        React.createElement(forms.RenderForm, { form: NewPetForm, ref: "newPetForm" }),
+	        React.createElement(
+	          "button",
+	          { className: "btn-cta-green" },
+	          "Guardar y continuar"
+	        )
+	      )
+	    );
+	  },
+	  onSignup: function (cleanedData) {
+	    console.log('on isgnup');
+	  },
+	  propTypes: {
+	    onSignup: React.PropTypes.func.isRequired
+	  },
+	  _onSubmit: function (e) {
+	    e.preventDefault();
+	    var form = this.refs.newpetForm.getForm();
+	    console.log(form.cleanedData);
+	    $.ajax({
+	      url: "http://localhost:8000/checkout/", // the endpoint
+	      type: "POST", // http method
+	      data: { data: form.cleanedData }, // data sent with the post request
+
+	      // handle a successful response
+	      success: function (json) {
+	        $('#post-text').val(''); // remove the value from the input
+	        console.log(json); // log the returned json to the console
+	        console.log("success"); // another sanity check
+	      },
+
+	      // handle a non-successful response
+	      error: function (xhr, errmsg, err) {
+	        $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: " + errmsg + " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
+	        console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+	      }
+	    });
+	    var isValid = form.validate();
+	    if (isValid) {
+	      this.onSignup(form.cleanedData);
+	      this.props.nextStep();
+	    }
 	  }
 	});
 
@@ -14993,6 +15051,7 @@
 	  displayName: "ProgressColumn",
 
 	  render: function () {
+	    console.log(this.props.formData);
 	    return React.createElement(
 	      "div",
 	      { className: "col-md-3 col-progress" },
@@ -15000,14 +15059,34 @@
 	        "div",
 	        { className: "row" },
 	        React.createElement(
-	          "h2",
+	          "h3",
 	          null,
-	          "Step Name"
+	          "Datos de la Cita"
 	        ),
 	        React.createElement(
 	          "h4",
 	          null,
-	          this.props.signupFormData.city
+	          "Fecha: "
+	        ),
+	        React.createElement(
+	          "h4",
+	          null,
+	          "Ciudad:  ",
+	          this.props.city
+	        )
+	      ),
+	      React.createElement(
+	        "div",
+	        { className: "row" },
+	        React.createElement(
+	          "h3",
+	          null,
+	          "Contacto"
+	        ),
+	        React.createElement(
+	          "h4",
+	          null,
+	          "Ciudad:"
 	        )
 	      ),
 	      React.createElement(
@@ -15030,43 +15109,46 @@
 	        React.createElement(
 	          "h2",
 	          null,
-	          "Step Name"
+	          "Pagado"
 	        ),
 	        React.createElement(
 	          "h4",
 	          null,
-	          "Step Description and all that ....."
-	        )
-	      ),
-	      React.createElement(
-	        "div",
-	        { className: "row" },
-	        React.createElement(
-	          "h2",
-	          null,
-	          "Step Name"
-	        ),
-	        React.createElement(
-	          "h4",
-	          null,
-	          "Step Description and all that ....."
+	          this.props.payment_status
 	        )
 	      )
 	    );
 	  }
 	});
 
+	/* PARENT TO ALL THE ELEMENTS OF THE APP*/
 	var CheckoutContainer = React.createClass({
 	  displayName: "CheckoutContainer",
 
 	  getInitialState: function () {
 	    return {
-	      step: 1
+	      step: 1,
+	      city: 'ciudad',
+	      date: 'sin fecha',
+	      acceptTerms: 'False',
+	      payment_status: 'incomplete'
 	    };
 	  },
 
-	  onSignup: function () {
-	    console.log('container signup');
+	  // Updates Contact Form parameters
+	  updateContactFormParams: function (form_params) {
+	    this.setState({
+	      city: form_params.city,
+	      acceptTerms: form_params.acceptTerms
+	    });
+	  },
+
+	  // Updates Pet Form parameters
+	  updatePetFormParams: function (form_params) {
+	    this.setState({
+	      city: form_params.city,
+	      acceptTerms: form_params.acceptTerms
+	    });
 	  },
 
 	  // Increases the state counter in 1
@@ -15084,16 +15166,56 @@
 	  },
 
 	  render: function () {
-	    return React.createElement(
-	      "div",
-	      { className: "container" },
-	      React.createElement(Header, { step: this.state.step }),
-	      React.createElement(
-	        "div",
-	        { className: "checkout-body" },
-	        React.createElement(Signup, { step: this.state.step, nextStep: this.nextStep })
-	      )
-	    );
+	    switch (this.state.step) {
+	      case 1:
+	        return React.createElement(
+	          "div",
+	          { className: "container" },
+	          React.createElement(Header, { step: this.state.step }),
+	          React.createElement(
+	            "div",
+	            { className: "checkout-body" },
+	            React.createElement(Signup, { nextStep: this.nextStep, form_params: this.state.form_params, updateContactFormParams: this.updateContactFormParams })
+	          ),
+	          React.createElement(ProgressColumn, {
+	            city: this.state.city,
+	            date: this.state.date,
+	            payment_status: this.state.payment_status
+	          })
+	        );
+	      case 2:
+	        return React.createElement(
+	          "div",
+	          { className: "container" },
+	          React.createElement(Header, { step: this.state.step }),
+	          React.createElement(
+	            "div",
+	            { className: "checkout-body" },
+	            React.createElement(NewPet, { nextStep: this.nextStep, form_params: this.state.form_params })
+	          ),
+	          React.createElement(ProgressColumn, {
+	            city: this.state.city,
+	            date: this.state.date,
+	            payment_status: this.state.payment_status
+	          })
+	        );
+	      case 3:
+	        return React.createElement(
+	          "div",
+	          { className: "container" },
+	          React.createElement(Header, { step: this.state.step }),
+	          React.createElement(
+	            "div",
+	            { className: "checkout-body" },
+	            React.createElement(Payment, { nextStep: this.nextStep, form_params: this.state.form_params })
+	          ),
+	          React.createElement(ProgressColumn, {
+	            city: this.state.city,
+	            date: this.state.date,
+	            payment_status: this.state.payment_status
+	          })
+	        );
+	    }
 	  }
 	});
 
