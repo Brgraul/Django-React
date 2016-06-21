@@ -2610,7 +2610,7 @@ div.container-vets > div.linebreak {
 
 /* Checkout CSS */
 div.checkout-body {
-  padding-top: 20%;
+  padding-top: 10%;
   padding-bottom: 20%;
   padding-right: 10%;
   padding-left: 10%; }
@@ -2618,5 +2618,7 @@ div.checkout-body {
 .col-progress {
   border-left: 2px solid;
   height: auto; }
+  .col-progress > h3 {
+    font-weight: 600; }
 
 /*# sourceMappingURL=custom.css.map */

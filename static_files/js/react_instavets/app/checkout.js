@@ -32,23 +32,20 @@ var Header = React.createClass({
 })
 
 var PaymentForm = forms.Form.extend({
-  /*
   card_name: forms.CharField({label: 'Nombre del titular:'}),
   card_number: forms.CharField({label: 'Número Tarjeta:'}),
   exp_date: forms.DateTimeField({label: 'Fecha Caducidad:', widget: forms.DateInput({format: '%M/%Y'})}),
-  */
   csv: forms.CharField({label: 'CSV:'}),
 
 })
 
-var SignupForm = forms.Form.extend({
-  /* booking: forms.DateTimeField({label: 'Fecha y hora de la cita:'}),
+var BookingForm = forms.Form.extend({
+  booking_date: forms.DateTimeField({label: 'Fecha y hora de la cita:'}),
   phone_number: forms.CharField({label: 'Número de teléfono:'}),
   email: forms.EmailField({label: 'Email:'}),
   first_name: forms.CharField({label: 'Nombre:'}),
   second_name: forms.CharField({label: 'Apellido:'}),
   adress: forms.CharField({label: 'Dirección:'}),
-  */
   city: forms.CharField({label: 'Ciudad:'}),
   acceptTerms: forms.BooleanField({label: 'Acepto los términos de usuario:',
                                   required: true}),
@@ -123,31 +120,14 @@ var Payment = React.createClass({
   },
 })
 
-var Signup = React.createClass({
-  getInitialState: function(){
-    //Ajax Re
-    return{
-      signupFormData: {city: 'Ciudad'},
-    }
-  },
-  onFormChange: function() {
-    this.setState({
-      signupFormData: this.refs.signupForm.getForm().data,
-    })
-    console.log(this.state.signupFormData);
-    this.forceUpdate()
-  },
+var Booking = React.createClass({
   render: function() {
-    console.log('dasd')
-    return <div class="row">
-              <div class="col-md-9">
+    return <div class="col-md-9">
                 <form onSubmit={this._onSubmit} onChange={this.onFormChange}>
-                <forms.RenderForm form={SignupForm} ref="signupForm"/>
+                <forms.RenderForm form={BookingForm} ref="bookingForm"/>
                 <button class="btn-cta-green">Guardar y continuar</button>
               </form>
             </div>
-          </div>
-
   },
   onSignup: function(cleanedData) {
     console.log('on isgnup')
@@ -155,11 +135,9 @@ var Signup = React.createClass({
   propTypes: {
     onSignup: React.PropTypes.func.isRequired
   },
-  _onSubmit: function(e) {
+  _onSubmit: function(e){
     e.preventDefault()
-    var form = this.refs.signupForm.getForm()
-    this.props.updateContactFormParams(this.state.signupFormData);
-    console.log()
+    var form = this.refs.bookingForm.getForm()
     $.ajax({
          url : "http://localhost:8000/checkout/", // the endpoint
          type : "POST", // http method
@@ -182,6 +160,7 @@ var Signup = React.createClass({
     var isValid = form.validate()
     if (isValid) {
       this.onSignup(form.cleanedData)
+      this.props.updateContactFormParams(form.cleanedData);
       this.props.nextStep()
     }
   },
@@ -238,11 +217,9 @@ var ProgressColumn = React.createClass({
   render: function(){
     console.log(this.props.formData)
     return <div class="col-md-3 col-progress">
-            <div class="row">
-              <h3>Datos de la Cita</h3>
-              <h4>Fecha: </h4>
-              <h4>Ciudad:  {this.props.city}</h4>
-            </div>
+            <h2>Resumen:</h2>
+            <h4>Fecha: </h4>
+            <h4>Ciudad:  {this.props.city}</h4>
             <div class="row">
               <h3>Contacto</h3>
               <h4>Ciudad:</h4>
@@ -265,29 +242,50 @@ var CheckoutContainer = React.createClass({
 	getInitialState: function() {
 		return {
 			step: 1,
+      /* Step 1 */
       city: 'ciudad',
-      date: 'sin fecha',
       acceptTerms: 'False',
-      payment_status: 'incomplete'
+      booking_date: 'Fecha',
+      phone_number: 'sin completar',
+      email: 'sin completar',
+      first_name: 'Nombre',
+      second_name: 'Apellidos',
+      adress: 'Dirección',
+      /* Step 2 */
+      pet_name : 'Nombre Mascota',
+      pet_birthday : 'Fecha nacimiento mascota',
+      pet_species : 'Especie Mascota',
+      pet_gender : 'Sexo Mascota',
+      pet_breed : 'Raza Mascota',
+      /* Step 3 */
+      payment_status: 'incomplete',
 		}
 	},
 
-  // Updates Contact Form parameters
+  // Updates Contact Form Parameters
   updateContactFormParams: function(form_params){
     this.setState({
       city : form_params.city,
       acceptTerms: form_params.acceptTerms,
+      booking_date: form_params.booking_date,
+      phone_number: form_params.phone_number,
+      email : form_params.email,
+      first_name : form_params.first_name,
+      second_name : form_params.second_name,
+      adress : form_params.adress,
     })
   },
 
-  // Updates Pet Form parameters
+  // Updates Pet Form Parameters
   updatePetFormParams: function(form_params){
     this.setState({
-      city : form_params.city,
-      acceptTerms: form_params.acceptTerms
+      pet_name : form_params.pet_name,
+      pet_birthday : form_params.pet_birthday,
+      pet_species : form_params.pet_species,
+      pet_gender : form_params.pet_gender,
+      pet_breed : form_params.pet_breed,
     })
   },
-
 
   // Increases the state counter in 1
   nextStep: function() {
@@ -306,20 +304,18 @@ var CheckoutContainer = React.createClass({
   render: function() {
 		switch (this.state.step) {
 			case 1:
-				return(
-          <div class="container">
-            <Header step={this.state.step} />
-            <div class="checkout-body">
-              <Signup nextStep={this.nextStep} form_params={this.state.form_params} updateContactFormParams={this.updateContactFormParams}/>
-            </div>
-            <ProgressColumn
-                city={this.state.city}
-                date={this.state.date}
-                payment_status={this.state.payment_status}
-            />
-          </div>
+				return  <div class="container">
+                  <Header step={this.state.step} />
+                  <div class="checkout-body">
+                    <Booking nextStep={this.nextStep} form_params={this.state.form_params} updateContactFormParams={this.updateContactFormParams}/>
+                    <ProgressColumn
+                        city={this.state.city}
+                        date={this.state.date}
+                        payment_status={this.state.payment_status}
+                    />
+                  </div>
+                </div>
 
-              );
 			case 2:
 				return    <div class="container">
                     <Header step={this.state.step} />

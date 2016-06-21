@@ -1,7 +1,7 @@
 /* Checkout CSS */
 
 div.checkout-body{
-  padding-top: 20%;
+  padding-top: 10%;
   padding-bottom: 20%;
   padding-right: 10%;
   padding-left: 10%;
@@ -10,4 +10,7 @@ div.checkout-body{
 .col-progress{
   border-left: 2px solid;
   height: auto;
+  & > h3{
+    font-weight: 600;
+  }
 }

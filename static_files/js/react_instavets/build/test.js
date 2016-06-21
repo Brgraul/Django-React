@@ -14826,23 +14826,20 @@
 	});
 
 	var PaymentForm = forms.Form.extend({
-	  /*
-	  card_name: forms.CharField({label: 'Nombre del titular:'}),
-	  card_number: forms.CharField({label: 'Número Tarjeta:'}),
-	  exp_date: forms.DateTimeField({label: 'Fecha Caducidad:', widget: forms.DateInput({format: '%M/%Y'})}),
-	  */
+	  card_name: forms.CharField({ label: 'Nombre del titular:' }),
+	  card_number: forms.CharField({ label: 'Número Tarjeta:' }),
+	  exp_date: forms.DateTimeField({ label: 'Fecha Caducidad:', widget: forms.DateInput({ format: '%M/%Y' }) }),
 	  csv: forms.CharField({ label: 'CSV:' })
 
 	});
 
-	var SignupForm = forms.Form.extend({
-	  /* booking: forms.DateTimeField({label: 'Fecha y hora de la cita:'}),
-	  phone_number: forms.CharField({label: 'Número de teléfono:'}),
-	  email: forms.EmailField({label: 'Email:'}),
-	  first_name: forms.CharField({label: 'Nombre:'}),
-	  second_name: forms.CharField({label: 'Apellido:'}),
-	  adress: forms.CharField({label: 'Dirección:'}),
-	  */
+	var BookingForm = forms.Form.extend({
+	  booking_date: forms.DateTimeField({ label: 'Fecha y hora de la cita:' }),
+	  phone_number: forms.CharField({ label: 'Número de teléfono:' }),
+	  email: forms.EmailField({ label: 'Email:' }),
+	  first_name: forms.CharField({ label: 'Nombre:' }),
+	  second_name: forms.CharField({ label: 'Apellido:' }),
+	  adress: forms.CharField({ label: 'Dirección:' }),
 	  city: forms.CharField({ label: 'Ciudad:' }),
 	  acceptTerms: forms.BooleanField({ label: 'Acepto los términos de usuario:',
 	    required: true })
@@ -14917,39 +14914,21 @@
 	  }
 	});
 
-	var Signup = React.createClass({
-	  displayName: "Signup",
+	var Booking = React.createClass({
+	  displayName: "Booking",
 
-	  getInitialState: function () {
-	    //Ajax Re
-	    return {
-	      signupFormData: { city: 'Ciudad' }
-	    };
-	  },
-	  onFormChange: function () {
-	    this.setState({
-	      signupFormData: this.refs.signupForm.getForm().data
-	    });
-	    console.log(this.state.signupFormData);
-	    this.forceUpdate();
-	  },
 	  render: function () {
-	    console.log('dasd');
 	    return React.createElement(
 	      "div",
-	      { className: "row" },
+	      { className: "col-md-9" },
 	      React.createElement(
-	        "div",
-	        { className: "col-md-9" },
+	        "form",
+	        { onSubmit: this._onSubmit, onChange: this.onFormChange },
+	        React.createElement(forms.RenderForm, { form: BookingForm, ref: "bookingForm" }),
 	        React.createElement(
-	          "form",
-	          { onSubmit: this._onSubmit, onChange: this.onFormChange },
-	          React.createElement(forms.RenderForm, { form: SignupForm, ref: "signupForm" }),
-	          React.createElement(
-	            "button",
-	            { className: "btn-cta-green" },
-	            "Guardar y continuar"
-	          )
+	          "button",
+	          { className: "btn-cta-green" },
+	          "Guardar y continuar"
 	        )
 	      )
 	    );
@@ -14962,9 +14941,7 @@
 	  },
 	  _onSubmit: function (e) {
 	    e.preventDefault();
-	    var form = this.refs.signupForm.getForm();
-	    this.props.updateContactFormParams(this.state.signupFormData);
-	    console.log();
+	    var form = this.refs.bookingForm.getForm();
 	    $.ajax({
 	      url: "http://localhost:8000/checkout/", // the endpoint
 	      type: "POST", // http method
@@ -14986,6 +14963,7 @@
 	    var isValid = form.validate();
 	    if (isValid) {
 	      this.onSignup(form.cleanedData);
+	      this.props.updateContactFormParams(form.cleanedData);
 	      this.props.nextStep();
 	    }
 	  }
@@ -15056,24 +15034,20 @@
 	      "div",
 	      { className: "col-md-3 col-progress" },
 	      React.createElement(
-	        "div",
-	        { className: "row" },
-	        React.createElement(
-	          "h3",
-	          null,
-	          "Datos de la Cita"
-	        ),
-	        React.createElement(
-	          "h4",
-	          null,
-	          "Fecha: "
-	        ),
-	        React.createElement(
-	          "h4",
-	          null,
-	          "Ciudad:  ",
-	          this.props.city
-	        )
+	        "h2",
+	        null,
+	        "Resumen:"
+	      ),
+	      React.createElement(
+	        "h4",
+	        null,
+	        "Fecha: "
+	      ),
+	      React.createElement(
+	        "h4",
+	        null,
+	        "Ciudad:  ",
+	        this.props.city
 	      ),
 	      React.createElement(
 	        "div",
@@ -15128,26 +15102,48 @@
 	  getInitialState: function () {
 	    return {
 	      step: 1,
+	      /* Step 1 */
 	      city: 'ciudad',
-	      date: 'sin fecha',
 	      acceptTerms: 'False',
+	      booking_date: 'Fecha',
+	      phone_number: 'sin completar',
+	      email: 'sin completar',
+	      first_name: 'Nombre',
+	      second_name: 'Apellidos',
+	      adress: 'Dirección',
+	      /* Step 2 */
+	      pet_name: 'Nombre Mascota',
+	      pet_birthday: 'Fecha nacimiento mascota',
+	      pet_species: 'Especie Mascota',
+	      pet_gender: 'Sexo Mascota',
+	      pet_breed: 'Raza Mascota',
+	      /* Step 3 */
 	      payment_status: 'incomplete'
 	    };
 	  },
 
-	  // Updates Contact Form parameters
+	  // Updates Contact Form Parameters
 	  updateContactFormParams: function (form_params) {
 	    this.setState({
 	      city: form_params.city,
-	      acceptTerms: form_params.acceptTerms
+	      acceptTerms: form_params.acceptTerms,
+	      booking_date: form_params.booking_date,
+	      phone_number: form_params.phone_number,
+	      email: form_params.email,
+	      first_name: form_params.first_name,
+	      second_name: form_params.second_name,
+	      adress: form_params.adress
 	    });
 	  },
 
-	  // Updates Pet Form parameters
+	  // Updates Pet Form Parameters
 	  updatePetFormParams: function (form_params) {
 	    this.setState({
-	      city: form_params.city,
-	      acceptTerms: form_params.acceptTerms
+	      pet_name: form_params.pet_name,
+	      pet_birthday: form_params.pet_birthday,
+	      pet_species: form_params.pet_species,
+	      pet_gender: form_params.pet_gender,
+	      pet_breed: form_params.pet_breed
 	    });
 	  },
 
@@ -15175,14 +15171,15 @@
 	          React.createElement(
 	            "div",
 	            { className: "checkout-body" },
-	            React.createElement(Signup, { nextStep: this.nextStep, form_params: this.state.form_params, updateContactFormParams: this.updateContactFormParams })
-	          ),
-	          React.createElement(ProgressColumn, {
-	            city: this.state.city,
-	            date: this.state.date,
-	            payment_status: this.state.payment_status
-	          })
+	            React.createElement(Booking, { nextStep: this.nextStep, form_params: this.state.form_params, updateContactFormParams: this.updateContactFormParams }),
+	            React.createElement(ProgressColumn, {
+	              city: this.state.city,
+	              date: this.state.date,
+	              payment_status: this.state.payment_status
+	            })
+	          )
 	        );
+
 	      case 2:
 	        return React.createElement(
 	          "div",
