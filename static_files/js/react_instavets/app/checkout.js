@@ -3,6 +3,9 @@ var forms = require('newforms')
 var Header = React.createClass({
   render: function() {
     return  <div class="row">
+              <div class="col-md-3">
+                <h1>Logo Instavets</h1>
+              </div>
               <div class="col-md-1">
                 <i class="fa fa-calendar fa-3x" aria-hidden="true" ></i>
               </div>
@@ -74,7 +77,7 @@ var NewPetForm = forms.Form.extend({
 
 var Payment = React.createClass({
   render: function() {
-    return <div class="col-md-4">
+    return <div class="col-md-9">
             <form onSubmit={this._onSubmit}>
               <forms.RenderForm form={PaymentForm} ref="paymentForm"/>
               <button class="btn-cta-green">Pagar</button>
@@ -123,7 +126,7 @@ var Payment = React.createClass({
 var Signup = React.createClass({
   render: function() {
     console.log('dasd')
-    return <div class="col-md-4">
+    return <div class="col-md-9">
             <form onSubmit={this._onSubmit}>
               <forms.RenderForm form={SignupForm} ref="signupForm"/>
               <button class="btn-cta-green">Guardar y continuar</button>
@@ -170,7 +173,7 @@ var Signup = React.createClass({
 var NewPet = React.createClass({
   render: function() {
     console.log('dasd')
-    return <div class="col-md-4">
+    return <div class="col-md-9">
             <form onSubmit={this._onSubmit}>
               <forms.RenderForm form={NewPetForm} ref="newpetForm"/>
               <button class="btn-cta-green">Guardar y continuar</button>
@@ -217,9 +220,24 @@ var NewPet = React.createClass({
 
 var ProgressColumn = React.createClass({
   render: function(){
-    return <div class="col-md-3">
-    <h3>Summary</h3>
-    </div>
+    return <div class="col-md-3 col-progress">
+            <div class="row">
+              <h2>Step Name</h2>
+              <h4>Step Description and all that .....</h4>
+            </div>
+            <div class="row">
+              <h2>Step Name</h2>
+              <h4>Step Description and all that .....</h4>
+            </div>
+            <div class="row">
+              <h2>Step Name</h2>
+              <h4>Step Description and all that .....</h4>
+            </div>
+            <div class="row">
+              <h2>Step Name</h2>
+              <h4>Step Description and all that .....</h4>
+            </div>
+          </div>
   }
 })
 
@@ -249,7 +267,15 @@ var CheckoutContainer = React.createClass({
 		switch (this.state.step) {
 			case 1:
         console.log('asdfsf')
-				return <Signup nextStep={this.nextStep} />
+				return(
+          <div class="container">
+            <Header step={this.state.step} />
+            <div class="checkout-body">
+              <Signup nextStep={this.nextStep} />
+              <ProgressColumn />
+            </div>
+          </div>
+              );
 			case 2:
 				return <Payment nextStep={this.nextStep}
                             previousStep={this.previousStep} />
@@ -263,11 +289,5 @@ var CheckoutContainer = React.createClass({
 
 ReactDOM.render(
 	<CheckoutContainer/>,
-	document.getElementById('container-checkout-form')
-)
-
-
-ReactDOM.render(
-  <Header/>,
-	document.getElementById('container-header')
+	document.getElementById('container-checkout')
 )

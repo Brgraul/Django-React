@@ -14779,6 +14779,15 @@
 	      { className: "row" },
 	      React.createElement(
 	        "div",
+	        { className: "col-md-3" },
+	        React.createElement(
+	          "h1",
+	          null,
+	          "Logo Instavets"
+	        )
+	      ),
+	      React.createElement(
+	        "div",
 	        { className: "col-md-1" },
 	        React.createElement("i", { className: "fa fa-calendar fa-3x", "aria-hidden": "true" })
 	      ),
@@ -14856,7 +14865,7 @@
 	  render: function () {
 	    return React.createElement(
 	      "div",
-	      { className: "col-md-4" },
+	      { className: "col-md-9" },
 	      React.createElement(
 	        "form",
 	        { onSubmit: this._onSubmit },
@@ -14914,7 +14923,7 @@
 	    console.log('dasd');
 	    return React.createElement(
 	      "div",
-	      { className: "col-md-4" },
+	      { className: "col-md-9" },
 	      React.createElement(
 	        "form",
 	        { onSubmit: this._onSubmit },
@@ -14970,7 +14979,7 @@
 	    console.log('dasd');
 	    return React.createElement(
 	      "div",
-	      { className: "col-md-4" },
+	      { className: "col-md-9" },
 	      React.createElement(
 	        "form",
 	        { onSubmit: this._onSubmit },
@@ -15025,11 +15034,62 @@
 	  render: function () {
 	    return React.createElement(
 	      "div",
-	      { className: "col-md-3" },
+	      { className: "col-md-3 col-progress" },
 	      React.createElement(
-	        "h3",
-	        null,
-	        "Summary"
+	        "div",
+	        { className: "row" },
+	        React.createElement(
+	          "h2",
+	          null,
+	          "Step Name"
+	        ),
+	        React.createElement(
+	          "h4",
+	          null,
+	          "Step Description and all that ....."
+	        )
+	      ),
+	      React.createElement(
+	        "div",
+	        { className: "row" },
+	        React.createElement(
+	          "h2",
+	          null,
+	          "Step Name"
+	        ),
+	        React.createElement(
+	          "h4",
+	          null,
+	          "Step Description and all that ....."
+	        )
+	      ),
+	      React.createElement(
+	        "div",
+	        { className: "row" },
+	        React.createElement(
+	          "h2",
+	          null,
+	          "Step Name"
+	        ),
+	        React.createElement(
+	          "h4",
+	          null,
+	          "Step Description and all that ....."
+	        )
+	      ),
+	      React.createElement(
+	        "div",
+	        { className: "row" },
+	        React.createElement(
+	          "h2",
+	          null,
+	          "Step Name"
+	        ),
+	        React.createElement(
+	          "h4",
+	          null,
+	          "Step Description and all that ....."
+	        )
 	      )
 	    );
 	  }
@@ -15063,7 +15123,17 @@
 	    switch (this.state.step) {
 	      case 1:
 	        console.log('asdfsf');
-	        return React.createElement(Signup, { nextStep: this.nextStep });
+	        return React.createElement(
+	          "div",
+	          { className: "container" },
+	          React.createElement(Header, { step: this.state.step }),
+	          React.createElement(
+	            "div",
+	            { className: "checkout-body" },
+	            React.createElement(Signup, { nextStep: this.nextStep }),
+	            React.createElement(ProgressColumn, null)
+	          )
+	        );
 	      case 2:
 	        return React.createElement(Payment, { nextStep: this.nextStep,
 	          previousStep: this.previousStep });
@@ -15074,9 +15144,7 @@
 	  }
 	});
 
-	ReactDOM.render(React.createElement(CheckoutContainer, null), document.getElementById('container-checkout-form'));
-
-	ReactDOM.render(React.createElement(Header, null), document.getElementById('container-header'));
+	ReactDOM.render(React.createElement(CheckoutContainer, null), document.getElementById('container-checkout'));
 
 /***/ }
 /******/ ]);

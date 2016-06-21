@@ -2608,4 +2608,15 @@ div.container-vets > div.linebreak {
 .card-block {
   padding: 4%; }
 
+/* Checkout CSS */
+div.checkout-body {
+  padding-top: 20%;
+  padding-bottom: 20%;
+  padding-right: 10%;
+  padding-left: 10%; }
+
+.col-progress {
+  border-left: 2px solid;
+  height: auto; }
+
 /*# sourceMappingURL=custom.css.map */
