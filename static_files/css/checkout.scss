@@ -1,10 +1,8 @@
 /* Checkout CSS */
 
 div.checkout-body{
-  padding-top: 10%;
-  padding-bottom: 20%;
-  padding-right: 10%;
-  padding-left: 10%;
+  margin-top: 10%;
+  margin-bottom: 20%;
 }
 
 .col-progress{
@@ -12,5 +10,12 @@ div.checkout-body{
   height: auto;
   & > h3{
     font-weight: 600;
+  }
+  & > h4{
+    font-weight: 300;
+    margin: 5px;
+    &.title{
+      font-weight: 600;
+    }
   }
 }

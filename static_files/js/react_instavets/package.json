@@ -25,6 +25,7 @@
     "babel-preset-react": "^6.5.0",
     "html-webpack-plugin": "^2.21.0",
     "newforms": "^0.13.2",
+    "newforms-bootstrap": "^2.0.0",
     "react": "^15.1.0",
     "webpack": "^1.13.1"
   }

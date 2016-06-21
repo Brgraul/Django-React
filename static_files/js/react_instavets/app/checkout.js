@@ -1,4 +1,5 @@
 var forms = require('newforms')
+var BootstrapForm = require('newforms-bootstrap')
 
 var Header = React.createClass({
   render: function() {
@@ -40,7 +41,7 @@ var PaymentForm = forms.Form.extend({
 })
 
 var BookingForm = forms.Form.extend({
-  booking_date: forms.DateTimeField({label: 'Fecha y hora de la cita:'}),
+  booking_date: forms.DateField({label: 'Fecha y hora de la cita:', format: '%Y/%m/%d' }),
   phone_number: forms.CharField({label: 'Número de teléfono:'}),
   email: forms.EmailField({label: 'Email:'}),
   first_name: forms.CharField({label: 'Nombre:'}),
@@ -76,6 +77,7 @@ var Payment = React.createClass({
   render: function() {
     return <div class="col-md-9">
             <form onSubmit={this._onSubmit}>
+              <BootstrapForm/>
               <forms.RenderForm form={PaymentForm} ref="paymentForm"/>
               <button class="btn-cta-green">Pagar</button>
             </form>
@@ -120,14 +122,28 @@ var Payment = React.createClass({
   },
 })
 
+/* Renders the booking app */
 var Booking = React.createClass({
   render: function() {
     return <div class="col-md-9">
                 <form onSubmit={this._onSubmit} onChange={this.onFormChange}>
-                <forms.RenderForm form={BookingForm} ref="bookingForm"/>
+                <forms.RenderForm form={BookingForm} ref="bookingForm">
+                  <BootstrapForm/>
+                </forms.RenderForm>
                 <button class="btn-cta-green">Guardar y continuar</button>
               </form>
             </div>
+  },
+  renderDateSelectWidget: function(){
+    $.datetimepicker.setLocale('es');
+    $('#id_booking_date').datetimepicker({
+      timepicker: false,
+      format:'m/d/Y',
+      lang:'es'
+    });
+  },
+  componentDidMount: function() {
+    this.renderDateSelectWidget();
   },
   onSignup: function(cleanedData) {
     console.log('on isgnup')
@@ -166,6 +182,7 @@ var Booking = React.createClass({
   },
 })
 
+/* Renders the pet form */
 var NewPet = React.createClass({
   render: function() {
     console.log('dasd')
@@ -213,29 +230,23 @@ var NewPet = React.createClass({
   },
 })
 
+/* Shows the status of the payment process */
 var ProgressColumn = React.createClass({
   render: function(){
     console.log(this.props.formData)
     return <div class="col-md-3 col-progress">
-            <h2>Resumen:</h2>
-            <h4>Fecha: </h4>
-            <h4>Ciudad:  {this.props.city}</h4>
-            <div class="row">
-              <h3>Contacto</h3>
-              <h4>Ciudad:</h4>
-            </div>
-            <div class="row">
-              <h2>Step Name</h2>
-              <h4>Step Description and all that .....</h4>
-            </div>
-            <div class="row">
-              <h2>Pagado</h2>
-              <h4>{this.props.payment_status}</h4>
-            </div>
+            <h3>Resumen:</h3>
+            <h4 class="title">Datos de la cita</h4>
+            <h4>{this.props.booking_date} {this.props.city}</h4>
+            <h4 class="title">Contacto</h4>
+            <h4>{this.props.email} {this.props.phone_number}</h4>
+            <h4 class="title">Cascota</h4>
+            <h4>{this.props.pet_name} {this.props.pet_breed}</h4>
+            <h4 class="title">Pago</h4>
+            <h4>{this.props.payment_status}</h4>
           </div>
   }
 })
-
 
 /* PARENT TO ALL THE ELEMENTS OF THE APP*/
 var CheckoutContainer = React.createClass({
@@ -306,7 +317,7 @@ var CheckoutContainer = React.createClass({
 			case 1:
 				return  <div class="container">
                   <Header step={this.state.step} />
-                  <div class="checkout-body">
+                  <div class="row">
                     <Booking nextStep={this.nextStep} form_params={this.state.form_params} updateContactFormParams={this.updateContactFormParams}/>
                     <ProgressColumn
                         city={this.state.city}
