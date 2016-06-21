@@ -31,7 +31,6 @@ var Header = React.createClass({
   }
 })
 
-
 var PaymentForm = forms.Form.extend({
   /*
   card_name: forms.CharField({label: 'Nombre del titular:'}),
@@ -49,9 +48,16 @@ var SignupForm = forms.Form.extend({
   first_name: forms.CharField({label: 'Nombre:'}),
   second_name: forms.CharField({label: 'Apellido:'}),
   adress: forms.CharField({label: 'Dirección:'}),
-  city: forms.CharField({label: 'Ciudad:'}),
   */
-  acceptTerms: forms.BooleanField({label: 'Acepto los términos de usuario:', required: true})
+  city: forms.CharField({label: 'Ciudad:'}),
+  onFormChange: function(){
+    console.log('form changed')
+  },
+  acceptTerms: forms.BooleanField({label: 'Acepto los términos de usuario:',
+                                  required: true,
+                                  controlled: true,
+                                  onChange: this.onFormChange.bind(this)}),
+
 
 })
 
@@ -95,7 +101,7 @@ var Payment = React.createClass({
   _onSubmit: function(e) {
     e.preventDefault()
     var form = this.refs.paymentForm.getForm()
-    console.log(form.cleanedData)
+    //console.log(form.cleanedData)
     $.ajax({
          url : "http://localhost:8000/checkout/", // the endpoint
          type : "POST", // http method
@@ -126,12 +132,16 @@ var Payment = React.createClass({
 var Signup = React.createClass({
   render: function() {
     console.log('dasd')
-    return <div class="col-md-9">
-            <form onSubmit={this._onSubmit}>
-              <forms.RenderForm form={SignupForm} ref="signupForm"/>
-              <button class="btn-cta-green">Guardar y continuar</button>
-            </form>
+    return <div class="row">
+              <div class="col-md-9">
+                <form onSubmit={this._onSubmit}>
+                <forms.RenderForm form={SignupForm} ref="signupForm"/>
+                <button class="btn-cta-green">Guardar y continuar</button>
+              </form>
+            </div>
+            <ProgressColumn />
           </div>
+
   },
   onSignup: function(cleanedData) {
     console.log('on isgnup')
@@ -263,16 +273,13 @@ var CheckoutContainer = React.createClass({
   },
 
   render: function() {
-    console.log(this.state.step)
 		switch (this.state.step) {
 			case 1:
-        console.log('asdfsf')
 				return(
           <div class="container">
             <Header step={this.state.step} />
             <div class="checkout-body">
               <Signup nextStep={this.nextStep} />
-              <ProgressColumn />
             </div>
           </div>
               );

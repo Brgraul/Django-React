@@ -14842,9 +14842,15 @@
 	  first_name: forms.CharField({label: 'Nombre:'}),
 	  second_name: forms.CharField({label: 'Apellido:'}),
 	  adress: forms.CharField({label: 'Dirección:'}),
-	  city: forms.CharField({label: 'Ciudad:'}),
 	  */
-	  acceptTerms: forms.BooleanField({ label: 'Acepto los términos de usuario:', required: true })
+	  city: forms.CharField({ label: 'Ciudad:' }),
+	  onFormChange: function () {
+	    console.log('form changed');
+	  },
+	  acceptTerms: forms.BooleanField({ label: 'Acepto los términos de usuario:',
+	    required: true,
+	    controlled: true,
+	    onChange: this.onFormChange.bind(this) })
 
 	});
 
@@ -14889,7 +14895,7 @@
 	  _onSubmit: function (e) {
 	    e.preventDefault();
 	    var form = this.refs.paymentForm.getForm();
-	    console.log(form.cleanedData);
+	    //console.log(form.cleanedData)
 	    $.ajax({
 	      url: "http://localhost:8000/checkout/", // the endpoint
 	      type: "POST", // http method
@@ -14923,17 +14929,22 @@
 	    console.log('dasd');
 	    return React.createElement(
 	      "div",
-	      { className: "col-md-9" },
+	      { className: "row" },
 	      React.createElement(
-	        "form",
-	        { onSubmit: this._onSubmit },
-	        React.createElement(forms.RenderForm, { form: SignupForm, ref: "signupForm" }),
+	        "div",
+	        { className: "col-md-9" },
 	        React.createElement(
-	          "button",
-	          { className: "btn-cta-green" },
-	          "Guardar y continuar"
+	          "form",
+	          { onSubmit: this._onSubmit },
+	          React.createElement(forms.RenderForm, { form: SignupForm, ref: "signupForm" }),
+	          React.createElement(
+	            "button",
+	            { className: "btn-cta-green" },
+	            "Guardar y continuar"
+	          )
 	        )
-	      )
+	      ),
+	      React.createElement(ProgressColumn, null)
 	    );
 	  },
 	  onSignup: function (cleanedData) {
@@ -15119,10 +15130,8 @@
 	  },
 
 	  render: function () {
-	    console.log(this.state.step);
 	    switch (this.state.step) {
 	      case 1:
-	        console.log('asdfsf');
 	        return React.createElement(
 	          "div",
 	          { className: "container" },
@@ -15130,8 +15139,7 @@
 	          React.createElement(
 	            "div",
 	            { className: "checkout-body" },
-	            React.createElement(Signup, { nextStep: this.nextStep }),
-	            React.createElement(ProgressColumn, null)
+	            React.createElement(Signup, { nextStep: this.nextStep })
 	          )
 	        );
 	      case 2:
