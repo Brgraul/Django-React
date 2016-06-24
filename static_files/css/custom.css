@@ -2404,6 +2404,9 @@ div.container.container-ventajas > div.row {
   margin-top: 40px;
   margin-bottom: 20px; }
 
+.navbar-logo {
+  max-width: 160px; }
+
 /* ESTILOS PIDE TU CITA INDEX*/
 /* Services Styles*/
 div.container-fluid.container-services {
@@ -2614,8 +2617,11 @@ div.checkout-body {
   margin-bottom: 20%; }
 
 .col-progress {
-  border-left: 2px solid;
-  height: auto; }
+  border-left: 2px solid #9B9B9B;
+  height: auto;
+  height: 320px;
+  margin-top: 5%;
+  padding-top: 2%; }
   .col-progress > h3 {
     font-weight: 600; }
   .col-progress > h4 {
@@ -2623,5 +2629,66 @@ div.checkout-body {
     margin: 5px; }
     .col-progress > h4.title {
       font-weight: 600; }
+
+.checkout-form-container {
+  padding: 5%;
+  margin-bottom: 2%; }
+
+#container-checkout > div > div.row {
+  margin-left: 0px;
+  margin-right: 0px; }
+
+#container-checkout > div:nth-child(1) {
+  width: 100% !important;
+  margin: 0px !important;
+  padding: 0px !important;
+  max-width: 100% !important; }
+
+.header-booking > div:nth-child(1) {
+  margin-right: 0px !important;
+  margin-left: 0px !important; }
+
+.header-booking {
+  border-bottom: 1px solid #00a099;
+  box-shadow: 0px 1px 1px #00a099;
+  padding: 0.75%; }
+
+.form-title {
+  color: #00a099;
+  text-align: left;
+  font-size: 35px;
+  line-height: 125%;
+  display: block;
+  margin-bottom: 10px; }
+
+.form-sub {
+  color: #9B9B9B;
+  text-align: left;
+  font-size: 25px;
+  line-height: 125%;
+  display: block;
+  margin-bottom: 30px; }
+
+#step1 {
+  opacity: 0.5; }
+
+.col-md-1.select > #step2 {
+  opacity: 0.5; }
+
+.checkout-icon {
+  margin-top: 5%;
+  text-align: center;
+  display: inherit; }
+
+.arrow {
+  line-height: 155%; }
+
+.checkout-text {
+  text-align: center;
+  margin-bottom: 5%; }
+
+.checkout-logo {
+  max-width: 300px;
+  vertical-align: text-top; }
 
 /*# sourceMappingURL=custom.css.map */

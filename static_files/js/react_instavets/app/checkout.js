@@ -1,32 +1,56 @@
 var forms = require('newforms')
 var BootstrapForm = require('newforms-bootstrap')
 
+/* Forms Locale*/
+forms.addLocale('es', {
+  b: 'janv._févr._mars_avr._mai_juin_juil._août_sept._oct._nov._déc.'.split('_')
+, B: 'janvier_février_mars_avril_mai_juin_juillet_août_septembre_octobre_novembre_décembre'.split('_')
+, DATE_INPUT_FORMATS: [
+    '%d/%m/%Y', '%d/%m/%y'
+  , '%d %b %Y', '%d %b %y'
+  , '%d %B %Y', '%d %B %y',
+  , '%m/%d/%Y',
+  ]
+, DATETIME_INPUT_FORMATS: [
+    '%d/%m/%Y %H:%M:%S'
+  , '%d/%m/%Y %H:%M'
+  , '%d/%m/%Y'
+  , '%m/%d/%Y'
+  , '%Y/%m/%d'
+  , '%H:%M'
+  ]
+})
+
+forms.setDefaultLocale('es')
+
+/* We are selecting the step of the process by means of the id, and in the case of the 3rd step
+we took advantage of the id_nesting */
+
 var Header = React.createClass({
   render: function() {
-    return  <div class="row">
-              <div class="col-md-3">
-                <h1>Logo Instavets</h1>
-              </div>
-              <div class="col-md-1">
-                <i class="fa fa-calendar fa-3x" aria-hidden="true" ></i>
-              </div>
-              <div class="col-md-1">
-                <i class="fa fa-long-arrow-right fa-2x" aria-hidden="true"></i>
-              </div>
-              <div class="col-md-1">
-                <i class="fa fa-user fa-3x" aria-hidden="true"></i>
-              </div>
-              <div class="col-md-1">
-                <i class="fa fa-long-arrow-right fa-2x" aria-hidden="true"></i>
-              </div>
-              <div class="col-md-1">
-                <i class="fa fa-paw fa-3x" aria-hidden="true"></i>
-              </div>
-              <div class="col-md-1">
-                <i class="fa fa-long-arrow-right fa-2x" aria-hidden="true"></i>
-              </div>
-              <div class="col-md-1">
-                <i class="fa fa-credit-card fa-3x" aria-hidden="true"></i>
+      return  <div class="header-booking">
+              <div class="row">
+                <div class="col-md-3">
+                <img class="checkout-logo" alt="File logo" src='/static/images/index/logo-y-nombre.png'/>
+                </div>
+                <div class="col-md-2 col-md-offset-1">
+                  <i class="fa fa-user fa-3x checkout-icon" aria-hidden="true"></i>
+                  <p class="checkout-text" >1. Datos personales</p>
+                </div>
+                <div class="col-md-1">
+                  <i class="fa fa-long-arrow-right fa-3x checkout-icon arrow" aria-hidden="true" id={this.props.stepid}></i>
+                </div>
+                <div class="col-md-2">
+                  <i class="fa fa-paw fa-3x checkout-icon" aria-hidden="true" id={this.props.stepid}></i>
+                  <p class="checkout-text" id={this.props.stepid}>2. Mascotas</p>
+                </div>
+                <div class="col-md-1 select">
+                  <i class="fa fa-long-arrow-right fa-3x checkout-icon arrow" aria-hidden="true" id={this.props.stepid}></i>
+                </div>
+                <div class="col-md-2 select">
+                  <i class="fa fa-credit-card fa-3x checkout-icon" aria-hidden="true" id={this.props.stepid}></i>
+                  <p class="checkout-text" id={this.props.stepid}>3. Pago</p>
+                  </div>
               </div>
             </div>
   }
@@ -41,7 +65,8 @@ var PaymentForm = forms.Form.extend({
 })
 
 var BookingForm = forms.Form.extend({
-  booking_date: forms.DateField({label: 'Fecha y hora de la cita:', format: '%Y/%m/%d' }),
+  booking_date: forms.CharField({label: 'Fecha de la cita:', custom: 'readonly' }),
+  booking_hour: forms.CharField({label:'Hora de la cita:',custom: 'readonly'}),
   phone_number: forms.CharField({label: 'Número de teléfono:'}),
   email: forms.EmailField({label: 'Email:'}),
   first_name: forms.CharField({label: 'Nombre:'}),
@@ -77,8 +102,9 @@ var Payment = React.createClass({
   render: function() {
     return <div class="col-md-9">
             <form onSubmit={this._onSubmit}>
+              <forms.RenderForm form={PaymentForm} ref="paymentForm">
               <BootstrapForm/>
-              <forms.RenderForm form={PaymentForm} ref="paymentForm"/>
+              </forms.RenderForm>
               <button class="btn-cta-green">Pagar</button>
             </form>
           </div>
@@ -88,10 +114,7 @@ var Payment = React.createClass({
     console.log('on isgnup')
     //Handle payment right here with the tpv
   },
-  propTypes: {
-    onSignup: React.PropTypes.func.isRequired
-  },
-  _onSubmit: function(e) {
+  _onSubmit: function(e){
     e.preventDefault()
     var form = this.refs.paymentForm.getForm()
     //console.log(form.cleanedData)
@@ -103,7 +126,7 @@ var Payment = React.createClass({
          // handle a successful response
          success : function(json) {
              $('#post-text').val(''); // remove the value from the input
-             console.log(json); // log the returned json to the console
+          //   console.log(json); // log the returned json to the console
              console.log("success"); // another sanity check
          },
 
@@ -122,10 +145,12 @@ var Payment = React.createClass({
   },
 })
 
-/* Renders the booking app */
+//Loads the booking form
 var Booking = React.createClass({
   render: function() {
-    return <div class="col-md-9">
+    return <div class="col-md-7 checkout-form-container">
+              <p class="form-title" >Reserve su cita</p>
+              <p class="form-sub" >Facilítenos alguna información básica porfavor</p>
                 <form onSubmit={this._onSubmit} onChange={this.onFormChange}>
                 <forms.RenderForm form={BookingForm} ref="bookingForm">
                   <BootstrapForm/>
@@ -138,8 +163,17 @@ var Booking = React.createClass({
     $.datetimepicker.setLocale('es');
     $('#id_booking_date').datetimepicker({
       timepicker: false,
+    //  minDate:'-1970/01/0', //yesterday is minimum date(for today use 0 or -1970/01/01)
       format:'m/d/Y',
       lang:'es'
+    });
+    $('#id_booking_hour').datetimepicker({
+      datepicker: false,
+      format:'H:i',
+      lang:'es',
+      allowTimes:[ '8:00','8:15','8:30','8:45', '9:00','9:15','9:30','9:45','10:00','10:15','10:30','10:45',
+      '11:00','11:15','11:30','11:45', '12:00','12:15','12:30','12:45', '13:00','13:15','13:30','13:45',
+      '14:00','14:15','14:30','14:45', '15:00','15:15','15:30','15:45', '16:00','16:15','16:30','16:45'],
     });
   },
   componentDidMount: function() {
@@ -162,7 +196,7 @@ var Booking = React.createClass({
          // handle a successful response
          success : function(json) {
              $('#post-text').val(''); // remove the value from the input
-             console.log(json); // log the returned json to the console
+          //   console.log(json); // log the returned json to the console
              console.log("success"); // another sanity check
          },
 
@@ -185,10 +219,11 @@ var Booking = React.createClass({
 /* Renders the pet form */
 var NewPet = React.createClass({
   render: function() {
-    console.log('dasd')
-    return <div class="col-md-8">
+    return <div class="col-md-7">
               <form onSubmit={this._onSubmit} onChange={this.onFormChange}>
-              <forms.RenderForm form={NewPetForm} ref="newPetForm"/>
+              <forms.RenderForm form={NewPetForm} ref="newPetForm">
+              <BootstrapForm/>
+              </forms.RenderForm>
               <button class="btn-cta-green">Guardar y continuar</button>
               </form>
             </div>
@@ -199,10 +234,10 @@ var NewPet = React.createClass({
   propTypes: {
     onSignup: React.PropTypes.func.isRequired
   },
-  _onSubmit: function(e) {
+  _onSubmit: function(e){
     e.preventDefault()
-    var form = this.refs.newpetForm.getForm()
-    console.log(form.cleanedData)
+    var form = this.refs.newPetForm.getForm()
+    console.log(form)
     $.ajax({
          url : "http://localhost:8000/checkout/", // the endpoint
          type : "POST", // http method
@@ -211,7 +246,7 @@ var NewPet = React.createClass({
          // handle a successful response
          success : function(json) {
              $('#post-text').val(''); // remove the value from the input
-             console.log(json); // log the returned json to the console
+          //   console.log(json); // log the returned json to the console
              console.log("success"); // another sanity check
          },
 
@@ -225,6 +260,7 @@ var NewPet = React.createClass({
     var isValid = form.validate()
     if (isValid) {
       this.onSignup(form.cleanedData)
+      this.props.updatePetFormParams(form.cleanedData);
       this.props.nextStep()
     }
   },
@@ -233,14 +269,13 @@ var NewPet = React.createClass({
 /* Shows the status of the payment process */
 var ProgressColumn = React.createClass({
   render: function(){
-    console.log(this.props.formData)
-    return <div class="col-md-3 col-progress">
+    return <div class="col-md-3 col-progress col-md-offset-2">
             <h3>Resumen:</h3>
             <h4 class="title">Datos de la cita</h4>
-            <h4>{this.props.booking_date} {this.props.city}</h4>
+            <h4>{this.props.date} {this.props.city}</h4>
             <h4 class="title">Contacto</h4>
             <h4>{this.props.email} {this.props.phone_number}</h4>
-            <h4 class="title">Cascota</h4>
+            <h4 class="title">Mascota</h4>
             <h4>{this.props.pet_name} {this.props.pet_breed}</h4>
             <h4 class="title">Pago</h4>
             <h4>{this.props.payment_status}</h4>
@@ -253,23 +288,24 @@ var CheckoutContainer = React.createClass({
 	getInitialState: function() {
 		return {
 			step: 1,
+      step_id: 'step1',
       /* Step 1 */
-      city: 'ciudad',
+      city: ' ',
       acceptTerms: 'False',
-      booking_date: 'Fecha',
-      phone_number: 'sin completar',
-      email: 'sin completar',
+      booking_date: 'Incompleto',
+      phone_number: 'Incompleto',
+      email: '',
       first_name: 'Nombre',
       second_name: 'Apellidos',
       adress: 'Dirección',
       /* Step 2 */
-      pet_name : 'Nombre Mascota',
+      pet_name : 'Incompleto',
       pet_birthday : 'Fecha nacimiento mascota',
       pet_species : 'Especie Mascota',
       pet_gender : 'Sexo Mascota',
-      pet_breed : 'Raza Mascota',
+      pet_breed : '',
       /* Step 3 */
-      payment_status: 'incomplete',
+      payment_status: 'Incompleto',
 		}
 	},
 
@@ -301,7 +337,8 @@ var CheckoutContainer = React.createClass({
   // Increases the state counter in 1
   nextStep: function() {
     this.setState({
-      step : this.state.step + 1
+      step : this.state.step + 1 ,
+      step_id : 'step' + this.state.step ,
     })
   },
 
@@ -316,40 +353,60 @@ var CheckoutContainer = React.createClass({
 		switch (this.state.step) {
 			case 1:
 				return  <div class="container">
-                  <Header step={this.state.step} />
+                  <Header stepid={this.state.step_id}/>
                   <div class="row">
-                    <Booking nextStep={this.nextStep} form_params={this.state.form_params} updateContactFormParams={this.updateContactFormParams}/>
+                    <Booking
+                      nextStep={this.nextStep}
+                      form_params={this.state.form_params}
+                      updateContactFormParams={this.updateContactFormParams}
+                      step={this.state.step}
+                    />
                     <ProgressColumn
                         city={this.state.city}
-                        date={this.state.date}
+                        date={this.state.booking_date}
                         payment_status={this.state.payment_status}
+                        email={this.state.email}
+                        phone_number={this.state.phone_number}
+                        pet_name={this.state.pet_name}
+                        pet_breed={this.state.pet_breed}
                     />
                   </div>
                 </div>
 
 			case 2:
 				return    <div class="container">
-                    <Header step={this.state.step} />
+                    <Header stepid={this.state.step_id} />
                     <div class="checkout-body">
-                      <NewPet nextStep={this.nextStep} form_params={this.state.form_params} />
+                      <NewPet
+                        nextStep={this.nextStep}
+                        updatePetFormParams={this.updatePetFormParams}
+                        step={this.state.step} />
                     </div>
-                    <ProgressColumn
+                      <ProgressColumn
                         city={this.state.city}
-                        date={this.state.date}
+                        date={this.state.booking_date}
                         payment_status={this.state.payment_status}
-                    />
+                        email={this.state.email}
+                        phone_number={this.state.phone_number}
+                        pet_name={this.state.pet_name}
+                        pet_breed={this.state.pet_breed}
+                      />
                     </div>
       case 3:
   			return   <div class="container">
-                    <Header step={this.state.step} />
+                    <Header />
                     <div class="checkout-body">
-                      <Payment nextStep={this.nextStep} form_params={this.state.form_params} />
+                      <Payment nextStep={this.nextStep} />
                     </div>
-                    <ProgressColumn
+                      <ProgressColumn
                         city={this.state.city}
-                        date={this.state.date}
+                        date={this.state.booking_date}
                         payment_status={this.state.payment_status}
-                    />
+                        email={this.state.email}
+                        phone_number={this.state.phone_number}
+                        pet_name={this.state.pet_name}
+                        pet_breed={this.state.pet_breed}
+                      />
                     </div>
 		}
 	}

@@ -14771,56 +14771,74 @@
 	var forms = __webpack_require__(1);
 	var BootstrapForm = __webpack_require__(131);
 
+	/* Forms Locale*/
+	forms.addLocale('es', {
+	  b: 'janv._févr._mars_avr._mai_juin_juil._août_sept._oct._nov._déc.'.split('_'),
+	  B: 'janvier_février_mars_avril_mai_juin_juillet_août_septembre_octobre_novembre_décembre'.split('_'),
+	  DATE_INPUT_FORMATS: ['%d/%m/%Y', '%d/%m/%y', '%d %b %Y', '%d %b %y', '%d %B %Y', '%d %B %y',, '%m/%d/%Y'],
+	  DATETIME_INPUT_FORMATS: ['%d/%m/%Y %H:%M:%S', '%d/%m/%Y %H:%M', '%d/%m/%Y', '%m/%d/%Y', '%Y/%m/%d', '%H:%M']
+	});
+
+	forms.setDefaultLocale('es');
+
+	/* We are selecting the step of the process by means of the id, and in the case of the 3rd step
+	we took advantage of the id_nesting */
+
 	var Header = React.createClass({
 	  displayName: 'Header',
 
 	  render: function () {
 	    return React.createElement(
 	      'div',
-	      { className: 'row' },
+	      { className: 'header-booking' },
 	      React.createElement(
 	        'div',
-	        { className: 'col-md-3' },
+	        { className: 'row' },
 	        React.createElement(
-	          'h1',
-	          null,
-	          'Logo Instavets'
+	          'div',
+	          { className: 'col-md-3' },
+	          React.createElement('img', { className: 'checkout-logo', alt: 'File logo', src: '/static/images/index/logo-y-nombre.png' })
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'col-md-2 col-md-offset-1' },
+	          React.createElement('i', { className: 'fa fa-user fa-3x checkout-icon', 'aria-hidden': 'true' }),
+	          React.createElement(
+	            'p',
+	            { className: 'checkout-text' },
+	            '1. Datos personales'
+	          )
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'col-md-1' },
+	          React.createElement('i', { className: 'fa fa-long-arrow-right fa-3x checkout-icon arrow', 'aria-hidden': 'true', id: this.props.stepid })
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'col-md-2' },
+	          React.createElement('i', { className: 'fa fa-paw fa-3x checkout-icon', 'aria-hidden': 'true', id: this.props.stepid }),
+	          React.createElement(
+	            'p',
+	            { className: 'checkout-text', id: this.props.stepid },
+	            '2. Mascotas'
+	          )
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'col-md-1 select' },
+	          React.createElement('i', { className: 'fa fa-long-arrow-right fa-3x checkout-icon arrow', 'aria-hidden': 'true', id: this.props.stepid })
+	        ),
+	        React.createElement(
+	          'div',
+	          { className: 'col-md-2 select' },
+	          React.createElement('i', { className: 'fa fa-credit-card fa-3x checkout-icon', 'aria-hidden': 'true', id: this.props.stepid }),
+	          React.createElement(
+	            'p',
+	            { className: 'checkout-text', id: this.props.stepid },
+	            '3. Pago'
+	          )
 	        )
-	      ),
-	      React.createElement(
-	        'div',
-	        { className: 'col-md-1' },
-	        React.createElement('i', { className: 'fa fa-calendar fa-3x', 'aria-hidden': 'true' })
-	      ),
-	      React.createElement(
-	        'div',
-	        { className: 'col-md-1' },
-	        React.createElement('i', { className: 'fa fa-long-arrow-right fa-2x', 'aria-hidden': 'true' })
-	      ),
-	      React.createElement(
-	        'div',
-	        { className: 'col-md-1' },
-	        React.createElement('i', { className: 'fa fa-user fa-3x', 'aria-hidden': 'true' })
-	      ),
-	      React.createElement(
-	        'div',
-	        { className: 'col-md-1' },
-	        React.createElement('i', { className: 'fa fa-long-arrow-right fa-2x', 'aria-hidden': 'true' })
-	      ),
-	      React.createElement(
-	        'div',
-	        { className: 'col-md-1' },
-	        React.createElement('i', { className: 'fa fa-paw fa-3x', 'aria-hidden': 'true' })
-	      ),
-	      React.createElement(
-	        'div',
-	        { className: 'col-md-1' },
-	        React.createElement('i', { className: 'fa fa-long-arrow-right fa-2x', 'aria-hidden': 'true' })
-	      ),
-	      React.createElement(
-	        'div',
-	        { className: 'col-md-1' },
-	        React.createElement('i', { className: 'fa fa-credit-card fa-3x', 'aria-hidden': 'true' })
 	      )
 	    );
 	  }
@@ -14835,7 +14853,8 @@
 	});
 
 	var BookingForm = forms.Form.extend({
-	  booking_date: forms.DateField({ label: 'Fecha y hora de la cita:', format: '%Y/%m/%d' }),
+	  booking_date: forms.CharField({ label: 'Fecha de la cita:', custom: 'readonly' }),
+	  booking_hour: forms.CharField({ label: 'Hora de la cita:', custom: 'readonly' }),
 	  phone_number: forms.CharField({ label: 'Número de teléfono:' }),
 	  email: forms.EmailField({ label: 'Email:' }),
 	  first_name: forms.CharField({ label: 'Nombre:' }),
@@ -14868,8 +14887,11 @@
 	      React.createElement(
 	        'form',
 	        { onSubmit: this._onSubmit },
-	        React.createElement(BootstrapForm, null),
-	        React.createElement(forms.RenderForm, { form: PaymentForm, ref: 'paymentForm' }),
+	        React.createElement(
+	          forms.RenderForm,
+	          { form: PaymentForm, ref: 'paymentForm' },
+	          React.createElement(BootstrapForm, null)
+	        ),
 	        React.createElement(
 	          'button',
 	          { className: 'btn-cta-green' },
@@ -14883,9 +14905,6 @@
 	    console.log('on isgnup');
 	    //Handle payment right here with the tpv
 	  },
-	  propTypes: {
-	    onSignup: React.PropTypes.func.isRequired
-	  },
 	  _onSubmit: function (e) {
 	    e.preventDefault();
 	    var form = this.refs.paymentForm.getForm();
@@ -14898,7 +14917,7 @@
 	      // handle a successful response
 	      success: function (json) {
 	        $('#post-text').val(''); // remove the value from the input
-	        console.log(json); // log the returned json to the console
+	        //   console.log(json); // log the returned json to the console
 	        console.log("success"); // another sanity check
 	      },
 
@@ -14916,14 +14935,81 @@
 	  }
 	});
 
-	/* Renders the booking app */
+	/* Renders the booking app */ /*
+	                              var Booking = React.createClass({
+	                              render: function() {
+	                              return <div class="col-md-9">
+	                              <form onSubmit={this._onSubmit} onChange={this.onFormChange}>
+	                              <forms.RenderForm form={BookingForm} ref="bookingForm">
+	                              <BootstrapForm/>
+	                              </forms.RenderForm>
+	                              <button class="btn-cta-green">Guardar y continuar</button>
+	                              </form>
+	                              </div>
+	                              },
+	                              renderDateSelectWidget: function(){
+	                              $.datetimepicker.setLocale('es');
+	                              $('#id_booking_date').datetimepicker({
+	                              timepicker: false,
+	                              format:'m/d/Y',
+	                              lang:'es'
+	                              });
+	                              },
+	                              componentDidMount: function() {
+	                              this.renderDateSelectWidget();
+	                              },
+	                              onSignup: function(cleanedData) {
+	                              console.log('on isgnup')
+	                              },
+	                              propTypes: {
+	                              onSignup: React.PropTypes.func.isRequired
+	                              },
+	                              _onSubmit: function(e){
+	                              e.preventDefault()
+	                              var form = this.refs.bookingForm.getForm()
+	                              $.ajax({
+	                              url : "http://localhost:8000/checkout/", // the endpoint
+	                              type : "POST", // http method
+	                              data : { data : form.cleanedData }, // data sent with the post request
+	                              // handle a successful response
+	                              success : function(json) {
+	                              $('#post-text').val(''); // remove the value from the input
+	                              console.log(json); // log the returned json to the console
+	                              console.log("success"); // another sanity check
+	                              },
+	                              // handle a non-successful response
+	                              error : function(xhr,errmsg,err) {
+	                              $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
+	                              " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
+	                              console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+	                              }
+	                              });
+	                              var isValid = form.validate()
+	                              if (isValid) {
+	                              this.onSignup(form.cleanedData)
+	                              this.props.updateContactFormParams(form.cleanedData);
+	                              this.props.nextStep()
+	                              }
+	                              },
+	                              })
+	                              */
 	var Booking = React.createClass({
 	  displayName: 'Booking',
 
 	  render: function () {
 	    return React.createElement(
 	      'div',
-	      { className: 'col-md-9' },
+	      { className: 'col-md-7 checkout-form-container' },
+	      React.createElement(
+	        'p',
+	        { className: 'form-title' },
+	        'Reserve su cita'
+	      ),
+	      React.createElement(
+	        'p',
+	        { className: 'form-sub' },
+	        'Facilítenos alguna información básica porfavor'
+	      ),
 	      React.createElement(
 	        'form',
 	        { onSubmit: this._onSubmit, onChange: this.onFormChange },
@@ -14944,8 +15030,15 @@
 	    $.datetimepicker.setLocale('es');
 	    $('#id_booking_date').datetimepicker({
 	      timepicker: false,
+	      //  minDate:'-1970/01/0', //yesterday is minimum date(for today use 0 or -1970/01/01)
 	      format: 'm/d/Y',
 	      lang: 'es'
+	    });
+	    $('#id_booking_hour').datetimepicker({
+	      datepicker: false,
+	      format: 'H:i',
+	      lang: 'es',
+	      allowTimes: ['8:00', '8:15', '8:30', '8:45', '9:00', '9:15', '9:30', '9:45', '10:00', '10:15', '10:30', '10:45', '11:00', '11:15', '11:30', '11:45', '12:00', '12:15', '12:30', '12:45', '13:00', '13:15', '13:30', '13:45', '14:00', '14:15', '14:30', '14:45', '15:00', '15:15', '15:30', '15:45', '16:00', '16:15', '16:30', '16:45']
 	    });
 	  },
 	  componentDidMount: function () {
@@ -14968,7 +15061,7 @@
 	      // handle a successful response
 	      success: function (json) {
 	        $('#post-text').val(''); // remove the value from the input
-	        console.log(json); // log the returned json to the console
+	        //   console.log(json); // log the returned json to the console
 	        console.log("success"); // another sanity check
 	      },
 
@@ -14992,14 +15085,17 @@
 	  displayName: 'NewPet',
 
 	  render: function () {
-	    console.log('dasd');
 	    return React.createElement(
 	      'div',
 	      { className: 'col-md-8' },
 	      React.createElement(
 	        'form',
 	        { onSubmit: this._onSubmit, onChange: this.onFormChange },
-	        React.createElement(forms.RenderForm, { form: NewPetForm, ref: 'newPetForm' }),
+	        React.createElement(
+	          forms.RenderForm,
+	          { form: NewPetForm, ref: 'newPetForm' },
+	          React.createElement(BootstrapForm, null)
+	        ),
 	        React.createElement(
 	          'button',
 	          { className: 'btn-cta-green' },
@@ -15016,8 +15112,8 @@
 	  },
 	  _onSubmit: function (e) {
 	    e.preventDefault();
-	    var form = this.refs.newpetForm.getForm();
-	    console.log(form.cleanedData);
+	    var form = this.refs.newPetForm.getForm();
+	    console.log(form);
 	    $.ajax({
 	      url: "http://localhost:8000/checkout/", // the endpoint
 	      type: "POST", // http method
@@ -15026,7 +15122,7 @@
 	      // handle a successful response
 	      success: function (json) {
 	        $('#post-text').val(''); // remove the value from the input
-	        console.log(json); // log the returned json to the console
+	        //   console.log(json); // log the returned json to the console
 	        console.log("success"); // another sanity check
 	      },
 
@@ -15039,6 +15135,7 @@
 	    var isValid = form.validate();
 	    if (isValid) {
 	      this.onSignup(form.cleanedData);
+	      this.props.updatePetFormParams(form.cleanedData);
 	      this.props.nextStep();
 	    }
 	  }
@@ -15049,10 +15146,9 @@
 	  displayName: 'ProgressColumn',
 
 	  render: function () {
-	    console.log(this.props.formData);
 	    return React.createElement(
 	      'div',
-	      { className: 'col-md-3 col-progress' },
+	      { className: 'col-md-3 col-progress col-md-offset-2' },
 	      React.createElement(
 	        'h3',
 	        null,
@@ -15066,7 +15162,7 @@
 	      React.createElement(
 	        'h4',
 	        null,
-	        this.props.booking_date,
+	        this.props.date,
 	        ' ',
 	        this.props.city
 	      ),
@@ -15085,7 +15181,7 @@
 	      React.createElement(
 	        'h4',
 	        { className: 'title' },
-	        'Cascota'
+	        'Mascota'
 	      ),
 	      React.createElement(
 	        'h4',
@@ -15115,23 +15211,28 @@
 	  getInitialState: function () {
 	    return {
 	      step: 1,
+	      step_id: 'step1',
 	      /* Step 1 */
-	      city: 'ciudad',
+	      city: ' ',
 	      acceptTerms: 'False',
-	      booking_date: 'Fecha',
-	      phone_number: 'sin completar',
-	      email: 'sin completar',
+	      booking_date: 'Incompleto',
+	      phone_number: 'Incompleto',
+	      email: '',
 	      first_name: 'Nombre',
 	      second_name: 'Apellidos',
 	      adress: 'Dirección',
 	      /* Step 2 */
-	      pet_name: 'Nombre Mascota',
+	      pet_name: 'Incompleto',
 	      pet_birthday: 'Fecha nacimiento mascota',
 	      pet_species: 'Especie Mascota',
 	      pet_gender: 'Sexo Mascota',
-	      pet_breed: 'Raza Mascota',
+	      pet_breed: '',
 	      /* Step 3 */
-	      payment_status: 'incomplete'
+	      payment_status: 'Incompleto',
+	      /* Header select */
+	      prog1: 'fa fa-calendar fa-3x',
+	      prog2: 'icon-inactive',
+	      prog3: 'icon-inactive'
 	    };
 	  },
 
@@ -15163,7 +15264,8 @@
 	  // Increases the state counter in 1
 	  nextStep: function () {
 	    this.setState({
-	      step: this.state.step + 1
+	      step: this.state.step + 1,
+	      step_id: 'step' + this.state.step
 	    });
 	  },
 
@@ -15180,15 +15282,24 @@
 	        return React.createElement(
 	          'div',
 	          { className: 'container' },
-	          React.createElement(Header, { step: this.state.step }),
+	          React.createElement(Header, { stepid: this.state.step_id }),
 	          React.createElement(
 	            'div',
 	            { className: 'row' },
-	            React.createElement(Booking, { nextStep: this.nextStep, form_params: this.state.form_params, updateContactFormParams: this.updateContactFormParams }),
+	            React.createElement(Booking, {
+	              nextStep: this.nextStep,
+	              form_params: this.state.form_params,
+	              updateContactFormParams: this.updateContactFormParams,
+	              step: this.state.step
+	            }),
 	            React.createElement(ProgressColumn, {
 	              city: this.state.city,
-	              date: this.state.date,
-	              payment_status: this.state.payment_status
+	              date: this.state.booking_date,
+	              payment_status: this.state.payment_status,
+	              email: this.state.email,
+	              phone_number: this.state.phone_number,
+	              pet_name: this.state.pet_name,
+	              pet_breed: this.state.pet_breed
 	            })
 	          )
 	        );
@@ -15197,32 +15308,43 @@
 	        return React.createElement(
 	          'div',
 	          { className: 'container' },
-	          React.createElement(Header, { step: this.state.step }),
+	          React.createElement(Header, { stepid: this.state.step_id }),
 	          React.createElement(
 	            'div',
 	            { className: 'checkout-body' },
-	            React.createElement(NewPet, { nextStep: this.nextStep, form_params: this.state.form_params })
+	            React.createElement(NewPet, {
+	              nextStep: this.nextStep,
+	              updatePetFormParams: this.updatePetFormParams,
+	              step: this.state.step })
 	          ),
 	          React.createElement(ProgressColumn, {
 	            city: this.state.city,
-	            date: this.state.date,
-	            payment_status: this.state.payment_status
+	            date: this.state.booking_date,
+	            payment_status: this.state.payment_status,
+	            email: this.state.email,
+	            phone_number: this.state.phone_number,
+	            pet_name: this.state.pet_name,
+	            pet_breed: this.state.pet_breed
 	          })
 	        );
 	      case 3:
 	        return React.createElement(
 	          'div',
 	          { className: 'container' },
-	          React.createElement(Header, { step: this.state.step }),
+	          React.createElement(Header, null),
 	          React.createElement(
 	            'div',
 	            { className: 'checkout-body' },
-	            React.createElement(Payment, { nextStep: this.nextStep, form_params: this.state.form_params })
+	            React.createElement(Payment, { nextStep: this.nextStep })
 	          ),
 	          React.createElement(ProgressColumn, {
 	            city: this.state.city,
-	            date: this.state.date,
-	            payment_status: this.state.payment_status
+	            date: this.state.booking_date,
+	            payment_status: this.state.payment_status,
+	            email: this.state.email,
+	            phone_number: this.state.phone_number,
+	            pet_name: this.state.pet_name,
+	            pet_breed: this.state.pet_breed
 	          })
 	        );
 	    }

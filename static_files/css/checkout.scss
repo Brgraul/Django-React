@@ -6,8 +6,11 @@ div.checkout-body{
 }
 
 .col-progress{
-  border-left: 2px solid;
+  border-left: 2px solid $instavets_footer_grey_text;
   height: auto;
+  height: 320px;
+  margin-top: 5%;
+  padding-top: 2%;
   & > h3{
     font-weight: 600;
   }
@@ -18,4 +21,85 @@ div.checkout-body{
       font-weight: 600;
     }
   }
+}
+
+.checkout-form-container{
+  padding: 5%;
+  margin-bottom: 2%;
+}
+
+#container-checkout > div > div.row{
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+
+#container-checkout > div:nth-child(1){
+  width: 100% !important;
+  margin: 0px !important;
+  padding: 0px !important;
+  max-width: 100% !important;
+}
+.header-booking > div:nth-child(1){
+  margin-right: 0px !important;
+  margin-left: 0px !important;
+}
+#container-checkout > div:nth-child(1) > div:nth-child(2){
+
+}
+
+.header-booking{
+  border-bottom: 1px solid $instavets_green;
+  box-shadow: 0px 1px 1px $instavets_green;
+  padding: 0.75%;
+}
+
+.form-title{
+  color: $instavets_green;
+  text-align: left;
+  font-size: 35px;
+  line-height: 125%;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.form-sub{
+  color: $instavets_footer_grey_text;
+  text-align: left;;
+  font-size: 25px;
+  line-height: 125%;
+  display: block;
+  margin-bottom: 30px;
+}
+
+  #step1{
+    opacity: 0.5;
+}
+
+
+.col-md-1.select{
+  & > #step2{
+    opacity: 0.5
+  }
+}
+
+.checkout-icon{
+  margin-top: 5%;
+  text-align: center;
+  display: inherit;
+}
+
+.arrow{
+  line-height: 155%;
+}
+
+.checkout-text{
+  text-align: center;
+  margin-bottom: 5%;
+}
+
+.checkout-logo{
+  max-width: 300px;
+  vertical-align: text-top;
+
 }

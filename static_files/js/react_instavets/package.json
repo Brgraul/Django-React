@@ -26,6 +26,7 @@
     "html-webpack-plugin": "^2.21.0",
     "newforms": "^0.13.2",
     "newforms-bootstrap": "^2.0.0",
+    "pickadate": "^3.5.6",
     "react": "^15.1.0",
     "webpack": "^1.13.1"
   }
