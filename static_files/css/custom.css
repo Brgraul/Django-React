@@ -2619,9 +2619,10 @@ div.checkout-body {
 .col-progress {
   border-left: 2px solid #9B9B9B;
   height: auto;
-  height: 320px;
+  height: 400px;
   margin-top: 5%;
-  padding-top: 2%; }
+  padding-top: 2%;
+  display: grid; }
   .col-progress > h3 {
     font-weight: 600; }
   .col-progress > h4 {
@@ -2675,6 +2676,15 @@ div.checkout-body {
 .col-md-1.select > #step2 {
   opacity: 0.5; }
 
+.col-md-2.select > #step2 {
+  opacity: 0.5; }
+
+.col-md-1.cont {
+  width: 8.4%; }
+
+.col-md-1.select {
+  width: 8.25%; }
+
 .checkout-icon {
   margin-top: 5%;
   text-align: center;
@@ -2690,5 +2700,21 @@ div.checkout-body {
 .checkout-logo {
   max-width: 300px;
   vertical-align: text-top; }
+
+.form-field {
+  color: red;
+  width: 20%; }
+
+.small-widget {
+  width: 50% !important;
+  display: inline; }
+
+div.form-group:nth-child(1) {
+  width: 50%;
+  display: inline-table; }
+
+div.form-group:nth-child(2) {
+  width: 50%;
+  display: inline-table; }
 
 /*# sourceMappingURL=custom.css.map */

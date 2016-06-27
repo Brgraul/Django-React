@@ -8,9 +8,10 @@ div.checkout-body{
 .col-progress{
   border-left: 2px solid $instavets_footer_grey_text;
   height: auto;
-  height: 320px;
+  height: 400px;
   margin-top: 5%;
   padding-top: 2%;
+  display: grid;
   & > h3{
     font-weight: 600;
   }
@@ -83,6 +84,20 @@ div.checkout-body{
   }
 }
 
+.col-md-2.select{
+  & > #step2{
+    opacity: 0.5
+  }
+}
+
+.col-md-1.cont{
+  width : 8.4%
+}
+
+.col-md-1.select{
+  width : 8.25%
+}
+
 .checkout-icon{
   margin-top: 5%;
   text-align: center;
@@ -102,4 +117,24 @@ div.checkout-body{
   max-width: 300px;
   vertical-align: text-top;
 
+}
+
+.form-field{
+  color:red;
+  width:20%;
+}
+
+.small-widget{
+  width: 50% !important;
+  display: inline;
+}
+
+div.form-group:nth-child(1){
+  width: 50%;
+  display: inline-table;
+}
+
+div.form-group:nth-child(2){
+  width: 50%;
+  display: inline-table;
 }

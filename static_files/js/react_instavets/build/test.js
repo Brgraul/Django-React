@@ -14801,12 +14801,12 @@
 	        ),
 	        React.createElement(
 	          'div',
-	          { className: 'col-md-2 col-md-offset-1' },
+	          { className: 'col-md-1 cont col-md-offset-4' },
 	          React.createElement('i', { className: 'fa fa-user fa-3x checkout-icon', 'aria-hidden': 'true' }),
 	          React.createElement(
 	            'p',
 	            { className: 'checkout-text' },
-	            '1. Datos personales'
+	            '1. Contacto'
 	          )
 	        ),
 	        React.createElement(
@@ -14816,12 +14816,12 @@
 	        ),
 	        React.createElement(
 	          'div',
-	          { className: 'col-md-2' },
+	          { className: 'col-md-1' },
 	          React.createElement('i', { className: 'fa fa-paw fa-3x checkout-icon', 'aria-hidden': 'true', id: this.props.stepid }),
 	          React.createElement(
 	            'p',
 	            { className: 'checkout-text', id: this.props.stepid },
-	            '2. Mascotas'
+	            '2. Mascota'
 	          )
 	        ),
 	        React.createElement(
@@ -14831,7 +14831,7 @@
 	        ),
 	        React.createElement(
 	          'div',
-	          { className: 'col-md-2 select' },
+	          { className: 'col-md-1 select' },
 	          React.createElement('i', { className: 'fa fa-credit-card fa-3x checkout-icon', 'aria-hidden': 'true', id: this.props.stepid }),
 	          React.createElement(
 	            'p',
@@ -14845,36 +14845,60 @@
 	});
 
 	var PaymentForm = forms.Form.extend({
-	  card_name: forms.CharField({ label: 'Nombre del titular:' }),
-	  card_number: forms.CharField({ label: 'Número Tarjeta:' }),
-	  exp_date: forms.DateTimeField({ label: 'Fecha Caducidad:', widget: forms.DateInput({ format: '%M/%Y' }) }),
-	  csv: forms.CharField({ label: 'CSV:' })
+	  card_name: forms.CharField({ label: 'Nombre del titular:', required: true }),
+	  card_number: forms.CharField({ label: 'Número Tarjeta:', required: true }),
+	  exp_date: forms.DateTimeField({ label: 'Fecha Caducidad:', required: true, widget: forms.DateInput({ format: '%M/%Y' }) }),
+	  csv: forms.CharField({ label: 'CSV:', required: true })
 
 	});
 
+	/* function renderField(bf) {
+	  var className = 'form-field'
+	    return <div className={className}>
+	      {bf.labelTag()} {bf.render()}
+	      {bf.helpTextTag()} {bf.errors().render()}
+	    </div>
+	  } */
+
 	var BookingForm = forms.Form.extend({
-	  booking_date: forms.CharField({ label: 'Fecha de la cita:', custom: 'readonly' }),
-	  booking_hour: forms.CharField({ label: 'Hora de la cita:', custom: 'readonly' }),
-	  phone_number: forms.CharField({ label: 'Número de teléfono:' }),
-	  email: forms.EmailField({ label: 'Email:' }),
-	  first_name: forms.CharField({ label: 'Nombre:' }),
-	  second_name: forms.CharField({ label: 'Apellido:' }),
-	  adress: forms.CharField({ label: 'Dirección:' }),
-	  city: forms.CharField({ label: 'Ciudad:' }),
-	  acceptTerms: forms.BooleanField({ label: 'Acepto los términos de usuario:',
-	    required: true })
+	  booking_date: forms.CharField({ label: 'Fecha de la cita:', requiered: true, custom: 'readonly', requiered: true, errorMessages: { required: 'Rellena éste campo porfavor.' } }),
+	  booking_hour: forms.CharField({ label: 'Hora de la cita:', custom: 'readonly', requiered: true, errorMessages: { required: 'Rellena éste campo porfavor.' } }),
+	  phone_number: forms.CharField({ label: 'Número de teléfono:', requiered: true, errorMessages: { required: 'Rellena éste campo porfavor.' } }),
+	  email: forms.EmailField({ label: 'Email:', requiered: true, errorMessages: { invalid: 'Porfavor introduce un email válido.', required: 'Rellena éste campo porfavor.' } }),
+	  first_name: forms.CharField({ label: 'Nombre:', requiered: true, errorMessages: { required: 'Rellena éste campo porfavor.' } }),
+	  second_name: forms.CharField({ label: 'Apellido:', requiered: true, errorMessages: { required: 'Rellena éste campo porfavor.' } }),
+	  adress: forms.CharField({ label: 'Dirección:', requiered: true, errorMessages: { required: 'Rellena éste campo porfavor.' } }),
+	  city: forms.CharField({ label: 'Ciudad:', requiered: true, errorMessages: { required: 'Rellena éste campo porfavor.' } }),
+	  acceptTerms: forms.BooleanField({ label: 'Acepto los términos de usuario:', required: true, errorMessages: { required: 'Es necesario aceptar los términos de usuario para seguir con el proceso.' } })
 
 	});
 
 	var SPECIES = [['cat', 'Gato'], ['dog', 'Perro'], ['other', 'Otro']];
 	var GENDER = [['hembra_normal', 'Hembra Normal'], ['hembra_esterilizada', 'Hembra Esterilizada'], ['macho_normal', 'Macho Normal'], ['macho_esterilizado', 'Macho Esterilizado']];
+	/* var BigForm = forms.Form.extend({
+	  booking_date: forms.CharField({label: 'Fecha de la cita:', requiered: true, custom: 'readonly', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'} }),
+	  booking_hour: forms.CharField({label:'Hora de la cita:', custom: 'readonly', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
+	  phone_number: forms.CharField({label: 'Número de teléfono:', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
+	  email: forms.EmailField({label: 'Email:', requiered: true, errorMessages: {invalid: 'Porfavor introduce un email válido.', required:'Rellena éste campo porfavor.'}}),
+	  first_name: forms.CharField({label: 'Nombre:', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
+	  second_name: forms.CharField({label: 'Apellido:', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
+	  adress: forms.CharField({label: 'Dirección:', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
+	  city: forms.CharField({label: 'Ciudad:', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
+	  acceptTerms: forms.BooleanField({label: 'Acepto los términos de usuario:', required: true, errorMessages: {required:'Es necesario aceptar los términos de usuario para seguir con el proceso.'}}),
+	  pet_name: forms.CharField({label: 'Nombre de la mascota:', required: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
+	  pet_birthday: forms.CharField({label: 'Edad (Años):', required: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
+	  pet_species: forms.ChoiceField({required: true, label: 'Especie:', choices: SPECIES, errorMessages: {required:'Rellena éste campo porfavor.'}}),
+	  pet_gender: forms.ChoiceField({required: true, choices: GENDER, label: 'Sexo de la mascota:', errorMessages: {required:'Selecciona una de las opciones porfavor.'}}),
+	  pet_breed: forms.CharField({label: 'Raza:', required: true, errorMessages: {required:'Selecciona una de las opciones porfavor.'}}),
+
+	}) */
 
 	var NewPetForm = forms.Form.extend({
-	  pet_name: forms.CharField({ label: 'Nombre de la mascota:' }),
-	  pet_birthday: forms.CharField({ label: 'Edad (Años):' }),
-	  pet_species: forms.ChoiceField({ label: 'Especie:', choices: SPECIES }),
-	  pet_gender: forms.ChoiceField({ required: false, choices: GENDER }),
-	  pet_breed: forms.CharField({ label: 'Raza:' })
+	  pet_name: forms.CharField({ label: 'Nombre de la mascota:', required: true, errorMessages: { required: 'Rellena éste campo porfavor.' } }),
+	  pet_birthday: forms.CharField({ label: 'Edad (Años):', required: true, errorMessages: { required: 'Rellena éste campo porfavor.' } }),
+	  pet_species: forms.ChoiceField({ required: true, label: 'Especie:', choices: SPECIES, errorMessages: { required: 'Rellena éste campo porfavor.' } }),
+	  pet_gender: forms.ChoiceField({ required: true, choices: GENDER, label: 'Sexo de la mascota:', errorMessages: { required: 'Selecciona una de las opciones porfavor.' } }),
+	  pet_breed: forms.CharField({ label: 'Raza:', required: true, errorMessages: { required: 'Selecciona una de las opciones porfavor.' } })
 	});
 
 	var Payment = React.createClass({
@@ -14883,20 +14907,26 @@
 	  render: function () {
 	    return React.createElement(
 	      'div',
-	      { className: 'col-md-9' },
+	      { className: 'col-md-7 checkout-form-container' },
 	      React.createElement(
-	        'form',
-	        { onSubmit: this._onSubmit },
-	        React.createElement(
-	          forms.RenderForm,
-	          { form: PaymentForm, ref: 'paymentForm' },
-	          React.createElement(BootstrapForm, null)
-	        ),
-	        React.createElement(
-	          'button',
-	          { className: 'btn-cta-green' },
-	          'Pagar'
-	        )
+	        'p',
+	        { className: 'form-title' },
+	        'Datos de pago'
+	      ),
+	      React.createElement(
+	        'p',
+	        { className: 'form-sub' },
+	        'Estás a punto de completar el pago'
+	      ),
+	      React.createElement(
+	        forms.RenderForm,
+	        { form: PaymentForm, ref: 'paymentForm' },
+	        React.createElement(BootstrapForm, null)
+	      ),
+	      React.createElement(
+	        'button',
+	        { className: 'btn-cta-green' },
+	        'Pagar'
 	      )
 	    );
 	  },
@@ -14935,64 +14965,7 @@
 	  }
 	});
 
-	/* Renders the booking app */ /*
-	                              var Booking = React.createClass({
-	                              render: function() {
-	                              return <div class="col-md-9">
-	                              <form onSubmit={this._onSubmit} onChange={this.onFormChange}>
-	                              <forms.RenderForm form={BookingForm} ref="bookingForm">
-	                              <BootstrapForm/>
-	                              </forms.RenderForm>
-	                              <button class="btn-cta-green">Guardar y continuar</button>
-	                              </form>
-	                              </div>
-	                              },
-	                              renderDateSelectWidget: function(){
-	                              $.datetimepicker.setLocale('es');
-	                              $('#id_booking_date').datetimepicker({
-	                              timepicker: false,
-	                              format:'m/d/Y',
-	                              lang:'es'
-	                              });
-	                              },
-	                              componentDidMount: function() {
-	                              this.renderDateSelectWidget();
-	                              },
-	                              onSignup: function(cleanedData) {
-	                              console.log('on isgnup')
-	                              },
-	                              propTypes: {
-	                              onSignup: React.PropTypes.func.isRequired
-	                              },
-	                              _onSubmit: function(e){
-	                              e.preventDefault()
-	                              var form = this.refs.bookingForm.getForm()
-	                              $.ajax({
-	                              url : "http://localhost:8000/checkout/", // the endpoint
-	                              type : "POST", // http method
-	                              data : { data : form.cleanedData }, // data sent with the post request
-	                              // handle a successful response
-	                              success : function(json) {
-	                              $('#post-text').val(''); // remove the value from the input
-	                              console.log(json); // log the returned json to the console
-	                              console.log("success"); // another sanity check
-	                              },
-	                              // handle a non-successful response
-	                              error : function(xhr,errmsg,err) {
-	                              $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
-	                              " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
-	                              console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
-	                              }
-	                              });
-	                              var isValid = form.validate()
-	                              if (isValid) {
-	                              this.onSignup(form.cleanedData)
-	                              this.props.updateContactFormParams(form.cleanedData);
-	                              this.props.nextStep()
-	                              }
-	                              },
-	                              })
-	                              */
+	//Loads the booking form
 	var Booking = React.createClass({
 	  displayName: 'Booking',
 
@@ -15015,7 +14988,9 @@
 	        { onSubmit: this._onSubmit, onChange: this.onFormChange },
 	        React.createElement(
 	          forms.RenderForm,
-	          { form: BookingForm, ref: 'bookingForm' },
+	          { form: BookingForm, component: 'ul',
+	            rowComponent: 'li',
+	            autoId: false, ref: 'bookingForm' },
 	          React.createElement(BootstrapForm, null)
 	        ),
 	        React.createElement(
@@ -15026,6 +15001,23 @@
 	      )
 	    );
 	  },
+
+	  /* var Booking = React.createClass({
+	     render: function() {
+	       return <div class="col-md-7 checkout-form-container">
+	                 <p class="form-title" >Reserve su cita</p>
+	                 <p class="form-sub" >Facilítenos alguna información básica porfavor</p>
+	                   <form onSubmit={this._onSubmit} onChange={this.onFormChange}>
+	                     {this.props.booking_form.boundFields().map(renderField)}
+	                     <BootstrapForm/>
+	                     <div>
+	                     <input type="submit" value="Submit"/>{' '}
+	                     </div>
+	                   <button class="btn-cta-green">Guardar y continuar</button>
+	                 </form>
+	               </div>
+	     }, */
+
 	  renderDateSelectWidget: function () {
 	    $.datetimepicker.setLocale('es');
 	    $('#id_booking_date').datetimepicker({
@@ -15087,7 +15079,17 @@
 	  render: function () {
 	    return React.createElement(
 	      'div',
-	      { className: 'col-md-8' },
+	      { className: 'col-md-7 checkout-form-container' },
+	      React.createElement(
+	        'p',
+	        { className: 'form-title' },
+	        'Registre a su mascota'
+	      ),
+	      React.createElement(
+	        'p',
+	        { className: 'form-sub' },
+	        'Nos preocupamos por su amigo peludo'
+	      ),
 	      React.createElement(
 	        'form',
 	        { onSubmit: this._onSubmit, onChange: this.onFormChange },
@@ -15162,8 +15164,11 @@
 	      React.createElement(
 	        'h4',
 	        null,
-	        this.props.date,
-	        ' ',
+	        this.props.date
+	      ),
+	      React.createElement(
+	        'h4',
+	        null,
 	        this.props.city
 	      ),
 	      React.createElement(
@@ -15174,8 +15179,11 @@
 	      React.createElement(
 	        'h4',
 	        null,
-	        this.props.email,
-	        ' ',
+	        this.props.email
+	      ),
+	      React.createElement(
+	        'h4',
+	        null,
 	        this.props.phone_number
 	      ),
 	      React.createElement(
@@ -15186,8 +15194,11 @@
 	      React.createElement(
 	        'h4',
 	        null,
-	        this.props.pet_name,
-	        ' ',
+	        this.props.pet_name
+	      ),
+	      React.createElement(
+	        'h4',
+	        null,
 	        this.props.pet_breed
 	      ),
 	      React.createElement(
@@ -15203,7 +15214,9 @@
 	    );
 	  }
 	});
-
+	var bigform = [{ step: 1, step_id: 'step1', city: ' ', acceptTerms: 'False', booking_date: 'Incompleto', phone_number: 'Incompleto',
+	  email: '', first_name: 'Nombre', second_name: 'Apellidos', adress: 'Dirección', pet_name: 'Incompleto', pet_birthday: 'Fecha nacimiento mascota',
+	  pet_species: 'Gato', pet_gender: 'Hembra normal', pet_breed: '' }];
 	/* PARENT TO ALL THE ELEMENTS OF THE APP*/
 	var CheckoutContainer = React.createClass({
 	  displayName: 'CheckoutContainer',
@@ -15212,7 +15225,7 @@
 	    return {
 	      step: 1,
 	      step_id: 'step1',
-	      /* Step 1 */
+	      //Step 1
 	      city: ' ',
 	      acceptTerms: 'False',
 	      booking_date: 'Incompleto',
@@ -15221,21 +15234,17 @@
 	      first_name: 'Nombre',
 	      second_name: 'Apellidos',
 	      adress: 'Dirección',
-	      /* Step 2 */
+	      //Step 2
 	      pet_name: 'Incompleto',
 	      pet_birthday: 'Fecha nacimiento mascota',
-	      pet_species: 'Especie Mascota',
-	      pet_gender: 'Sexo Mascota',
+	      pet_species: 'Gato',
+	      pet_gender: 'Hembra normal',
 	      pet_breed: '',
-	      /* Step 3 */
-	      payment_status: 'Incompleto',
-	      /* Header select */
-	      prog1: 'fa fa-calendar fa-3x',
-	      prog2: 'icon-inactive',
-	      prog3: 'icon-inactive'
+	      payment_status: 'Incompleto'
 	    };
 	  },
 
+	  //    booking_form: new BookingForm,
 	  // Updates Contact Form Parameters
 	  updateContactFormParams: function (form_params) {
 	    this.setState({
@@ -15291,6 +15300,7 @@
 	              form_params: this.state.form_params,
 	              updateContactFormParams: this.updateContactFormParams,
 	              step: this.state.step
+	              //   booking_form={this.state.booking_form}
 	            }),
 	            React.createElement(ProgressColumn, {
 	              city: this.state.city,
@@ -15311,21 +15321,22 @@
 	          React.createElement(Header, { stepid: this.state.step_id }),
 	          React.createElement(
 	            'div',
-	            { className: 'checkout-body' },
+	            { className: 'row' },
 	            React.createElement(NewPet, {
 	              nextStep: this.nextStep,
 	              updatePetFormParams: this.updatePetFormParams,
-	              step: this.state.step })
-	          ),
-	          React.createElement(ProgressColumn, {
-	            city: this.state.city,
-	            date: this.state.booking_date,
-	            payment_status: this.state.payment_status,
-	            email: this.state.email,
-	            phone_number: this.state.phone_number,
-	            pet_name: this.state.pet_name,
-	            pet_breed: this.state.pet_breed
-	          })
+	              step: this.state.step
+	            }),
+	            React.createElement(ProgressColumn, {
+	              city: this.state.city,
+	              date: this.state.booking_date,
+	              payment_status: this.state.payment_status,
+	              email: this.state.email,
+	              phone_number: this.state.phone_number,
+	              pet_name: this.state.pet_name,
+	              pet_breed: this.state.pet_breed
+	            })
+	          )
 	        );
 	      case 3:
 	        return React.createElement(
@@ -15334,18 +15345,19 @@
 	          React.createElement(Header, null),
 	          React.createElement(
 	            'div',
-	            { className: 'checkout-body' },
-	            React.createElement(Payment, { nextStep: this.nextStep })
-	          ),
-	          React.createElement(ProgressColumn, {
-	            city: this.state.city,
-	            date: this.state.booking_date,
-	            payment_status: this.state.payment_status,
-	            email: this.state.email,
-	            phone_number: this.state.phone_number,
-	            pet_name: this.state.pet_name,
-	            pet_breed: this.state.pet_breed
-	          })
+	            { className: 'row' },
+	            React.createElement(Payment, { nextStep: this.nextStep
+	            }),
+	            React.createElement(ProgressColumn, {
+	              city: this.state.city,
+	              date: this.state.booking_date,
+	              payment_status: this.state.payment_status,
+	              email: this.state.email,
+	              phone_number: this.state.phone_number,
+	              pet_name: this.state.pet_name,
+	              pet_breed: this.state.pet_breed
+	            })
+	          )
 	        );
 	    }
 	  }
