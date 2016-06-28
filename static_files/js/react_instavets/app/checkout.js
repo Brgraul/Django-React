@@ -1,10 +1,12 @@
 var forms = require('newforms')
+var moment = require('moment')
 var BootstrapForm = require('newforms-bootstrap')
 
 /* Forms Locale*/
 forms.addLocale('es', {
-  b: 'janv._févr._mars_avr._mai_juin_juil._août_sept._oct._nov._déc.'.split('_')
-, B: 'janvier_février_mars_avril_mai_juin_juillet_août_septembre_octobre_novembre_décembre'.split('_')
+  b: 'ene._feb._mar_abr._may_jun_jul._ago_sept._oct._nov._dec.'.split('_')
+, B: 'enero_febrero_marzo_abril_mayo_junio_julio_agosto_septiembre_octubre_noviembre_diciembre'.split('_')
+, D: 'lunes_martes_miercoles_juesves_viernes_sabado_domingo'.split('_')
 , DATE_INPUT_FORMATS: [
     '%d/%m/%Y', '%d/%m/%y'
   , '%d %b %Y', '%d %b %y'
@@ -14,6 +16,7 @@ forms.addLocale('es', {
 , DATETIME_INPUT_FORMATS: [
     '%d/%m/%Y %H:%M:%S'
   , '%d/%m/%Y %H:%M'
+  , '%D, %B %d , %H'
   , '%d/%m/%Y'
   , '%m/%d/%Y'
   , '%Y/%m/%d'
@@ -21,7 +24,7 @@ forms.addLocale('es', {
   ]
 })
 
-forms.setDefaultLocale('es')
+forms.setDefaultLocale('es');
 
 /* We are selecting the step of the process by means of the id, and in the case of the 3rd step
 we took advantage of the id_nesting */
@@ -68,16 +71,8 @@ var PaymentForm = forms.Form.extend({
 
 })
 
-/* function renderField(bf) {
-  var className = 'form-field'
-    return <div className={className}>
-      {bf.labelTag()} {bf.render()}
-      {bf.helpTextTag()} {bf.errors().render()}
-    </div>
-  } */
-
 var BookingForm = forms.Form.extend({
-  booking_date: forms.DateTimeField({label: 'Fecha de la cita:', requiered: true, custom: 'readonly', requiered: true, errorMessages: {required:'Rellena este campo porfavor.'} }),
+  booking_date: forms.DateTimeField({label: 'Fecha de la cita:', requiered: true, custom: 'readonly', requiered: true, errorMessages: {required:'Rellena este campo porfavor.'}, format: '%m/%d/%Y' }),
   booking_hour: forms.DateTimeField({label:'Hora de la cita:', custom: 'readonly', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
   phone_number: forms.CharField({label: 'Número de teléfono:', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
   email: forms.EmailField({label: 'Email:', requiered: true, errorMessages: {invalid: 'Porfavor introduce un email válido.', required:'Rellena éste campo porfavor.'}}),
@@ -100,23 +95,6 @@ var GENDER = [
   ['macho_normal','Macho Normal'],
   ['macho_esterilizado','Macho Esterilizado']
 ]
-/* var BigForm = forms.Form.extend({
-  booking_date: forms.CharField({label: 'Fecha de la cita:', requiered: true, custom: 'readonly', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'} }),
-  booking_hour: forms.CharField({label:'Hora de la cita:', custom: 'readonly', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
-  phone_number: forms.CharField({label: 'Número de teléfono:', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
-  email: forms.EmailField({label: 'Email:', requiered: true, errorMessages: {invalid: 'Porfavor introduce un email válido.', required:'Rellena éste campo porfavor.'}}),
-  first_name: forms.CharField({label: 'Nombre:', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
-  second_name: forms.CharField({label: 'Apellido:', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
-  adress: forms.CharField({label: 'Dirección:', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
-  city: forms.CharField({label: 'Ciudad:', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
-  acceptTerms: forms.BooleanField({label: 'Acepto los términos de usuario:', required: true, errorMessages: {required:'Es necesario aceptar los términos de usuario para seguir con el proceso.'}}),
-  pet_name: forms.CharField({label: 'Nombre de la mascota:', required: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
-  pet_birthday: forms.CharField({label: 'Edad (Años):', required: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
-  pet_species: forms.ChoiceField({required: true, label: 'Especie:', choices: SPECIES, errorMessages: {required:'Rellena éste campo porfavor.'}}),
-  pet_gender: forms.ChoiceField({required: true, choices: GENDER, label: 'Sexo de la mascota:', errorMessages: {required:'Selecciona una de las opciones porfavor.'}}),
-  pet_breed: forms.CharField({label: 'Raza:', required: true, errorMessages: {required:'Selecciona una de las opciones porfavor.'}}),
-
-}) */
 
 var NewPetForm = forms.Form.extend({
   pet_name: forms.CharField({label: 'Nombre de la mascota:', required: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
@@ -182,34 +160,16 @@ var Booking = React.createClass({
     return <div class="col-md-7 checkout-form-container">
               <p class="form-title" >Reserve su cita</p>
               <p class="form-sub" >Facilítenos alguna información básica porfavor</p>
-                <form onSubmit={this._onSubmit} onChange={this.onFormChange}>
+                <form onSubmit={this._onSubmit}>
                 <forms.RenderForm form={BookingForm} component="ul"
                 rowComponent="li"
-                autoId={true} ref="bookingForm">
+                ref="bookingForm">
                <BootstrapForm/>
                 </forms.RenderForm>
                 <button class="btn-cta-green">Guardar y continuar</button>
               </form>
             </div>
   },
-
- /* var Booking = React.createClass({
-    render: function() {
-      return <div class="col-md-7 checkout-form-container">
-                <p class="form-title" >Reserve su cita</p>
-                <p class="form-sub" >Facilítenos alguna información básica porfavor</p>
-                  <form onSubmit={this._onSubmit} onChange={this.onFormChange}>
-                    {this.props.booking_form.boundFields().map(renderField)}
-                    <BootstrapForm/>
-                    <div>
-                    <input type="submit" value="Submit"/>{' '}
-                    </div>
-                  <button class="btn-cta-green">Guardar y continuar</button>
-                </form>
-              </div>
-    }, */
-
-
   renderDateSelectWidget: function(){
     $.datetimepicker.setLocale('es');
     $('#booking_date').datetimepicker({
@@ -222,7 +182,7 @@ var Booking = React.createClass({
       datepicker: false,
       format:'H:i',
       lang:'es',
-      allowTimes:[ '8:00','8:15','8:30','8:45', '9:00','9:15','9:30','9:45','10:00','10:15','10:30','10:45',
+      allowTimes:[ '08:00','08:15','08:30','08:45', '09:00','09:15','09:30','9:45','10:00','10:15','10:30','10:45',
       '11:00','11:15','11:30','11:45', '12:00','12:15','12:30','12:45', '13:00','13:15','13:30','13:45',
       '14:00','14:15','14:30','14:45', '15:00','15:15','15:30','15:45', '16:00','16:15','16:30','16:45'],
     });
@@ -236,23 +196,24 @@ var Booking = React.createClass({
   propTypes: {
     onSignup: React.PropTypes.func.isRequired
   },
+  /*
+  onFormChange: function(){
+    var form = this.refs.bookingForm.getForm()
+    this.props.updateContactFormParams(form.cleanedData);
+  },*/
   _onSubmit: function(e){
     e.preventDefault()
     var form = this.refs.bookingForm.getForm()
+    var booking_date_django = this.props.dateDjangoDefault(form.cleanedData.booking_date, form.cleanedData.booking_hour)
+    console.log(booking_date_django)
     $.ajax({
-         url : "http://localhost:8000/checkout/", // the endpoint
-         type : "POST", // http method
-         data : { step: this.props.step, data : form.cleanedData }, // data sent with the post request
-
-         // handle a successful response
+         url : "http://localhost:8000/checkout/",
+         type : "POST",
+         data : { step: this.props.step, data : form.cleanedData, booking_date_django: booking_date_django }, // data sent with the post request
          success : function(json) {
-             $('#post-text').val(''); // remove the value from the input
-          //   console.log(json); // log the returned json to the console
-             console.log("success"); // another sanity check
          },
-
-         // handle a non-successful response
          error : function(xhr,errmsg,err) {
+           //NEDD TO HANDLE ERROR AND SUCCESS CHANGES
              $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
                  " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
              console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
@@ -367,17 +328,47 @@ var CheckoutContainer = React.createClass({
 		}
 	},
 
+  dateStringFormat: function(date, hour){
+    //Getting Time
+    var minutes = hour.getMinutes();
+    var hours = hour.getHours();
+    var month = date.getUTCMonth();
+    var year = date.getFullYear();
+    //day of the week(0-6)
+    var day = date.getUTCDay();
+    //day of the moth(0-30)
+    var month_day = date.getUTCDate();
+    //Building the String
+    var days = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'];
+    var months = ['Ene', 'Feb', 'Marzo', 'Abr', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Sept', 'Oct', 'Nov', 'Dic'];
+    var date_string = days[day] + ', '  + month_day + ' de ' +  months[month] + ' a las ' + hours + ':' + minutes;
+
+    return date_string;
+  },
+
+  //Converts UNIX timestamp to date format for progress bar
+  //Problem ... it gets it with two hour delay ...dont know why ..
+  dateDjangoDefault: function(date, hour){
+    //Getting Time
+    var minutes = hour.getMinutes();
+    var hours = hour.getHours();
+    var month = date.getUTCMonth();
+    var year = date.getFullYear();
+    var day = date.getUTCDate();
+    var seconds = 0;
+    var milliseconds = 0;
+    var date_django = new Date(year, month, day, hours, minutes, seconds, milliseconds);
+    var date_django = date_django.toUTCString();
+    return date_django;
+  },
+
   // Updates Contact Form Parameters
   updateContactFormParams: function(form_params){
-    console.log(form_params.booking_date)
-    console.log(Date.parse(form_params.booking_date))
-    console.log(Date.toString(form_params.booking_date))
-    console.log(time.strftime(form_params.booking_date, format[, locale]))
-
+    var date_string = this.dateStringFormat(form_params.booking_date, form_params.booking_hour)
     this.setState({
       city : form_params.city,
       acceptTerms: form_params.acceptTerms,
-      booking_date: Date.toString(form_params.booking_date),
+      booking_date: date_string,
       phone_number: form_params.phone_number,
       email : form_params.email,
       first_name : form_params.first_name,
@@ -421,13 +412,14 @@ var CheckoutContainer = React.createClass({
                     <div class="row">
                       <Booking
                         nextStep={this.nextStep}
-                        form_params={this.state.form_params}
                         updateContactFormParams={this.updateContactFormParams}
                         step={this.state.step}
+                        dateDjangoDefault={this.dateDjangoDefault}
                     //   booking_form={this.state.booking_form}
                       />
                       <ProgressColumn
                           city={this.state.city}
+                          adress={this.state.adress}
                           date={this.state.booking_date}
                           payment_status={this.state.payment_status}
                           email={this.state.email}

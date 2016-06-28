@@ -4,7 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import View
 from .forms import CheckoutForm, SermepaPaymentForm
 from .models import Booking, Order, Customer
-import datetime
+from datetime import datetime
 #Payment Imports
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
@@ -28,7 +28,7 @@ def CheckoutPage(request):
             print 'Step 1: Creating the customer'
             #Customer
             customer = Customer()
-            customer.first_name = data.__getitem__('data[city]')
+            customer.first_name = data.__getitem__('data[first_name]')
             customer.last_name = data.__getitem__('data[second_name]')
             customer.city = data.__getitem__('data[city]')
             customer.adress = data.__getitem__('data[adress]')
@@ -41,10 +41,13 @@ def CheckoutPage(request):
             booking.city = data.__getitem__('data[city]')
             booking.adress = data.__getitem__('data[adress]')
             booking.customer = customer
-            booking.date_booking = datetime.datetime.now()
+            print data.__getitem__('booking_date_django')
+            booking_date = datetime.strptime(data.__getitem__('booking_date_django'), "%a, %d %b %Y %H:%M:%S %Z")
+            booking.date_booking = booking_date
             booking.save()
             #Saving the order
             order = Order()
+            order.status = 'pendiente'
             order.booking = booking
             order.save()
         elif step == 2:

@@ -96,6 +96,7 @@ class Order(models.Model):
     created = models.DateTimeField(auto_now=False, auto_now_add=True, blank = False, null = False, verbose_name = 'Creado')
     ORDER_STATUSES = (
        ('pagado','Pagado'),
+       ('pendiente','Pendiente'),
        ('fallo_en_el_pago','Error de Pago'),
     )
     status = models.CharField(max_length=20, choices=ORDER_STATUSES, blank = True, null=True, verbose_name = 'Estatus del pedido' )
