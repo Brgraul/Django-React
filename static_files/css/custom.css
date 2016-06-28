@@ -2631,6 +2631,9 @@ div.checkout-body {
     .col-progress > h4.title {
       font-weight: 600; }
 
+.checkout-header {
+  max-width: 60%; }
+
 .checkout-form-container {
   padding: 5%;
   margin-bottom: 2%; }
@@ -2645,14 +2648,14 @@ div.checkout-body {
   padding: 0px !important;
   max-width: 100% !important; }
 
-.header-booking > div:nth-child(1) {
-  margin-right: 0px !important;
-  margin-left: 0px !important; }
+.valign {
+  position: relative;
+  top: 50%;
+  transform: translateY(-50%); }
 
 .header-booking {
   border-bottom: 1px solid #00a099;
-  box-shadow: 0px 1px 1px #00a099;
-  padding: 0.75%; }
+  box-shadow: 0px 1px 1px #00a099; }
 
 .form-title {
   color: #00a099;
@@ -2691,15 +2694,18 @@ div.checkout-body {
   display: inherit; }
 
 .arrow {
-  line-height: 155%; }
+  line-height: 120%; }
 
 .checkout-text {
   text-align: center;
-  margin-bottom: 5%; }
+  margin-bottom: 5%;
+  font-size: 12px;
+  line-height: 125%;
+  display: block; }
 
 .checkout-logo {
-  max-width: 300px;
-  vertical-align: text-top; }
+  height: 55px;
+  vertical-align: middle; }
 
 .form-field {
   color: red;
@@ -2718,6 +2724,26 @@ div.form-group:nth-child(2) {
   width: 45%;
   display: inline-table; }
 
+.checkout-col {
+  display: inline-block;
+  width: 20%;
+  margin: 0px;
+  padding: 0px;
+  position: relative;
+  min-height: 1px; }
+
+.checkout-col1 {
+  display: inline-block;
+  width: 10%;
+  margin: 0px;
+  padding: 0px;
+  position: relative;
+  min-height: 1px; }
+
+.checkout-col > i, p {
+  display: block;
+  width: 100%; }
+
 div.form-group:nth-child(3) {
   width: 45%;
   display: inline-table;
@@ -2733,6 +2759,10 @@ div.form-group:nth-child(5) {
   margin-right: 10%; }
 
 div.form-group:nth-child(6) {
+  width: 45%;
+  display: inline-table; }
+
+div.form-group:nth-child(8) {
   width: 45%;
   display: inline-table; }
 

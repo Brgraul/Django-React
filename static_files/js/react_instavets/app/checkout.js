@@ -29,27 +29,31 @@ we took advantage of the id_nesting */
 var Header = React.createClass({
   render: function() {
       return  <div class="header-booking">
+              <div class="container">
               <div class="row">
                 <div class="col-md-3">
-                <img class="checkout-logo" alt="File logo" src='/static/images/index/logo-y-nombre.png'/>
+                <img class="img-responsive checkout-logo" alt="File logo" src='/static/images/index/logo-y-nombre.png'/>
                 </div>
-                <div class="col-md-1 cont col-md-offset-4">
-                  <i class="fa fa-user fa-3x checkout-icon" aria-hidden="true"></i>
-                  <p class="checkout-text" >1. Contacto</p>
+                <div class="col-md-5 col-md-offset-2">
+                <div class="checkout-col">
+                  <i class="fa fa-user fa-2x checkout-icon" aria-hidden="true"></i>
+                  <p class="checkout-text" >1.Contacto</p>
                 </div>
-                <div class="col-md-1">
-                  <i class="fa fa-long-arrow-right fa-3x checkout-icon arrow" aria-hidden="true" id={this.props.stepid}></i>
+                <div class="checkout-col">
+                  <i class="fa fa-long-arrow-right fa-2x checkout-icon arrow" aria-hidden="true" id={this.props.stepid}></i>
                 </div>
-                <div class="col-md-1">
-                  <i class="fa fa-paw fa-3x checkout-icon" aria-hidden="true" id={this.props.stepid}></i>
-                  <p class="checkout-text" id={this.props.stepid}>2. Mascota</p>
+                <div class="checkout-col">
+                  <i class="fa fa-paw fa-2x checkout-icon" aria-hidden="true" id={this.props.stepid}></i>
+                  <p class="checkout-text" id={this.props.stepid}>2.Mascota</p>
                 </div>
-                <div class="col-md-1 select">
-                  <i class="fa fa-long-arrow-right fa-3x checkout-icon arrow" aria-hidden="true" id={this.props.stepid}></i>
+                <div class="checkout-col select">
+                  <i class="fa fa-long-arrow-right fa-2x checkout-icon arrow" aria-hidden="true" id={this.props.stepid}></i>
                 </div>
-                <div class="col-md-1 select">
-                  <i class="fa fa-credit-card fa-3x checkout-icon" aria-hidden="true" id={this.props.stepid}></i>
-                  <p class="checkout-text" id={this.props.stepid}>3. Pago</p>
+                <div class="checkout-col select">
+                  <i class="fa fa-credit-card fa-2x checkout-icon" aria-hidden="true" id={this.props.stepid}></i>
+                  <p class="checkout-text" id={this.props.stepid}>3.Pago</p>
+                  </div>
+                  </div>
                   </div>
               </div>
             </div>
@@ -73,8 +77,8 @@ var PaymentForm = forms.Form.extend({
   } */
 
 var BookingForm = forms.Form.extend({
-  booking_date: forms.CharField({label: 'Fecha de la cita:', requiered: true, custom: 'readonly', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'} }),
-  booking_hour: forms.CharField({label:'Hora de la cita:', custom: 'readonly', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
+  booking_date: forms.DateTimeField({label: 'Fecha de la cita:', requiered: true, custom: 'readonly', requiered: true, errorMessages: {required:'Rellena este campo porfavor.'} }),
+  booking_hour: forms.DateTimeField({label:'Hora de la cita:', custom: 'readonly', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
   phone_number: forms.CharField({label: 'Número de teléfono:', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
   email: forms.EmailField({label: 'Email:', requiered: true, errorMessages: {invalid: 'Porfavor introduce un email válido.', required:'Rellena éste campo porfavor.'}}),
   first_name: forms.CharField({label: 'Nombre:', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
@@ -124,7 +128,7 @@ var NewPetForm = forms.Form.extend({
 
 var Payment = React.createClass({
   render: function() {
-    return <div class="col-md-7 checkout-form-container">
+    return <div class="col-md-5 col-md-offset-1 checkout-form-container">
               <p class="form-title" >Datos de pago</p>
               <p class="form-sub" >Estás a punto de completar el pago</p>
               <forms.RenderForm form={PaymentForm} ref="paymentForm">
@@ -319,7 +323,7 @@ var NewPet = React.createClass({
 /* Shows the status of the payment process */
 var ProgressColumn = React.createClass({
   render: function(){
-    return <div class="col-md-3 col-progress col-md-offset-2">
+    return <div class="col-md-3 col-progress col-md-offset-1">
             <h3>Resumen:</h3>
             <h4 class="title">Datos de la cita</h4>
             <h4>{this.props.date}</h4>
