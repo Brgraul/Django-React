@@ -178,7 +178,7 @@ var Booking = React.createClass({
                 <form onSubmit={this._onSubmit} onChange={this.onFormChange}>
                 <forms.RenderForm form={BookingForm} component="ul"
                 rowComponent="li"
-                autoId={false} ref="bookingForm">
+                autoId={true} ref="bookingForm">
                <BootstrapForm/>
                 </forms.RenderForm>
                 <button class="btn-cta-green">Guardar y continuar</button>
@@ -205,13 +205,13 @@ var Booking = React.createClass({
 
   renderDateSelectWidget: function(){
     $.datetimepicker.setLocale('es');
-    $('#id_booking_date').datetimepicker({
+    $('#booking_date').datetimepicker({
       timepicker: false,
     //  minDate:'-1970/01/0', //yesterday is minimum date(for today use 0 or -1970/01/01)
       format:'m/d/Y',
       lang:'es'
     });
-    $('#id_booking_hour').datetimepicker({
+    $('#booking_hour').datetimepicker({
       datepicker: false,
       format:'H:i',
       lang:'es',
@@ -407,23 +407,25 @@ var CheckoutContainer = React.createClass({
 			case 1:
 				return  <div class="container">
                   <Header stepid={this.state.step_id}/>
-                  <div class="row">
-                    <Booking
-                      nextStep={this.nextStep}
-                      form_params={this.state.form_params}
-                      updateContactFormParams={this.updateContactFormParams}
-                      step={this.state.step}
-                  //   booking_form={this.state.booking_form}
-                    />
-                    <ProgressColumn
-                        city={this.state.city}
-                        date={this.state.booking_date}
-                        payment_status={this.state.payment_status}
-                        email={this.state.email}
-                        phone_number={this.state.phone_number}
-                        pet_name={this.state.pet_name}
-                        pet_breed={this.state.pet_breed}
-                    />
+                  <div class="container">
+                    <div class="row">
+                      <Booking
+                        nextStep={this.nextStep}
+                        form_params={this.state.form_params}
+                        updateContactFormParams={this.updateContactFormParams}
+                        step={this.state.step}
+                    //   booking_form={this.state.booking_form}
+                      />
+                      <ProgressColumn
+                          city={this.state.city}
+                          date={this.state.booking_date}
+                          payment_status={this.state.payment_status}
+                          email={this.state.email}
+                          phone_number={this.state.phone_number}
+                          pet_name={this.state.pet_name}
+                          pet_breed={this.state.pet_breed}
+                      />
+                    </div>
                   </div>
                 </div>
 
