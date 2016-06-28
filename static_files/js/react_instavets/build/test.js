@@ -14793,50 +14793,58 @@
 	      { className: 'header-booking' },
 	      React.createElement(
 	        'div',
-	        { className: 'row' },
+	        { className: 'container' },
 	        React.createElement(
 	          'div',
-	          { className: 'col-md-3' },
-	          React.createElement('img', { className: 'checkout-logo', alt: 'File logo', src: '/static/images/index/logo-y-nombre.png' })
-	        ),
-	        React.createElement(
-	          'div',
-	          { className: 'col-md-1 cont col-md-offset-4' },
-	          React.createElement('i', { className: 'fa fa-user fa-3x checkout-icon', 'aria-hidden': 'true' }),
+	          { className: 'row' },
 	          React.createElement(
-	            'p',
-	            { className: 'checkout-text' },
-	            '1. Contacto'
-	          )
-	        ),
-	        React.createElement(
-	          'div',
-	          { className: 'col-md-1' },
-	          React.createElement('i', { className: 'fa fa-long-arrow-right fa-3x checkout-icon arrow', 'aria-hidden': 'true', id: this.props.stepid })
-	        ),
-	        React.createElement(
-	          'div',
-	          { className: 'col-md-1' },
-	          React.createElement('i', { className: 'fa fa-paw fa-3x checkout-icon', 'aria-hidden': 'true', id: this.props.stepid }),
+	            'div',
+	            { className: 'col-md-3' },
+	            React.createElement('img', { className: 'img-responsive checkout-logo', alt: 'File logo', src: '/static/images/index/logo-y-nombre.png' })
+	          ),
 	          React.createElement(
-	            'p',
-	            { className: 'checkout-text', id: this.props.stepid },
-	            '2. Mascota'
-	          )
-	        ),
-	        React.createElement(
-	          'div',
-	          { className: 'col-md-1 select' },
-	          React.createElement('i', { className: 'fa fa-long-arrow-right fa-3x checkout-icon arrow', 'aria-hidden': 'true', id: this.props.stepid })
-	        ),
-	        React.createElement(
-	          'div',
-	          { className: 'col-md-1 select' },
-	          React.createElement('i', { className: 'fa fa-credit-card fa-3x checkout-icon', 'aria-hidden': 'true', id: this.props.stepid }),
-	          React.createElement(
-	            'p',
-	            { className: 'checkout-text', id: this.props.stepid },
-	            '3. Pago'
+	            'div',
+	            { className: 'col-md-5 col-md-offset-2' },
+	            React.createElement(
+	              'div',
+	              { className: 'checkout-col' },
+	              React.createElement('i', { className: 'fa fa-user fa-2x checkout-icon', 'aria-hidden': 'true' }),
+	              React.createElement(
+	                'p',
+	                { className: 'checkout-text' },
+	                '1.Contacto'
+	              )
+	            ),
+	            React.createElement(
+	              'div',
+	              { className: 'checkout-col' },
+	              React.createElement('i', { className: 'fa fa-long-arrow-right fa-2x checkout-icon arrow', 'aria-hidden': 'true', id: this.props.stepid })
+	            ),
+	            React.createElement(
+	              'div',
+	              { className: 'checkout-col' },
+	              React.createElement('i', { className: 'fa fa-paw fa-2x checkout-icon', 'aria-hidden': 'true', id: this.props.stepid }),
+	              React.createElement(
+	                'p',
+	                { className: 'checkout-text', id: this.props.stepid },
+	                '2.Mascota'
+	              )
+	            ),
+	            React.createElement(
+	              'div',
+	              { className: 'checkout-col select' },
+	              React.createElement('i', { className: 'fa fa-long-arrow-right fa-2x checkout-icon arrow', 'aria-hidden': 'true', id: this.props.stepid })
+	            ),
+	            React.createElement(
+	              'div',
+	              { className: 'checkout-col select' },
+	              React.createElement('i', { className: 'fa fa-credit-card fa-2x checkout-icon', 'aria-hidden': 'true', id: this.props.stepid }),
+	              React.createElement(
+	                'p',
+	                { className: 'checkout-text', id: this.props.stepid },
+	                '3.Pago'
+	              )
+	            )
 	          )
 	        )
 	      )
@@ -14861,8 +14869,8 @@
 	  } */
 
 	var BookingForm = forms.Form.extend({
-	  booking_date: forms.CharField({ label: 'Fecha de la cita:', requiered: true, custom: 'readonly', requiered: true, errorMessages: { required: 'Rellena éste campo porfavor.' } }),
-	  booking_hour: forms.CharField({ label: 'Hora de la cita:', custom: 'readonly', requiered: true, errorMessages: { required: 'Rellena éste campo porfavor.' } }),
+	  booking_date: forms.DateTimeField({ label: 'Fecha de la cita:', requiered: true, custom: 'readonly', requiered: true, errorMessages: { required: 'Rellena este campo porfavor.' } }),
+	  booking_hour: forms.DateTimeField({ label: 'Hora de la cita:', custom: 'readonly', requiered: true, errorMessages: { required: 'Rellena éste campo porfavor.' } }),
 	  phone_number: forms.CharField({ label: 'Número de teléfono:', requiered: true, errorMessages: { required: 'Rellena éste campo porfavor.' } }),
 	  email: forms.EmailField({ label: 'Email:', requiered: true, errorMessages: { invalid: 'Porfavor introduce un email válido.', required: 'Rellena éste campo porfavor.' } }),
 	  first_name: forms.CharField({ label: 'Nombre:', requiered: true, errorMessages: { required: 'Rellena éste campo porfavor.' } }),
@@ -14907,7 +14915,7 @@
 	  render: function () {
 	    return React.createElement(
 	      'div',
-	      { className: 'col-md-7 checkout-form-container' },
+	      { className: 'col-md-5 col-md-offset-1 checkout-form-container' },
 	      React.createElement(
 	        'p',
 	        { className: 'form-title' },
@@ -15150,7 +15158,7 @@
 	  render: function () {
 	    return React.createElement(
 	      'div',
-	      { className: 'col-md-3 col-progress col-md-offset-2' },
+	      { className: 'col-md-3 col-progress col-md-offset-1' },
 	      React.createElement(
 	        'h3',
 	        null,
