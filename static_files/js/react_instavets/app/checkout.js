@@ -3,8 +3,9 @@ var BootstrapForm = require('newforms-bootstrap')
 
 /* Forms Locale*/
 forms.addLocale('es', {
-  b: 'janv._févr._mars_avr._mai_juin_juil._août_sept._oct._nov._déc.'.split('_')
-, B: 'janvier_février_mars_avril_mai_juin_juillet_août_septembre_octobre_novembre_décembre'.split('_')
+  b: 'ene._feb._mar_abr._may_jun_jul._ago_sept._oct._nov._dec.'.split('_')
+, B: 'enero_febrero_marzo_abril_mayo_junio_julio_agosto_septiembre_octubre_noviembre_diciembre'.split('_')
+, D: 'lunes_martes_miercoles_juesves_viernes_sabado_domingo'.split('_')
 , DATE_INPUT_FORMATS: [
     '%d/%m/%Y', '%d/%m/%y'
   , '%d %b %Y', '%d %b %y'
@@ -14,6 +15,7 @@ forms.addLocale('es', {
 , DATETIME_INPUT_FORMATS: [
     '%d/%m/%Y %H:%M:%S'
   , '%d/%m/%Y %H:%M'
+  , '%D, %B %d , %H'
   , '%d/%m/%Y'
   , '%m/%d/%Y'
   , '%Y/%m/%d'
