@@ -14934,11 +14934,6 @@
 	  onSignup: function (cleanedData) {
 	    console.log('on isgnup');
 	    //Handle payment right here with the tpv
-	  },
-	  _onSubmit: function (e) {
-	    e.preventDefault();
-	    var form = this.refs.paymentForm.getForm();
-	    //console.log(form.cleanedData)
 	    $.ajax({
 	      url: "http://localhost:8000/checkout/", // the endpoint
 	      type: "POST", // http method
@@ -14948,7 +14943,8 @@
 	      success: function (json) {
 	        $('#post-text').val(''); // remove the value from the input
 	        //   console.log(json); // log the returned json to the console
-	        console.log("success"); // another sanity check
+	        console.log("success on post"); // another sanity check
+	        window.location.href("http://localhost:8000/payment/");
 	      },
 
 	      // handle a non-successful response
@@ -14957,10 +14953,17 @@
 	        console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
 	      }
 	    });
+	  },
+	  _onSubmit: function (e) {
+	    e.preventDefault();
+	    var form = this.refs.paymentForm.getForm();
+	    //console.log(form.cleanedData)
+
 	    var isValid = form.validate();
 	    if (isValid) {
-	      this.onSignup(form.cleanedData);
-	      this.props.nextStep();
+	      console.log('Submitting pet form');
+
+	      //this.props.nextStep()
 	    }
 	  }
 	});
@@ -15048,7 +15051,7 @@
 	    $.ajax({
 	      url: "http://localhost:8000/checkout/", // the endpoint
 	      type: "POST", // http method
-	      data: { data: form.cleanedData }, // data sent with the post request
+	      data: { step: this.props.step, data: form.cleanedData }, // data sent with the post request
 
 	      // handle a successful response
 	      success: function (json) {
@@ -15124,6 +15127,7 @@
 	      // handle a successful response
 	      success: function (json) {
 	        $('#post-text').val(''); // remove the value from the input
+	        window.location.replace('http://localhost:8000/payment/');
 	        //   console.log(json); // log the returned json to the console
 	        console.log("success"); // another sanity check
 	      },
@@ -15138,7 +15142,7 @@
 	    if (isValid) {
 	      this.onSignup(form.cleanedData);
 	      this.props.updatePetFormParams(form.cleanedData);
-	      this.props.nextStep();
+	      //this.props.nextStep()
 	    }
 	  }
 	});
@@ -15214,9 +15218,7 @@
 	    );
 	  }
 	});
-	var bigform = [{ step: 1, step_id: 'step1', city: ' ', acceptTerms: 'False', booking_date: 'Incompleto', phone_number: 'Incompleto',
-	  email: '', first_name: 'Nombre', second_name: 'Apellidos', adress: 'Dirección', pet_name: 'Incompleto', pet_birthday: 'Fecha nacimiento mascota',
-	  pet_species: 'Gato', pet_gender: 'Hembra normal', pet_breed: '' }];
+
 	/* PARENT TO ALL THE ELEMENTS OF THE APP*/
 	var CheckoutContainer = React.createClass({
 	  displayName: 'CheckoutContainer',
@@ -15322,7 +15324,7 @@
 	        return React.createElement(
 	          'div',
 	          { className: 'container' },
-	          React.createElement(Header, { stepid: this.state.step_id }),
+	          React.createElement(Header, { stepid: this.state.step_id, step: this.state.step }),
 	          React.createElement(
 	            'div',
 	            { className: 'row' },

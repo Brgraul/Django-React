@@ -1,0 +1,47 @@
+{% extends 'base_checkout.html' %}
+{% load staticfiles %}
+{% load static %}
+{% load bootstrap %}
+{% block stylesheets %}
+{% endblock stylesheets %}
+{% block content %}
+<link href="{% static 'css/jquery.datetimepicker.min.css' %}" rel="stylesheet" media="screen">
+<div class="container-checkout" 'container-checkout'>
+  <div class="container">
+    <div class="row row-header">
+      <h1> Header here</h1>
+    </div>
+    <div class="row">
+      <h1>Datos de tu reserva:</h1>
+      <ul>
+        <li>
+          asfdsffds
+        </li>
+        <li>
+          asfdsffds
+        </li>
+        <li>
+          asfdsffds
+        </li>
+        <li>
+          asfdsffds
+        </li>
+        <li>
+          asfdsffds
+        </li>
+      </ul>
+    </div>
+    <div class="col-md-12">
+      {% if debug %}
+        {{ form.sandbox }}
+      {% else %}
+        {{ form.render }}
+      {% endif %}
+    </div>
+
+  </div>
+</div>
+{% endblock content %}
+
+{% block javascript%}
+{% endblock javascript%}

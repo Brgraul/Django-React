@@ -31,6 +31,22 @@ class UserVeterian(User):
       return "%s %s" % (self.first_name, self.last_name)
 '''
 
+class Customer(models.Model):
+    created = models.DateTimeField(auto_now=False, auto_now_add=True, blank = False, null = False, verbose_name = 'Creado')
+    first_name = models.CharField(max_length = 100, null=True, blank = True, verbose_name = 'Nombre')
+    last_name = models.CharField(max_length = 100, null=True, blank = True, verbose_name = 'Apellidos')
+    city = models.CharField(max_length = 100, null=True, blank = True, verbose_name = 'Ciudad')
+    adress = models.CharField(max_length = 100, null=True, blank = True, verbose_name = 'Direccion')
+
+    class Meta:
+        verbose_name_plural = 'Clientes'
+        verbose_name = 'Cliente'
+
+    def __str__(self):              # __unicode__ on Python 2
+        return "%s %s" % (self.first_name, self.last_name)
+
+
+
 class Pet(models.Model):
     class Meta:
         verbose_name_plural='Mascotas'
@@ -46,10 +62,13 @@ class Pet(models.Model):
        ('macho_normal','Macho Normal'),
        ('macho_esterilizado','Macho Esterilizado'),
     )
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, primary_key=True, verbose_name = 'Cliente')
     gender = models.CharField(max_length=20, choices=GENDER, blank = True, null=True, verbose_name = 'Sexo' )
 
     def __str__(self):              # __unicode__ on Python 2
       return "%s %s" % (self.name, self.breed)
+
+
 
 class Booking(models.Model):
     class Meta:
@@ -62,8 +81,21 @@ class Booking(models.Model):
     #user_veterian = models.ForeignKey('UserVeterian', null=True , blank = True, verbose_name = 'Veterinario' )
     adress = models.CharField(max_length = 500, blank = False, null = False, verbose_name = 'Direccion')
     city = models.CharField(max_length = 100, blank = False, null = False, verbose_name = 'Ciudad')
-    zip_code = models.CharField(max_length = 5, null=True, blank = True, verbose_name = 'Codigo Postal')
-    products = models.ManyToManyField(Product, blank = False, null = False)
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, primary_key=True, verbose_name = 'Cliente')
+
 
     def __str__(self):              # __unicode__ on Python 2
       return "%s|%s" % (self.city, self.date_booking )
+
+class Order(models.Model):
+    class Meta:
+        verbose_name_plural = 'Pedidos'
+        verbose_name = 'Pedido'
+    auth_code = models.CharField(max_length = 5, null=True, blank = True, verbose_name = 'Authorization Code')
+    booking = models.OneToOneField( Booking, on_delete=models.CASCADE, primary_key=True, verbose_name = 'Rserva Relacionada')
+    created = models.DateTimeField(auto_now=False, auto_now_add=True, blank = False, null = False, verbose_name = 'Creado')
+    ORDER_STATUSES = (
+       ('pagado','Pagado'),
+       ('fallo_en_el_pago','Error de Pago'),
+    )
+    status = models.CharField(max_length=20, choices=ORDER_STATUSES, blank = True, null=True, verbose_name = 'Estatus del pedido' )

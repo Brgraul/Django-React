@@ -2,7 +2,8 @@ from django.shortcuts import render , redirect
 from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import View
-from .forms import CheckoutForm
+from .forms import CheckoutForm, SermepaPaymentForm
+from .models import Booking, Order, Customer
 
 #Payment Imports
 from django.http import HttpResponse
@@ -10,22 +11,57 @@ from django.shortcuts import render_to_response
 from django.contrib.sites.shortcuts import get_current_site
 from django.conf import settings
 from django.core.urlresolvers import reverse
-from sermepa.forms import SermepaPaymentForm
+from .forms import SermepaPaymentForm
 from sermepa.signals import payment_was_successful, payment_was_error, signature_error
 from sermepa.models import SermepaIdTPV
 
 # Create your views here.
 @csrf_exempt
 def CheckoutPage(request):
-    context = {
-    'form':CheckoutForm
-    }
     if request.method == "POST":
         print request.POST
-        data = request.POST.get('data')
-        print data
+        data = request.POST
+        #1. Get data
+        step = data.__getitem__('step')
+        print step
+        if step == '1':
+            print 'Step 1: Creating the customer'
+            #Customer
+            customer = Customer()
+            customer.first_name = data.__getitem__('data[city]')
+            customer.first_name = data.__getitem__('data[city]')
+            customer.first_name = data.__getitem__('data[city]')
+            customer.first_name = data.__getitem__('data[city]')
+            customer.save()
+            print 'Step 1: Creating the booking'
+            #Booking
+            booking = Booking()
+            #Bulding a Date Field
+            #booking.date_booking = data.__getitem__(pet_birthday)
+            booking.city = data.__getitem__('data[city]')
+            booking.adress = data.__getitem__('data[adress]')
+            booking.customer = customer
+            booking.save()
+            #Saving the order
+            order = Order()
+            order.booking = booking.id
+            oder.save()
+        elif step == 2:
+            pet = Pet.create()
+            pet.name = data.__getitem__(pet_name)
+            pet.species = data.__getitem__(pet_species)
+            pet.breed = data.__getitem__(pet_breed)
+            pet.birthday = data.__getitem__(pet_birthday)
+            pet.save()
 
-    return render(request, "booking_app/checkout.html", context)
+
+        #2.Create and save an order and a booking
+
+
+        #2. Redirect to payment page
+        return render_to_response('booking_app/payment.html')
+
+    return render(request, "booking_app/checkout.html")
 
 #Payment Views
 #This associates and handles payment
@@ -56,22 +92,23 @@ payment_was_error.connect(payment_ko)
 signature_error.connect(sermepa_ipn_error)
 
 
-def ProductPaymentForm(request, product_id, trans_type='0'):
+@csrf_exempt
+def PaymentPage(request):
     site = get_current_site(request)
     amount = int(5.50 * 100) # El precio es en centimos de euro
-
+    trans_type = '0'
     merchant_parameters = {
         "Ds_Merchant_Titular": 'John Doe',
         "Ds_Merchant_MerchantData": 12345, # id del Pedido o Carrito, para identificarlo en el mensaje de vuelta
-        "Ds_Merchant_MerchantName": 'ACME',
-        "Ds_Merchant_ProductDescription": 'petardos',
+        "Ds_Merchant_MerchantName": 'Instavets',
+        "Ds_Merchant_ProductDescription": 'Consultas',
         "Ds_Merchant_Amount": amount,
         "Ds_Merchant_Terminal": settings.SERMEPA_TERMINAL,
         "Ds_Merchant_MerchantCode": settings.SERMEPA_MERCHANT_CODE,
         "Ds_Merchant_Currency": settings.SERMEPA_CURRENCY,
-        "Ds_Merchant_MerchantURL": "http://%s%s" % (settings.SERMEPA_SITE_DOMAIN, reverse('sermepa_ipn')),
-        "Ds_Merchant_UrlOK": "http://%s%s" % (settings.SERMEPA_SITE_DOMAIN, reverse('end')),
-        "Ds_Merchant_UrlKO": "http://%s%s" % (settings.SERMEPA_SITE_DOMAIN, reverse('end')),
+        "Ds_Merchant_MerchantURL": "http:/%s%s" % (settings.SERMEPA_SITE_DOMAIN, reverse('sermepa_ipn')),
+        "Ds_Merchant_UrlOK": "http://%s%s" % (settings.SERMEPA_SITE_DOMAIN, reverse('payment-confirm')),
+        "Ds_Merchant_UrlKO": "http://%s%s" % (settings.SERMEPA_SITE_DOMAIN, reverse('payment-confirm')),
     }
 
     if trans_type == '0': #Compra puntual
@@ -117,6 +154,25 @@ def ProductPaymentForm(request, product_id, trans_type='0'):
             # de la SermepaResponse obtenida del cobro que se quiere devolver.
         })
 
-    form = SermepaPaymentForm(initial=merchant_parameters)
+    print 'MERCHANT PARAMETERS:'
+    print merchant_parameters
 
-    return HttpResponse(render_to_response('products_app/payment_form.html', {'form': form, 'debug': settings.DEBUG}))
+
+
+
+
+
+    form = SermepaPaymentForm(merchant_parameters=merchant_parameters)
+
+    return HttpResponse(render_to_response('booking_app/payment.html', {'form': form, 'debug': settings.DEBUG}))
+
+
+def PaymentConfirmPage(sender, **kwargs):
+    order = Booking.objects.get(id=sender.Ds_MerchantData)
+    order.status = 'pagado'
+    pedido.Ds_AuthorisationCode = sender.Ds_AuthorisationCode #Guardar este valor en caso
+    # de poder hacer devoluciones, es necesario.
+    pedido.save()
+    send_email_success(pedido)
+    print sender
+    return HttpResponse('confirmacion de pago page')
