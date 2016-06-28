@@ -130,11 +130,34 @@ div.checkout-body{
 }
 
 div.form-group:nth-child(1){
-  width: 50%;
+  width: 45%;
   display: inline-table;
+  margin-right: 10%;
 }
 
 div.form-group:nth-child(2){
-  width: 50%;
+  width: 45%;
+  display: inline-table;
+}
+
+div.form-group:nth-child(3){
+  width: 45%;
+  display: inline-table;
+  margin-right: 10%;
+}
+
+div.form-group:nth-child(4){
+  width: 45%;
+  display: inline-table;
+}
+
+div.form-group:nth-child(5){
+  width: 45%;
+  display: inline-table;
+  margin-right: 10%;
+}
+
+div.form-group:nth-child(6){
+  width: 45%;
   display: inline-table;
 }
