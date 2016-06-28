@@ -369,10 +369,15 @@ var CheckoutContainer = React.createClass({
 
   // Updates Contact Form Parameters
   updateContactFormParams: function(form_params){
+    console.log(form_params.booking_date)
+    console.log(Date.parse(form_params.booking_date))
+    console.log(Date.toString(form_params.booking_date))
+    console.log(time.strftime(form_params.booking_date, format[, locale]))
+
     this.setState({
       city : form_params.city,
       acceptTerms: form_params.acceptTerms,
-      booking_date: form_params.booking_date,
+      booking_date: Date.toString(form_params.booking_date),
       phone_number: form_params.phone_number,
       email : form_params.email,
       first_name : form_params.first_name,

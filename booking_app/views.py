@@ -4,7 +4,7 @@ from django.views.decorators.csrf import csrf_exempt
 from django.views.generic import View
 from .forms import CheckoutForm, SermepaPaymentForm
 from .models import Booking, Order, Customer
-
+import datetime
 #Payment Imports
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
@@ -29,9 +29,9 @@ def CheckoutPage(request):
             #Customer
             customer = Customer()
             customer.first_name = data.__getitem__('data[city]')
-            customer.first_name = data.__getitem__('data[city]')
-            customer.first_name = data.__getitem__('data[city]')
-            customer.first_name = data.__getitem__('data[city]')
+            customer.last_name = data.__getitem__('data[second_name]')
+            customer.city = data.__getitem__('data[city]')
+            customer.adress = data.__getitem__('data[adress]')
             customer.save()
             print 'Step 1: Creating the booking'
             #Booking
@@ -41,11 +41,12 @@ def CheckoutPage(request):
             booking.city = data.__getitem__('data[city]')
             booking.adress = data.__getitem__('data[adress]')
             booking.customer = customer
+            booking.date_booking = datetime.datetime.now()
             booking.save()
             #Saving the order
             order = Order()
-            order.booking = booking.id
-            oder.save()
+            order.booking = booking
+            order.save()
         elif step == 2:
             pet = Pet.create()
             pet.name = data.__getitem__(pet_name)
@@ -53,13 +54,7 @@ def CheckoutPage(request):
             pet.breed = data.__getitem__(pet_breed)
             pet.birthday = data.__getitem__(pet_birthday)
             pet.save()
-
-
-        #2.Create and save an order and a booking
-
-
-        #2. Redirect to payment page
-        return render_to_response('booking_app/payment.html')
+            return render_to_response('booking_app/payment.html')
 
     return render(request, "booking_app/checkout.html")
 
@@ -156,11 +151,6 @@ def PaymentPage(request):
 
     print 'MERCHANT PARAMETERS:'
     print merchant_parameters
-
-
-
-
-
 
     form = SermepaPaymentForm(merchant_parameters=merchant_parameters)
 
