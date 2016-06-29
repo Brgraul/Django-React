@@ -2279,18 +2279,30 @@ header > nav.navbar {
           color: #00a099 !important;
           background-image: none;
           border-bottom: 4px solid #00a099; }
+      #exCollapsingNavbar2 > ul > li.nav-item.dropdown.open > div
       header > nav.navbar > div.collapse.navbar-toggleable-xs > ul.nav.navbar-nav > li.nav-item:last-child {
         width: 20%;
         float: right; }
+        #exCollapsingNavbar2 > ul > li.nav-item.dropdown.open > div
         header > nav.navbar > div.collapse.navbar-toggleable-xs > ul.nav.navbar-nav > li.nav-item:last-child > a.nav-link {
           border: 2px solid #00a099;
           border-radius: 10px; }
+          #exCollapsingNavbar2 > ul > li.nav-item.dropdown.open > div
           header > nav.navbar > div.collapse.navbar-toggleable-xs > ul.nav.navbar-nav > li.nav-item:last-child > a.nav-link:hover {
             background-color: #00a099 !important;
             color: white !important; }
 
 .navbar-logo {
   height: 40px; }
+
+.dropdown-menu {
+  text-align: center;
+  border-radius: 0px;
+  width: 200px; }
+
+.dropdown-item:hover,
+.dropdown-item:active {
+  color: #00a099; }
 
 /* Footer Styles*/
 footer {
