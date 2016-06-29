@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'bootstrapform',
     'rest_framework',
     'ckeditor',
-    'booking',
     'products_app',
     'services_app',
     'debug_toolbar',

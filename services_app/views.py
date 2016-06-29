@@ -25,3 +25,17 @@ def MeetTheVetsPage(request):
         'customers':customers,
     }
     return render(request, "services_app/meet_vets.html", context)
+
+def Index(request):
+    vets = VetsDisplay.objects.filter(published_slider=True)
+    customers = CustomerDisplay.objects.filter(published=True)
+    context={
+        'vets':vets,
+        'customers':customers,
+    }
+    return render(request, "services_app/index.html", context)
+
+def VetProfile(request, vet_id):
+	#return HttpResponse("You are looking at Coach: %s." % coach_id)
+	vet = get_object_or_404(Vet, pk=vet_id)
+	return render(request, 'booking/vet.html', {'vet': vet})

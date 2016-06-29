@@ -172,13 +172,13 @@ var Booking = React.createClass({
   },
   renderDateSelectWidget: function(){
     $.datetimepicker.setLocale('es');
-    $('#booking_date').datetimepicker({
+    $('#id_booking_date').datetimepicker({
       timepicker: false,
     //  minDate:'-1970/01/0', //yesterday is minimum date(for today use 0 or -1970/01/01)
       format:'m/d/Y',
       lang:'es'
     });
-    $('#booking_hour').datetimepicker({
+    $('#id_booking_hour').datetimepicker({
       datepicker: false,
       format:'H:i',
       lang:'es',
