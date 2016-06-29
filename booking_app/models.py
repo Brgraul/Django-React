@@ -37,6 +37,7 @@ class Customer(models.Model):
     last_name = models.CharField(max_length = 100, null=True, blank = True, verbose_name = 'Apellidos')
     city = models.CharField(max_length = 100, null=True, blank = True, verbose_name = 'Ciudad')
     adress = models.CharField(max_length = 100, null=True, blank = True, verbose_name = 'Direccion')
+    phone_number = models.CharField(max_length = 100, null=True, blank = True, verbose_name = 'Telefono')
 
     class Meta:
         verbose_name_plural = 'Clientes'
@@ -62,7 +63,7 @@ class Pet(models.Model):
        ('macho_normal','Macho Normal'),
        ('macho_esterilizado','Macho Esterilizado'),
     )
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, primary_key=True, verbose_name = 'Cliente')
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, verbose_name = 'Cliente')
     gender = models.CharField(max_length=20, choices=GENDER, blank = True, null=True, verbose_name = 'Sexo' )
 
     def __str__(self):              # __unicode__ on Python 2
@@ -81,8 +82,7 @@ class Booking(models.Model):
     #user_veterian = models.ForeignKey('UserVeterian', null=True , blank = True, verbose_name = 'Veterinario' )
     adress = models.CharField(max_length = 500, blank = False, null = False, verbose_name = 'Direccion')
     city = models.CharField(max_length = 100, blank = False, null = False, verbose_name = 'Ciudad')
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, primary_key=True, verbose_name = 'Cliente')
-
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, verbose_name = 'Cliente')
 
     def __str__(self):              # __unicode__ on Python 2
       return "%s|%s" % (self.city, self.date_booking )
@@ -93,7 +93,6 @@ class Order(models.Model):
         verbose_name = 'Pedido'
     auth_code = models.CharField(max_length = 100, null=True, blank = True, verbose_name = 'Authorization Code')
     ref_code = models.CharField(max_length = 100, null=False, blank = True, verbose_name = 'Codigo de referencia')
-    booking = models.OneToOneField( Booking, on_delete=models.CASCADE, primary_key=True, verbose_name = 'Rserva Relacionada')
     created = models.DateTimeField(auto_now=False, auto_now_add=True, blank = False, null = False, verbose_name = 'Creado')
     ORDER_STATUSES = (
        ('pagado','Pagado'),
@@ -101,3 +100,5 @@ class Order(models.Model):
        ('fallo_en_el_pago','Error de Pago'),
     )
     status = models.CharField(max_length=20, choices=ORDER_STATUSES, blank = True, null=True, verbose_name = 'Estatus del pedido' )
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, verbose_name = 'Cliente')
+    booking = models.ForeignKey(Booking, on_delete=models.CASCADE, verbose_name = 'Reserva Relacionada')

@@ -7,39 +7,71 @@
 {% block content %}
 <link href="{% static 'css/jquery.datetimepicker.min.css' %}" rel="stylesheet" media="screen">
 <div class="container-checkout" 'container-checkout'>
-  <div class="container">
-    <div class="row row-header">
-      <h1> Header here</h1>
+    <div class="header-booking">
+      <div class="container ">
+        <div class="row">
+          <div class="col-md-3">
+            <img class="img-responsive checkout-logo" alt="File logo" src='/static/images/index/logo-y-nombre.png'/>
+          </div>
+        <div class="col-md-5 col-md-offset-2">
+          <div class="checkout-col">
+            <i class="fa fa-user fa-2x checkout-icon" aria-hidden="true" id="step1"></i>
+              <p class="checkout-text" id="step1" >1.Contacto</p>
+            </div>
+            <div class="checkout-col1">
+              <i class="fa fa-long-arrow-right fa-2x checkout-icon arrow" aria-hidden="true" id="step1"></i>
+            </div>
+            <div class="checkout-col">
+              <i class="fa fa-paw fa-2x checkout-icon" aria-hidden="true" id="step1"></i>
+              <p class="checkout-text" id="step1">2.Mascota</p>
+            </div>
+            <div class="checkout-col1 select">
+              <i class="fa fa-long-arrow-right fa-2x checkout-icon arrow" aria-hidden="true" id="step1"></i>
+            </div>
+            <div class="checkout-col select">
+              <i class="fa fa-credit-card fa-2x checkout-icon" aria-hidden="true" id={this.props.stepid}></i>
+              <p class="checkout-text" id={this.props.stepid}>3.Pago</p>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
-    <div class="row">
-      <h1>Datos de tu reserva:</h1>
-      <ul>
-        <li>
-          asfdsffds
-        </li>
-        <li>
-          asfdsffds
-        </li>
-        <li>
-          asfdsffds
-        </li>
-        <li>
-          asfdsffds
-        </li>
-        <li>
-          asfdsffds
-        </li>
-      </ul>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7 checkout-form-container">
+            <p class="form-title" >Confirmar y Pagar</p>
+            <p class="form-sub" >La infomación de su consulta:</p>
+            <table class="table table-reflow">
+              <thead>
+                <tr>
+                  <th>Nombre</th>
+                  <th>Apellidos</th>
+                  <th>Table heading</th>
+                  <th>Table heading</th>
+                  <th>Table heading</th>
+                  <th>Table heading</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>{{ customer.first_name }}</td>
+                  <td>{{ customer.last_name}}</td>
+                  <td>Table cell</td>
+                  <td>Table cell</td>
+                  <td>Table cell</td>
+                  <td>Table cell</td>
+                </tr>
+              </tbody>
+            </table>
+            {% if debug %}
+              {{ form.sandbox }}
+            {% else %}
+              {{ form.render }}
+            {% endif %}
+        </div>
+        </div>
+      </div>
     </div>
-    <div class="col-md-12">
-      {% if debug %}
-        {{ form.sandbox }}
-      {% else %}
-        {{ form.render }}
-      {% endif %}
-    </div>
-
-  </div>
 </div>
 {% endblock content %}
 

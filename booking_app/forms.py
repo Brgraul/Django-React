@@ -81,6 +81,6 @@ class SermepaPaymentForm(forms.Form):
     def sandbox(self):
         return mark_safe(u"""<form id="tpv_form" action="%s" method="post">
             %s
-            <input type="submit" name="submit" alt="%s" value="Confirmar y Pagar"/>
+            <input class="btn-cta-green" type="submit" name="submit" alt="%s" value="Confirmar y Pagar"/>
         </form>""" % (settings.SERMEPA_URL_TEST, self.as_p(), settings.SERMEPA_BUTTON_TEXT
                       ))

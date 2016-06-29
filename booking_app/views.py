@@ -25,32 +25,40 @@ def CheckoutPage(request):
         step = data.__getitem__('step')
         print step
         if step == '1':
-            print 'Step 1: Creating the customer'
+            print 'Step 1: Creating the customer..'
             #Customer
             customer = Customer()
             customer.first_name = data.__getitem__('data[first_name]')
             customer.last_name = data.__getitem__('data[second_name]')
             customer.city = data.__getitem__('data[city]')
             customer.adress = data.__getitem__('data[adress]')
+            customer.phone_number = data.__getitem__('data[phone_number]')
             customer.save()
-            print 'Step 1: Creating the booking'
+            print 'Step 2: Creating the booking..'
             #Booking
             booking = Booking()
-            #Bulding a Date Field
-            #booking.date_booking = data.__getitem__(pet_birthday)
             booking.city = data.__getitem__('data[city]')
             booking.adress = data.__getitem__('data[adress]')
             booking.customer = customer
-            print data.__getitem__('booking_date_django')
             booking_date = datetime.strptime(data.__getitem__('booking_date_django'), "%a, %d %b %Y %H:%M:%S %Z")
             booking.date_booking = booking_date
             booking.save()
             #Saving the order
+            print 'Creating the order'
             order = Order()
             order.status = 'pendiente'
             order.booking = booking
+            order.customer = customer
+            order.ref_code = SermepaIdTPV.objects.new_idtpv()
             order.save()
+            #Generating Response
+            request.session['customer_id'] = customer.pk
+            response = HttpResponse('Cookie Set')
+            #Writting the cookies
+            response.set_cookie('customer_id', customer.pk)
+            return response
         elif step == 2:
+            print request.session.get('customer_id')
             pet = Pet.create()
             pet.name = data.__getitem__(pet_name)
             pet.species = data.__getitem__(pet_species)
@@ -63,6 +71,7 @@ def CheckoutPage(request):
                 'booking':booking,
                 'order':order,
             }
+
             return render_to_response('booking_app/payment.html', context)
 
     return render(request, "booking_app/checkout.html")

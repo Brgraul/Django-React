@@ -255,7 +255,7 @@ var NewPet = React.createClass({
     $.ajax({
          url : "http://localhost:8000/checkout/", // the endpoint
          type : "POST", // http method
-         data : { data : form.cleanedData }, // data sent with the post request
+         data : { data : form.cleanedData, step: this.props.step }, // data sent with the post request
 
          // handle a successful response
          success : function(json) {
