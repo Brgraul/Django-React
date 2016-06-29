@@ -91,7 +91,8 @@ class Order(models.Model):
     class Meta:
         verbose_name_plural = 'Pedidos'
         verbose_name = 'Pedido'
-    auth_code = models.CharField(max_length = 5, null=True, blank = True, verbose_name = 'Authorization Code')
+    auth_code = models.CharField(max_length = 100, null=True, blank = True, verbose_name = 'Authorization Code')
+    ref_code = models.CharField(max_length = 100, null=False, blank = True, verbose_name = 'Codigo de referencia')
     booking = models.OneToOneField( Booking, on_delete=models.CASCADE, primary_key=True, verbose_name = 'Rserva Relacionada')
     created = models.DateTimeField(auto_now=False, auto_now_add=True, blank = False, null = False, verbose_name = 'Creado')
     ORDER_STATUSES = (

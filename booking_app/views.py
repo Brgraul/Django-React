@@ -57,7 +57,13 @@ def CheckoutPage(request):
             pet.breed = data.__getitem__(pet_breed)
             pet.birthday = data.__getitem__(pet_birthday)
             pet.save()
-            return render_to_response('booking_app/payment.html')
+            #Redifining Context with the New Data
+            context = {
+                'customer':customer,
+                'booking':booking,
+                'order':order,
+            }
+            return render_to_response('booking_app/payment.html', context)
 
     return render(request, "booking_app/checkout.html")
 
