@@ -14994,7 +14994,7 @@
 	    $('#id_booking_date').datetimepicker({
 	      timepicker: false,
 	      //  minDate:'-1970/01/0', //yesterday is minimum date(for today use 0 or -1970/01/01)
-	      format: 'm/d/Y',
+	      format: 'd/m/Y',
 	      lang: 'es'
 	    });
 	    $('#id_booking_hour').datetimepicker({
@@ -15218,7 +15218,10 @@
 	  dateStringFormat: function (date, hour) {
 	    //Getting Time
 	    var minutes = hour.getMinutes();
+
 	    var hours = hour.getHours();
+	    console.log(hours.length);
+
 	    var month = date.getUTCMonth();
 	    var year = date.getFullYear();
 	    //day of the week(0-6)
@@ -15228,6 +15231,12 @@
 	    //Building the String
 	    var days = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'];
 	    var months = ['Ene', 'Feb', 'Marzo', 'Abr', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Sept', 'Oct', 'Nov', 'Dic'];
+	    if (String(minutes).length == 1) {
+	      minutes = '0' + minutes;
+	    }
+	    if (String(hours).length == 1) {
+	      hours = '0' + hours;
+	    }
 	    var date_string = days[day] + ', ' + month_day + ' de ' + months[month] + ' a las ' + hours + ':' + minutes;
 
 	    return date_string;
@@ -15238,13 +15247,16 @@
 	  dateDjangoDefault: function (date, hour) {
 	    //Getting Time
 	    var minutes = hour.getMinutes();
-	    var hours = hour.getHours();
+	    //2 hours added for later conversion to UTC withut changes
+	    var hours = hour.getHours() + 2;
 	    var month = date.getUTCMonth();
 	    var year = date.getFullYear();
-	    var day = date.getUTCDate();
+	    var day = date.getDate();
 	    var seconds = 0;
 	    var milliseconds = 0;
 	    var date_django = new Date(year, month, day, hours, minutes, seconds, milliseconds);
+	    console.log(date_django);
+	    //Needs to be converted to UTC because of django format
 	    var date_django = date_django.toUTCString();
 	    return date_django;
 	  },
