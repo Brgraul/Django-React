@@ -2247,7 +2247,8 @@ h1, h2, h3 {
   border: 4px solid grey; }
 
 /*-------------------- Navbar Styles START--------------*/
-header > nav {
+header > nav.navbar {
+  position: relative;
   border: 0px;
   background-color: white;
   background-image: none;
@@ -2256,38 +2257,40 @@ header > nav {
   text-align: center;
   max-width: 1140px;
   margin-left: auto;
-  margin-right: auto;
-  position: fixed; }
-  header > nav > div.collapse.navbar-toggleable-xs > ul.nav.navbar-nav {
+  margin-right: auto; }
+  header > nav.navbar > div.collapse.navbar-toggleable-xs > ul.nav.navbar-nav {
     background-color: white;
-    padding-bottom: 0px; }
-    header > nav > div.collapse.navbar-toggleable-xs > ul.nav.navbar-nav > li {
+    padding-bottom: 0px !important; }
+    header > nav.navbar > div.collapse.navbar-toggleable-xs > ul.nav.navbar-nav > li {
       text-align: center;
       width: 20%;
       margin: auto; }
-      header > nav > div.collapse.navbar-toggleable-xs > ul.nav.navbar-nav > li.nav-item > a.nav-link {
+      header > nav.navbar > div.collapse.navbar-toggleable-xs > ul.nav.navbar-nav > li.nav-item > a.nav-link {
         font-family: "Gotham-Medium";
         font-size: 18px;
         text-transform: uppercase;
         color: #9b9e9e !important;
         background-color: transparent !important;
         background-image: none;
-        border-top: 2px solid white;
-        border-bottom: 2px solid white;
+        border-top: 4px solid white;
+        border-bottom: 4px solid white;
         text-shadow: none; }
-        header > nav > div.collapse.navbar-toggleable-xs > ul.nav.navbar-nav > li.nav-item > a.nav-link:hover {
+        header > nav.navbar > div.collapse.navbar-toggleable-xs > ul.nav.navbar-nav > li.nav-item > a.nav-link:hover, header > nav.navbar > div.collapse.navbar-toggleable-xs > ul.nav.navbar-nav > li.nav-item > a.nav-link:active {
           color: #00a099 !important;
           background-image: none;
-          border-bottom: 2px solid #00a099; }
-      header > nav > div.collapse.navbar-toggleable-xs > ul.nav.navbar-nav > li.nav-item:last-child {
+          border-bottom: 4px solid #00a099; }
+      header > nav.navbar > div.collapse.navbar-toggleable-xs > ul.nav.navbar-nav > li.nav-item:last-child {
         width: 20%;
         float: right; }
-        header > nav > div.collapse.navbar-toggleable-xs > ul.nav.navbar-nav > li.nav-item:last-child > a.nav-link {
+        header > nav.navbar > div.collapse.navbar-toggleable-xs > ul.nav.navbar-nav > li.nav-item:last-child > a.nav-link {
           border: 2px solid #00a099;
           border-radius: 10px; }
-          header > nav > div.collapse.navbar-toggleable-xs > ul.nav.navbar-nav > li.nav-item:last-child > a.nav-link:hover {
+          header > nav.navbar > div.collapse.navbar-toggleable-xs > ul.nav.navbar-nav > li.nav-item:last-child > a.nav-link:hover {
             background-color: #00a099 !important;
             color: white !important; }
+
+.navbar-logo {
+  height: 40px; }
 
 /* Footer Styles*/
 footer {
@@ -2344,7 +2347,9 @@ div.container.container-slide {
   padding-left: 0px;
   padding-right: 0px;
   margin-left: 0px;
-  margin-right: 0px; }
+  margin-right: 0px;
+  height: 400px;
+  overflow-y: hidden; }
   div.container.container-slide > img[id="index_slide"] {
     width: 100%;
     padding: 0px;
@@ -2352,7 +2357,7 @@ div.container.container-slide {
   div.container.container-slide > div.container.container-slide-overlay {
     max-width: 100%;
     position: absolute;
-    top: 35%;
+    top: 240px;
     text-align: center;
     width: 100%; }
     div.container.container-slide > div.container.container-slide-overlay > h1, div.container.container-slide > div.container.container-slide-overlay h3 {
@@ -2361,13 +2366,11 @@ div.container.container-slide {
 
 /* Green Section*/
 div.section-green {
-  padding-top: 8%;
-  padding-bottom: 8%;
+  padding-top: 10px;
+  padding-bottom: 10px;
   max-width: 100%;
   text-align: center;
-  background-color: #00a099;
-  padding-top: 40px;
-  padding-bottom: 40px; }
+  background-color: #00a099; }
   div.section-green > div {
     text-align: center; }
     div.section-green > div > div > img {

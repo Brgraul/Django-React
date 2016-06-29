@@ -7,6 +7,8 @@ div{
     padding-right: 0px;
     margin-left: 0px;
     margin-right: 0px;
+    height: 400px;
+    overflow-y: hidden;
     & > img[id="index_slide"]{
       width: 100%;
       padding: 0px;
@@ -15,7 +17,7 @@ div{
     & > div.container.container-slide-overlay{
       max-width: 100%;
       position: absolute;
-      top: 35%;
+      top: 240px;
       text-align: center;
       width: 100%;
       & > h1, h3{
@@ -28,13 +30,11 @@ div{
 
 /* Green Section*/
 div.section-green{
-  padding-top: 8%;
-  padding-bottom: 8%;
+  padding-top: 10px;
+  padding-bottom: 10px;
   max-width: 100%;
   text-align: center;
   background-color: $instavets_green;
-  padding-top: 40px;
-  padding-bottom: 40px;
   & > div{
     text-align: center;
     &  > div > img{
