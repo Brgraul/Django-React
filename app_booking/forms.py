@@ -5,10 +5,11 @@ from django.conf import settings
 from django.utils.safestring import mark_safe
 from utils import redsys_generate_request
 
-from django.contrib.auth import get_user_model
 from django import forms
 
 #Signup Form
+"""
+from django.contrib.auth import get_user_model
 class SignupForm(forms.ModelForm):
     class Meta:
         model = get_user_model()
@@ -18,6 +19,7 @@ class SignupForm(forms.ModelForm):
         user.first_name = self.cleaned_data['first_name']
         user.last_name = self.cleaned_data['last_name']
         user.save()
+"""
 
 #Checkout Form.
 class CheckoutForm(forms.Form):
