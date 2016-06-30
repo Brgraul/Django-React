@@ -1,0 +1,51 @@
+{% extends 'base_checkout.html' %}
+{% load staticfiles %}
+{% load static %}
+{% load bootstrap %}
+{% block stylesheets %}
+{% endblock stylesheets %}
+{% block content %}
+<link href="{% static 'css/jquery.datetimepicker.min.css' %}" rel="stylesheet" media="screen">
+<div class="container-checkout" 'container-checkout'>
+    <div class="header-booking">
+      <div class="container ">
+        <div class="row">
+          <div class="col-md-3">
+            <img class="img-responsive checkout-logo" alt="File logo" src='/static/images/index/logo-y-nombre.png'/>
+          </div>
+        <div class="col-md-5 col-md-offset-2">
+          <div class="checkout-col">
+            <i class="fa fa-user fa-2x checkout-icon" aria-hidden="true" id="step1"></i>
+              <p class="checkout-text" id="step1" >1.Contacto</p>
+            </div>
+            <div class="checkout-col1">
+              <i class="fa fa-long-arrow-right fa-2x checkout-icon arrow" aria-hidden="true" id="step1"></i>
+            </div>
+            <div class="checkout-col">
+              <i class="fa fa-paw fa-2x checkout-icon" aria-hidden="true" id="step1"></i>
+              <p class="checkout-text" id="step1">2.Mascota</p>
+            </div>
+            <div class="checkout-col1 select">
+              <i class="fa fa-long-arrow-right fa-2x checkout-icon arrow" aria-hidden="true" id="step1"></i>
+            </div>
+            <div class="checkout-col select">
+              <i class="fa fa-credit-card fa-2x checkout-icon" aria-hidden="true" id={this.props.stepid}></i>
+              <p class="checkout-text" id={this.props.stepid}>3.Pago</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7 checkout-form-container">
+            <p class="form-title" >Gracias! Si tiene cualquier duda ...</p>
+            <p class="form-sub" >La infomación de su consulta:</p>
+        </div>
+      </div>
+    </div>
+</div>
+{% endblock content %}
+
+{% block javascript%}
+{% endblock javascript%}

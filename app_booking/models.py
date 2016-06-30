@@ -4,7 +4,42 @@ from django.db import models
 from django.contrib.auth.models import User
 from products_app.models import Product, ProductCategory
 
+#Asociating Payment Listeners#Asociate Listeners
+from sermepa.signals import payment_was_successful
+from sermepa.signals import payment_was_error
+from sermepa.signals import signature_error
 
+#Define Payment Lsiteners
+def payment_ok(sender, **kwargs):
+    print 'payment ok'
+    '''sender es un objecto de clase SermepaResponse. Utiliza el campo Ds_MerchantData
+    para asociarlo a tu Pedido o Carrito'''
+    print 'payment ok signal initiated'
+    order = Order.objects.get(ref_code=sender.Ds_MerchantData)
+    order.status = 'pagado'
+    order.auth_code = sender.Ds_AuthorisationCode #Guardar este valor en caso
+    # de poder hacer devoluciones, es necesario.
+    order.save()
+    print 'Order Saved'
+
+def payment_ko(sender, **kwargs):
+    print 'payment_ko'
+    order = Order.objects.get(ref_code=sender.Ds_MerchantData)
+    order.status = 'error_pago'
+    order.auth_code = sender.Ds_AuthorisationCode #Guardar este valor en caso
+    order.save
+    pass
+
+def sermepa_ipn_error(sender, **kwargs):
+    print 'payment ipn error'
+    pass
+
+payment_was_successful.connect(payment_ok)
+payment_was_error.connect(payment_ko)
+signature_error.connect(sermepa_ipn_error)
+
+
+#Customer Model
 class Customer(models.Model):
     created = models.DateTimeField(auto_now=False, auto_now_add=True, blank = False, null = False, verbose_name = 'Creado')
     first_name = models.CharField(max_length = 100, null=True, blank = True, verbose_name = 'Nombre')
@@ -20,6 +55,7 @@ class Customer(models.Model):
     def __str__(self):              # __unicode__ on Python 2
         return "%s %s" % (self.first_name, self.last_name)
 
+#Pet Model
 class Pet(models.Model):
     class Meta:
         verbose_name_plural='Mascotas'
@@ -28,7 +64,7 @@ class Pet(models.Model):
     breed = models.CharField(max_length = 100, blank = False, null = False, verbose_name = 'Raza')
     conditions = models.TextField(max_length=5000, verbose_name = 'Razon de la consulta')
     #user_customer = models.ForeignKey('UserCustomer', null=True , blank = True, verbose_name = 'Dueno')
-    birthday = models.DateField(auto_now=False, auto_now_add=False, blank = True, null = True, verbose_name = 'Fecha de Nacimiento')
+    age = models.CharField(max_length=100, verbose_name = 'Edad')
     GENDER = (
        ('hembra_normal','Hembra Normal'),
        ('hembra_esterilizada','Hembra Esterilizada'),
@@ -41,10 +77,9 @@ class Pet(models.Model):
     def __str__(self):              # __unicode__ on Python 2
       return "%s %s" % (self.name, self.breed)
 
-
 class Booking(models.Model):
     class Meta:
-        verbose_name_plural='Reservas'
+        verbose_name_plural='Consultas'
     created = models.DateTimeField(auto_now=False, auto_now_add=True, blank = False, null = False, verbose_name = 'Creado')
     updated = models.DateTimeField(auto_now=True, auto_now_add=False, blank = False, null = False, verbose_name = 'Actualizado')
     date_booking = models.DateTimeField(auto_now=False, auto_now_add=False, blank = False, null = False, verbose_name = 'Fecha de la Consulta')
@@ -68,7 +103,7 @@ class Order(models.Model):
     ORDER_STATUSES = (
        ('pagado','Pagado'),
        ('pendiente','Pendiente'),
-       ('fallo_en_el_pago','Error de Pago'),
+       ('error_pago','Error de Pago'),
     )
     status = models.CharField(max_length=20, choices=ORDER_STATUSES, blank = True, null=True, verbose_name = 'Estatus del pedido' )
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, verbose_name = 'Cliente')

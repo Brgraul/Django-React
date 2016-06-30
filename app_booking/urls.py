@@ -9,5 +9,4 @@ urlpatterns = [
     #Cookies Handling
     url(r'^api/cookies/cookie_test_set/$', CookieTestSet, name='cookie_set_test'),
     url(r'^api/cookies/cookie_test_verify/$', CookieTestVerify, name='cookie_checkout_page'),
-
 ]
