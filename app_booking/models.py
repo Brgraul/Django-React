@@ -73,3 +73,6 @@ class Order(models.Model):
     status = models.CharField(max_length=20, choices=ORDER_STATUSES, blank = True, null=True, verbose_name = 'Estatus del pedido' )
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, verbose_name = 'Cliente')
     booking = models.ForeignKey(Booking, on_delete=models.CASCADE, verbose_name = 'Reserva Relacionada')
+
+    def __str__(self):              # __unicode__ on Python 2
+      return "%s|%s" % (self.ref_code, self.status )

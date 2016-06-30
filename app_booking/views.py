@@ -11,9 +11,11 @@ from django.shortcuts import render_to_response
 from django.contrib.sites.shortcuts import get_current_site
 from django.conf import settings
 from django.core.urlresolvers import reverse
-from .forms import SermepaPaymentForm
 from sermepa.signals import payment_was_successful, payment_was_error, signature_error
 from sermepa.models import SermepaIdTPV
+
+#JSON
+from django.http import JsonResponse
 
 # Create your views here.
 @csrf_exempt
@@ -53,26 +55,20 @@ def CheckoutPage(request):
             order.save()
             #Generating Response
             request.session['customer_id'] = customer.pk
+            request.session['order_id'] = order.pk
+            request.session['booking_id'] = booking.pk
             response = HttpResponse('Cookie Set')
             #Writting the cookies
-            response.set_cookie('customer_id', customer.pk)
             return response
         elif step == 2:
-            print request.session.get('customer_id')
             pet = Pet.create()
             pet.name = data.__getitem__(pet_name)
             pet.species = data.__getitem__(pet_species)
             pet.breed = data.__getitem__(pet_breed)
             pet.birthday = data.__getitem__(pet_birthday)
             pet.save()
+            print 'Pet Saved ...'
             #Redifining Context with the New Data
-            context = {
-                'customer':customer,
-                'booking':booking,
-                'order':order,
-            }
-
-            return render_to_response('booking_app/payment.html', context)
 
     return render(request, "booking_app/checkout.html")
 
@@ -169,10 +165,25 @@ def PaymentPage(request):
 
     print 'MERCHANT PARAMETERS:'
     print merchant_parameters
-
+    print 'Customer ID'
+    #Retriving Payment info form the Cookies
+    customer_id = request.session.get('customer_id')
+    booking_id = request.session.get('booking_id')
+    order_id = request.session.get('order_id')
+    customer = get_object_or_404(Customer, pk=customer_id)
+    booking = get_object_or_404(Booking, pk=booking_id)
+    order = get_object_or_404(Order, pk=order_id)
+    print customer
     form = SermepaPaymentForm(merchant_parameters=merchant_parameters)
+    context = {
+        'customer':customer,
+        'booking':booking,
+        'order':order,
+        'form': form,
+        'debug': settings.DEBUG,
+    }
 
-    return HttpResponse(render_to_response('booking_app/payment.html', {'form': form, 'debug': settings.DEBUG}))
+    return HttpResponse(render_to_response('booking_app/payment.html', context))
 
 
 def PaymentConfirmPage(sender, **kwargs):
@@ -184,3 +195,18 @@ def PaymentConfirmPage(sender, **kwargs):
     send_email_success(pedido)
     print sender
     return HttpResponse('confirmacion de pago page')
+
+#----------------------------Cookies--------------------------------------------
+#Test If Cookies can be set on user browser
+#Returns True of False
+def CookieTestSet(request):
+    if request.method == "POST":
+        request.session.set.test.cookie()
+        cookies_set = {'CookieSet':True}
+        return JsonResponse(cookies_set)
+
+#Returns True if coookies worked and false othewise
+def CookieTestVerify(request):
+    if request.method == "POST":
+        cookie_worked = {'CookieWorked': request.session.test_cookie_worked()}
+        return JsonResponse(cookie_worked)
