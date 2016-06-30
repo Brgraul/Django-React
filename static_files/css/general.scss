@@ -7,8 +7,26 @@ $instavets_footer_grey_text: #9B9B9B;
 $instavets_section_background_grey: #F5F5F5;
 $instavets_section_border_grey: #E9E9E9;
 
-h1, h2 ,h3{
+h1, h2 ,h3, h6{
   font-family: "Gotham-Medium";
+  color: $instavets_footer_grey;
+}
+
+
+h2{
+    margin-top: 15px;
+    margin-bottom: 15px;
+    font-family: "Gotham-Light";
+    font-weight: 300;
+}
+
+h5{
+  font-size: 20px;
+  font-weight: 200;;
+  line-height: 150%;
+  display: block;
+  font-family: "Gotham-Light";
+  margin-bottom:25px;
 }
 
 /* CTA'S */

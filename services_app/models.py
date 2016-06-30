@@ -31,6 +31,9 @@ class CustomerDisplay(models.Model):
 class VetsDisplay(models.Model):
     name = models.CharField(max_length = 100, blank = False, null = False)
     image = models.ImageField(upload_to='services_app/vets_display',max_length=100)
+    subtitle1 = models.CharField(max_length = 100, blank = False, null = False)
+    subtitle2 = models.CharField(max_length = 100, blank = False, null = False)
+    bio = models.TextField(max_length = 750, blank = False, null = False)
     #Published on the web ( in service )
     published_slider = models.BooleanField('Publicado', default = True)
     published_lasvets = models.BooleanField('Publicado', default = True)
