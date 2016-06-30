@@ -45,7 +45,7 @@ INSTALLED_APPS = [
     'products_app',
     'services_app',
     'debug_toolbar',
-    'booking_app',
+    'app_booking',
     #All Auth
     'allauth',
     'allauth.account',

@@ -20,10 +20,11 @@ from django.conf import settings
 from services_app.views import MeetTheVetsPage
 from django.conf.urls import url
 from services_app import views
+
 urlpatterns = [
     url(r'^accounts/', include('allauth.urls')),
     url(r'^sermepa/', include('sermepa.urls')),
-    url(r'^', include('booking_app.urls')),
+    url(r'^', include('app_booking.urls')),
     url(r'^$', views.Index, name='index'),
     url(r'^servicios/', include('services_app.urls')),
     url(r'^product/', include('products_app.urls')),
