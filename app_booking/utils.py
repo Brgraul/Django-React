@@ -17,8 +17,6 @@ def redsys_generate_request(merchant_parameters):
 
     return Ds_MerchantParameters, Ds_Signature
 
-
-
 """
     Method to check received Ds_Signature with the one we extract from Ds_MerchantParameters data.
     We remove non alphanumeric characters before doing the comparison
@@ -42,8 +40,6 @@ def redsys_check_response(Ds_Signature, Ds_MerchantParameters):
     else:
         return False
 
-
-
 """
     Given a dict; create a json object, codify it in base64 and delete their carrier returns
     @var merchant_parameters: Dict with all merchant parameters
@@ -52,8 +48,6 @@ def redsys_check_response(Ds_Signature, Ds_MerchantParameters):
 def encode_parameters(merchant_parameters):
     parameters = (json.dumps(merchant_parameters)).encode()
     return ''.join(unicode(base64.encodestring(parameters), 'utf-8').splitlines())
-
-
 
 """
     Given the Ds_MerchantParameters from Redsys, decode it and eval the json file
@@ -66,8 +60,6 @@ def decode_parameters(Ds_MerchantParameters):
     Ds_MerchantParameters_decoded = base64.standard_b64decode(Ds_MerchantParameters)
     return ast.literal_eval(Ds_MerchantParameters_decoded)
 
-
-
 """
     This method creates a unique key for every request,
     based on the Ds_Merchant_Order and in the shared secret (SERMEPA_SECRET_KEY).
@@ -79,8 +71,6 @@ def encrypt_order_with_3DES(Ds_Merchant_Order):
     pycrypto = DES3.new(base64.standard_b64decode(settings.SERMEPA_SECRET_KEY), DES3.MODE_CBC, IV=b'\0\0\0\0\0\0\0\0')
     order_padded = Ds_Merchant_Order.ljust(16, b'\0')
     return pycrypto.encrypt(order_padded)
-
-
 
 """
     Use the order_encrypted we have to sign the merchant data using a HMAC SHA256 algorithm
