@@ -41,25 +41,42 @@
         <div class="col-md-7 checkout-form-container">
             <p class="form-title" >Confirmar y Pagar</p>
             <p class="form-sub" >La infomación de su consulta:</p>
+            <ul>
+              <li>
+                <h4>Nombre: </h4><h5>{{customer.first_name}}</h5>
+              </li>
+              <li>
+                <h4>Apellidos: </h4><h5>{{customer.last_name}}</h5>
+              </li>
+              <li>
+                <h4>Fecha y hora: </h4><h5>{{booking.date_booking|date:'d F f a '}}</h5>
+              </li>
+              <li>
+                <h4>Nombre de la mascota: </h4><h5>{{customer.first_name}}</h5>
+              </li>
+              <li>
+                <h4>Especie: </h4><h5>{{customer.first_name}}</h5>
+              </li>
+            </ul>
             <table class="table table-reflow">
               <thead>
                 <tr>
                   <th>Nombre</th>
                   <th>Apellidos</th>
-                  <th>Table heading</th>
-                  <th>Table heading</th>
-                  <th>Table heading</th>
-                  <th>Table heading</th>
+                  <th>Fecha </th>
+                  <th>Direccion</th>
+                  <th>Nombre de la mascota</th>
+                  <th>Especie</th>
                 </tr>
               </thead>
               <tbody>
                 <tr>
                   <td>{{ customer.first_name }}</td>
                   <td>{{ customer.last_name}}</td>
-                  <td>Table cell</td>
-                  <td>Table cell</td>
-                  <td>Table cell</td>
-                  <td>Table cell</td>
+                  <td>{{booking.date_booking|date:'d F f a '}}</td>
+                  <td>{{customer.adress}}</td>
+                  <td>{{customer.first_name}}</td>
+                  <td>{{customer.first_name}}</td>
                 </tr>
               </tbody>
             </table>

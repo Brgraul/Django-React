@@ -23,6 +23,12 @@ div.checkout-body{
     }
   }
 }
+
+.checkout-form-container > ul > li{
+  & > h4,h5{
+    display: inline;
+  }
+}
 .checkout-header{
   max-width: 60%;
 }
