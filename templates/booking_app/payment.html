@@ -38,48 +38,52 @@
     </div>
     <div class="container">
       <div class="row">
-        <div class="col-md-7 checkout-form-container">
+        <div class="col-md-12 checkout-form-container">
             <p class="form-title" >Confirmar y Pagar</p>
             <p class="form-sub" >La infomación de su consulta:</p>
-            <ul>
-              <li>
-                <h4>Nombre: </h4><h5>{{customer.first_name}}</h5>
-              </li>
-              <li>
-                <h4>Apellidos: </h4><h5>{{customer.last_name}}</h5>
-              </li>
-              <li>
-                <h4>Fecha y hora: </h4><h5>{{booking.date_booking|date:'d F f a '}}</h5>
-              </li>
-              <li>
-                <h4>Nombre de la mascota: </h4><h5>{{customer.first_name}}</h5>
-              </li>
-              <li>
-                <h4>Especie: </h4><h5>{{customer.first_name}}</h5>
-              </li>
-            </ul>
-            <table class="table table-reflow">
-              <thead>
-                <tr>
-                  <th>Nombre</th>
-                  <th>Apellidos</th>
-                  <th>Fecha </th>
-                  <th>Direccion</th>
-                  <th>Nombre de la mascota</th>
-                  <th>Especie</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td>{{ customer.first_name }}</td>
-                  <td>{{ customer.last_name}}</td>
-                  <td>{{booking.date_booking|date:'d F f a '}}</td>
-                  <td>{{customer.adress}}</td>
-                  <td>{{customer.first_name}}</td>
-                  <td>{{customer.first_name}}</td>
-                </tr>
-              </tbody>
-            </table>
+            <div class="row">
+            <div class="col-md-6">
+              <ul>
+                <li>
+                  <h5>Nombre: </h5><h4>{{customer.first_name + customer.last_name}}</h4>
+                </li>
+                <li>
+                  <h5>Apellidos: </h5><h4>{{customer.last_name}}</h4>
+                </li>
+                <li>
+                  <h5>Fecha y hora: </h5><h4>{{booking.date_booking|date:'d F f a '}}</h4>
+                </li>
+                <li>
+                  <h5>Dirección: </h5><h4>{{customer.adress}}</h4>
+                </li>
+                <li>
+                  <h5>Localidad: </h5><h4>{{customer.city}}</h4>
+                </li>
+                <li>
+                  <h5>Teléfono: </h5><h4>{{customer.phone_number}}</h4>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <ul>
+                <li>
+                  <h5>Nombre: </h5><h4>{{pet.name}}</h4>
+                </li>
+                <li>
+                  <h5>Especie: </h5><h4>{{pet.species}}</h4>
+                </li>
+                <li>
+                  <h5>Raza: </h5><h4>{{pet.breed}}</h4>
+                </li>
+                <li>
+                  <h5>Edad(Años): </h5><h4>{{pet.age}}</h4>
+                </li>
+                <li>
+                  <h5>Sexo: </h5><h4>{{pet.gender}}</h4>
+                </li>
+              </ul>
+            </div>
+            </div>
             {% if debug %}
               {{ form.sandbox }}
             {% else %}

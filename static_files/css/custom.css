@@ -2517,17 +2517,28 @@ section.full-wrapp {
   background-size: cover;
   background-repeat: no-repeat;
   color: #fafeff;
-  padding: 100px 0px 80px;
+  padding: 110px 0px 80px;
   text-align: center;
   width: 100%; }
   section.full-wrapp > h1 {
-    font-weight: bold; }
+    font-weight: bold;
+    color: white;
+    font-size: 2.5rem;
+    display: inline; }
+  section.full-wrapp > h1:nth-child(2) {
+    color: #00CCC2; }
   section.full-wrapp > h3 {
     text-align: justify;
     font-size: 28px;
     line-height: 125%;
-    margin: 30px auto 0px;
-    max-width: 780px; }
+    margin: 20px auto 0px;
+    max-width: 780px;
+    color: white; }
+  section.full-wrapp > button {
+    margin-top: 20px; }
+
+.aligned {
+  text-align: center !important; }
 
 .row > div.col-md-10.col-md-offset-1 > h4 {
   text-align: justify;
@@ -2708,7 +2719,7 @@ div.checkout-body {
     .col-progress > h4.title {
       font-weight: 600; }
 
-.checkout-form-container > ul > li > h4, .checkout-form-container > ul > li h5 {
+div.col-md-6 > ul > li > h4, div.col-md-6 > ul > li h5 {
   display: inline; }
 
 .checkout-header {
