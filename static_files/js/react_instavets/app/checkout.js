@@ -64,14 +64,6 @@ var Header = React.createClass({
   }
 })
 
-var PaymentForm = forms.Form.extend({
-  card_name: forms.CharField({label: 'Nombre del titular:', required: true}),
-  card_number: forms.CharField({label: 'Número Tarjeta:', required: true}),
-  exp_date: forms.DateTimeField({label: 'Fecha Caducidad:', required: true, widget: forms.DateInput({format: '%M/%Y'})}),
-  csv: forms.CharField({label: 'CSV:' , required: true}),
-
-})
-
 var BookingForm = forms.Form.extend({
   booking_date: forms.DateTimeField({label: 'Fecha de la cita:', requiered: true, custom: 'readonly', requiered: true, errorMessages: {required:'Rellena este campo porfavor.'}, format: '%m/%d/%Y' }),
   booking_hour: forms.DateTimeField({label:'Hora de la cita:', custom: 'readonly', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
@@ -102,58 +94,6 @@ var NewPetForm = forms.Form.extend({
   pet_species: forms.ChoiceField({required: true, label: 'Especie:', choices: SPECIES, errorMessages: {required:'Rellena éste campo porfavor.'}}),
   pet_gender: forms.ChoiceField({required: true, choices: GENDER, label: 'Sexo de la mascota:', errorMessages: {required:'Selecciona una de las opciones porfavor.'}}),
   pet_breed: forms.CharField({label: 'Raza:', required: true, errorMessages: {required:'Selecciona una de las opciones porfavor.'}}),
-})
-
-var Payment = React.createClass({
-  render: function() {
-    return <div class="col-md-5 col-md-offset-1 checkout-form-container">
-              <p class="form-title" >Datos de pago</p>
-              <p class="form-sub" >Estás a punto de completar el pago</p>
-              <forms.RenderForm form={PaymentForm} ref="paymentForm">
-              <BootstrapForm/>
-              </forms.RenderForm>
-              <button class="btn-cta-green">Pagar</button>
-          </div>
-  },
-  //Esta funcion que hace?
-  onSignup: function(cleanedData) {
-    console.log('on isgnup')
-    //Handle payment right here with the tpv
-    var url_checkout = window.location.href;
-    var url_payment = window.location.hostname + '/payment/';
-    $.ajax({
-         url : url_checkout, // the endpoint
-         type : "POST", // http method
-         data : { data : form.cleanedData }, // data sent with the post request
-
-         // handle a successful response
-         success : function(json) {
-             $('#post-text').val(''); // remove the value from the input
-          //   console.log(json); // log the returned json to the console
-             console.log("success on post"); // another sanity check
-             window.location.href(payment_url);
-         },
-
-         // handle a non-successful response
-         error : function(xhr,errmsg,err) {
-             $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
-                 " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
-             console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
-         }
-     });
-  },
-  _onSubmit: function(e){
-    e.preventDefault()
-    var form = this.refs.paymentForm.getForm()
-    //console.log(form.cleanedData)
-
-    var isValid = form.validate()
-    if (isValid) {
-      console.log('Submitting pet form')
-
-      //this.props.nextStep()
-    }
-  },
 })
 
 //Loads the booking form
@@ -264,7 +204,7 @@ var NewPet = React.createClass({
          // handle a successful response
          success : function(json) {
              $('#post-text').val(''); // remove the value from the input
-             window.location.replace('http://localhost:8000/payment/');
+             window.location.replace(url_payment);
           //   console.log(json); // log the returned json to the console
              console.log("success"); // another sanity check
          },
@@ -291,8 +231,7 @@ var ProgressColumn = React.createClass({
     return <div class="col-md-3 col-progress col-md-offset-1">
             <h3>Resumen:</h3>
             <h4 class="title">Datos de la cita</h4>
-            <h4>{this.props.date}</h4>
-            <h4>{this.props.city}</h4>
+            <h4>{this.props.date} en {this.props.city}</h4>
             <h4 class="title">Contacto</h4>
             <h4>{this.props.email}</h4>
             <h4>{this.props.phone_number}</h4>
