@@ -39,3 +39,9 @@ def VetProfile(request, vet_id):
 	#return HttpResponse("You are looking at Coach: %s." % coach_id)
 	vet = get_object_or_404(Vet, pk=vet_id)
 	return render(request, 'booking/vet.html', {'vet': vet})
+
+# Vista provisional para las tarifas
+
+def Pricing(request):
+    context={}
+    return render(request, "services_app/pricing.html", context)

@@ -15066,7 +15066,8 @@
 	  //Decreases the state counter in 1
 	  previousStep: function () {
 	    this.setState({
-	      step: this.state.step - 1
+	      step: this.state.step - 1,
+	      step_id: 'step' + this.state.step
 	    });
 	  },
 	  render: function () {
@@ -15117,21 +15118,25 @@
 	          React.createElement(Header, { stepid: this.state.step_id, step: this.state.step }),
 	          React.createElement(
 	            'div',
-	            { className: 'row' },
-	            React.createElement(NewPet, {
-	              nextStep: this.nextStep,
-	              updatePetFormParams: this.updatePetFormParams,
-	              step: this.state.step
-	            }),
-	            React.createElement(ProgressColumn, {
-	              city: this.state.city,
-	              date: this.state.booking_date,
-	              payment_status: this.state.payment_status,
-	              email: this.state.email,
-	              phone_number: this.state.phone_number,
-	              pet_name: this.state.pet_name,
-	              pet_breed: this.state.pet_breed
-	            })
+	            { className: 'container' },
+	            React.createElement(
+	              'div',
+	              { className: 'row' },
+	              React.createElement(NewPet, {
+	                nextStep: this.nextStep,
+	                updatePetFormParams: this.updatePetFormParams,
+	                step: this.state.step
+	              }),
+	              React.createElement(ProgressColumn, {
+	                city: this.state.city,
+	                date: this.state.booking_date,
+	                payment_status: this.state.payment_status,
+	                email: this.state.email,
+	                phone_number: this.state.phone_number,
+	                pet_name: this.state.pet_name,
+	                pet_breed: this.state.pet_breed
+	              })
+	            )
 	          )
 	        );
 	      case 3:

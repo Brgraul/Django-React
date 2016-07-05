@@ -1,0 +1,213 @@
+$(document).ready(function(){
+  $('#vacunas').ready(function() {
+    $('#vacunas_pricing').show();
+    $('#deparasitaciones_pricing').hide();
+    $('#packs_cachorro_pricing').hide();
+    $('#packs_anuales_pricing').hide();
+    $('#analiticas_pricing').hide();
+    $('#eutanasia_pricing').hide();
+    $('#certificados_pricing').hide();
+    $('#cirugia_perros_pricing').hide();
+    $('#cirugia_gatos_pricing').hide();
+    $('#vacunas').addClass("active");
+    $('#deparasitaciones').removeClass("active");
+    $('#packs_cachorro').removeClass("active");
+    $('#packs_anuales').removeClass("active");
+    $('#analiticas').removeClass("active");
+    $('#eutanasia').removeClass("active");
+    $('#certificados').removeClass("active");
+    $('#cirugia_perros').removeClass("active");
+    $('#cirugia_gatos').removeClass("active");
+  });
+
+  $('#vacunas').click(function() {
+    $('#vacunas_pricing').show();
+    $('#deparasitaciones_pricing').hide();
+    $('#packs_cachorro_pricing').hide();
+    $('#packs_anuales_pricing').hide();
+    $('#analiticas_pricing').hide();
+    $('#eutanasia_pricing').hide();
+    $('#certificados_pricing').hide();
+    $('#cirugia_perros_pricing').hide();
+    $('#cirugia_gatos_pricing').hide();
+    $('#vacunas').addClass("active");
+    $('#deparasitaciones').removeClass("active");
+    $('#packs_cachorro').removeClass("active");
+    $('#packs_anuales').removeClass("active");
+    $('#analiticas').removeClass("active");
+    $('#eutanasia').removeClass("active");
+    $('#certificados').removeClass("active");
+    $('#cirugia_perros').removeClass("active");
+    $('#cirugia_gatos').removeClass("active");
+  });
+
+  $('#deparasitaciones').click(function() {
+    $('#vacunas_pricing').hide();
+    $('#deparasitaciones_pricing').show();
+    $('#packs_cachorro_pricing').hide();
+    $('#packs_anuales_pricing').hide();
+    $('#analiticas_pricing').hide();
+    $('#eutanasia_pricing').hide();
+    $('#certificados_pricing').hide();
+    $('#cirugia_perros_pricing').hide();
+    $('#cirugia_gatos_pricing').hide();
+    $('#vacunas').removeClass("active");
+    $('#deparasitaciones').addClass("active");
+    $('#packs_cachorro').removeClass("active");
+    $('#packs_anuales').removeClass("active");
+    $('#analiticas').removeClass("active");
+    $('#eutanasia').removeClass("active");
+    $('#certificados').removeClass("active");
+    $('#cirugia_perros').removeClass("active");
+    $('#cirugia_gatos').removeClass("active");
+  });
+
+  $('#packs_cachorro').click(function() {
+    $('#vacunas_pricing').hide();
+    $('#deparasitaciones_pricing').hide();
+    $('#packs_cachorro_pricing').show();
+    $('#packs_anuales_pricing').hide();
+    $('#analiticas_pricing').hide();
+    $('#eutanasia_pricing').hide();
+    $('#certificados_pricing').hide();
+    $('#cirugia_perros_pricing').hide();
+    $('#cirugia_gatos_pricing').hide();
+    $('#vacunas').removeClass("active");
+    $('#deparasitaciones').removeClass("active");
+    $('#packs_cachorro').addClass("active");
+    $('#packs_anuales').removeClass("active");
+    $('#analiticas').removeClass("active");
+    $('#eutanasia').removeClass("active");
+    $('#certificados').removeClass("active");
+    $('#cirugia_perros').removeClass("active");
+    $('#cirugia_gatos').removeClass("active");
+  });
+
+  $('#packs_anuales').click(function() {
+    $('#vacunas_pricing').hide();
+    $('#deparasitaciones_pricing').hide();
+    $('#packs_cachorro_pricing').hide();
+    $('#packs_anuales_pricing').show();
+    $('#analiticas_pricing').hide();
+    $('#eutanasia_pricing').hide();
+    $('#certificados_pricing').hide();
+    $('#cirugia_perros_pricing').hide();
+    $('#cirugia_gatos_pricing').hide();
+    $('#vacunas').removeClass("active");
+    $('#deparasitaciones').removeClass("active");
+    $('#packs_cachorro').removeClass("active");
+    $('#packs_anuales').addClass("active");
+    $('#analiticas').removeClass("active");
+    $('#eutanasia').removeClass("active");
+    $('#certificados').removeClass("active");
+    $('#cirugia_perros').removeClass("active");
+    $('#cirugia_gatos').removeClass("active");
+  });
+
+  $('#analiticas').click(function() {
+    $('#vacunas_pricing').hide();
+    $('#deparasitaciones_pricing').hide();
+    $('#packs_cachorro_pricing').hide();
+    $('#packs_anuales_pricing').hide();
+    $('#analiticas_pricing').show();
+    $('#eutanasia_pricing').hide();
+    $('#certificados_pricing').hide();
+    $('#cirugia_perros_pricing').hide();
+    $('#cirugia_gatos_pricing').hide();
+    $('#vacunas').removeClass("active");
+    $('#deparasitaciones').removeClass("active");
+    $('#packs_cachorro').removeClass("active");
+    $('#packs_anuales').removeClass("active");
+    $('#analiticas').addClass("active");
+    $('#eutanasia').removeClass("active");
+    $('#certificados').removeClass("active");
+    $('#cirugia_perros').removeClass("active");
+    $('#cirugia_gatos').removeClass("active");
+  });
+
+  $('#eutanasia').click(function() {
+    $('#vacunas_pricing').hide();
+    $('#deparasitaciones_pricing').hide();
+    $('#packs_cachorro_pricing').hide();
+    $('#packs_anuales_pricing').hide();
+    $('#analiticas_pricing').hide();
+    $('#eutanasia_pricing').show();
+    $('#certificados_pricing').hide();
+    $('#cirugia_perros_pricing').hide();
+    $('#cirugia_gatos_pricing').hide();
+    $('#eutanasia_pricing_inside').addClass("pricing-display-row-2-active");
+    $('#eutanasia_pricing').addClass("pricing-display-row-1-active");
+    $('#vacunas').removeClass("active");
+    $('#deparasitaciones').removeClass("active");
+    $('#packs_cachorro').removeClass("active");
+    $('#packs_anuales').removeClass("active");
+    $('#analiticas').removeClass("active");
+    $('#eutanasia').addClass("active");
+    $('#certificados').removeClass("active");
+    $('#cirugia_perros').removeClass("active");
+    $('#cirugia_gatos').removeClass("active");
+  });
+
+  $('#certificados').click(function() {
+    $('#vacunas_pricing').hide();
+    $('#deparasitaciones_pricing').hide();
+    $('#packs_cachorro_pricing').hide();
+    $('#packs_anuales_pricing').hide();
+    $('#analiticas_pricing').hide();
+    $('#eutanasia_pricing').hide();
+    $('#certificados_pricing').show();
+    $('#cirugia_perros_pricing').hide();
+    $('#cirugia_gatos_pricing').hide();
+    $('#vacunas').removeClass("active");
+    $('#deparasitaciones').removeClass("active");
+    $('#packs_cachorro').removeClass("active");
+    $('#packs_anuales').removeClass("active");
+    $('#analiticas').removeClass("active");
+    $('#eutanasia').removeClass("active");
+    $('#certificados').addClass("active");
+    $('#cirugia_perros').removeClass("active");
+    $('#cirugia_gatos').removeClass("active");
+  });
+
+  $('#cirugia_perros').click(function() {
+    $('#vacunas_pricing').hide();
+    $('#deparasitaciones_pricing').hide();
+    $('#packs_cachorro_pricing').hide();
+    $('#packs_anuales_pricing').hide();
+    $('#analiticas_pricing').hide();
+    $('#eutanasia_pricing').hide();
+    $('#certificados_pricing').hide();
+    $('#cirugia_perros_pricing').show();
+    $('#cirugia_gatos_pricing').hide();
+    $('#vacunas').removeClass("active");
+    $('#deparasitaciones').removeClass("active");
+    $('#packs_cachorro').removeClass("active");
+    $('#packs_anuales').removeClass("active");
+    $('#analiticas').removeClass("active");
+    $('#eutanasia').removeClass("active");
+    $('#certificados').removeClass("active");
+    $('#cirugia_perros').addClass("active");
+    $('#cirugia_gatos').removeClass("active");
+  });
+
+  $('#cirugia_gatos').click(function() {
+    $('#vacunas_pricing').hide();
+    $('#deparasitaciones_pricing').hide();
+    $('#packs_cachorro_pricing').hide();
+    $('#packs_anuales_pricing').hide();
+    $('#analiticas_pricing').hide();
+    $('#eutanasia_pricing').hide();
+    $('#certificados_pricing').hide();
+    $('#cirugia_perros_pricing').hide();
+    $('#cirugia_gatos_pricing').show();
+    $('#vacunas').removeClass("active");
+    $('#deparasitaciones').removeClass("active");
+    $('#packs_cachorro').removeClass("active");
+    $('#packs_anuales').removeClass("active");
+    $('#analiticas').removeClass("active");
+    $('#eutanasia').removeClass("active");
+    $('#certificados').removeClass("active");
+    $('#cirugia_perros').removeClass("active");
+    $('#cirugia_gatos').addClass("active");
+  });
+});

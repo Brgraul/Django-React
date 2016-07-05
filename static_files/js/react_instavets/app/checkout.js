@@ -431,13 +431,14 @@ var CheckoutContainer = React.createClass({
   nextStep: function() {
     this.setState({
       step : this.state.step + 1 ,
-      step_id : 'step' + this.state.step ,
+      step_id : 'step' + this.state.step
     })
   },
   //Decreases the state counter in 1
   previousStep: function() {
     this.setState({
-      step : this.state.step - 1
+      step : this.state.step - 1 ,
+      step_id : 'step' + this.state.step ,
     })
   },
   render: function() {
@@ -478,6 +479,7 @@ var CheckoutContainer = React.createClass({
 			case 2:
 				return    <div class="container">
                     <Header stepid={this.state.step_id} step={this.state.step}/>
+                    <div class="container">
                     <div class="row">
                       <NewPet
                         nextStep={this.nextStep}
@@ -493,6 +495,7 @@ var CheckoutContainer = React.createClass({
                         pet_name={this.state.pet_name}
                         pet_breed={this.state.pet_breed}
                       />
+                      </div>
                       </div>
                     </div>
       case 3:

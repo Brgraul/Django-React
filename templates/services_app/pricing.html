@@ -1,0 +1,261 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+
+{% block body_content %}
+<link href="{% static 'css/bs_grid.css' %}" rel="stylesheet" media="screen">
+<link href="{% static 'css/nuevo.css' %}" rel="stylesheet" media="screen">
+
+<section class="full-wrapp" style="background-image: url({% static 'images/index/index_slide.jpg' %})">
+  <h1>VISITA A DOMICILIO - </h1><h1>39€</h1>
+  <h3 class="aligned" >Nuestros precios son claros y sencillos.</h3>
+  <h5>Incluye visita a domicilio + Revisión completa + Ayudarte con todas las dudas que tengas sobre el cuidado de tu mascota</h5>
+  <button class="btn btn-cta-white"> PIDE TU CITA</button>
+</section>
+
+<div class="container"></div>
+      <!--<div class="centerlogo"><img src="images/InstaVets.png" alt="" width="350" height="68" style="margin-top:40px;"></div>-->
+      <div id="seccion" style="margin-top: 50px;">
+      <div id="izquierda">
+              <img src="images/perro-gato.jpeg" alt="">
+        </div>
+        <div id="derecha">
+          <div class="detailing">
+          </div>
+        </div>
+     </div>
+     <div id="seccion">
+       <div class="row">
+         <div class="column col-md-8 col-md-offset-2 pricing-panel">
+           <div class="row">
+
+             <div class="column col-md-3 col-xs-12 pricing-panel-header" id="pricing-panel-header">
+               <div class="row pricingtab active" id="vacunas" style="border-top: 0px;"><a class="pricingtab-a">VACUNAS</a></div>
+               <div class="row pricingtab" id="deparasitaciones"><a class="pricingtab-a">DEPARASITACIÓNES</a></div>
+               <div class="row pricingtab" id="packs_cachorro"><a class="pricingtab-a">PACKS CACHORRO</a></div>
+               <div class="row pricingtab" id="packs_anuales"><a class="pricingtab-a">INYECTABLES</a></div>
+               <div class="row pricingtab" id="analiticas"><a class="pricingtab-a">ANALÍTICAS</a></div>
+               <div class="row pricingtab" id="eutanasia"><a class="pricingtab-a">EUTANASIA</a></div>
+               <div class="row pricingtab" id="certificados"><a class="pricingtab-a">CERTIFICADOS</a></div>
+               <div class="row pricingtab" id="cirugia_perros"><a class="pricingtab-a">CIRUGÍA PERROS</a></div>
+               <div class="row pricingtab" id="cirugia_gatos" style="border-bottom:0px;"><a class="pricingtab-a">CIRUGÍA GATOS</a></div>
+             </div>
+
+
+             <div class="column col-md-9">
+               <div class="pricing-display">
+
+                 <!-- Pricing Vacunas -->
+                 <div id="vacunas_pricing" class="row pricing-display-row-1">
+                   <div class="col-md-12">
+                     <div class="row pricing-display-row-2">
+                       <div class="column col-md-3 col-xs-3 pricing-display-col-left"><h5 class="pricing-display-price">25€</h5></div>
+                       <div class="column col-md-9 col-xs-8 pricing-display-col-right"><h5 class="pricing-display-h5">VACUNA INDIVIDUAL</h5><br>
+                         <h6 class="pricing-display-h6">Sea los que sea, todas valen lo mismo.</h6></div>
+                     </div>
+                     <div class="row pricing-display-row-2">
+                       <div class="column col-md-3 col-xs-3 pricing-display-col-left"><h5 class="pricing-display-price">45€<h5></div>
+                       <div class="column col-md-9 col-xs-8 pricing-display-col-right"><h5 class="pricing-display-h5">PACK VACUNAS</h5><br>
+                         <h6 class="pricing-display-h6">Las dos que tu quieras. Pueden usarse en mascotas distintas.</h6></div>
+                     </div>
+                   </div>
+                 </div>
+                 <!-- Final Pricing Vacunas -->
+
+                 <!-- Pricing Desparasitaciones -->
+                 <div id="deparasitaciones_pricing" class="row pricing-display-row-1" style="padding-top:4%;
+                padding-bottom:4%;">
+                   <div class="col-md-12">
+                     <div class="row pricing-display-row-2" style="padding-top: 10px;
+                    padding-bottom: 5px;">
+                       <div class="column col-md-3 col-xs-3 pricing-display-col-left"><h5 class="pricing-display-price">50€</h5></div>
+                       <div class="column col-md-9 col-xs-8 pricing-display-col-right"><h5 class="pricing-display-h5">PACK DEPARASITACIÓN</h5><br>
+                         <h6 class="pricing-display-h6">Consulta + desparasitación externa/interna.</h6></div>
+                     </div>
+                     <div class="row pricing-display-row-2" style="padding-top: 10px;
+                    padding-bottom: 5px;">
+                       <div class="column col-md-3 col-xs-3 pricing-display-col-left"><h5 class="pricing-display-price">5€-9€<h5></div>
+                       <div class="column col-md-9 col-xs-8 pricing-display-col-right"><h5 class="pricing-display-h5">PASTILLA DEPARASITANTE</h5><br>
+                         <h6 class="pricing-display-h6">Gatos y perros hasta 5kg (precio varia según marca).</h6></div>
+                     </div>
+                     <div class="row pricing-display-row-2" style="padding-top: 10px;
+                    padding-bottom: 5px;">
+                       <div class="column col-md-3 col-xs-3 pricing-display-col-left"><h5 class="pricing-display-price">10€-15€<h5></div>
+                       <div class="column col-md-9 col-xs-8 pricing-display-col-right"><h5 class="pricing-display-h5">PASTILLA DEPARASITANTE</h5><br>
+                         <h6 class="pricing-display-h6">Perros entre 5 y 25kg (precio varia según marca).</h6></div>
+                     </div>
+                   </div>
+                 </div>
+                 <!-- Final Pricing Desparasitaciones -->
+
+                 <!-- Pricing PacksCachorro -->
+                 <div id="packs_cachorro_pricing" class="row pricing-display-row-1">
+                   <div class="col-md-12">
+                     <div class="row pricing-display-row-2">
+                       <div class="column col-md-3 col-xs-3 pricing-display-col-left"><h5 class="pricing-display-price">230€</h5></div>
+                       <div class="column col-md-9 col-xs-8 pricing-display-col-right"><h5 class="pricing-display-h5">PACK CACHORRO CON CHIP</h5><br>
+                         <h6 class="pricing-display-h6">Incluye el chip con cartilla más todas las vacunas, desparasitaciones y
+consultas que necesita tu cachorro de perro o gato.</h6></div>
+                     </div>
+                     <div class="row pricing-display-row-2">
+                       <div class="column col-md-3 col-xs-3 pricing-display-col-left"><h5 class="pricing-display-price">200€<h5></div>
+                       <div class="column col-md-9 col-xs-8 pricing-display-col-right"><h5 class="pricing-display-h5">PACK CACHORRO SIN CHIP</h5><br>
+                         <h6 class="pricing-display-h6">Incluye todas las vacunas, desparasitaciones y
+consultas que necesita tu cachorro de perro o gato.</h6></div>
+                     </div>
+                   </div>
+                 </div>
+                 <!-- Final Pricing PacksCachorro -->
+                 <!-- Pricing Packs Anuales -->
+                 <div id="packs_anuales_pricing" class="row pricing-display-row-1" style="padding-top:4%;
+                padding-bottom:4%;">
+                   <div class="col-md-12">
+                     <div class="row pricing-display-row-2" style="padding-top: 10px;
+                    padding-bottom: 5px;">
+                       <div class="column col-md-3 pricing-display-col-left"><h5 class="pricing-display-price">11€</h5></div>
+                       <div class="column col-md-9 col-xs-8 pricing-display-col-right"><h5 class="pricing-display-h5">PERROS PEQUEÑOS Y GATOS</h5><br>
+                         <h6 class="pricing-display-h6"></h6></div>
+                     </div>
+                     <div class="row pricing-display-row-2" style="padding-top: 10px;
+                    padding-bottom: 5px;">
+                       <div class="column col-md-3 pricing-display-col-left"><h5 class="pricing-display-price">17€<h5></div>
+                       <div class="column col-md-9 col-xs-8 pricing-display-col-right"><h5 class="pricing-display-h5">PERROS MEDIANOS</h5><br>
+                         <h6 class="pricing-display-h6"></h6></div>
+                     </div>
+                     <div class="row pricing-display-row-2" style="padding-top: 10px;
+                    padding-bottom: 5px;">
+                       <div class="column col-md-3 pricing-display-col-left"><h5 class="pricing-display-price">25€<h5></div>
+                       <div class="column col-md-9 col-xs-8 pricing-display-col-right"><h5 class="pricing-display-h5">PERROS GRANDES</h5><br>
+                         <h6 class="pricing-display-h6"></h6></div>
+                     </div>
+                   </div>
+                 </div>
+                 <!-- Final Pricing anuales -->
+
+                 <!-- Pricing Analiticas -->
+                 <div id="analiticas_pricing" class="row pricing-display-row-1">
+                   <div class="col-md-12">
+                     <div class="row pricing-display-row-2">
+                       <div class="column col-md-3 pricing-display-col-left"><h5 class="pricing-display-price">99€</h5></div>
+                       <div class="column col-md-9 col-xs-8 pricing-display-col-right"><h5 class="pricing-display-h5">PACK DIAGNÓSTICO</h5><br>
+                         <h6 class="pricing-display-h6">Incluye la consulta, análisis de sangre y análisis de orina.</h6></div>
+                     </div>
+                     <div class="row pricing-display-row-2">
+                       <div class="column col-md-3 pricing-display-col-left"><h5 class="pricing-display-price">60€<h5></div>
+                       <div class="column col-md-9 col-xs-8 pricing-display-col-right"><h5 class="pricing-display-h5">ANALÍTICA COMPLETA</h5><br>
+                         <h6 class="pricing-display-h6"></h6></div>
+                     </div>
+                   </div>
+                 </div>
+                 <!-- Final Pricing Analiticas -->
+
+                 <!-- Pricing Eutanasia -->
+                 <div id="eutanasia_pricing" class="row pricing-display-row-1">
+                   <div class="col-md-12">
+                     <div class="row pricing-display-row-2" id="eutanasia_pricing_inside" style="padding-top: 10px;
+                    padding-bottom: 5px;">
+                       <div class="column col-md-3 pricing-display-col-left"><h5 class="pricing-display-price">100€</h5></div>
+                       <div class="column col-md-9 col-xs-8 pricing-display-col-right"><h5 class="pricing-display-h5">EUTANASIA EN CASA</h5><br>
+                         <h6 class="pricing-display-h6">La despedida más dulce donde mejor se siente.
+Vuestra casa.</h6></div>
+                     </div>
+                     <div class="row pricing-display-row-2" id="eutanasia_pricing_inside" style="padding-top: 10px;
+                    padding-bottom: 5px;">
+                       <div class="column col-md-3 pricing-display-col-left"><h5 class="pricing-display-price">250€<h5></div>
+                       <div class="column col-md-9 col-xs-8 pricing-display-col-right"><h5 class="pricing-display-h5">EUTANASIA CON RECOGIDA</h5><br>
+                         <h6 class="pricing-display-h6">Incluye la eutanasia + recogida de cuerpo
++ incineración colectiva.</h6></div>
+                     </div>
+                     <div class="row pricing-display-row-2" id="eutanasia_pricing_inside" style="padding-top: 10px;
+                    padding-bottom: 5px;">
+                       <div class="column col-md-3 pricing-display-col-left"><h5 class="pricing-display-price">335€<h5></div>
+                       <div class="column col-md-9 col-xs-8 pricing-display-col-right"><h5 class="pricing-display-h5">EUTANASIA CON DEV. DE CENIZAS</h5><br>
+                         <h6 class="pricing-display-h6">Incluye la eutanasia + recogida de cuerpo
++ incineración individual
++ devolución de cenizas
++ regalo de la huella de tu mascota en arcilla
+.</h6></div>
+                     </div>
+                   </div>
+                 </div>
+                 <!-- Final Pricing Eutanasia -->
+
+                 <!-- Pricing Certificados -->
+                 <div id="certificados_pricing" class="row pricing-display-row-1">
+                   <div class="col-md-12">
+                     <div class="row pricing-display-row-2" >
+                       <div class="column col-md-3 pricing-display-col-left"><h5 class="pricing-display-price">30€</h5></div>
+                       <div class="column col-md-9 col-xs-8 pricing-display-col-right"><h5 class="pricing-display-h5">CERTIFICADO DE SALUD</h5><br>
+                         <h6 class="pricing-display-h6">Para viajar o para temas legales.</h6></div>
+                     </div>
+                     <div class="row pricing-display-row-2">
+                       <div class="column col-md-3 pricing-display-col-left"><h5 class="pricing-display-price">18€<h5></div>
+                       <div class="column col-md-9 col-xs-8 pricing-display-col-right"><h5 class="pricing-display-h5">PASAPORTE</h5><br>
+                         <h6 class="pricing-display-h6">Si sales de la unión europea este documento es fundamental.</h6></div>
+                     </div>
+                   </div>
+                 </div>
+                 <!-- Final Pricing Certificados -->
+
+                 <!-- Pricing Cirugia Perros -->
+                 <div id="cirugia_perros_pricing" class="row pricing-display-row-1" style="padding-top:2%;
+                padding-bottom:2%;">
+                   <div class="col-md-12">
+                     <div class="row pricing-display-row-2" style="padding-top: 8px;
+                    padding-bottom: 5px;">
+                       <div class="column col-md-3 pricing-display-col-left" style="padding:9px;"><h5 class="pricing-display-price">200€-<br>350€</h5></div>
+                       <div class="column col-md-9 col-xs-8 pricing-display-col-right"><h5 class="pricing-display-h5">PERROS PEQUEÑOS</h5><br>
+                         <h6 class="pricing-display-h6">Machos / Hembras</h6></div>
+                     </div>
+                     <div class="row pricing-display-row-2" style="padding-top: 8px;
+                    padding-bottom: 5px;">
+                       <div class="column col-md-3 pricing-display-col-left" style="padding:9px;"><h5 class="pricing-display-price">250€-<br>375€<h5></div>
+                       <div class="column col-md-9 col-xs-8 pricing-display-col-right"><h5 class="pricing-display-h5">PERROS MEDIANOS</h5><br>
+                         <h6 class="pricing-display-h6">Machos / Hembras</h6></div>
+                     </div>
+                     <div class="row pricing-display-row-2" style="padding-top: 8px;
+                    padding-bottom: 5px;">
+                       <div class="column col-md-3 pricing-display-col-left" style="padding:9px;"><h5 class="pricing-display-price">300€-<br>400€<h5></div>
+                       <div class="column col-md-9 col-xs-8 pricing-display-col-right"><h5 class="pricing-display-h5">PERROS GRANDES</h5><br>
+                         <h6 class="pricing-display-h6">Machos / Hembras</h6></div>
+                     </div>
+                   </div>
+                 </div>
+                 <!-- Final Pricing Cirugia Perros -->
+
+                 <!-- Pricing Cirugia Gatos -->
+                 <div id="cirugia_gatos_pricing" class="row pricing-display-row-1">
+                   <div class="col-md-12 col-xs-12" >
+                     <div class="row pricing-display-row-2">
+                       <div class="column col-md-3 pricing-display-col-left"><h5 class="pricing-display-price">150€</h5></div>
+                       <div class="column col-md-9 pricing-display-col-right"><h5 class="pricing-display-h5">MACHOS</h5><br>
+                         <h6 class="pricing-display-h6">Machos / Hembras</h6></div>
+                     </div>
+                     <div class="row pricing-display-row-2">
+                       <div class="column col-md-3 pricing-display-col-left"><h5 class="pricing-display-price">300€<h5></div>
+                       <div class="column col-md-9 pricing-display-col-right"><h5 class="pricing-display-h5">HEMBRAS</h5><br>
+                         <h6 class="pricing-display-h6">Machos / Hembras</h6></div>
+                     </div>
+                   </div>
+                 </div>
+                 <!-- Final Pricing Cirugia Gatos -->
+               </div>
+             </div>
+
+           </div>
+
+         </div>
+         <div class="column col-md-8 col-md-offset-2">
+           <p style="font-size:12px; margin-top:5px; margin-bottom:35px;">*Los precios aquí mostrados exceptuando los packs cachorro, pack diagnostico y despedidas en casa, no llevan incluidos los 39€ euros de la consulta.</p>
+         </div>
+       </div>
+     </div>
+
+    {% endblock %}
+
+    {% block javascript%}
+
+    <script type="text/javascript" src="{% static 'js/pricing-panel.js' %}"></script>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js"></script>
+
+    {% endblock javascript %}
