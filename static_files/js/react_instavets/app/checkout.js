@@ -195,6 +195,7 @@ var NewPet = React.createClass({
   _onSubmit: function(e){
     e.preventDefault()
     var form = this.refs.newPetForm.getForm()
+    var url_checkout = window.location.href;
     var url_payment = window.location.host + '/payment/';
     $.ajax({
          url : url_checkout, // the endpoint
