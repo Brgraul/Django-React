@@ -18,7 +18,6 @@ import json
 from django.http import JsonResponse
 from django.core import serializers
 
-
 #Asociating Payment Listeners#Asociate Listeners
 from sermepa.signals import payment_was_successful
 from sermepa.signals import payment_was_error
@@ -35,6 +34,7 @@ def payment_ok(sender, **kwargs):
     order.auth_code = sender.Ds_AuthorisationCode #Guardar este valor en caso
     # de poder hacer devoluciones, es necesario.
     order.save()
+    #Maddar emails etc ....
     print 'Order Saved'
 
 def payment_ko(sender, **kwargs):
