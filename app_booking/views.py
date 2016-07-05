@@ -203,10 +203,12 @@ def PaymentConfirmPage(request):
     customer = get_object_or_404(Customer, pk=customer_id)
     booking = get_object_or_404(Booking, pk=booking_id)
     order = get_object_or_404(Order, pk=order_id)
+    pet = get_object_or_404(Pet,customer=customer.id )
     context = {
         'customer': customer,
         'order': order,
         'booking': booking,
+        'pet': pet,
     }
     return render(request, 'booking_app/payment_confirm.html', context )
 
