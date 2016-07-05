@@ -4,6 +4,42 @@ from django.db import models
 from django.contrib.auth.models import User
 from products_app.models import Product, ProductCategory
 
+#Asociating Payment Listeners#Asociate Listeners
+from sermepa.signals import payment_was_successful
+from sermepa.signals import payment_was_error
+from sermepa.signals import signature_error
+
+#Define Payment Lsiteners
+def payment_ok(sender, **kwargs):
+    print 'payment ok'
+    '''sender es un objecto de clase SermepaResponse. Utiliza el campo Ds_MerchantData
+    para asociarlo a tu Pedido o Carrito'''
+    print 'payment ok signal initiated'
+    order = Order.objects.get(ref_code=sender.Ds_MerchantData)
+    order.status = 'pagado'
+    order.auth_code = sender.Ds_AuthorisationCode #Guardar este valor en caso
+    # de poder hacer devoluciones, es necesario.
+    order.save()
+    #Maddar emails etc ....
+    print 'Order Saved'
+
+def payment_ko(sender, **kwargs):
+    print 'payment_ko'
+    order = Order.objects.get(ref_code=sender.Ds_MerchantData)
+    order.status = 'error_pago'
+    order.auth_code = sender.Ds_AuthorisationCode #Guardar este valor en caso
+    order.save()
+    pass
+
+def sermepa_ipn_error(sender, **kwargs):
+    print 'payment ipn error'
+    pass
+
+payment_was_successful.connect(payment_ok)
+payment_was_error.connect(payment_ko)
+signature_error.connect(sermepa_ipn_error)
+
+
 #Customer Model
 class Customer(models.Model):
     created = models.DateTimeField(auto_now=False, auto_now_add=True, blank = False, null = False, verbose_name = 'Creado')

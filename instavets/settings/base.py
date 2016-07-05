@@ -166,7 +166,6 @@ SERMEPA_CURRENCY = '978' #Euros
 SERMEPA_SIGNATURE_VERSION = 'HMAC_SHA256_V1' # This value is fixed
 SERMEPA_SECRET_KEY = 'sq7HjrUOBfKmC576ILgskD5srU870gJ7'     # Your Redsys Secret Key
 SERMEPA_BUTTON_TEXT = 'Confirmar y Pagar'
-HEROKU_DOMAIN = 'https://boiling-springs-92023.herokuapp.com'
 # CKEDITOR SETTINGS
 
 SITE_ID = 1;
