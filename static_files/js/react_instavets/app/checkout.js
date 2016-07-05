@@ -255,9 +255,9 @@ var NewPet = React.createClass({
   _onSubmit: function(e){
     e.preventDefault()
     var form = this.refs.newPetForm.getForm()
-    console.log(form)
+    var url_checkout = window.location.href;
     $.ajax({
-         url : "http://localhost:8000/checkout/", // the endpoint
+         url : url_checkout, // the endpoint
          type : "POST", // http method
          data : { data : form.cleanedData, step: this.props.step }, // data sent with the post request
 
