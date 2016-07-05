@@ -14,7 +14,45 @@ from sermepa.signals import payment_was_successful, payment_was_error, signature
 from sermepa.models import SermepaIdTPV
 
 #JSON
+import json
 from django.http import JsonResponse
+from django.core import serializers
+
+
+#Asociating Payment Listeners#Asociate Listeners
+from sermepa.signals import payment_was_successful
+from sermepa.signals import payment_was_error
+from sermepa.signals import signature_error
+
+#Define Payment Lsiteners
+def payment_ok(sender, **kwargs):
+    print 'payment ok'
+    '''sender es un objecto de clase SermepaResponse. Utiliza el campo Ds_MerchantData
+    para asociarlo a tu Pedido o Carrito'''
+    print 'payment ok signal initiated'
+    order = Order.objects.get(ref_code=sender.Ds_MerchantData)
+    order.status = 'pagado'
+    order.auth_code = sender.Ds_AuthorisationCode #Guardar este valor en caso
+    # de poder hacer devoluciones, es necesario.
+    order.save()
+    print 'Order Saved'
+
+def payment_ko(sender, **kwargs):
+    print 'payment_ko'
+    order = Order.objects.get(ref_code=sender.Ds_MerchantData)
+    order.status = 'error_pago'
+    order.auth_code = sender.Ds_AuthorisationCode #Guardar este valor en caso
+    order.save
+    pass
+
+def sermepa_ipn_error(sender, **kwargs):
+    print 'payment ipn error'
+    pass
+
+payment_was_successful.connect(payment_ok)
+payment_was_error.connect(payment_ko)
+signature_error.connect(sermepa_ipn_error)
+
 
 # Create your views here.
 @csrf_exempt
@@ -175,16 +213,40 @@ def PaymentConfirmPage(request):
 #----------------------------Cookies--------------------------------------------
 #Test If Cookies can be set on user browser
 #Returns True of False
+@csrf_exempt
 def CookieTestSet(request):
     if request.method == "POST":
-        request.session.set.test.cookie()
+        request.session.set_test_cookie()
         cookies_set = {'CookieSet':True}
         return JsonResponse(cookies_set)
 
 #Returns True if coookies worked and false othewise
+@csrf_exempt
 def CookieTestVerify(request):
     if request.method == "POST":
         cookie_worked = {'CookieWorked': request.session.test_cookie_worked()}
         return JsonResponse(cookie_worked)
 
-#Check if user already made an order and autocompletes
+#Check if user already made an order
+@csrf_exempt
+def CookieOrderIsSet(request):
+    if request.method == "POST":
+        exists = request.session.exists('order_id')
+        order_isset = {'OrderIsSet': exists}
+        return JsonResponse(order_isset)
+
+#Retrieves the order cookie
+@csrf_exempt
+def CookieOrderGet(request):
+    if request.method == "POST":
+        print 'Cookie Order Get'
+        if request.session.get('order_id'):
+            order_id = request.session.get('order_id')
+            order = get_object_or_404(Order, pk=order_id)
+            order_json = serializers.serialize("json", [order,])
+            order_json = json.loads(order_json)
+            order_json = json.dumps(order_json[0])
+            print order_json
+            return JsonResponse(order_json, safe=False)
+        else:
+            return JsonResponse({'order_json': 'false'})

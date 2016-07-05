@@ -1,6 +1,7 @@
 var forms = require('newforms')
 var moment = require('moment')
 var BootstrapForm = require('newforms-bootstrap')
+var Loader = require('react-loader');
 
 /* Forms Locale*/
 forms.addLocale('es', {
@@ -74,14 +75,13 @@ var PaymentForm = forms.Form.extend({
 var BookingForm = forms.Form.extend({
   booking_date: forms.DateTimeField({label: 'Fecha de la cita:', requiered: true, custom: 'readonly', requiered: true, errorMessages: {required:'Rellena este campo porfavor.'}, format: '%m/%d/%Y' }),
   booking_hour: forms.DateTimeField({label:'Hora de la cita:', custom: 'readonly', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
-  phone_number: forms.CharField({label: 'Número de teléfono:', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
+  phone_number: forms.CharField({ label: 'Número de teléfono:', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
   email: forms.EmailField({label: 'Email:', requiered: true, errorMessages: {invalid: 'Porfavor introduce un email válido.', required:'Rellena éste campo porfavor.'}}),
   first_name: forms.CharField({label: 'Nombre:', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
   second_name: forms.CharField({label: 'Apellido:', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
   adress: forms.CharField({label: 'Dirección:', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
   city: forms.CharField({label: 'Ciudad:', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
   acceptTerms: forms.BooleanField({label: 'Acepto los términos de usuario:', required: true, errorMessages: {required:'Es necesario aceptar los términos de usuario para seguir con el proceso.'}}),
-
 })
 
 var SPECIES = [
@@ -163,7 +163,8 @@ var Booking = React.createClass({
                 <form onSubmit={this._onSubmit}>
                 <forms.RenderForm form={BookingForm} component="ul"
                 rowComponent="li"
-                ref="bookingForm">
+                ref="bookingForm"
+                >
                <BootstrapForm/>
                 </forms.RenderForm>
                 <button class="btn-cta-green">Guardar y continuar</button>
@@ -305,6 +306,7 @@ var ProgressColumn = React.createClass({
 var CheckoutContainer = React.createClass({
 	getInitialState: function() {
 		return {
+      loaded: false,
       step: 1,
       step_id: 'step1',
       //Step 1
@@ -323,17 +325,48 @@ var CheckoutContainer = React.createClass({
       pet_gender : 'Hembra normal',
       pet_breed : '',
       payment_status: 'Incompleto',
-  //    booking_form: new BookingForm,
+      cookies_enabled: false,
+      //api
+      url_order_get: 'http://localhost:8000/api/cookies/cookie_order_get/',
 		}
 	},
-
+  //Set Test Cookie
+  cookieTestSet: function(){
+    $.ajax({
+         url : "http://localhost:8000/api/cookies/cookie_test_set/", // the endpoint
+         type : "POST", // http method
+         // handle a successful response
+         success : function(data) {
+             console.log(data);
+         },
+         // handle a non-successful response
+         error : function(xhr,errmsg,err) {
+             $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
+                 " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
+             console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+         }
+     });
+  },
+  cookieTestVerify: function(){
+    $.ajax({
+         url : "http://localhost:8000/api/cookies/cookie_test_verify/", // the endpoint
+         type : "POST", // http method
+         // handle a successful response
+         success : function(data) {
+             console.log(data);
+         },
+         // handle a non-successful response
+         error : function(xhr,errmsg,err) {
+             $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
+                 " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
+             console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+         }
+     });
+  },
   dateStringFormat: function(date, hour){
     //Getting Time
     var minutes = hour.getMinutes();
-
     var hours = hour.getHours();
-    console.log(hours.length)
-
     var month = date.getUTCMonth();
     var year = date.getFullYear();
     //day of the week(0-6)
@@ -350,10 +383,8 @@ var CheckoutContainer = React.createClass({
       hours = '0' + hours
     }
     var date_string = days[day] + ', '  + month_day + ' de ' +  months[month] + ' a las ' + hours + ':' + minutes;
-
     return date_string;
   },
-
   //Converts UNIX timestamp to date format for progress bar
   //Problem ... it gets it with two hour delay ...dont know why ..
   dateDjangoDefault: function(date, hour){
@@ -372,8 +403,7 @@ var CheckoutContainer = React.createClass({
     var date_django = date_django.toUTCString();
     return date_django;
   },
-
-  // Updates Contact Form Parameters
+  // Updates ProgresColumnParams
   updateContactFormParams: function(form_params){
     var date_string = this.dateStringFormat(form_params.booking_date, form_params.booking_hour)
     this.setState({
@@ -387,7 +417,6 @@ var CheckoutContainer = React.createClass({
       adress : form_params.adress,
     })
   },
-
   // Updates Pet Form Parameters
   updatePetFormParams: function(form_params){
     this.setState({
@@ -398,7 +427,6 @@ var CheckoutContainer = React.createClass({
       pet_breed : form_params.pet_breed,
     })
   },
-
   // Increases the state counter in 1
   nextStep: function() {
     this.setState({
@@ -406,14 +434,12 @@ var CheckoutContainer = React.createClass({
       step_id : 'step' + this.state.step ,
     })
   },
-
   //Decreases the state counter in 1
   previousStep: function() {
     this.setState({
       step : this.state.step - 1
     })
   },
-
   render: function() {
 		switch (this.state.step) {
 			case 1:
@@ -426,6 +452,14 @@ var CheckoutContainer = React.createClass({
                         updateContactFormParams={this.updateContactFormParams}
                         step={this.state.step}
                         dateDjangoDefault={this.dateDjangoDefault}
+                        city={this.state.city}
+                        adress={this.state.adress}
+                        date={this.state.booking_date}
+                        payment_status={this.state.payment_status}
+                        email={this.state.email}
+                        phone_number={this.state.phone_number}
+                        pet_name={this.state.pet_name}
+                        pet_breed={this.state.pet_breed}
                     //   booking_form={this.state.booking_form}
                       />
                       <ProgressColumn
@@ -441,7 +475,6 @@ var CheckoutContainer = React.createClass({
                     </div>
                   </div>
                 </div>
-
 			case 2:
 				return    <div class="container">
                     <Header stepid={this.state.step_id} step={this.state.step}/>
@@ -483,8 +516,7 @@ var CheckoutContainer = React.createClass({
 	}
 })
 
-
 ReactDOM.render(
-	<CheckoutContainer/>,
+    <CheckoutContainer/>,
 	document.getElementById('container-checkout')
 )

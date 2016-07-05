@@ -1,5 +1,6 @@
 
 from .views import CheckoutPage, PaymentPage, PaymentConfirmPage, CookieTestSet, CookieTestVerify
+from .views import CookieTestSet, CookieTestVerify, CookieOrderIsSet, CookieOrderGet
 from django.conf.urls import include, url
 
 urlpatterns = [
@@ -9,4 +10,6 @@ urlpatterns = [
     #Cookies Handling
     url(r'^api/cookies/cookie_test_set/$', CookieTestSet, name='cookie_set_test'),
     url(r'^api/cookies/cookie_test_verify/$', CookieTestVerify, name='cookie_checkout_page'),
+    url(r'^api/cookies/cookie_order_isset/$', CookieOrderIsSet, name='cookie_order_isset'),
+    url(r'^api/cookies/cookie_order_get/$', CookieOrderGet, name='cookie_order_get'),
 ]
