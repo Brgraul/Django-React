@@ -187,3 +187,9 @@ AUTHENTICATION_BACKENDS = (
 #ACCOUNT_FORMS = {
 #    'login': 'booking_app.forms.SignupForm',
 #}
+
+#HEROKU
+# Simplified static file serving.
+# https://warehouse.python.org/project/whitenoise/
+
+STATICFILES_STORAGE = 'whitenoise.django.GzipManifestStaticFilesStorage'
