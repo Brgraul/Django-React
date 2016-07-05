@@ -18,6 +18,9 @@ import json
 from django.http import JsonResponse
 from django.core import serializers
 
+#Site
+from django.contrib.sites.models import Site
+
 #Asociating Payment Listeners#Asociate Listeners
 from sermepa.signals import payment_was_successful
 from sermepa.signals import payment_was_error
@@ -126,7 +129,8 @@ def PaymentPage(request):
     booking = get_object_or_404(Booking, pk=booking_id)
     order = get_object_or_404(Order, pk=order_id)
     pet = get_object_or_404(Pet,customer=customer.id )
-    print pet
+    #Getiing Site Domain
+    current_site = Site.objects.get_current()
     merchant_parameters = {
         "Ds_Merchant_Titular": customer.first_name + customer.last_name ,
         "Ds_Merchant_MerchantData": order.id, # id del Pedido o Carrito, para identificarlo en el mensaje de vuelta
@@ -136,9 +140,9 @@ def PaymentPage(request):
         "Ds_Merchant_Terminal": settings.SERMEPA_TERMINAL,
         "Ds_Merchant_MerchantCode": settings.SERMEPA_MERCHANT_CODE,
         "Ds_Merchant_Currency": settings.SERMEPA_CURRENCY,
-        "Ds_Merchant_MerchantURL": "http:/%s%s" % (settings.SERMEPA_SITE_DOMAIN, reverse('sermepa_ipn')),
-        "Ds_Merchant_UrlOK": "http://%s%s" % (settings.SERMEPA_SITE_DOMAIN, reverse('payment-confirm')),
-        "Ds_Merchant_UrlKO": "http://%s%s" % (settings.SERMEPA_SITE_DOMAIN, reverse('payment-confirm')),
+        "Ds_Merchant_MerchantURL": "http:/%s%s" % (current_site.domain, reverse('sermepa_ipn')),
+        "Ds_Merchant_UrlOK": "http://%s%s" % (current_site.domain, reverse('payment-confirm')),
+        "Ds_Merchant_UrlKO": "http://%s%s" % (current_site.domain, reverse('payment-confirm')),
     }
     print 'order:'
     print order

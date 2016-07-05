@@ -164,7 +164,6 @@ SERMEPA_TERMINAL = '001'
 SERMEPA_BUTTON_IMG = '/site_media/_img/targets.jpg'
 SERMEPA_CURRENCY = '978' #Euros
 SERMEPA_SIGNATURE_VERSION = 'HMAC_SHA256_V1' # This value is fixed
-SERMEPA_SITE_DOMAIN = 'localhost:8000'    # Your site domain
 SERMEPA_SECRET_KEY = 'sq7HjrUOBfKmC576ILgskD5srU870gJ7'     # Your Redsys Secret Key
 SERMEPA_BUTTON_TEXT = 'Confirmar y Pagar'
 # CKEDITOR SETTINGS
