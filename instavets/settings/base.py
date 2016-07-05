@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'ckeditor',
     'products_app',
+    'contact_app',
     'services_app',
     'debug_toolbar',
     'app_booking',

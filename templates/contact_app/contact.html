@@ -1,0 +1,22 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load static %}
+{% load bootstrap %}
+
+{% block body_content %}
+<section class="full-wrapp" id="contact" style="background-image: url({% static 'images/index/index_slide.jpg' %})">
+  <h1>¡Contáctanos!</h1>
+  <h3>Estamos aquí para resolver todas vuestras dudas.</h3>
+  <br/>
+</section>
+<div class="container">
+  <div class="row">
+  <div class="col-md-6">
+    {{form|bootstrap}}
+  </div>
+  <div class="col-md-6">
+    <input class="btn btn-cta-green" type="submit" style="submit" />
+  </div>
+  </div>
+</div>
+{% endblock%}
