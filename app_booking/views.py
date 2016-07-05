@@ -24,28 +24,10 @@ from django.contrib.sites.models import Site
 import requests
 from django.core.files import File
 
-def TestApi():
-    url = 'http://localhost:8000/sermepa/'
-
-    headers = {
-        'content-encoding': 'gzip',
-        'transfer-encoding': 'chunked',
-        'connection': 'keep-alive',
-        'content-type': 'application/x-www-form-urlencoded'
-    }
-
-    payload={
-        'Ds_MerchantParameters': 'sdafasgdagsdfhetdhrgeargaer',
-    }
-
-    r = requests.post(url, headers=headers, data=payload)
-    print r.text
 
 # Create your views here.
 @csrf_exempt
 def CheckoutPage(request):
-    print 'TestApi'
-    TestApi()
     if request.method == "POST":
         print request.POST
         data = request.POST
