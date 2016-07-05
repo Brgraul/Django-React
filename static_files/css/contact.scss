@@ -2,3 +2,11 @@
   height:395px;
   padding: 150px 0px 80px;
 }
+
+.e{
+  & > form > div.form-group{
+    width: 100% !important;
+    display: inline !important;
+    margin-right: 0% !important;
+  }
+}

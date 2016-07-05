@@ -20,9 +20,8 @@ def contacto(request):
 		instance.save()
 		print instance.person_name
 		context = {
-			"title": "Gracias, en breve contactaremos contigo."
+			'title': 'Gracias, en breve contactaremos contigo.',
+			'form' : ''
 		}
-		return redirect('/contacto')
-
 
 	return render(request, 'contact_app/contact.html', context)

@@ -9,7 +9,7 @@ class ContactForm(forms.ModelForm):
 		model = Message
 		fields = ['person_name','person_email','message_subject','message_content']
 		labels = {
-            'person_name': _('Nombre'),
+            'person_name': _('Nombre:'),
             'person_email': _('Correo:'),
             'message_subject': _('Asunto:'),
             'message_content': _('Contenido del mensaje:'),
@@ -19,8 +19,12 @@ class ContactForm(forms.ModelForm):
         }
         error_messages = {
             'person_name': {
-                'max_length': _("Tu nombre es demasiado largo."),
+				'required': 'Rellena este campo porfavor.'
             },
+			'person_email': {
+                'invalid': 'Porfavor introduce un email valido.',
+
+			}
         }
         widgets = {
             'person_email' : forms.TextInput(attrs = {'placeholder': 'poker@gmail.com'}),
