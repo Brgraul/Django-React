@@ -43,52 +43,58 @@
             <p class="form-sub" >La infomación de su consulta:</p>
             <div class="row">
             <div class="col-md-6">
+              <h4>Datos del cliente</h4>
               <ul>
                 <li>
-                  <h5>Nombre: </h5><h4>{{customer.first_name + customer.last_name}}</h4>
+                  <h5>Nombre y apellidos: </h5><h5>{{customer.first_name}} {{customer.last_name}}</h5>
                 </li>
                 <li>
-                  <h5>Apellidos: </h5><h4>{{customer.last_name}}</h4>
+                  <h5>Fecha y hora: </h5><h4>{{booking.date_booking|date:'d F f a'}}</h4>
                 </li>
                 <li>
-                  <h5>Fecha y hora: </h5><h4>{{booking.date_booking|date:'d F f a '}}</h4>
+                  <h5>Dirección: </h5><h5>{{customer.adress}}</h5>
                 </li>
                 <li>
-                  <h5>Dirección: </h5><h4>{{customer.adress}}</h4>
+                  <h5>Localidad: </h5><h5>{{customer.city}}</h5>
                 </li>
                 <li>
-                  <h5>Localidad: </h5><h4>{{customer.city}}</h4>
-                </li>
-                <li>
-                  <h5>Teléfono: </h5><h4>{{customer.phone_number}}</h4>
+                  <h5>Teléfono: </h5><h5>{{customer.phone_number}}</h5>
                 </li>
               </ul>
             </div>
             <div class="col-md-6">
+              <h4>Datos de la mascota</h4>
               <ul>
                 <li>
-                  <h5>Nombre: </h5><h4>{{pet.name}}</h4>
+                  <h5>Nombre: </h5><h5>{{pet.name}}</h5>
                 </li>
                 <li>
-                  <h5>Especie: </h5><h4>{{pet.species}}</h4>
+                  <h5>Especie: </h5><h5>{{pet.species}}</h5>
                 </li>
                 <li>
-                  <h5>Raza: </h5><h4>{{pet.breed}}</h4>
+                  <h5>Raza: </h5><h5>{{pet.breed}}</h5>
                 </li>
                 <li>
-                  <h5>Edad(Años): </h5><h4>{{pet.age}}</h4>
+                  <h5>Edad (Años): </h5><h5>{{pet.age}}</h5>
                 </li>
                 <li>
-                  <h5>Sexo: </h5><h4>{{pet.gender}}</h4>
+                  <h5>Sexo: </h5><h5>{{pet.gender}}</h5>
                 </li>
               </ul>
             </div>
             </div>
+            <div class="linebreak1"></div>
+            <div class="row">
+              <div class="col-md-5 col-md-offset-7">
+                <h4>Total a pagar: </h4>
+                <h4>39€</h4>
             {% if debug %}
               {{ form.sandbox }}
             {% else %}
               {{ form.render }}
             {% endif %}
+          </div>
+          </div>
         </div>
         </div>
       </div>

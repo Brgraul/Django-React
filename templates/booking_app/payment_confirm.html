@@ -38,13 +38,56 @@
     </div>
     <div class="container">
       <div class="row">
-        <div class="col-md-7 checkout-form-container">
-            <p class="form-title" >Gracias! Si tiene cualquier duda ...</p>
-            <p class="form-sub" >La infomación de su consulta:</p>
+        <div class="col-md-12 checkout-form-container">
+            <p class="form-title"> Gracias por su visita</p>
+            <p class="form-sub" >Si tiene alguna duda no tiene más que contactarnos.</p>
+            <div class="row">
+            <div class="col-md-6">
+              <h4>Datos del cliente</h4>
+              <ul>
+                <li>
+                  <h5>Nombre y apellidos: </h5><h5>{{customer.first_name}} {{customer.last_name}}</h5>
+                </li>
+                <li>
+                  <h5>Fecha y hora: </h5><h4>{{booking.date_booking|date:'d F f a'}}</h4>
+                </li>
+                <li>
+                  <h5>Dirección: </h5><h5>{{customer.adress}}</h5>
+                </li>
+                <li>
+                  <h5>Localidad: </h5><h5>{{customer.city}}</h5>
+                </li>
+                <li>
+                  <h5>Teléfono: </h5><h5>{{customer.phone_number}}</h5>
+                </li>
+              </ul>
+            </div>
+            <div class="col-md-6">
+              <h4>Datos de la mascota</h4>
+              <ul>
+                <li>
+                  <h5>Nombre: </h5><h5>{{pet.name}}</h5>
+                </li>
+                <li>
+                  <h5>Especie: </h5><h5>{{pet.species}}</h5>
+                </li>
+                <li>
+                  <h5>Raza: </h5><h5>{{pet.breed}}</h5>
+                </li>
+                <li>
+                  <h5>Edad (Años): </h5><h5>{{pet.age}}</h5>
+                </li>
+                <li>
+                  <h5>Sexo: </h5><h5>{{pet.gender}}</h5>
+                </li>
+              </ul>
+            </div>
+            </div>
+            <div class="linebreak1"></div>
+          </div>
+        </div>
         </div>
       </div>
-    </div>
-</div>
 {% endblock content %}
 
 {% block javascript%}

@@ -80,7 +80,7 @@ div.col-md-6 > ul > li{
   font-size: 25px;
   line-height: 125%;
   display: block;
-  margin-bottom: 30px;
+  margin-bottom: 50px;
 }
 
   #step1{
@@ -195,4 +195,37 @@ div.form-group:nth-child(6){
 div.form-group:nth-child(8){
   width: 45%;
   display: inline-table;
+}
+
+.checkout-form-container{
+  & > div.row > div.col-md-6:nth-child(2){
+      padding-left: 9%;
+  }
+  & > div.linebreak1{
+    margin-top: 15px;
+    margin-bottom: 70px;
+  }
+}
+
+.divider{
+ display: inline-block;
+ width: 0;
+ height: 1em;
+ border-left: 1px solid $instavets_grey;
+ border-right: 1px solid $instavets_grey;
+}
+
+.row > div.col-md-5{
+  & > h4:first-child{
+    display: inline;
+    margin-bottom: 30px;
+  }
+  & > h4:nth-child(2){
+    color: $instavets_green;
+    display: inline;
+  }
+}
+
+#tpv_form > input.btn-cta-green{
+  margin-top: 15px;
 }
