@@ -196,7 +196,7 @@ var NewPet = React.createClass({
     e.preventDefault()
     var form = this.refs.newPetForm.getForm()
     var url_checkout = window.location.href;
-    var url_payment = window.location.host + '/payment/';
+    var url_payment = 'https://' + window.location.host + '/payment/';
     $.ajax({
          url : url_checkout, // the endpoint
          type : "POST", // http method
