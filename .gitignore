@@ -13,3 +13,6 @@ settings/prod.py
 
 ### OSX ###
 *.DS_Store
+
+#Static Files
+static_collected/*
