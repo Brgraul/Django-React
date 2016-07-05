@@ -36,3 +36,4 @@ uritemplate==0.6
 virtualenv==15.0.2
 virtualenv-clone==0.2.6
 virtualenvwrapper==4.7.1
+whitenoise==3.2
