@@ -119,8 +119,10 @@ var Payment = React.createClass({
   onSignup: function(cleanedData) {
     console.log('on isgnup')
     //Handle payment right here with the tpv
+    var url_checkout = window.location.href;
+    var url_payment = window.location.hostname + '/payment/';
     $.ajax({
-         url : "http://localhost:8000/checkout/", // the endpoint
+         url : url_checkout, // the endpoint
          type : "POST", // http method
          data : { data : form.cleanedData }, // data sent with the post request
 
@@ -129,7 +131,7 @@ var Payment = React.createClass({
              $('#post-text').val(''); // remove the value from the input
           //   console.log(json); // log the returned json to the console
              console.log("success on post"); // another sanity check
-             window.location.href("http://localhost:8000/payment/");
+             window.location.href(payment_url);
          },
 
          // handle a non-successful response
@@ -207,8 +209,9 @@ var Booking = React.createClass({
     var form = this.refs.bookingForm.getForm()
     var booking_date_django = this.props.dateDjangoDefault(form.cleanedData.booking_date, form.cleanedData.booking_hour)
     console.log(booking_date_django)
+    var url_checkout = window.location.href;
     $.ajax({
-         url : "http://localhost:8000/checkout/",
+         url : url_checkout,
          type : "POST",
          data : { step: this.props.step, data : form.cleanedData, booking_date_django: booking_date_django }, // data sent with the post request
          success : function(json) {
