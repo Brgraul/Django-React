@@ -14757,7 +14757,7 @@
 	    e.preventDefault();
 	    var form = this.refs.newPetForm.getForm();
 	    var url_checkout = window.location.href;
-	    var url_payment = 'https://' + window.location.host + '/payment/';
+	    var url_payment = document.location.origin + '/payment/';
 	    $.ajax({
 	      url: url_checkout, // the endpoint
 	      type: "POST", // http method
