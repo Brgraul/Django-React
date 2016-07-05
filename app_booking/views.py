@@ -130,7 +130,6 @@ def PaymentPage(request):
     order = get_object_or_404(Order, pk=order_id)
     pet = get_object_or_404(Pet,customer=customer.id )
     #Getiing Site Domain
-    current_site = Site.objects.get_current()
     merchant_parameters = {
         "Ds_Merchant_Titular": customer.first_name + customer.last_name ,
         "Ds_Merchant_MerchantData": order.id, # id del Pedido o Carrito, para identificarlo en el mensaje de vuelta
@@ -140,10 +139,11 @@ def PaymentPage(request):
         "Ds_Merchant_Terminal": settings.SERMEPA_TERMINAL,
         "Ds_Merchant_MerchantCode": settings.SERMEPA_MERCHANT_CODE,
         "Ds_Merchant_Currency": settings.SERMEPA_CURRENCY,
-        "Ds_Merchant_MerchantURL": "http:/%s%s" % (current_site.domain, reverse('sermepa_ipn')),
-        "Ds_Merchant_UrlOK": "http://%s%s" % (current_site.domain, reverse('payment-confirm')),
-        "Ds_Merchant_UrlKO": "http://%s%s" % (current_site.domain, reverse('payment-confirm')),
+        "Ds_Merchant_MerchantURL": "http:/%s%s" % (request.get_host(), reverse('sermepa_ipn')),
+        "Ds_Merchant_UrlOK": "http://%s%s" % (request.get_host(), reverse('payment-confirm')),
+        "Ds_Merchant_UrlKO": "http://%s%s" % (request.get_host(), reverse('payment-confirm')),
     }
+
     print 'order:'
     print order
     if trans_type == '0': #Compra puntual
