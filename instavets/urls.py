@@ -29,7 +29,7 @@ urlpatterns = [
     url(r'^tarifas/', views.Pricing, name='tarifas'),
     url(r'^servicios/', include('services_app.urls')),
     url(r'^productos/', include('products_app.urls')),
-    url(r'^contacto/', include('contact_form.urls')),
+    url(r'^contacto/', include('contact_app.urls')),
     url(r'^jet/', include('jet.urls', 'jet')),  # Django JET URLS
     url(r'^jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),  # Django JET dashboard URLS
     url(r'^admin/', admin.site.urls),

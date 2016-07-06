@@ -5,7 +5,7 @@ const PATHS = {
   app: path.join(__dirname, 'app/loader.js'),
   build: path.join(__dirname, 'build')
 };
-
+var webpack = require('webpack');
 module.exports = {
   // Entry accepts a path or an object of entries.
   // We'll be using the latter form given it's
@@ -13,7 +13,7 @@ module.exports = {
   entry: PATHS.app,
   output: {
     path: PATHS.build,
-    filename: 'test.js'
+    filename: 'test.min.js'
   },
   module: {
     loaders: [
@@ -31,6 +31,9 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: 'Instavets'
-    })
+    }),
+    new webpack.optimize.DedupePlugin(),
+    new webpack.optimize.OccurenceOrderPlugin(),
+    new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
   ]
 };
