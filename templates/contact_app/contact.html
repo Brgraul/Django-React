@@ -1,7 +1,5 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
-{% load static %}
-{% load bootstrap %}
 
 {% block body_content %}
 <section class="full-wrapp" id="contact" style="background-image: url({% static 'images/index/index_slide.jpg' %})">
@@ -9,16 +7,35 @@
   <h3>Estamos aquí para resolver todas vuestras dudas.</h3>
   <br/>
 </section>
+
 <div class="container">
   <h1>{{title}}</h1>
-  <div class="row">
-  <div class="col-md-6 e">
-    <form id='contacto' method='POST' action=''>{% csrf_token %}
-      {{form}}
-      <input type='submit' onsubmit="return false" value='Enviar' class="btn btn-cta-green" />
-		</form>
+  <div class="row e" >
+  <div class="col-md-6 b">
+  <div class="container">
+    <img class="logo-no-text" src="{% static 'images/index/logo_sin_eslogan.jpg'%} "/>
+    <h3>Info@instavets.com</h3>
+    <h5>Calle de Alonso Cano 66</h5>
+    <h5>28003 Madrid</h5>
+    <i class="fa fa-phone fa-2x" aria-hidden="true"></i>
   </div>
-  <div class="col-md-6">
+  </div>
+  <div class="col-md-6 a">
+    <form method='POST' action=''>{% csrf_token %}
+      {% for field in form %}
+        <div class="formfield">
+          {{ field.label_tag }}
+          {{ field }}
+          {{ field.errors }}
+        </div>
+          {% if field.help_text %}
+            <img class="tooltip" title="{{ field.help_text }}" src="{{ MEDIA_URL }}images/icon_help.png">
+          {% endif %}
+      {% endfor %}
+      <div class="right-align">
+        <input type='submit' onsubmit="return false" value='Enviar' class="btn btn-cta-green" />
+      </div>
+    </form>
   </div>
   </div>
 </div>
