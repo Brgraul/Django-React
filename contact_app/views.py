@@ -13,7 +13,7 @@ def contacto(request):
 		'title' : title,
 		'form': form
 	}
-
+	template = 'contact_app/contact.html'
 	if form.is_valid():
 		print request.POST
 		instance = form.save(commit=False)
@@ -23,5 +23,6 @@ def contacto(request):
 			'title': 'Gracias, en breve contactaremos contigo.',
 			'form' : ''
 		}
+		template = 'contact_app/contact_success.html'
 
-	return render(request, 'contact_app/contact.html', context)
+	return render(request, template , context)

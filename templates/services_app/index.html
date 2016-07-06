@@ -6,7 +6,7 @@
 		<div class="container container-slide-overlay">
 			<h1>Veterinario a domicilio</h1>
 			<h3>menos estrés para tu mascota, mayor comodidad para ti</h3>
-			<button class="btn btn-cta-white" > PIDE TU CITA</button>
+			<a class="btn btn-cta-white" href="{% url 'checkout' %}">PIDE TU CITA</a>
 		</div>
 		<img id="index_slide"  alt="Veterinaria a Domicilio" src="{% static 'images/index/index_slide.jpg' %}"/>
 	</div>
@@ -69,7 +69,7 @@
 				<h1>39€</h1>
 				<h2>CONSULTA A DOMICILIO</h2>
 				<h5>Incluye visita + Revisión completa + Ayudarte con todas las dudas que tengas sobre el cuidado de tu mascota.</h5>
-				<button class="btn btn-cta-green">PIDE TU CITA</button>
+				<a class="btn btn-cta-green" href="{% url 'checkout' %}">PIDE TU CITA</a>
 			</div>
 		</div>
 	</div>

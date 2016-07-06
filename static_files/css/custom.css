@@ -2361,6 +2361,9 @@ footer {
       float: right;
       display: inline-block; }
 
+div.col-xs-6:nth-child(2) > ul:nth-child(2) > li:nth-child(1) {
+  margin-top: 18px; }
+
 /*SCSS for the index page*/
 div.container.container-slide {
   text-align: center;
@@ -2883,15 +2886,19 @@ div.form-group:nth-child(8) {
 
 .container > div.row.e {
   margin-top: 50px; }
-  .container > div.row.e > div.col-md-6.b {
+  .container > div.row.e > div.col-md-6.b > img {
+    width: 100%;
+    margin-bottom: 40px;
     max-width: 280px; }
-    .container > div.row.e > div.col-md-6.b > img {
-      width: 100%;
-      margin-bottom: 40px; }
-    .container > div.row.e > div.col-md-6.b > h3 {
-      margin-bottom: 20px; }
-    .container > div.row.e > div.col-md-6.b > h5 {
-      margin-bottom: 10px; }
+  .container > div.row.e > div.col-md-6.b > h3 {
+    margin-bottom: 20px; }
+  .container > div.row.e > div.col-md-6.b > h5:nth-child(4) {
+    margin-bottom: 20px; }
+  .container > div.row.e > div.col-md-6.b > h5 {
+    margin-bottom: 10px; }
+  .container > div.row.e > div.col-md-6.b > i, .container > div.row.e > div.col-md-6.b h3.a {
+    display: inline;
+    margin-top: 40px; }
   .container > div.row.e > div.a.col-md-6 > form {
     margin-bottom: 50px; }
     .container > div.row.e > div.a.col-md-6 > form > div.right-align {
@@ -2914,5 +2921,12 @@ div.form-group:nth-child(8) {
         background-image: none;
         border: 1px solid #ccc;
         border-radius: .25rem; }
+
+.contact-banner {
+  text-align: center;
+  padding-bottom: 60px;
+  padding-top: 30px; }
+  .contact-banner > h3 {
+    margin-bottom: 15px; }
 
 /*# sourceMappingURL=custom.css.map */
