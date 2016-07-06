@@ -2883,14 +2883,14 @@ div.form-group:nth-child(8) {
 
 .container > div.row.e {
   margin-top: 50px; }
-  .container > div.row.e > div.col-md-6.b > div.container {
+  .container > div.row.e > div.col-md-6.b {
     max-width: 280px; }
-    .container > div.row.e > div.col-md-6.b > div.container > img {
+    .container > div.row.e > div.col-md-6.b > img {
       width: 100%;
       margin-bottom: 40px; }
-    .container > div.row.e > div.col-md-6.b > div.container > h3 {
+    .container > div.row.e > div.col-md-6.b > h3 {
       margin-bottom: 20px; }
-    .container > div.row.e > div.col-md-6.b > div.container > h5 {
+    .container > div.row.e > div.col-md-6.b > h5 {
       margin-bottom: 10px; }
   .container > div.row.e > div.a.col-md-6 > form {
     margin-bottom: 50px; }
