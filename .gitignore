@@ -17,6 +17,12 @@ settings/prod.py
 #Static Files
 static_collected/*
 
-#Deployment 
+#Deployment
 instavets/manage.py
 instavets/wsgi.py
+
+#Server Files
+.bash_history
+.bash_logout
+.bashrc
+.profile
