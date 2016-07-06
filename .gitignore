@@ -26,3 +26,4 @@ instavets/wsgi.py
 .bash_logout
 .bashrc
 .profile
+venv/*
