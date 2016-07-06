@@ -21,8 +21,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'dv4$wf-a)byi_yrb6$zigc+1y5y9scnu+vj$ng5vq3b3qk*nhd'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-TEMPLATE_DEBUG = False
+DEBUG = True
+TEMPLATE_DEBUG = True
 
 
 ALLOWED_HOSTS = ['185.14.187.119']
@@ -193,8 +193,6 @@ AUTHENTICATION_BACKENDS = (
 #ACCOUNT_FORMS = {
 #    'login': 'booking_app.forms.SignupForm',
 #}
-
-
 
 U_LOGFILE_NAME = os.path.join(os.path.dirname(BASE_DIR), 'logs/development.log')
 U_LOGFILE_SIZE = 1 * 1024 * 1024

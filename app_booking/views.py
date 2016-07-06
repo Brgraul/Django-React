@@ -24,7 +24,6 @@ from django.contrib.sites.models import Site
 import requests
 from django.core.files import File
 
-
 # Create your views here.
 @csrf_exempt
 def CheckoutPage(request):
@@ -107,9 +106,9 @@ def PaymentPage(request):
         "Ds_Merchant_Terminal": settings.SERMEPA_TERMINAL,
         "Ds_Merchant_MerchantCode": settings.SERMEPA_MERCHANT_CODE,
         "Ds_Merchant_Currency": settings.SERMEPA_CURRENCY,
-        "Ds_Merchant_MerchantURL": "https://%s%s" % (request.get_host(), reverse('sermepa_ipn')),
-        "Ds_Merchant_UrlOK": "https://%s%s" % (request.get_host(), reverse('payment-confirm')),
-        "Ds_Merchant_UrlKO": "https://%s%s" % (request.get_host(), reverse('payment-confirm')),
+        "Ds_Merchant_MerchantURL": "http://%s%s" % (request.get_host(), reverse('sermepa_ipn')),
+        "Ds_Merchant_UrlOK": "http://%s%s" % (request.get_host(), reverse('payment-confirm')),
+        "Ds_Merchant_UrlKO": "http://%s%s" % (request.get_host(), reverse('payment-confirm')),
     }
     print 'order:'
     print order
