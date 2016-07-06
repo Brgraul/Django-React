@@ -15,19 +15,19 @@ def payment_ok(sender, **kwargs):
     para asociarlo a tu Pedido o Carrito'''
     print 'payment ok signal initiated'
     order = Order.objects.get(pk=sender.Ds_MerchantData)
-    if
     order.status = 'pagado'
     order.auth_code = sender.Ds_AuthorisationCode #Guardar este valor en caso
     # de poder hacer devoluciones, es necesario.
     order.save()
     #Maddar emails etc ....
-    print 'Order Saved'
+    print 'Order Pagado'
 
 def payment_ko(sender, **kwargs):
     print 'payment_ko'
     order = Order.objects.get(pk=sender.Ds_MerchantData)
     order.status = 'error_pago'
     order.save()
+    print 'Error pago'
     pass
 
 def sermepa_ipn_error(sender, **kwargs):

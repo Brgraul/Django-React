@@ -1,11 +1,9 @@
 {% extends 'base_checkout.html' %}
 {% load staticfiles %}
 {% load static %}
-{% load bootstrap %}
 {% block stylesheets %}
 {% endblock stylesheets %}
 {% block content %}
-<link href="{% static 'css/jquery.datetimepicker.min.css' %}" rel="stylesheet" media="screen">
 <div class="container-checkout" 'container-checkout'>
     <div class="header-booking">
       <div class="container ">
@@ -101,6 +99,3 @@
     </div>
 </div>
 {% endblock content %}
-
-{% block javascript%}
-{% endblock javascript%}

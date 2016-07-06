@@ -1,7 +1,7 @@
 var forms = require('newforms')
-var moment = require('moment')
+//var moment = require('moment')
 var BootstrapForm = require('newforms-bootstrap')
-var Loader = require('react-loader');
+//var Loader = require('react-loader');
 
 /* Forms Locale*/
 forms.addLocale('es', {
