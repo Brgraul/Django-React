@@ -22,9 +22,12 @@ def sermepa_ipn(request):
         log.info('form is valid')
         # Get parameters from decoded Ds_MerchantParameters object
         merchant_parameters = decode_parameters(form.cleaned_data['Ds_MerchantParameters'])
+        print 'Response Merchant Parametes'
+        print merchant_parameters
         sermepa_resp = SermepaResponse()
-
         if 'Ds_Date' in merchant_parameters:
+            print 'ds date:'
+            print merchant_parameters['Ds_Date']
             sermepa_resp.Ds_Date = dateutil.parser.parse((merchant_parameters['Ds_Date']).replace('%2F','/'), dayfirst=True)
         if 'Ds_Hour' in merchant_parameters:
             sermepa_resp.Ds_Hour = dateutil.parser.parse((merchant_parameters['Ds_Hour']).replace('%3A',':'))
