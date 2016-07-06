@@ -27,3 +27,5 @@ instavets/wsgi.py
 .bashrc
 .profile
 venv/*
+venv
+static_collected/*
