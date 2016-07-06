@@ -11,7 +11,6 @@ from sermepa.signals import signature_error
 
 #Define Payment Lsiteners
 def payment_ok(sender, **kwargs):
-    print 'payment ok'
     '''sender es un objecto de clase SermepaResponse. Utiliza el campo Ds_MerchantData
     para asociarlo a tu Pedido o Carrito'''
     print 'payment ok signal initiated'
@@ -25,7 +24,7 @@ def payment_ok(sender, **kwargs):
 
 def payment_ko(sender, **kwargs):
     print 'payment_ko'
-    order = Order.objects.get(ref_code=sender.Ds_MerchantData)
+    order = Order.objects.get(pk=sender.Ds_MerchantData)
     order.status = 'error_pago'
     order.auth_code = sender.Ds_AuthorisationCode #Guardar este valor en caso
     order.save()
