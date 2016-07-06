@@ -16,3 +16,7 @@ settings/prod.py
 
 #Static Files
 static_collected/*
+
+#Deployment 
+instavets/manage.py
+instavets/wsgi.py
