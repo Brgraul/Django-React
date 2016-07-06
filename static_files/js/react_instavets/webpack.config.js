@@ -13,7 +13,7 @@ module.exports = {
   entry: PATHS.app,
   output: {
     path: PATHS.build,
-    filename: 'test.min.js'
+    filename: 'react_instavets.min.js'
   },
   module: {
     loaders: [
@@ -34,6 +34,14 @@ module.exports = {
     }),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
+    new webpack.DefinePlugin({
+      'process.env':{
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }),
+    new webpack.optimize.UglifyJsPlugin({
+      mangle: false,
+      sourcemap: false
+    }),
   ]
 };

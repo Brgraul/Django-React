@@ -31,7 +31,9 @@
     "newforms-bootstrap": "^2.0.0",
     "pickadate": "^3.5.6",
     "react": "^15.2.0",
+    "react-dom": "^15.2.0",
     "react-loader": "^2.4.0",
+    "react-loader-advanced": "^1.4.1",
     "webpack": "^1.13.1"
   }
 }
