@@ -14,7 +14,8 @@ def payment_ok(sender, **kwargs):
     '''sender es un objecto de clase SermepaResponse. Utiliza el campo Ds_MerchantData
     para asociarlo a tu Pedido o Carrito'''
     print 'payment ok signal initiated'
-    order = Order.objects.get(ref_code=sender.Ds_MerchantData)
+    order = Order.objects.get(pk=sender.Ds_MerchantData)
+    if
     order.status = 'pagado'
     order.auth_code = sender.Ds_AuthorisationCode #Guardar este valor en caso
     # de poder hacer devoluciones, es necesario.
@@ -26,7 +27,6 @@ def payment_ko(sender, **kwargs):
     print 'payment_ko'
     order = Order.objects.get(pk=sender.Ds_MerchantData)
     order.status = 'error_pago'
-    order.auth_code = sender.Ds_AuthorisationCode #Guardar este valor en caso
     order.save()
     pass
 

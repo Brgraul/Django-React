@@ -26,11 +26,11 @@ class SermepaIdTPV(models.Model):
 
     def __unicode__(self):
         return self.idtpv
-        
+
 class SermepaResponse(models.Model):
-    
+
     creation_date = models.DateTimeField(auto_now_add=True)
-    
+
     Ds_Date = models.DateField()
     Ds_Hour = models.TimeField()
     Ds_SecurePayment = models.IntegerField()
@@ -54,13 +54,13 @@ class SermepaResponse(models.Model):
 
     def check_signature(self):
         SECRET_KEY = settings.SERMEPA_SECRET_KEY
-             
-        key = '%s%s%s%s%s%s' % (self.Ds_Amount, 
-                                self.Ds_Order, 
-                                self.Ds_MerchantCode, 
-                                self.Ds_Currency, 
-                                self.Ds_Response, 
+
+        key = '%s%s%s%s%s%s' % (self.Ds_Amount,
+                                self.Ds_Order,
+                                self.Ds_MerchantCode,
+                                self.Ds_Currency,
+                                self.Ds_Response,
                                 SECRET_KEY,)
         sha1 = hashlib.sha1(key.encode('utf-8'))
         return sha1.hexdigest().upper() == self.Ds_Signature
-    check_signature.boolean = True        
+    check_signature.boolean = True

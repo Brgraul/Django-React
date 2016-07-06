@@ -108,7 +108,7 @@ def PaymentPage(request):
         "Ds_Merchant_Currency": settings.SERMEPA_CURRENCY,
         "Ds_Merchant_MerchantURL": "http://%s%s" % (request.get_host(), reverse('sermepa_ipn')),
         "Ds_Merchant_UrlOK": "http://%s%s" % (request.get_host(), reverse('payment-confirm')),
-        "Ds_Merchant_UrlKO": "http://%s%s" % (request.get_host(), reverse('payment-confirm')),
+        "Ds_Merchant_UrlKO": "http://%s%s" % (request.get_host(), reverse('payment-error')),
     }
     print 'order:'
     print order
@@ -181,6 +181,26 @@ def PaymentConfirmPage(request):
         'pet': pet,
     }
     return render(request, 'booking_app/payment_confirm.html', context )
+
+#Here maek things if payment is not complete
+#Payment Confirm Page
+def PaymentErrorPage(request):
+    customer_id = request.session.get('customer_id')
+    booking_id = request.session.get('booking_id')
+    order_id = request.session.get('order_id')
+    customer = get_object_or_404(Customer, pk=customer_id)
+    booking = get_object_or_404(Booking, pk=booking_id)
+    order = get_object_or_404(Order, pk=order_id)
+    pet = get_object_or_404(Pet,customer=customer.id )
+    context = {
+        'customer': customer,
+        'order': order,
+        'booking': booking,
+        'pet': pet,
+    }
+    return render(request, 'booking_app/payment_error.html', context )
+
+
 
 #----------------------------Cookies--------------------------------------------
 #Test If Cookies can be set on user browser
