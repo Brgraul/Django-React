@@ -20,6 +20,7 @@ static_collected/*
 #Deployment
 instavets/manage.py
 instavets/wsgi.py
+instavets/db.sqlite3
 
 #Server Files
 .bash_history
