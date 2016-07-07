@@ -2,7 +2,7 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const PATHS = {
-  app: path.join(__dirname, 'app/loader.js'),
+  app: path.join(__dirname, 'app/checkout.js'),
   build: path.join(__dirname, 'build')
 };
 var webpack = require('webpack');
@@ -13,15 +13,16 @@ module.exports = {
   entry: PATHS.app,
   output: {
     path: PATHS.build,
-    filename: 'test.min.js'
+    filename: 'react_instavets.min.js'
   },
   module: {
     loaders: [
       {
-        test: /\.jsx?/,
-        exclude: /(node_modules|bower_components)/,
+        test: /\.js?$/,
+        exclude: /node_modules/,
         loader: 'babel-loader',
         query: {
+          presets: ['react'],
           plugins: ['react-html-attrs', 'transform-class-properties', 'transform-decorators-legacy'],
         }
       }
@@ -33,6 +34,18 @@ module.exports = {
     }),
     new webpack.optimize.DedupePlugin(),
     new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
+    /*
+    new webpack.DefinePlugin({
+      'process.env':{
+        'NODE_ENV': JSON.stringify('production')
+      }
+    }),*/
+    new webpack.optimize.UglifyJsPlugin({
+      mangle: false,
+      sourcemap: false,
+      compress: {
+        warnings: true,
+      }
+    }),
   ]
 };

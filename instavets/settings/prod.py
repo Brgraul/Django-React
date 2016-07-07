@@ -46,8 +46,8 @@ INSTALLED_APPS = [
     'ckeditor',
     'products_app',
     'services_app',
-    'debug_toolbar',
     'app_booking',
+    'contact_app',
     #All Auth
     'allauth',
     'allauth.account',
