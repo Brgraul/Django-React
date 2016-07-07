@@ -4,14 +4,16 @@
   "description": "test App",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "webpack -d --watch",
+    "build": "webpack -p"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
-    "babel-core": "^6.9.1",
+    "babel-core": "^6.10.4",
     "babel-loader": "^6.2.4",
+    "babel-preset-es2015": "^6.9.0",
     "dedupe": "^2.0.3",
     "html-webpack-plugin": "^2.21.0",
     "uglify-js": "^2.7.0",
@@ -24,16 +26,19 @@
     "babel-plugin-react-html-attrs": "^2.0.0",
     "babel-plugin-transform-class-properties": "^6.9.1",
     "babel-plugin-transform-decorators-legacy": "^1.3.4",
-    "babel-preset-react": "^6.5.0",
+    "babel-preset-es2015": "^6.9.0",
+    "babel-preset-react": "^6.11.1",
     "html-webpack-plugin": "^2.21.0",
     "moment": "^2.13.0",
     "newforms": "^0.13.2",
     "newforms-bootstrap": "^2.0.0",
     "pickadate": "^3.5.6",
     "react": "^15.2.0",
+    "react-addons-perf": "^15.2.0",
     "react-dom": "^15.2.0",
     "react-loader": "^2.4.0",
     "react-loader-advanced": "^1.4.1",
+    "react-tether": "^0.5.2",
     "webpack": "^1.13.1"
   }
 }

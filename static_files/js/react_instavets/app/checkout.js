@@ -1,11 +1,8 @@
 var React = require('react');
 var ReactDOM = require('react-dom');
 var forms = require('newforms')
-//var moment = require('moment')
 var BootstrapForm = require('newforms-bootstrap')
-//var Loader = require('react-loader-advanced');
-var Loader = require('react-loader');
-
+var Tether = require('react-tether');
 
 /* We are selecting the step of the process by means of the id, and in the case of the 3rd step
 we took advantage of the id_nesting */
@@ -87,7 +84,7 @@ var Booking = React.createClass({
                 rowComponent="li"
                 ref="bookingForm"
                 >
-               <BootstrapForm/>
+                  <BootstrapForm />
                 </forms.RenderForm>
                 <button class="btn-cta-green">Guardar y continuar</button>
               </form>
@@ -116,10 +113,10 @@ var Booking = React.createClass({
   onSignup: function(cleanedData) {
     console.log('on isgnup')
   },
+  /*
   propTypes: {
     onSignup: React.PropTypes.func.isRequired
   },
-  /*
   onFormChange: function(){
     var form = this.refs.bookingForm.getForm()
     this.props.updateContactFormParams(form.cleanedData);
@@ -160,7 +157,7 @@ var NewPet = React.createClass({
               <p class="form-sub" >Nos preocupamos por su amigo peludo</p>
               <form onSubmit={this._onSubmit} onChange={this.onFormChange}>
               <forms.RenderForm form={NewPetForm} ref="newPetForm">
-              <BootstrapForm/>
+                <BootstrapForm form={NewPetForm} />
               </forms.RenderForm>
               <button class="btn-cta-green">Guardar y continuar</button>
               </form>
@@ -228,6 +225,8 @@ var ProgressColumn = React.createClass({
 /* PARENT TO ALL THE ELEMENTS OF THE APP*/
 var CheckoutContainer = React.createClass({
 	getInitialState: function() {
+    //window.Perf = Perf;
+    //Perf.start()
 		return {
       loaded: false,
       step: 1,
@@ -253,9 +252,7 @@ var CheckoutContainer = React.createClass({
       url_order_get: 'http://localhost:8000/api/cookies/cookie_order_get/',
 		}
 	},
-  componentDidMount: function () {
-    this.setState({ loaded: true });
-  },
+
   //Set Test Cookie
   cookieTestSet: function(){
     $.ajax({
@@ -323,7 +320,6 @@ var CheckoutContainer = React.createClass({
     var seconds = 0;
     var milliseconds = 0;
     var date_django = new Date(year, month, day, hours, minutes, seconds, milliseconds);
-    console.log(date_django);
     //Needs to be converted to UTC because of django format
     var date_django = date_django.toUTCString();
     return date_django;
@@ -371,25 +367,13 @@ var CheckoutContainer = React.createClass({
 			case 1:
 				return  <div class="container">
                     <Header stepid={this.state.step_id}/>
-                    <div class="container">
-                      <Loader loaded={this.state.loaded}>
+                      <div class="container">
                         <div class="row">
-                          <Booking
-                            nextStep={this.nextStep}
-                            updateContactFormParams={this.updateContactFormParams}
-                            step={this.state.step}
-                            dateDjangoDefault={this.dateDjangoDefault}
-                            city={this.state.city}
-                            adress={this.state.adress}
-                            date={this.state.booking_date}
-                            payment_status={this.state.payment_status}
-                            email={this.state.email}
-                            phone_number={this.state.phone_number}
-                            pet_name={this.state.pet_name}
-                            pet_breed={this.state.pet_breed}
-                        //   booking_form={this.state.booking_form}
-                          />
-                          <ProgressColumn
+                            <Booking
+                              nextStep={this.nextStep}
+                              updateContactFormParams={this.updateContactFormParams}
+                              step={this.state.step}
+                              dateDjangoDefault={this.dateDjangoDefault}
                               city={this.state.city}
                               adress={this.state.adress}
                               date={this.state.booking_date}
@@ -398,10 +382,20 @@ var CheckoutContainer = React.createClass({
                               phone_number={this.state.phone_number}
                               pet_name={this.state.pet_name}
                               pet_breed={this.state.pet_breed}
-                          />
+                          //   booking_form={this.state.booking_form}
+                            />
+                            <ProgressColumn
+                                city={this.state.city}
+                                adress={this.state.adress}
+                                date={this.state.booking_date}
+                                payment_status={this.state.payment_status}
+                                email={this.state.email}
+                                phone_number={this.state.phone_number}
+                                pet_name={this.state.pet_name}
+                                pet_breed={this.state.pet_breed}
+                            />
                         </div>
-                      </Loader>
-                    </div>
+                      </div>
                   </div>
 			case 2:
 				return    <div class="container">
@@ -447,6 +441,6 @@ var CheckoutContainer = React.createClass({
 })
 
 ReactDOM.render(
-    <CheckoutContainer/>,
+  <CheckoutContainer/>,
 	document.getElementById('container-checkout')
 )
