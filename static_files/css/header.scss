@@ -65,9 +65,19 @@ header > nav.navbar{
   text-align: center;
   border-radius: 0px;
   width: 200px;
+  width: -moz-available;
+  margin-top: 0px;
 }
 
 .dropdown-item:hover,
 .dropdown-item:active{
   color: $instavets_green;
+}
+
+ul.nav li.dropdown:hover ul.dropdown-menu {
+  display: block;
+}
+
+.dropdown{
+  text-align: center;
 }

@@ -1,3 +1,6 @@
+import React from "react";
+import ReactDom from "react-dom";
+
 var forms = require('newforms')
 //var moment = require('moment')
 var BootstrapForm = require('newforms-bootstrap')

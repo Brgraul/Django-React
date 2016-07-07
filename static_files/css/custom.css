@@ -2307,11 +2307,19 @@ header > nav.navbar {
 .dropdown-menu {
   text-align: center;
   border-radius: 0px;
-  width: 200px; }
+  width: 200px;
+  width: -moz-available;
+  margin-top: 0px; }
 
 .dropdown-item:hover,
 .dropdown-item:active {
   color: #00a099; }
+
+ul.nav li.dropdown:hover ul.dropdown-menu {
+  display: block; }
+
+.dropdown {
+  text-align: center; }
 
 /* Footer Styles*/
 footer {
@@ -2642,6 +2650,15 @@ div.container.container-white-background > div.row h2 {
   display: block;
   margin-bottom: 15px; }
 div.container.container-white-background > div.row div.linebreak {
+  margin-top: 0px; }
+
+div.container.container-grey-background > div.row h2 {
+  text-align: center;
+  font-size: 30px;
+  line-height: 125%;
+  display: block;
+  margin-bottom: 15px; }
+div.container.container-grey-background > div.row div.linebreak {
   margin-top: 0px; }
 
 .card-img-top {

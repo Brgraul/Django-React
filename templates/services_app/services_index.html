@@ -1,0 +1,186 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block body_content %}
+
+<section class="full-wrapp" style="background-image: url({% static 'images/index/index_slide.jpg' %})">
+  <h1>Meet Our Veterinarians</h1>
+  <h3>Allow us to introduce you to the best house call veterinarians in the industry. Book an appointment with one of our experienced and compassionate veterinarians today.</h3>
+  <br/>
+  <a class="btn btn-cta-white" href="{% url 'checkout' %}">PIDE TU CITA</a>
+</section>
+
+<!-- text to introduce -->
+
+<div class="container">
+  <h5>Have a highly qualified and compassionate veterinarian treat your loved one in the comfort of your own home.</h5>
+  <h3>What to Expect</h3>
+  <h5>Think of a VetPronto visit like a visit to your own GP - we can help with anything from standard check-ups to skin irritations and allergies, geriatric issues, and your puppy’s first set of vaccines. </h5>
+  <h3>Review previous records</h3>
+  <h5>Our team will obtain medical records from your pet’s previous veterinary clinic(s) so that your veterinarian can review their complete medical history and arrive prepared for your appointment. </h5>
+  <h3>At the appointment</h3>
+  <h5>Your veterinarian can perform the examination in any area of the house you prefer - we find that pets are often most comfortable on the living room floor or coffee table.
+     You may wish to provide them with their favorite blanket or toy to make them feel even more relaxed during the exam. Your veterinarian will sometimes be accompanied by a veterinary technician to assist them with handling or blood tests. They will take as long as you need at the appointment, performing a comprehensive physical exam, devising a treatment plan with you, and answering any questions.
+     Appointments tend to be longer than in a clinic - averaging about 30 minutes per patient. After the appointment, you will receive a summary email outlining everything that was discussed at the appointment and any plans for next steps. Should you need to book a recheck appointment, you can request the same veterinarian as desired. Our staff are also available around the clock to answer any questions that may arise after the appointment. </h5>
+</div>
+
+
+<!-- Prensa Start-->
+<div class="container section-green">
+  <div class="row row-press">
+    <div class="col-md-3">
+      <img class="img-press" src="{% static 'images/index/logos-02.png'%} "/>
+    </div>
+    <div class="col-md-3">
+      <img class="img-press" src="{% static 'images/index/logos-03.png'%} " />
+    </div>
+    <div class="col-md-3">
+      <img class="img-press" src="{% static 'images/index/logos-04.png'%} " />
+    </div>
+    <div class="col-md-3">
+      <img class="img-press" src="{% static 'images/index/logos-01.png'%} " />
+    </div>
+  </div>
+</div>
+<!-- Prensa END-->
+
+<!-- Why Instavets START-->
+<section class="container">
+  <ul class="why-instavets-list">
+    <li class="why-instavets-item">
+      <img  alt="File logo" src="{% static 'images/services_app/Logo-01.png' %}"/>
+      <div class="why-instavets-text-block">
+        <p class="why-instavets-title">
+          Less stress for your pet.
+        </p>
+        <p class="why-instavets-description">
+          Between the car trip and the sounds and smells of scared, sick animals, a trip to the veterinarian is no fun for most of our furry friends. Avoid the stress by having the highest standard of care performed in the comfort of your home.
+        </p>
+      </div>
+    </li>
+    <li class="why-instavets-item">
+      <img  alt="File logo" src="{% static 'images/services_app/Logo-01.png' %}"/>
+      <div class="why-instavets-text-block">
+        <p class="why-instavets-title">
+          Less stress for your pet.
+        </p>
+        <p class="why-instavets-description">
+          Between the car trip and the sounds and smells of scared, sick animals, a trip to the veterinarian is no fun for most of our furry friends. Avoid the stress by having the highest standard of care performed in the comfort of your home.
+        </p>
+      </div>
+    </li>
+    <li class="why-instavets-item">
+      <img  alt="File logo" src="{% static 'images/services_app/Logo-01.png' %}"/>
+      <div class="why-instavets-text-block">
+        <p class="why-instavets-title">
+          Less stress for your pet.
+        </p>
+        <p class="why-instavets-description">
+          Between the car trip and the sounds and smells of scared, sick animals, a trip to the veterinarian is no fun for most of our furry friends. Avoid the stress by having the highest standard of care performed in the comfort of your home.
+        </p>
+      </div>
+    </li>
+  </ul>
+</section>
+<!-- Why Instavets END-->
+
+<!-- INFO SERVICES -->
+<div class="container_info">
+  <span>La mejor atención sólo en casa</span>
+  <ul>
+    <li class="container_card">
+        <img  alt="File logo" src="{% static 'images/services_app/Logo-01.png' %}"/>
+        <span class="card_title">Estudiamos el historial médico de tu mascota</span>
+        <span class="card_body">La continuidad en los tratamientos es muy importante. Revisamos el historial médico de tu mascota antes de cada cita.</span>
+    </li>
+    <li class="container_card">
+        <img  alt="File logo" src="{% static 'images/services_app/Logo-01.png' %}"/>
+        <span class="card_title">Estudiamos el historial médico de tu mascota</span>
+        <span class="card_body">La continuidad en los tratamientos es muy importante. Revisamos el historial médico de tu mascota antes de cada cita.</span>
+    </li>
+    <li class="container_card">
+        <img  alt="File logo" src="{% static 'images/services_app/Logo-01.png' %}"/>
+        <span class="card_title">Estudiamos el historial médico de tu mascota</span>
+        <span class="card_body">La continuidad en los tratamientos es muy importante. Revisamos el historial médico de tu mascota antes de cada cita.</span>
+    </li>
+  </ul>
+</div>
+<!-- INFO SERVICES END-->
+
+<!-- NUSETROS CLIENTES START -->
+<div class="container container-white-background">
+  <div class="row">
+    <!-- <h2>NUESTROS CLIENTES</h2> -->
+    <div class="col-md-12">
+      <div id="carousel_customers" class="owl-carousel">
+        {% for customer in customers %}
+        <div class="item">
+          <i class="fa fa-quote-left quote-icon"></i>
+          <h3 class="text-customer-opinion">{{customer.opinion}}</h3>
+          <i class="fa fa-quote-right quote-icon"></i>
+          <div class="linebreak1"></div>
+          <h5 class="text-customer-name">{{customer.name}}</h5>
+          <h5 class="text-customer-city">{{customer.city}}</h5>
+          <img  class="image-customer-slider" alt="{{customer.name}}"  src="{{ MEDIA_URL }}{{ customer.image }}"/>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+<!-- NUSETROS CLIENTES END -->
+
+<!-- NUSETRAS VETERINARIAS START -->
+<div class="container container-grey-background">
+  <div class="row">
+    <h2>NUESTRAS VETERINARIAS</h2>
+    <div class="linebreak1"></div>
+    </div>
+    <div class="col-md-12">
+      <div id="carousel_vets" class="owl-carousel">
+        {% for vet in vets %}
+        <div class="item">
+          <div class="row">
+            <div class="col-md-7">
+              <h3>{{vet.name}}</h3>
+              <h4>{{vet.subtitle1}}</h4>
+              <h4>{{vet.subtitle2}}</h4>
+              <h5>{{vet.bio}}</h5>
+            </div>
+            <div class="col-md-3">
+             <img  class="image-vet-slider" alt="{{vet.name}}"  src="{{ MEDIA_URL }}{{ vet.image }}"/>
+            </div>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+<!-- NUSETROS VETERINARIAS END -->
+
+{% endblock %}
+
+<!-- custom Javascript -->
+{% block javascript %}
+<script type="text/javascript">
+	$("#carousel_vets").owlCarousel({
+		items:1,
+		pagination:false,
+		navigation:true,
+   	navigationText: [
+			"<i class='icon-arrow-left icon-white'><</i>",
+      "<i class='icon-arrow-right icon-white'>></i>"
+		],
+	});
+	$("#carousel_customers").owlCarousel({
+		items:1,
+    pagination:false,
+		navigation:true,
+    navigationText: [
+			"<i class='icon-arrow-left icon-white'><</i>",
+      "<i class='icon-arrow-right icon-white'>></i>"
+		],
+	});
+</script>
+{% endblock javascript %}

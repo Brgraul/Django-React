@@ -7,13 +7,13 @@
   <h1>{{ service.headline}}</h1>
   <h3>{{ service.short_description }}</h3>
   <br/>
-  <button class="btn btn-cta-white"> PIDE TU CITA</button>
+  <a class="btn btn-cta-white" href="{% url 'checkout' %}">PIDE TU CITA</a>
 </section>
 
 <div class="container-fluid container-services-long-description">
   <div class="row">
     <div class="col-md-10 col-md-offset-1">
-      <h4></h4>{{ service.long_description|safe }}</h4>
+      <h4>{{ service.long_description|safe }}</h4>
     </div>
   </div>
 </div>

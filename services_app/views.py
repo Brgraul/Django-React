@@ -17,6 +17,15 @@ def ServicePage(request, service_url):
     }
     return render(request, "services_app/service.html", context)
 
+def ServicesIndex(request):
+    vets = VetsDisplay.objects.filter(published_slider=True)
+    customers = CustomerDisplay.objects.filter(published=True)
+    context = {
+        'vets':vets,
+        'customers':customers,
+    }
+    return render(request, "services_app/services_index.html", context)
+
 def MeetTheVetsPage(request):
     vets = VetsDisplay.objects.filter(published_lasvets=True)
     customers = CustomerDisplay.objects.filter(published=True)

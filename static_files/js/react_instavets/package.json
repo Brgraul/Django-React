@@ -12,6 +12,7 @@
   "devDependencies": {
     "babel-core": "^6.9.1",
     "babel-loader": "^6.2.4",
+    "babel-preset-react": "^6.11.1",
     "dedupe": "^2.0.3",
     "html-webpack-plugin": "^2.21.0",
     "uglify-js": "^2.7.0",
