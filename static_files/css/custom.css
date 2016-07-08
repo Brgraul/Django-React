@@ -2200,7 +2200,7 @@
   font-family: "Gotham-Medium";
   font-style: normal;
   font-weight: normal;
-  src: url("fonts/Gotham-Medium.eot?#iefix") format("embedded-opentype"), url("fonts/Gotham-Medium.woff") format("woff"), url("fonts/Gotham-Medium.ttf") format("truetype"), url("fonts/Gotham-Medium.svg#Gotham-Boldregular") format("svg"); }
+  src: url("fonts/Gotham-Medium.eot?#iefix") format("embedded-opentype"), url("fonts/Gotham-Medium.ttf") format("truetype"), url("fonts/Gotham-Medium.svg#Gotham-Boldregular") format("svg"); }
 @font-face {
   font-family: "Gotham-Light";
   font-style: normal;
@@ -2288,16 +2288,13 @@ header > nav.navbar {
           color: #00a099 !important;
           background-image: none;
           border-bottom: 4px solid #00a099; }
-      #exCollapsingNavbar2 > ul > li.nav-item.dropdown.open > div
-      header > nav.navbar > div.collapse.navbar-toggleable-xs > ul.nav.navbar-nav > li.nav-item:last-child {
-        width: 20%;
-        float: right; }
-        #exCollapsingNavbar2 > ul > li.nav-item.dropdown.open > div
-        header > nav.navbar > div.collapse.navbar-toggleable-xs > ul.nav.navbar-nav > li.nav-item:last-child > a.nav-link {
-          border: 2px solid #00a099;
-          border-radius: 10px; }
-          #exCollapsingNavbar2 > ul > li.nav-item.dropdown.open > div
-          header > nav.navbar > div.collapse.navbar-toggleable-xs > ul.nav.navbar-nav > li.nav-item:last-child > a.nav-link:hover {
+      header > nav.navbar > div.collapse.navbar-toggleable-xs > ul.nav.navbar-nav > li.nav-item:nth-child(4) {
+        width: 20% !important;
+        float: right !important; }
+        header > nav.navbar > div.collapse.navbar-toggleable-xs > ul.nav.navbar-nav > li.nav-item:nth-child(4) > a.nav-link {
+          border: 2px solid #00a099 !important;
+          border-radius: 10px !important; }
+          header > nav.navbar > div.collapse.navbar-toggleable-xs > ul.nav.navbar-nav > li.nav-item:nth-child(4) > a.nav-link:hover {
             background-color: #00a099 !important;
             color: white !important; }
 

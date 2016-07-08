@@ -36,26 +36,24 @@ header > nav.navbar{
               background-image: none;
               border-bottom: 4px solid $instavets_green;
             }
-        }
-        #exCollapsingNavbar2 > ul > li.nav-item.dropdown.open > div
-        &.nav-item:last-child{
-          width: 20%;
-          float: right;
-          & > a.nav-link{
-            //padding-top: 10px;
-            //padding-bottom: 10px;
-            border: 2px solid $instavets_green;
-            border-radius: 10px;
-            &:hover{
-              background-color: $instavets_green !important;
-              color: white !important;
+          }
+          &.nav-item:nth-child(4){
+            width: 20% !important;
+            float: right !important;
+            & > a.nav-link{
+              border: 2px solid $instavets_green !important;
+              border-radius: 10px !important;
+              &:hover{
+                background-color: $instavets_green !important;
+                color: white !important;
+              }
             }
           }
         }
       }
     }
   }
-}
+
 
 .navbar-logo{
   height: 40px;
