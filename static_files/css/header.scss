@@ -31,12 +31,15 @@ header > nav.navbar{
           border-bottom: 4px solid white;
           text-shadow: none;
           &:hover,
-          &:active{
+          &:active,
+          &:focus{
+              outline: none;
               color: $instavets_green !important;
               background-image: none;
               border-bottom: 4px solid $instavets_green;
             }
           }
+
           &.nav-item:nth-child(4){
             width: 20% !important;
             float: right !important;
