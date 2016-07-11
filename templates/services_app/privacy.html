@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+
+{% block body_content %}
+
+<section class="full-wrapp" style="background-image: url({% static 'images/index/index_slide.jpg' %})">
+  <h1>SU CONSULTA, MEJOR EN CASA</h1>
+  <h3>Haga que un veterinario altamente calificado trate a su querida mascota en el lugar donde mejor se siente. <br/> Su casa</h3>
+  <br/>
+  <a class="btn btn-cta-white" href="{% url 'checkout' %}">PIDE TU CITA</a>
+</section>
+
+<div class="container terms">
+            <h3>POLÍTICA DE PRIVACIDAD</h3>
+            <h5>Última actualización: 25 de marzo 2015
+InstaVets Servicio Online SL ("nosotros", "nosotros" o "nuestro") opera el sitio web http://www.instavets.com (el "Servicio").
+
+Esta página le informa de nuestras políticas respecto a la recopilación, uso y revelación de información personal cuando utilice nuestro servicio.
+
+No vamos a usar o compartir su información con nadie, excepto como se describe en esta Política de Privacidad.
+
+Utilizamos su información personal para proporcionar y mejorar el servicio. Al utilizar el Servicio, usted acepta la recopilación y uso de información de acuerdo con esta política. A menos que se defina lo contrario en esta Política de Privacidad, los términos utilizados en la presente Política de privacidad tienen los mismos significados que en nuestros Términos y Condiciones, accesible en http://www.instavets.com
+</h5><br><br>
+            <h3>RECOPILACIÓN Y USO DE INFORMACIÓN</h3>
+            <h5>Durante el uso de nuestro servicio, podemos pedirle que nos proporcione cierta información de identificación personal que puede ser utilizada para contactar o identificar. La información personalmente identificable puede incluir, pero no se limitan a, su dirección de correo electrónico, nombre, número de teléfono, dirección postal ("Información Personal").
+Registro de datos
+
+Recopilamos información que su navegador envía cada vez que visita nuestro Servicio ("Datos de Registro"). Este Registro de datos puede incluir información como el Protocolo de la computadora de Internet ("IP"), tipo de navegador, la versión del navegador, las páginas de nuestro servicio que usted visita, la fecha y hora de su visita, el tiempo empleado en esas páginas y otros estadísticas.
+
+Además, podemos utilizar los servicios de terceros, como Google Analytics que recogen, seguimiento y análisis de este tipo de información con el fin de aumentar la funcionalidad de nuestro Servicio. Estos terceros proveedores de servicios de terceros tienen sus propias políticas de privacidad abordar cómo utilizan dicha información.
+</h5><br><br>
+            <h3>COOKIES</h3>
+            <h5>Las cookies son archivos con pequeña cantidad de datos, que puede incluir un identificador único anónimo. Las cookies se envían a su navegador desde un sitio web y se almacenan en el disco duro de su ordenador.
+
+Utilizamos "cookies" para recoger información. Puede indicar a su navegador para rechazar todas las cookies o para indicar cuando se está enviando una cookie. Sin embargo, si usted no acepta las cookies, es posible que no pueda utilizar algunas partes de nuestro Servicio.
+</h5><br><br>
+            <h3>PROVEEDORES DE SERVICIOS</h3>
+            <h5>Podemos emplear terceras empresas y particulares para facilitar nuestro servicio, para proporcionar el servicio en nuestro nombre, para realizar servicios relacionados con el servicio o para que nos ayuden en el análisis de cómo se utiliza nuestro servicio.
+
+Estos terceros tienen acceso a su información personal solamente para realizar estas tareas en nuestro nombre y están obligados a no revelar o utilizarlo para cualquier otro fin.
+</h5><br><br>
+            <h3>CUMPLIMIENTO DE LAS LEYES</h3>
+            <h5>Vamos a revelar su información personal cuando sea requerido por la ley o citación o si creemos que dicha acción es necesaria para cumplir con la ley y las solicitudes razonables de aplicación de la ley o para proteger la seguridad o integridad de nuestro servicio.
+</h5><br><br>
+            <h3>SEGURIDAD</h3>
+            <h5>La seguridad de su información personal es importante para nosotros, pero recuerde que ningún método de transmisión por Internet, o método de almacenamiento electrónico es 100% seguro. Si bien nos esforzamos por utilizar medios comercialmente aceptables para proteger su información personal, no podemos garantizar su seguridad absoluta.
+</h5><br><br>
+            <h3>ENLACES A OTROS SITIOS</h3>
+            <h5>Nuestro Servicio puede contener enlaces a otros sitios que no son operados por nosotros. Si hace clic en un vínculo de un tercero, se le dirigirá al sitio de dicho tercero. Le recomendamos que revise la política de privacidad de cada sitio que visita.
+
+No tenemos ningún control sobre, y no asumimos ninguna responsabilidad por el contenido, políticas o prácticas de privacidad de los sitios o servicios de terceros.
+</h5><br><br>
+            <h3>PRIVACIDAD DE LOS NIÑOS</h3>
+            <h5>Nuestro servicio no se ocupa de cualquier persona bajo la edad de 13 años ("Niños").<br><br>
+
+No recopilamos deliberadamente información personal identificable de niños menores de 13 años Si usted es un padre o tutor y que son conscientes de que sus niños nos ha proporcionado información personal, por favor póngase en contacto con nosotros. Si nos damos cuenta de que hemos recopilado información personal de niños menores de 13 años sin la verificación del consentimiento de los padres, tomamos medidas para eliminar dicha información de nuestros servidores.
+
+</h5><br><br>
+            <h3>CAMBIOS A ESTA POLÍTICA DE PRIVACIDAD</h3>
+            <h5>Podemos actualizar nuestra política de privacidad de vez en cuando. Le notificaremos de cualquier cambio mediante la publicación de la nueva política de privacidad en esta página.
+
+Se le aconseja que revise esta Política de Privacidad periódicamente para cualquier cambio. Cambios en esta política de privacidad son efectivos cuando se publican en esta página.
+
+</h5><br><br>
+            <h3>CONTÁCTENOS</h3>
+            <h5>Si usted tiene alguna pregunta sobre esta Política de Privacidad, por favor póngase en contacto con nosotros.</h5><br><br>
+</div>
+<!--Body-->
+
+
+{% endblock %}

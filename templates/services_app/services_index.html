@@ -4,24 +4,29 @@
 {% block body_content %}
 
 <section class="full-wrapp" style="background-image: url({% static 'images/index/index_slide.jpg' %})">
-  <h1>Meet Our Veterinarians</h1>
-  <h3>Allow us to introduce you to the best house call veterinarians in the industry. Book an appointment with one of our experienced and compassionate veterinarians today.</h3>
+  <h1>SU CONSULTA, MEJOR EN CASA</h1>
+  <h3>Haga que un veterinario altamente calificado trate a su querida mascota en el lugar donde mejor se siente. <br/> Su casa</h3>
   <br/>
   <a class="btn btn-cta-white" href="{% url 'checkout' %}">PIDE TU CITA</a>
 </section>
 
 <!-- text to introduce -->
 
-<div class="container">
-  <h5>Have a highly qualified and compassionate veterinarian treat your loved one in the comfort of your own home.</h5>
-  <h3>What to Expect</h3>
-  <h5>Think of a VetPronto visit like a visit to your own GP - we can help with anything from standard check-ups to skin irritations and allergies, geriatric issues, and your puppy’s first set of vaccines. </h5>
-  <h3>Review previous records</h3>
-  <h5>Our team will obtain medical records from your pet’s previous veterinary clinic(s) so that your veterinarian can review their complete medical history and arrive prepared for your appointment. </h5>
-  <h3>At the appointment</h3>
-  <h5>Your veterinarian can perform the examination in any area of the house you prefer - we find that pets are often most comfortable on the living room floor or coffee table.
-     You may wish to provide them with their favorite blanket or toy to make them feel even more relaxed during the exam. Your veterinarian will sometimes be accompanied by a veterinary technician to assist them with handling or blood tests. They will take as long as you need at the appointment, performing a comprehensive physical exam, devising a treatment plan with you, and answering any questions.
-     Appointments tend to be longer than in a clinic - averaging about 30 minutes per patient. After the appointment, you will receive a summary email outlining everything that was discussed at the appointment and any plans for next steps. Should you need to book a recheck appointment, you can request the same veterinarian as desired. Our staff are also available around the clock to answer any questions that may arise after the appointment. </h5>
+<div class="container" id="container-services">
+  <h3>Qué esperar</h3>
+  <h5>Pensemos en una visita de InstaVets como una visita a su médico de cabecera. -Podemos ayudar con cualquier cosa, desde chequeos estándar a irritaciones y alergias en la piel, problemas geriátricos, vacunas , desparasitaciones, incluso eutanasias en el domicilio. </h5>
+  <h3>Revisar los registros anteriores</h3>
+  <h5>Nuestras “vets” estarán encantadas de revisar los historiales clínicos de vuestras mascotas en el caso de que estuvieran a mitad de un tratamiento en curso. </h5>
+  <h3>En la cita</h3>
+  <h5>Su veterinario puede realizar el examen en el área de la casa que usted prefiere – comprobamos muchas veces que las mascotas suelen estar muy a gusto en su camita o en el salón donde suelen estar con usted -. Es posible que desee darles su manta favorita o un juguete para que se sientan aún más relajado durante el examen.
+<br/><br/>
+Su veterinario a veces puede ir acompañado de un técnico veterinario para ayudarles con la manipulación o análisis de sangre. Ellos se tomarán el tiempo que necesita en la cita, realizando un examen físico completo, elaborar un plan de tratamiento con usted y responder a cualquier pregunta.
+<br/><br/>
+Las citas tienden a ser más largas que en una clínica - un promedio de unos 40 minutos por paciente -. Esto es porque el trato es más personalizado y al no haber más mascotas esperando, le dedicamos todo el tiempo que necesite para que se encuentre relajada y predispuesta.
+<br/><br/>
+Después de la cita, usted recibirá un correo electrónico de resumen, explicando cualquier tratamiento impuesto por el veterinario así como la factura de los servicios prestados.
+Si necesita reservar una cita, puede hacerlo llamando a nuestro teléfono, a través del chat de la web o por internet. Recuerde que puede pagar su consulta con tarjeta de crédito o con efectivo. Por ultimo recordamos que abrimos todos los días de la semana sin coste adicional.
+</h5>
 </div>
 
 
@@ -84,28 +89,37 @@
 </section>
 <!-- Why Instavets END-->
 
-<!-- INFO SERVICES -->
-<div class="container_info">
-  <span>La mejor atención sólo en casa</span>
-  <ul>
-    <li class="container_card">
-        <img  alt="File logo" src="{% static 'images/services_app/Logo-01.png' %}"/>
-        <span class="card_title">Estudiamos el historial médico de tu mascota</span>
-        <span class="card_body">La continuidad en los tratamientos es muy importante. Revisamos el historial médico de tu mascota antes de cada cita.</span>
-    </li>
-    <li class="container_card">
-        <img  alt="File logo" src="{% static 'images/services_app/Logo-01.png' %}"/>
-        <span class="card_title">Estudiamos el historial médico de tu mascota</span>
-        <span class="card_body">La continuidad en los tratamientos es muy importante. Revisamos el historial médico de tu mascota antes de cada cita.</span>
-    </li>
-    <li class="container_card">
-        <img  alt="File logo" src="{% static 'images/services_app/Logo-01.png' %}"/>
-        <span class="card_title">Estudiamos el historial médico de tu mascota</span>
-        <span class="card_body">La continuidad en los tratamientos es muy importante. Revisamos el historial médico de tu mascota antes de cada cita.</span>
-    </li>
-  </ul>
-</div>
-<!-- INFO SERVICES END-->
+<!-- Ventajas Start -->
+	<div class="container container-ventajas  container-grey-background">
+		<div class="row">
+			<h2>LA MEJOR ATENCIÓN SÓLO EN CASA</h2>
+			  <div class="linebreak1"></div>
+		</div>
+		<div class="row">
+		<div class="col-md-3">
+			<img  alt="File logo" src="{% static 'images/index/gato.png' %}"/>
+			<span class="card_title">Menos estrés para tu mascota. Sin otros animales.</span>
+			<div class="linebreak1"></div>
+		</div>
+		<div class="col-md-3">
+			<img  alt="File logo" src="{% static 'images/index/reloj.png' %}"/>
+			<span class="card_title">Cita cuando quieras, sin esperas. En tu casa.</span>
+			<div class="linebreak1"></div>
+		</div>
+		<div class="col-md-3">
+			<img  alt="File logo" src="{% static 'images/index/dias-semana.png' %}"/>
+			<span class="card_title">Abierto los 7 días de la semana al mismo precio.</span>
+			<div class="linebreak1"></div>
+		</div>
+		<div class="col-md-3">
+			<img  alt="File logo" src="{% static 'images/index/credit-card.png' %}"/>
+			<span class="card_title">Paga con tarjeta, efectivo u online.</span>
+			<div class="linebreak1"></div>
+		</div>
+		</div>
+	</div>
+	<!-- Ventajas END -->
+
 
 <!-- NUSETROS CLIENTES START -->
 <div class="container container-white-background">

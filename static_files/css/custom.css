@@ -2200,7 +2200,7 @@
   font-family: "Gotham-Medium";
   font-style: normal;
   font-weight: normal;
-  src: url("fonts/Gotham-Medium.eot?#iefix") format("embedded-opentype"), url("fonts/Gotham-Medium.woff") format("woff"), url("fonts/Gotham-Medium.ttf") format("truetype"), url("fonts/Gotham-Medium.svg#Gotham-Boldregular") format("svg"); }
+  src: url("fonts/Gotham-Medium.eot?#iefix") format("embedded-opentype"), url("fonts/Gotham-Medium.ttf") format("truetype"), url("fonts/Gotham-Medium.svg#Gotham-Boldregular") format("svg"); }
 @font-face {
   font-family: "Gotham-Light";
   font-style: normal;
@@ -2945,5 +2945,12 @@ div.form-group:nth-child(8) {
   padding-top: 30px; }
   .contact-banner > h3 {
     margin-bottom: 15px; }
+
+#terms  > h3 {
+  text-align: center;
+  color: #00a099;
+  border-bottom: 1px solid #00a099; }
+#terms  > h5 {
+  text-align: justify; }
 
 /*# sourceMappingURL=custom.css.map */

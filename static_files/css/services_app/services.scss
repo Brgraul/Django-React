@@ -27,9 +27,10 @@ section.full-wrapp{
   background-size: cover;
   background-repeat: no-repeat;
   color: #fafeff;
-  padding: 110px 0px 80px;
+  padding:40px 0px 80px;
   text-align: center;
   width: 100%;
+  height: 470px;
 
   & > h1{
   font-weight: bold;
@@ -43,7 +44,7 @@ section.full-wrapp{
   }
 
   & > h3{
-    text-align: justify;
+    text-align: center;
     font-size: 28px;
     line-height: 125%;
     margin: 20px auto 0px;
@@ -66,18 +67,18 @@ section.full-wrapp{
 }
 
 div.container_info{
-  padding: 40px 20px;
+  padding-top: 10px;
+  padding-bottom: 30px;
   background-color: $instavets_section_background_grey;
   border-top: 3px solid $instavets_section_border_grey;
   border-bottom: 3px solid $instavets_section_border_grey;
-  & > span{
+  & > h2{
     text-align: center;
-    font-size: 30px;
     line-height: 125%;
     display: block;}
   & > ul{
     margin: 0 auto;
-    max-width: 1100px;
+    max-width: 1300px;
     display: flex;
     -webkit-box-align: center;
     align-items: center;
@@ -191,6 +192,36 @@ div.container.container-grey-background{
     }
     div.linebreak{
       margin-top: 0px;
+    }
+  }
+}
+
+div#container-services.container{
+  margin-top: 50px;
+  margin-bottom: 25px;
+}
+
+div#container-services-text.container-fluid{
+  margin-top: 30px;
+  margin-bottom: 50px;
+  & > div.row > div.col-md-10{
+    & > p, ul {
+      margin-bottom: 35px;
+    }
+    & > p:last-child{
+      margin-bottom: 0px;
+    }
+    & > h2{
+      margin-bottom: 4px;
+    }
+    & > ul{
+      list-style-image: url(../images/footprint-bullet.png);
+      & > li{
+        margin-bottom: 4px;
+      }
+      & > li:last-child{
+        margin-bottom: 0px;
+      }
     }
   }
 }

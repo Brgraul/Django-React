@@ -68,6 +68,14 @@ MIDDLEWARE_CLASSES = [
 
 ROOT_URLCONF = 'instavets.urls'
 
+# Email settings:
+# In this case they were set as environment variables, change to will.
+EMAIL_HOST = 'Instavets'
+EMAIL_PORT = 25
+EMAIL_HOST_USER = 'root'
+EMAIL_HOST_PASSWORD = '1nstav3ts_01'
+EMAIL_USE_TLS = True
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -247,4 +255,14 @@ LOGGING = {
             'propagate': True,
         },
     }
+}
+
+# CKEDITOR settings
+
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 600,
+        'width': 1140,
+    },
 }

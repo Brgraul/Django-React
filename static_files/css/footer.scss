@@ -47,20 +47,21 @@ footer{
       }
     }
     & > div.row.row-footer-last{
-      & > p{
+
+      & > a, p{
         font-size: 12px;
         color: $instavets_footer_grey_text;
+        text-decoration: none;
         &:hover{
           color: white;
+          text-decoration: none;
         }
       }
-      & > p:first-child{
-        float: left;
-        display: inline-block;
-      }
       & > p:nth-child(2){
-        float: right;;
-        display: inline-block;
+        display: inline;
+      }
+      & > a:nth-child(4){
+        display: block;
       }
     }
   }

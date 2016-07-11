@@ -151,4 +151,16 @@ div.container:nth-child(7) > div:nth-child(2)
   max-width: 160px;
 }
 
+div.container.terms {
+  & > h3{
+    text-align: center !important;
+    color: $instavets_green !important;
+    border-bottom: 1px solid $instavets_green !important;
+  }
+  & > h5{
+    text-align: justify !important;
+  }
+}
+
+
 /* ESTILOS PIDE TU CITA INDEX*/
