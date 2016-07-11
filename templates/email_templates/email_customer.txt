@@ -1,0 +1,7 @@
+Hello {{ customer }},
+
+This is a test for our mailing system.
+
+Your pet is {{ pet }}
+
+Regards.

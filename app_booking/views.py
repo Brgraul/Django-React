@@ -8,6 +8,8 @@ from datetime import datetime
 #Payment Imports
 from django.http import HttpResponse
 from django.shortcuts import render_to_response
+from django.template.loader import render_to_string
+from django.core.mail import EmailMessage
 from django.conf import settings
 from django.core.urlresolvers import reverse
 from sermepa.signals import payment_was_successful, payment_was_error, signature_error
@@ -42,6 +44,7 @@ def CheckoutPage(request):
             customer.city = data.__getitem__('data[city]')
             customer.adress = data.__getitem__('data[adress]')
             customer.phone_number = data.__getitem__('data[phone_number]')
+            customer.email = data.__getitem__('data[email]')
             customer.save()
             print 'Step 2: Creating the booking..'
             #Booking
@@ -164,6 +167,45 @@ def PaymentPage(request):
     }
 
     return HttpResponse(render_to_response('booking_app/payment.html', context))
+#Email Sending
+
+def email_customer_txt(request):
+    customer = get_object_or_404(Customer, pk=customer_id)
+    booking = get_object_or_404(Booking, pk=booking_id)
+    order = get_object_or_404(Order, pk=order_id)
+    pet = get_object_or_404(Pet,customer=customer.id )
+    subject = "I am a text email"
+    to=[customer.email]
+    context = {
+        'customer': customer,
+        'order': order,
+        'booking': booking,
+        'pet': pet,
+    }
+    message = render_to_string('../templates/email_templates/email_customer.txt', context)
+
+    EmailMessage(subject, message, to=to).send()
+    return ()
+
+def email_customer_html(request):
+    customer = get_object_or_404(Customer, pk=customer_id)
+    booking = get_object_or_404(Booking, pk=booking_id)
+    order = get_object_or_404(Order, pk=order_id)
+    pet = get_object_or_404(Pet,customer=customer.id )
+    subject = "I am a text email"
+    to=[customer.email]
+    context = {
+        'customer': customer,
+        'order': order,
+        'booking': booking,
+        'pet': pet,
+    }
+    message = get_template('../templates/email_templates/email_customer.html', context)
+    msg = EmailMessage(subject, message, to=to)
+    msg.content_subtype = 'html'
+    return ()
+
+
 
 #Payment Confirm Page
 def PaymentConfirmPage(request):

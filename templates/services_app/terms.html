@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load static %}
+{% block body_content %}
+
+<section class="full-wrapp" style="background-image: url({% static 'images/index/index_slide.jpg' %})">
+  <h1>SU CONSULTA, MEJOR EN CASA</h1>
+  <h3>Haga que un veterinario altamente calificado trate a su querida mascota en el lugar donde mejor se siente. <br/> Su casa</h3>
+  <br/>
+  <a class="btn btn-cta-white" href="{% url 'checkout' %}">PIDE TU CITA</a>
+</section>
+
+<div class="container terms">
+<!-- InstanceBeginEditable name="EditRegion1" -->
+            <h3 class="">TÉRMINOS Y CONDICIONES</h3>
+            <h5>Última actualización: 25 de marzo 2015
+Por favor, lea estos términos y condiciones ("Términos", "Términos y Condiciones") antes de utilizar el sitio web http://www.instavets.com (el "Servicio") operado por InstaVets Servicio Online SL ("nosotros", "nos ", o" nuestro ").<br><br>
+
+Su acceso y uso del Servicio está condicionado a la aceptación y cumplimiento de las presentes Condiciones. Estas Condiciones se aplican a todos los visitantes, usuarios y otras personas que accedan o usen el servicio.<br><br>
+
+Al acceder o utilizar el Servicio, usted acepta que quedará vinculado por estas Condiciones. Si no está de acuerdo con alguna parte de los términos, entonces no puede acceder al Servicio.
+</h5><br><br>
+            <h3>PROPIEDAD INTELECTUAL</h3>
+            <h5>El Servicio y su contenido original, las características y la funcionalidad son y seguirán siendo propiedad exclusiva de InstaVets Servicio Online SL y sus licenciadores. El Servicio está protegido por derechos de autor, marcas registradas y otras leyes tanto de la España y de países extranjeros. Nuestras marcas y la imagen comercial no pueden ser utilizadas en conexión con cualquier producto o servicio sin el consentimiento previo por escrito de InstaVets Servicio Online SL.</h5><br><br>
+            <h3>ENLACES A OTROS SITIOS WEB SITE</h3>
+            <h5>Nuestro Servicio puede contener enlaces a sitios web de terceros o servicios que no son propiedad o están controladas por InstaVets Servicio Online SL.<br><br>
+
+InstaVets Servicio Online SL no tiene control sobre, y no asume ninguna responsabilidad por el contenido, las políticas de privacidad o las prácticas de sitios web o servicios de terceros. Además, usted reconoce y acepta que InstaVets Servicio Online SL no será responsable o estará obligado, directa o indirectamente, por cualquier daño o pérdida causada o supuestamente causada por o en conexión con el uso o la credibilidad en cualquier Contenido, bienes o servicios disponibles en oa través de dichos sitios o servicios web.<br><br>
+
+Le aconsejamos que lea los términos y condiciones y las políticas de privacidad de cualquier sitio web de terceros o servicios que usted visite.
+</h5><br><br>
+            <h3>TERMINACIÓN</h3>
+            <h5>Podemos cancelar o suspender su acceso inmediato y sin previo aviso o responsabilidad, por cualquier motivo, incluyendo, sin limitación, si usted no cumple con las condiciones.<br><br>
+
+A la terminación, su derecho a utilizar el Servicio cesará inmediatamente.
+</h5><br><br>
+            <h3>LIMITACIÓN DE LA RESPONSABILIDAD</h3>
+            <h5>En ningún caso la InstaVets Servicio Online SL, ni sus directores, empleados, socios, agentes, proveedores o afiliados, serán responsables de los daños indirectos, incidentales, especiales, consecuenciales o punitivos, incluyendo sin limitación, pérdida de beneficios, datos, uso , el fondo de comercio, u otras pérdidas intangibles, como resultado de (i) el acceso o el uso o la imposibilidad de acceder o utilizar el Servicio; (Ii) cualquier conducta o contenido de terceros en el Servicio; (Iii) cualquier contenido obtenido del Servicio; y (iv) el acceso no autorizado, del uso o alteración de sus transmisiones o contenido, ya sea basado en garantía, contrato, agravio (incluyendo negligencia) o cualquier otra teoría legal, o no se nos ha informado de la posibilidad de tales daños, e incluso si un remedio en este documento se encuentra haber fracasado en su propósito esencial.
+</h5><br><br>
+            <h3>RENUNCIA</h3>
+            <h5>La utilización del servicio es bajo su propio riesgo. El Servicio se proporciona "TAL CUAL" y "SEGÚN DISPONIBILIDAD". El servicio se proporciona sin garantías de ningún tipo, ya sea expresa o implícita, incluyendo, pero sin limitarse a, las garantías implícitas de comerciabilidad, adecuación para un propósito particular, no infracción o curso de rendimiento.<br><br>
+
+InstaVets Servicio Online SL, sus subsidiarias, afiliadas, y sus licenciantes no garantizan que a) el Servicio funcionará ininterrumpida, segura o disponibles en cualquier momento o lugar determinado; b) los errores o defectos serán corregidos; c) el Servicio esté libre de virus u otros componentes dañinos; o d) los resultados de la utilización del Servicio se adapte a sus necesidades.
+</h5><br><br>
+            <h3>LEGISLACIÓN VIGENTE</h3>
+            <h5>Estos Términos se regirán e interpretarán de acuerdo con las leyes de España, sin consideración a su conflicto de disposiciones legales.<br><br>
+
+Nuestra incapacidad para hacer cumplir cualquier derecho o disposición de estas Condiciones no se considerará una renuncia a esos derechos. Si alguna disposición de estos Términos es considerada inválida o inaplicable por un tribunal, las restantes disposiciones de estas Condiciones permanecerán vigentes. Estos Términos y Condiciones constituyen el acuerdo completo entre nosotros en relación con nuestro Servicio, y sustituyen cualquier acuerdo anterior, tengamos entre nosotros en relación con el Servicio.
+</h5><br><br>
+            <h3>CAMBIOS</h3>
+            <h5>Nos reservamos el derecho, a nuestra sola discreción, de modificar o sustituir estas Condiciones en cualquier momento. Si la revisión es el material vamos a tratar de proporcionar por lo menos 15 días de antelación antes de las nuevas disposiciones entren en vigencia. Lo que constituye un cambio material será determinado a nuestra discreción.<br><br>
+
+Al continuar accediendo o utilizar nuestro servicio después de estas revisiones se hacen efectivas, usted acepta que quedará vinculado por los términos revisados. Si no acepta los nuevos términos, por favor, deje de usar el Servicio.
+</h5><br><br>
+            <h3>CONTÁCTENOS</h3>
+            <h5>Si usted tiene alguna pregunta acerca de estos Términos, por favor póngase en contacto con nosotros.</h5><br><br>
+</div>
+<!-- InstanceEndEditable -->
+
+{% endblock %}

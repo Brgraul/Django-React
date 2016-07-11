@@ -54,3 +54,11 @@ def VetProfile(request, vet_id):
 def Pricing(request):
     context={}
     return render(request, "services_app/pricing.html", context)
+
+def Terms(request):
+    context={}
+    return render(request, "services_app/terms.html", context)
+
+def Privacy(request):
+    context={}
+    return render(request, "services_app/privacy.html", context)

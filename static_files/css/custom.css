@@ -2943,4 +2943,11 @@ div.form-group:nth-child(8) {
   .contact-banner > h3 {
     margin-bottom: 15px; }
 
+#terms  > h3 {
+  text-align: center;
+  color: #00a099;
+  border-bottom: 1px solid #00a099; }
+#terms  > h5 {
+  text-align: justify; }
+
 /*# sourceMappingURL=custom.css.map */

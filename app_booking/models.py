@@ -1,6 +1,7 @@
 from __future__ import unicode_literals
 
 from django.db import models
+from django.core.mail import send_mail
 from django.contrib.auth.models import User
 from products_app.models import Product, ProductCategory
 
@@ -20,6 +21,7 @@ def payment_ok(sender, **kwargs):
     # de poder hacer devoluciones, es necesario.
     order.save()
     #Maddar emails etc ....
+
     print 'Order Pagado'
 
 def payment_ko(sender, **kwargs):
@@ -47,7 +49,7 @@ class Customer(models.Model):
     city = models.CharField(max_length = 100, null=True, blank = True, verbose_name = 'Ciudad')
     adress = models.CharField(max_length = 100, null=True, blank = True, verbose_name = 'Direccion')
     phone_number = models.CharField(max_length = 100, null=True, blank = True, verbose_name = 'Telefono')
-
+    email = models.EmailField(max_length = 100, null=True, blank = True, verbose_name = 'Email')
     class Meta:
         verbose_name_plural = 'Clientes'
         verbose_name = 'Cliente'
