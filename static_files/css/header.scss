@@ -39,13 +39,14 @@ header > nav.navbar{
               border-bottom: 4px solid $instavets_green;
             }
           }
-
           &.nav-item:nth-child(4){
             width: 20% !important;
             float: right !important;
             & > a.nav-link{
               border: 2px solid $instavets_green !important;
               border-radius: 10px !important;
+              color: $instavets_green !important;
+              font-size: 20px;
               &:hover{
                 background-color: $instavets_green !important;
                 color: white !important;

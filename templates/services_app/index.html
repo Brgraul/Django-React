@@ -1,5 +1,6 @@
 {% extends 'base.html' %}
 {% load staticfiles %}
+{% load static %}
 
 {% block body_content %}
 	<div class="container container-slide">
@@ -8,7 +9,7 @@
 			<h3>menos estrés para tu mascota, mayor comodidad para ti</h3>
 			<a class="btn btn-cta-white" href="{% url 'checkout' %}">PIDE TU CITA</a>
 		</div>
-		<img id="index_slide"  alt="Veterinaria a Domicilio" src="{% static 'images/index/index_slide.jpg' %}"/>
+		<img id="index_slide"  alt="Veterinaria a Domicilio" src="{% static 'images/index/elena.jpg' %}"/>
 	</div>
 	<!-- Prensa Start-->
 	<div class="container section-green">

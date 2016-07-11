@@ -7,6 +7,32 @@ var Tether = require('react-tether');
 /* We are selecting the step of the process by means of the id, and in the case of the 3rd step
 we took advantage of the id_nesting */
 
+/* Forms Locale*/
+forms.addLocale('es', {
+  b: 'ene._feb._mar_abr._may_jun_jul._ago_sept._oct._nov._dec.'.split('_')
+, B: 'enero_febrero_marzo_abril_mayo_junio_julio_agosto_septiembre_octubre_noviembre_diciembre'.split('_')
+, D: 'lunes_martes_miercoles_juesves_viernes_sabado_domingo'.split('_')
+, DATE_INPUT_FORMATS: [
+    '%d/%m/%Y', '%d/%m/%y'
+  , '%d %b %Y', '%d %b %y'
+  , '%d %B %Y', '%d %B %y',
+  , '%m/%d/%Y',
+  ]
+, DATETIME_INPUT_FORMATS: [
+    '%d/%m/%Y %H:%M:%S'
+  , '%d/%m/%Y %H:%M'
+  , '%D, %B %d , %H'
+  , '%d/%m/%Y'
+  , '%m/%d/%Y'
+  , '%Y/%m/%d'
+  , '%H:%M'
+  ]
+})
+
+forms.setDefaultLocale('es');
+
+
+/* Header */
 var Header = React.createClass({
   render: function() {
       return  <div class="header-booking">
@@ -43,7 +69,7 @@ var Header = React.createClass({
 
 var BookingForm = forms.Form.extend({
   booking_date: forms.DateTimeField({label: 'Fecha de la cita:', requiered: true, custom: 'readonly', requiered: true, errorMessages: {required:'Rellena este campo porfavor.'}, format: '%m/%d/%Y' }),
-  booking_hour: forms.DateTimeField({label:'Hora de la cita:', custom: 'readonly', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
+  booking_hour: forms.DateTimeField({label:'Hora de la cita:', custom: 'readonly', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}, format: '%H:%M',}),
   phone_number: forms.CharField({ label: 'Número de teléfono:', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
   email: forms.EmailField({label: 'Email:', requiered: true, errorMessages: {invalid: 'Porfavor introduce un email válido.', required:'Rellena éste campo porfavor.'}}),
   first_name: forms.CharField({label: 'Nombre:', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
@@ -95,7 +121,7 @@ var Booking = React.createClass({
     $('#id_booking_date').datetimepicker({
       timepicker: false,
     //  minDate:'-1970/01/0', //yesterday is minimum date(for today use 0 or -1970/01/01)
-      format:'d/m/Y',
+      format:'m/d/Y',
       lang:'es'
     });
     $('#id_booking_hour').datetimepicker({

@@ -34,6 +34,9 @@ def payment_ko(sender, **kwargs):
 
 def sermepa_ipn_error(sender, **kwargs):
     print 'payment ipn error'
+    order = Order.objects.get(pk=sender.Ds_MerchantData)
+    order.status = 'error_pago'
+    order.save()
     pass
 
 payment_was_successful.connect(payment_ok)
