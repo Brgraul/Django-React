@@ -230,6 +230,7 @@ def PaymentConfirmPage(request):
     message = get_template('../templates/email_templates/email_customer.html').render(Context(context))
     msg = EmailMessage(subject, message, to=to, from_email=from_email)
     msg.content_subtype = 'html'
+    msg.send()
     return render(request, 'booking_app/payment_confirm.html', context )
 
 #Here maek things if payment is not complete
