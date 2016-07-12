@@ -252,9 +252,10 @@ def PaymentErrorPage(request):
         'booking': booking,
         'pet': pet,
     }
-    message = get_template('../templates/email_templates/email_customer.html').render(Context(context))
+    message = get_template('../templates/email_templates/email_customer_error.html').render(Context(context))
     msg = EmailMessage(subject, message, to=to, from_email=from_email)
     msg.content_subtype = 'html'
+    msg.send()
     return render(request, 'booking_app/payment_error.html', context )
 
 
