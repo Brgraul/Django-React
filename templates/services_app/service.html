@@ -53,15 +53,24 @@
 <!-- NUSETRAS VETERINARIAS START -->
 <div class="container container-white-background">
   <div class="row">
-    <h2>NUESTROS VETERINARIOS</h2>
-    <div class="linebreak"></div>
+    <h2>NUESTRAS VETERINARIAS</h2>
+    <div class="linebreak1"></div>
     </div>
     <div class="col-md-12">
       <div id="carousel_vets" class="owl-carousel">
         {% for vet in vets %}
         <div class="item">
-          <img  class="image-vet-slider" alt="{{vet.name}}"  src="{{ MEDIA_URL }}{{ vet.image }}"/>
-            <p class="text-vet-slider">{{vet.name}}</p>
+          <div class="row">
+            <div class="col-md-7">
+              <h3>{{vet.name}}</h3>
+              <h4>{{vet.subtitle1}}</h4>
+              <h4>{{vet.subtitle2}}</h4>
+              <h5>{{vet.bio}}</h5>
+            </div>
+            <div class="col-md-3">
+             <img  class="image-vet-slider" alt="{{vet.name}}"  src="{{ MEDIA_URL }}{{ vet.image }}"/>
+            </div>
+          </div>
         </div>
         {% endfor %}
       </div>
@@ -98,7 +107,7 @@
         {% for customer in customers %}
         <div class="item">
           <i class="fa fa-quote-left quote-icon"></i>
-          <p class="text-customer-opinion">{{customer.opinion}}</p>
+          <h5 class="text-customer-opinion">{{customer.opinion}}</h5>
           <i class="fa fa-quote-right quote-icon"></i>
           <div class="linebreak"></div>
           <p class="text-customer-name">{{customer.name}}</p>

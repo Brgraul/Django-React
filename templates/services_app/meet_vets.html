@@ -31,28 +31,36 @@
   </div>
 </div>
 <!-- VET CARDS END-->
-<!-- INFO SERVICES -->
-<div class="container_info">
-  <span>La mejor atención sólo en casa</span>
-  <ul>
-    <li class="container_card">
-        <img  alt="File logo" src="{% static 'images/services_app/Logo-01.png' %}"/>
-        <span class="card_title">Estudiamos el historial médico de tu mascota</span>
-        <span class="card_body">La continuidad en los tratamientos es muy importante. Revisamos el historial médico de tu mascota antes de cada cita.</span>
-    </li>
-    <li class="container_card">
-        <img  alt="File logo" src="{% static 'images/services_app/Logo-01.png' %}"/>
-        <span class="card_title">Estudiamos el historial médico de tu mascota</span>
-        <span class="card_body">La continuidad en los tratamientos es muy importante. Revisamos el historial médico de tu mascota antes de cada cita.</span>
-    </li>
-    <li class="container_card">
-        <img  alt="File logo" src="{% static 'images/services_app/Logo-01.png' %}"/>
-        <span class="card_title">Estudiamos el historial médico de tu mascota</span>
-        <span class="card_body">La continuidad en los tratamientos es muy importante. Revisamos el historial médico de tu mascota antes de cada cita.</span>
-    </li>
-  </ul>
-</div>
-<!-- INFO SERVICES END-->
+<!-- Ventajas Start -->
+	<div class="container container-ventajas  container-grey-background">
+		<div class="row">
+			<h2>LA MEJOR ATENCIÓN SÓLO EN CASA</h2>
+			  <div class="linebreak1"></div>
+		</div>
+		<div class="row">
+		<div class="col-md-3">
+			<img  alt="File logo" src="{% static 'images/index/gato.png' %}"/>
+			<span class="card_title">Menos estrés para tu mascota. Sin otros animales.</span>
+			<div class="linebreak1"></div>
+		</div>
+		<div class="col-md-3">
+			<img  alt="File logo" src="{% static 'images/index/reloj.png' %}"/>
+			<span class="card_title">Cita cuando quieras, sin esperas. En tu casa.</span>
+			<div class="linebreak1"></div>
+		</div>
+		<div class="col-md-3">
+			<img  alt="File logo" src="{% static 'images/index/dias-semana.png' %}"/>
+			<span class="card_title">Abierto los 7 días de la semana al mismo precio.</span>
+			<div class="linebreak1"></div>
+		</div>
+		<div class="col-md-3">
+			<img  alt="File logo" src="{% static 'images/index/credit-card.png' %}"/>
+			<span class="card_title">Paga con tarjeta, efectivo u online.</span>
+			<div class="linebreak1"></div>
+		</div>
+		</div>
+	</div>
+	<!-- Ventajas END -->
 <!-- WHY INSTAVETS -->
 <section class="container">
   <ul class="why-instavets-list">
@@ -121,7 +129,7 @@
         {% for customer in customers %}
         <div class="item">
           <i class="fa fa-quote-left quote-icon"></i>
-          <p class="text-customer-opinion">{{customer.opinion}}</p>
+          <h5 class="text-customer-opinion">{{customer.opinion}}</h5>
           <i class="fa fa-quote-right quote-icon"></i>
           <div class="linebreak"></div>
           <p class="text-customer-name">{{customer.name}}</p>

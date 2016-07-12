@@ -7,17 +7,33 @@ div{
     padding-right: 0px;
     margin-left: 0px;
     margin-right: 0px;
-    height: 600px;
+    height: 500px;
     overflow-y: hidden;
-    & > img[id="index_slide"]{
+    & > div.wrapper-banner{
       width: 100%;
       padding: 0px;
       margin: 0px;
+
+      & > img[id="index_slide"]{
+        width: 100%;
+        z-index: 0;
+      }
+      & > div.mask-banner{
+        margin: 0px;
+        padding: 0px;
+        width: 100%;
+        position: absolute;
+        z-index: 1;
+        background-color: #000;
+        opacity: 0.3;
+        height: 500px;
+      }
     }
     & > div.container.container-slide-overlay{
+      z-index: 3;
       max-width: 100%;
       position: absolute;
-      top: 430px;
+      top: 34%;
       text-align: center;
       width: 100%;
       & > h3{
