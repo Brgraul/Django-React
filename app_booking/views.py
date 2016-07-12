@@ -169,7 +169,7 @@ def PaymentPage(request):
     return HttpResponse(render_to_response('booking_app/payment.html', context))
 #Email Sending
 
-def email_customer_txt(request):
+'''def email_customer_txt(request):
     customer = get_object_or_404(Customer, pk=customer_id)
     booking = get_object_or_404(Booking, pk=booking_id)
     order = get_object_or_404(Order, pk=order_id)
@@ -194,16 +194,17 @@ def email_customer_html(request):
     pet = get_object_or_404(Pet,customer=customer.id )
     subject = "I am a text email"
     to=[customer.email]
+    from_email = 'info@instavets.com'
     context = {
         'customer': customer,
         'order': order,
         'booking': booking,
         'pet': pet,
     }
-    message = get_template('../templates/email_templates/email_customer.html', context)
-    msg = EmailMessage(subject, message, to=to)
+    message = get_template('../templates/email_templates/email_customer.html').render(Context(context))
+    msg = EmailMessage(subject, message, to=to, from_email=from_email)
     msg.content_subtype = 'html'
-    return ()
+    return () '''
 
 
 
@@ -216,12 +217,18 @@ def PaymentConfirmPage(request):
     booking = get_object_or_404(Booking, pk=booking_id)
     order = get_object_or_404(Order, pk=order_id)
     pet = get_object_or_404(Pet,customer=customer.id )
+    subject = "I am a text email"
+    to=[customer.email]
+    from_email = 'info@instavets.com'
     context = {
         'customer': customer,
         'order': order,
         'booking': booking,
         'pet': pet,
     }
+    message = get_template('../templates/email_templates/email_customer.html').render(Context(context))
+    msg = EmailMessage(subject, message, to=to, from_email=from_email)
+    msg.content_subtype = 'html'
     return render(request, 'booking_app/payment_confirm.html', context )
 
 #Here maek things if payment is not complete
@@ -234,12 +241,18 @@ def PaymentErrorPage(request):
     booking = get_object_or_404(Booking, pk=booking_id)
     order = get_object_or_404(Order, pk=order_id)
     pet = get_object_or_404(Pet,customer=customer.id )
+    subject = "I am a text email"
+    to=[customer.email]
+    from_email = 'info@instavets.com'
     context = {
         'customer': customer,
         'order': order,
         'booking': booking,
         'pet': pet,
     }
+    message = get_template('../templates/email_templates/email_customer.html').render(Context(context))
+    msg = EmailMessage(subject, message, to=to, from_email=from_email)
+    msg.content_subtype = 'html'
     return render(request, 'booking_app/payment_error.html', context )
 
 
