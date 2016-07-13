@@ -230,6 +230,17 @@ div.form-group:nth-child(8){
   margin-top: 15px;
 }
 
-div.form-group:nth-child(6){
-  display: block;
+form{
+  & > button{
+    float: right;
+  }
+}
+
+
+form#petform{
+    & > div {
+      & > div.form-group:nth-child(6){
+        width: 100%;
+      }
+    }
 }

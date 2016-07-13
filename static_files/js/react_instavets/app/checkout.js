@@ -182,7 +182,7 @@ var NewPet = React.createClass({
     return <div class="col-md-7 checkout-form-container">
               <p class="form-title" >Registre a su mascota</p>
               <p class="form-sub" >Nos preocupamos por su amigo peludo</p>
-              <form onSubmit={this._onSubmit} onChange={this.onFormChange}>
+              <form id = "petform" onSubmit={this._onSubmit} onChange={this.onFormChange}>
               <forms.RenderForm form={NewPetForm} ref="newPetForm">
                 <BootstrapForm form={NewPetForm} />
               </forms.RenderForm>
@@ -256,7 +256,7 @@ var CheckoutContainer = React.createClass({
     //Perf.start()
 		return {
       loaded: false,
-      step: 1,
+      step: 2,
       step_id: 'step1',
       //Step 1
       city: ' ',
