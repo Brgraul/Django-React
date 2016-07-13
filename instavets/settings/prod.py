@@ -21,9 +21,8 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'dv4$wf-a)byi_yrb6$zigc+1y5y9scnu+vj$ng5vq3b3qk*nhd'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
 TEMPLATE_DEBUG = True
-
+DEBUG = False
 
 ALLOWED_HOSTS = ['185.14.187.119']
 
@@ -171,7 +170,7 @@ SERMEPA_TERMINAL = '001'
 SERMEPA_BUTTON_IMG = '/site_media/_img/targets.jpg'
 SERMEPA_CURRENCY = '978' #Euros
 SERMEPA_SIGNATURE_VERSION = 'HMAC_SHA256_V1' # This value is fixed
-SERMEPA_SECRET_KEY = 'sq7HjrUOBfKmC576ILgskD5srU870gJ7'     # Your Redsys Secret Key
+SERMEPA_SECRET_KEY = 'EKKzO4ah+5Io7lvU7rZ/ZRGahPcffhl3'     # Your Redsys Secret Key
 SERMEPA_BUTTON_TEXT = 'Confirmar y Pagar'
 # CKEDITOR SETTINGS
 
