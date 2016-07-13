@@ -80,6 +80,7 @@ def CheckoutPage(request):
             pet.species = data.__getitem__('data[pet_species]')
             pet.breed = data.__getitem__('data[pet_breed]')
             pet.age = data.__getitem__('data[pet_birthday]')
+            pet.conditions = data.__getitem__('data[pet_conditions]')
             pet.customer = customer
             pet.save()
             print 'Pet Saved ...'

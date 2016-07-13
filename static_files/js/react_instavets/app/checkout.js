@@ -97,6 +97,7 @@ var NewPetForm = forms.Form.extend({
   pet_species: forms.ChoiceField({required: true, label: 'Especie:', choices: SPECIES, errorMessages: {required:'Rellena éste campo porfavor.'}}),
   pet_gender: forms.ChoiceField({required: true, choices: GENDER, label: 'Sexo de la mascota:', errorMessages: {required:'Selecciona una de las opciones porfavor.'}}),
   pet_breed: forms.CharField({label: 'Raza:', required: true, errorMessages: {required:'Selecciona una de las opciones porfavor.'}}),
+  pet_conditions: forms.CharField({label: '¿Qué le sucede?:', required: false, widget: forms.Textarea})
 })
 
 //Loads the booking form
@@ -272,6 +273,7 @@ var CheckoutContainer = React.createClass({
       pet_species : 'Gato',
       pet_gender : 'Hembra normal',
       pet_breed : '',
+      pet_conditions : '',
       payment_status: 'Incompleto',
       cookies_enabled: false,
       //api
@@ -372,6 +374,7 @@ var CheckoutContainer = React.createClass({
       pet_species : form_params.pet_species,
       pet_gender : form_params.pet_gender,
       pet_breed : form_params.pet_breed,
+      pet_conditions : form_params.pet_condition
     })
   },
   // Increases the state counter in 1
