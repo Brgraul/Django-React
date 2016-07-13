@@ -62,7 +62,6 @@ def CheckoutPage(request):
             order.status = 'pendiente'
             order.booking = booking
             order.customer = customer
-            order.ref_code = SermepaIdTPV.objects.new_idtpv()
             order.save()
             #Generating Response
             request.session['customer_id'] = customer.pk
@@ -100,6 +99,8 @@ def PaymentPage(request):
     customer = get_object_or_404(Customer, pk=customer_id)
     booking = get_object_or_404(Booking, pk=booking_id)
     order = get_object_or_404(Order, pk=order_id)
+    order.ref_code = SermepaIdTPV.objects.new_idtpv()
+    order.save()
     pet = get_object_or_404(Pet,customer=customer.id )
     #Getiing Site Domain
     merchant_parameters = {
