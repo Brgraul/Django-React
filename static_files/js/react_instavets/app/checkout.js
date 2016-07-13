@@ -256,7 +256,7 @@ var CheckoutContainer = React.createClass({
     //Perf.start()
 		return {
       loaded: false,
-      step: 2,
+      step: 1,
       step_id: 'step1',
       //Step 1
       city: ' ',
