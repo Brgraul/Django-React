@@ -320,9 +320,9 @@ var CheckoutContainer = React.createClass({
     var hours = hour.getHours();
     var month = date.getUTCMonth();
     //day of the week(0-6)
-    var day = date.getDate();
+    var day = date.getUTCDay();
     //day of the moth(0-30)
-    var month_day = date.getUTCDate();
+    var month_day = date.getDate();
     //Building the String
     var days = ['Lunes', 'Martes', 'Miercoles', 'Jueves', 'Viernes', 'Sabado', 'Domingo'];
     var months = ['Ene', 'Feb', 'Marzo', 'Abr', 'Mayo', 'Junio', 'Julio', 'Agosto', 'Sept', 'Oct', 'Nov', 'Dic'];
