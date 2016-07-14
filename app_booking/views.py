@@ -170,6 +170,8 @@ def PaymentPage(request):
         'debug': settings.DEBUG,
     }
 
+    SendEmail(context)
+
     return HttpResponse(render_to_response('booking_app/payment.html', context))
 #Email Sending
 
@@ -221,20 +223,24 @@ def PaymentConfirmPage(request):
     booking = get_object_or_404(Booking, pk=booking_id)
     order = get_object_or_404(Order, pk=order_id)
     pet = get_object_or_404(Pet,customer=customer.id )
-    subject = "I am a text email"
-    to=[customer.email]
-    from_email = 'info@instavets.com'
     context = {
         'customer': customer,
         'order': order,
         'booking': booking,
         'pet': pet,
     }
+    return render(request, 'booking_app/payment_confirm.html', context )
+
+
+def SendEmail(context):
+    customer = context['customer']
+    subject = "tu Consulta en Instavets"
+    to=[customer.email]
+    from_email = 'info@instavets.com'
     message = get_template('../templates/email_templates/email_customer.html').render(Context(context))
     msg = EmailMessage(subject, message, to=to, from_email=from_email)
     msg.content_subtype = 'html'
     msg.send()
-    return render(request, 'booking_app/payment_confirm.html', context )
 
 #Here maek things if payment is not complete
 #Payment Confirm Page
