@@ -5,8 +5,7 @@ from django.contrib import admin
 from .models import Pet, Booking, Order, Customer
 
 #admin.site.register(UserVeterian)
-admin.site.register(Pet)
-admin.site.register(Order)
+
 #admin.site.register(UserCustomer)
 
 
@@ -27,12 +26,21 @@ class CustomerAdmin(admin.ModelAdmin):
 
 class BookingAdmin(admin.ModelAdmin):
     model = Booking
-    list_display = ('date_booking', 'adress', 'city',)
-    list_select_related = ('customer',)
+    list_display = ('created', 'date_booking', 'adress', 'city',)
 
-    def get_customer(self, obj):
-        return obj.customer
+
+class OrderAdmin(admin.ModelAdmin):
+    model = Order
+    list_display = ('created', 'status', 'customer', 'booking',)
+
+
+class PetAdmin(admin.ModelAdmin):
+    model = Pet
+    list_display = ('name','customer', 'gender',)
+
 
 
 admin.site.register(Customer, CustomerAdmin)
 admin.site.register(Booking, BookingAdmin)
+admin.site.register(Pet, PetAdmin)
+admin.site.register(Order, OrderAdmin)
