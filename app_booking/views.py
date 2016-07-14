@@ -94,6 +94,9 @@ def CheckoutPage(request):
             pet.conditions = data.__getitem__('data[pet_conditions]')
             pet.customer = customer
             pet.save()
+            request.session['pet_id'] = pet.pk
+            response = HttpResponse('Cookie Set')
+            return response
             print 'Pet Saved ...'
             #Redifining Context with the New Data
 
@@ -108,10 +111,11 @@ def PaymentPage(request):
     customer_id = request.session.get('customer_id')
     booking_id = request.session.get('booking_id')
     order_id = request.session.get('order_id')
+    pet_id = request.session.get('pet_id')
     customer = get_object_or_404(Customer, pk=customer_id)
     booking = get_object_or_404(Booking, pk=booking_id)
     order = get_object_or_404(Order, pk=order_id)
-    pet = get_object_or_404(Pet,customer=customer.id )
+    pet = get_object_or_404(Pet, pk=pet_id)
     order.ref_code = SermepaIdTPV.objects.new_idtpv()
     order.save()
     #Getiing Site Domain
