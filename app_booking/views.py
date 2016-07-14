@@ -34,7 +34,7 @@ def SendEmail(context):
     subject = "tu Consulta en Instavets"
     to=[customer.email]
     from_email = 'info@instavets.com'
-    message = get_template('../templates/email_templates/email_customer.html').render(Context(context))
+    message = get_template('../templates/email_templates/email_customer.html').render(context)
     msg = EmailMessage(subject, message, to=to, from_email=from_email)
     msg.content_subtype = 'html'
     msg.send()
