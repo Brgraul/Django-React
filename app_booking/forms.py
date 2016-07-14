@@ -44,7 +44,7 @@ class InstavetsSermepaPaymentForm(forms.Form):
     def render(self):
         return mark_safe(u"""<form id="tpv_form" action="%s" method="post">
             %s
-            <input type="submit" name="submit" alt="%s" value="%s"/>
+            <input class="btn-cta-green" type="submit" name="submit" alt="%s" value="%s"/>
         </form>""" % (settings.SERMEPA_URL_PRO, self.as_p(), settings.SERMEPA_BUTTON_TEXT,
                       settings.SERMEPA_BUTTON_TEXT))
 
