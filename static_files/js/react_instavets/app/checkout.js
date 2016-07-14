@@ -179,12 +179,12 @@ var Booking = React.createClass({
 var NewPet = React.createClass({
   renderPetForm: function(){
     var data = {
-      pet_name: '',
-      pet_birthday: '',
+      pet_name: ' ',
+      pet_birthday: ' ',
       pet_gender: 'hembra_normal',
       pet_species: 'cat',
-      pet_breed: '',
-      pet_conditions: '',
+      pet_breed: ' ',
+      pet_conditions: ' ',
     }
     newPetForm = new NewPetForm({data: data})
     return newPetForm;
