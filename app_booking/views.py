@@ -28,6 +28,17 @@ from django.contrib.sites.models import Site
 import requests
 from django.core.files import File
 
+#Functions
+def SendEmail(context):
+    customer = context['customer']
+    subject = "tu Consulta en Instavets"
+    to=[customer.email]
+    from_email = 'info@instavets.com'
+    message = get_template('../templates/email_templates/email_customer.html').render(Context(context))
+    msg = EmailMessage(subject, message, to=to, from_email=from_email)
+    msg.content_subtype = 'html'
+    msg.send()
+
 # Create your views here.
 @csrf_exempt
 def CheckoutPage(request):
@@ -231,16 +242,6 @@ def PaymentConfirmPage(request):
     }
     return render(request, 'booking_app/payment_confirm.html', context )
 
-
-def SendEmail(context):
-    customer = context['customer']
-    subject = "tu Consulta en Instavets"
-    to=[customer.email]
-    from_email = 'info@instavets.com'
-    message = get_template('../templates/email_templates/email_customer.html').render(Context(context))
-    msg = EmailMessage(subject, message, to=to, from_email=from_email)
-    msg.content_subtype = 'html'
-    msg.send()
 
 #Here maek things if payment is not complete
 #Payment Confirm Page
