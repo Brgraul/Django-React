@@ -167,8 +167,8 @@ var Booking = React.createClass({
     var isValid = form.validate()
     if (isValid) {
       this.props.updateContactFormParams(form.cleanedData);
-      this.props.nextStep()
       this.onSignup(form.cleanedData)
+      this.props.nextStep()
     }
   },
 })
