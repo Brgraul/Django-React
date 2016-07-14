@@ -79,22 +79,22 @@ var BookingForm = forms.Form.extend({
 })
 
 var SPECIES = [
-  ['cat','Gato'],
   ['dog','Perro'],
+  ['cat','Gato'],
   ['other','Otro']
 ]
 var GENDER = [
+  ['macho_normal','Macho Normal'],
+  ['macho_esterilizado','Macho Esterilizado'],
   ['hembra_normal','Hembra Normal'],
   ['hembra_esterilizada','Hembra Esterilizada'],
-  ['macho_normal','Macho Normal'],
-  ['macho_esterilizado','Macho Esterilizado']
 ]
 
 var NewPetForm = forms.Form.extend({
   pet_name: forms.CharField({label: 'Nombre de la mascota:', required: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
-  pet_birthday: forms.CharField({label: 'Edad (Años):', required: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
-  pet_species: forms.ChoiceField({required: true, label: 'Especie:', choices: SPECIES, errorMessages: {required:'Rellena éste campo porfavor.'}}),
-  pet_gender: forms.ChoiceField({required: true, choices: GENDER, label: 'Sexo de la mascota:', errorMessages: {required:'Selecciona una de las opciones porfavor.'}}),
+  pet_birthday: forms.CharField({label: 'Edad (años):', required: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
+  pet_species: forms.ChoiceField({initial: 'dog', required: true, label: 'Especie:', choices: SPECIES, errorMessages: {required:'Rellena éste campo porfavor.'}}),
+  pet_gender: forms.ChoiceField({initial: 'macho_normal',required: true, choices: GENDER, label: 'Sexo de la mascota:', errorMessages: {required:'Selecciona una de las opciones porfavor.'}}),
   pet_breed: forms.CharField({label: 'Raza:', required: true, errorMessages: {required:'Selecciona una de las opciones porfavor.'}}),
   pet_conditions: forms.CharField({label: '¿Qué le sucede?:', required: false, widget: forms.Textarea})
 })
@@ -137,7 +137,21 @@ var Booking = React.createClass({
     this.renderDateSelectWidget();
   },
   onSignup: function(cleanedData) {
-    console.log('on isgnup')
+    var booking_date_django = this.props.dateDjangoDefault(cleanedData.booking_date, form.cleanedData.booking_hour)
+    var url_checkout = window.location.href;
+    $.ajax({
+         url : url_checkout,
+         type : "POST",
+         data : { step: this.props.step, data : cleanedData, booking_date_django: booking_date_django }, // data sent with the post request
+         success : function(json) {
+         },
+         error : function(xhr,errmsg,err) {
+           //NEDD TO HANDLE ERROR AND SUCCESS CHANGES
+             $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
+                 " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
+             console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+         }
+     });
   },
   /*
   propTypes: {
@@ -150,72 +164,36 @@ var Booking = React.createClass({
   _onSubmit: function(e){
     e.preventDefault()
     var form = this.refs.bookingForm.getForm()
-    var booking_date_django = this.props.dateDjangoDefault(form.cleanedData.booking_date, form.cleanedData.booking_hour)
-    console.log(booking_date_django)
-    var url_checkout = window.location.href;
-    $.ajax({
-         url : url_checkout,
-         type : "POST",
-         data : { step: this.props.step, data : form.cleanedData, booking_date_django: booking_date_django }, // data sent with the post request
-         success : function(json) {
-         },
-         error : function(xhr,errmsg,err) {
-           //NEDD TO HANDLE ERROR AND SUCCESS CHANGES
-             $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
-                 " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
-             console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
-         }
-     });
     var isValid = form.validate()
     if (isValid) {
-      this.onSignup(form.cleanedData)
       this.props.updateContactFormParams(form.cleanedData);
       this.props.nextStep()
+      this.onSignup(form.cleanedData)
     }
   },
 })
 
 /* Renders the pet form */
 var NewPet = React.createClass({
-  renderPetForm: function(){
-    var data = {
-      pet_name: ' ',
-      pet_birthday: ' ',
-      pet_gender: 'hembra_normal',
-      pet_species: 'cat',
-      pet_breed: ' ',
-      pet_conditions: ' ',
-    }
-    newPetForm = new NewPetForm({data: data})
-    return newPetForm;
-  },
   render: function() {
     return <div class="col-md-7 checkout-form-container">
               <p class="form-title" >Registre a su mascota</p>
               <p class="form-sub" >Nos preocupamos por su amigo peludo</p>
               <form id = "petform" onSubmit={this._onSubmit} onChange={this.onFormChange}>
-              <forms.RenderForm form={this.renderPetForm} ref="newPetForm">
-                <BootstrapForm form={this.renderPetForm} />
+              <forms.RenderForm form={NewPetForm} ref="newPetForm">
+                <BootstrapForm form={NewPetForm} />
               </forms.RenderForm>
               <button class="btn-cta-green">Guardar y continuar</button>
               </form>
             </div>
   },
   onSignup: function(cleanedData) {
-    console.log('on isgnup')
-  },
-  propTypes: {
-    onSignup: React.PropTypes.func.isRequired
-  },
-  _onSubmit: function(e){
-    e.preventDefault()
-    var form = this.refs.newPetForm.getForm()
     var url_checkout = window.location.href;
     var url_payment = document.location.origin + '/payment/';
     $.ajax({
          url : url_checkout, // the endpoint
          type : "POST", // http method
-         data : { data : form.cleanedData, step: this.props.step }, // data sent with the post request
+         data : { data : cleanedData, step: this.props.step }, // data sent with the post request
 
          // handle a successful response
          success : function(json) {
@@ -232,11 +210,17 @@ var NewPet = React.createClass({
              console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
          }
      });
+  },
+  propTypes: {
+    onSignup: React.PropTypes.func.isRequired
+  },
+  _onSubmit: function(e){
+    e.preventDefault()
+    var form = this.refs.newPetForm.getForm()
     var isValid = form.validate()
     if (isValid) {
-      this.onSignup(form.cleanedData)
       this.props.updatePetFormParams(form.cleanedData);
-      //this.props.nextStep()
+      this.onSignup(form.cleanedData)
     }
   },
 })
