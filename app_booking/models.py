@@ -95,7 +95,7 @@ class Booking(models.Model):
     city = models.CharField(max_length = 100, blank = False, null = False, verbose_name = 'Ciudad')
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, verbose_name = 'Cliente')
 
-    def __str__(self):              # __unicode__ on Python 2
+    def __unicode__(self):              # __unicode__ on Python 2
       return "%s|%s" % (self.city, self.date_booking )
 
 class Order(models.Model):
