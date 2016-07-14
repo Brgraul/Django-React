@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 from django.shortcuts import render , redirect
 from django.shortcuts import get_object_or_404
 from django.views.decorators.csrf import csrf_exempt

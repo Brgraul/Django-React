@@ -57,7 +57,7 @@ class Customer(models.Model):
         verbose_name_plural = 'Clientes'
         verbose_name = 'Cliente'
 
-    def __str__(self):              # __unicode__ on Python 2
+    def __unicode__(self):              # __unicode__ on Python 2
         return "%s %s" % (self.first_name, self.last_name)
 
 #Pet Model
@@ -79,7 +79,7 @@ class Pet(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, verbose_name = 'Cliente')
     gender = models.CharField(max_length=20, choices=GENDER, blank = True, null=True, verbose_name = 'Sexo' )
 
-    def __str__(self):              # __unicode__ on Python 2
+    def __unicode__(self):              # __unicode__ on Python 2
       return "%s %s" % (self.name, self.breed)
 
 class Booking(models.Model):
@@ -114,5 +114,5 @@ class Order(models.Model):
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, verbose_name = 'Cliente')
     booking = models.ForeignKey(Booking, on_delete=models.CASCADE, verbose_name = 'Reserva Relacionada')
 
-    def __str__(self):              # __unicode__ on Python 2
+    def __unicode__(self):              # __unicode__ on Python 2
       return "%s|%s" % (self.ref_code, self.status )
