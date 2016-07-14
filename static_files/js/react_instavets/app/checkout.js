@@ -31,7 +31,6 @@ forms.addLocale('es', {
 
 forms.setDefaultLocale('es');
 
-
 /* Header */
 var Header = React.createClass({
   render: function() {
@@ -121,7 +120,7 @@ var Booking = React.createClass({
     $.datetimepicker.setLocale('es');
     $('#id_booking_date').datetimepicker({
       timepicker: false,
-    //  minDate:'-1970/01/0', //yesterday is minimum date(for today use 0 or -1970/01/01)
+      minDate: '0', //yesterday is minimum date(for today use 0 or -1970/01/01)
       format:'m/d/Y',
       lang:'es'
     });
@@ -178,13 +177,25 @@ var Booking = React.createClass({
 
 /* Renders the pet form */
 var NewPet = React.createClass({
+  renderPetForm: function(){
+    var data = {
+      pet_name: '',
+      pet_birthday: '',
+      pet_gender: 'hembra_normal',
+      pet_species: 'cat',
+      pet_breed: '',
+      pet_conditions: '',
+    }
+    newPetForm = new NewPetForm({data: data})
+    return newPetForm;
+  },
   render: function() {
     return <div class="col-md-7 checkout-form-container">
               <p class="form-title" >Registre a su mascota</p>
               <p class="form-sub" >Nos preocupamos por su amigo peludo</p>
               <form id = "petform" onSubmit={this._onSubmit} onChange={this.onFormChange}>
-              <forms.RenderForm form={NewPetForm} ref="newPetForm">
-                <BootstrapForm form={NewPetForm} />
+              <forms.RenderForm form={this.renderPetForm} ref="newPetForm">
+                <BootstrapForm form={this.renderPetForm} />
               </forms.RenderForm>
               <button class="btn-cta-green">Guardar y continuar</button>
               </form>
