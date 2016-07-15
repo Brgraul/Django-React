@@ -155,18 +155,18 @@ var Booking = React.createClass({
          }
      });
   },
-  /*
   propTypes: {
     onSignup: React.PropTypes.func.isRequired
   },
   onFormChange: function(){
     var form = this.refs.bookingForm.getForm()
     this.props.updateContactFormParams(form.cleanedData);
-  },*/
+  },
   _onSubmit: function(e){
     e.preventDefault()
     var form = this.refs.bookingForm.getForm()
     var isValid = form.validate()
+    console.log('isValid')
     if (isValid) {
       this.onSignup(form.cleanedData)
       this.props.updateContactFormParams(form.cleanedData);
