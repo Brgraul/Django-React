@@ -148,7 +148,6 @@ var Booking = React.createClass({
            console.log('json booking sent and success')
          },
          error : function(xhr,errmsg,err) {
-           //NEDD TO HANDLE ERROR AND SUCCESS CHANGES
              $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
                  " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
              console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
