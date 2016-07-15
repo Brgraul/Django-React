@@ -24,7 +24,9 @@ def ServicesIndex(request):
         'vets':vets,
         'customers':customers,
     }
+    request.session.set_test_cookie()
     return render(request, "services_app/services_index.html", context)
+
 
 def MeetTheVetsPage(request):
     vets = VetsDisplay.objects.filter(published_lasvets=True)
@@ -33,6 +35,7 @@ def MeetTheVetsPage(request):
         'vets':vets,
         'customers':customers,
     }
+    print request.session.test_cookie_worked()
     return render(request, "services_app/meet_vets.html", context)
 
 def Index(request):

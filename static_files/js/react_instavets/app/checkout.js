@@ -137,7 +137,7 @@ var Booking = React.createClass({
     this.renderDateSelectWidget();
   },
   onSignup: function(cleanedData) {
-    var booking_date_django = this.props.dateDjangoDefault(cleanedData.booking_date, form.cleanedData.booking_hour)
+    var booking_date_django = this.props.dateDjangoDefault(cleanedData.booking_date, cleanedData.booking_hour)
     var url_checkout = window.location.href;
     $.ajax({
          url : url_checkout,
