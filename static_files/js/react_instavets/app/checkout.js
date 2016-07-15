@@ -137,6 +137,7 @@ var Booking = React.createClass({
     this.renderDateSelectWidget();
   },
   onSignup: function(cleanedData) {
+    console.log('Booking On SignUp')
     var booking_date_django = this.props.dateDjangoDefault(cleanedData.booking_date, cleanedData.booking_hour)
     var url_checkout = window.location.href;
     $.ajax({
@@ -144,6 +145,7 @@ var Booking = React.createClass({
          type : "POST",
          data : { step: this.props.step, data : cleanedData, booking_date_django: booking_date_django }, // data sent with the post request
          success : function(json) {
+           console.log('json booking sent and success')
          },
          error : function(xhr,errmsg,err) {
            //NEDD TO HANDLE ERROR AND SUCCESS CHANGES
