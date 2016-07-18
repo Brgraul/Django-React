@@ -4,10 +4,12 @@
 {% block body_content %}
 
 <section class="full-wrapp" style="background-image: url({{ MEDIA_URL }}{{ service.image }})">
+  <div>
   <h1>{{ service.headline}}</h1>
   <h3>{{ service.short_description }}</h3>
   <br/>
   <a class="btn btn-cta-white" href="{% url 'checkout' %}">PIDE TU CITA</a>
+  </div>
 </section>
 
 <div class="container-fluid" id="container-services-text">
