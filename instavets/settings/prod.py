@@ -247,3 +247,12 @@ LOGGING = {
         },
     }
 }
+
+#CKEDITOR SETTINGS
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 600,
+        'width': 1140,
+    },
+}
