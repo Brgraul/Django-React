@@ -8,7 +8,7 @@ from ckeditor.fields import RichTextField
 #Products
 class Service(models.Model):
     name = models.CharField(max_length = 100, blank = False, null = False)
-    menu_link = models.CharField(max_length = 20, blank = False, null = False)
+    menu_link = models.CharField(max_length = 30, blank = False, null = False)
     url = models.CharField(max_length = 20, blank = False, null = False)
     headline = models.TextField(max_length=5000, default='Headline...')
     short_description = models.TextField(max_length=5000, default='Descripcion corta ...')
