@@ -67,8 +67,8 @@ var Header = React.createClass({
 })
 
 var BookingForm = forms.Form.extend({
-  booking_date: forms.DateTimeField({label: 'Fecha de la cita:', requiered: true, custom: 'readonly', requiered: true, errorMessages: {required:'Rellena este campo porfavor.'}, format: '%m/%d/%Y' }),
-  booking_hour: forms.DateTimeField({label:'Hora de la cita:', custom: 'readonly', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}, format: '%H:%M',}),
+  booking_date: forms.DateTimeField({label: 'Fecha de la cita:', requiered: true, custom: 'readonly', requiered: true, errorMessages: {required:'Rellena este campo porfavor.'}, format: '%m/%d/%Y'}),
+  booking_hour: forms.DateTimeField({label:'Hora de la cita:', custom: 'readonly', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}, format: '%H:%M',initial: 'prototype'}),
   phone_number: forms.CharField({ label: 'Número de teléfono:', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
   email: forms.EmailField({label: 'Email:', requiered: true, errorMessages: {invalid: 'Porfavor introduce un email válido.', required:'Rellena éste campo porfavor.'}}),
   first_name: forms.CharField({label: 'Nombre:', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
@@ -102,11 +102,20 @@ var NewPetForm = forms.Form.extend({
 //Loads the booking form
 var Booking = React.createClass({
   render: function() {
+    var order_isset = this.props.cookieOrderIsSet();
+    console.log(order_isset),
+    if (order_isset){
+      var order = this.props.CookieOrderGet();
+      console.log(order),
+      var bookingForm = new BookingForm({initial: {booking_date:order.customer.booking_date, booking_hour:order.customer.booking_hour,
+        phone_number:order.customer.phone_number, email:order.customer.email, first_name: order.customer.first_name,
+        second_name:order.customer.second_name, adress:order.customer.adress, city:order.customer.city, acceptTerms:order.customer.acceptTerms}, autoId: false});
+    }
     return <div class="col-md-7 checkout-form-container">
               <p class="form-title" >Reserve su cita</p>
               <p class="form-sub" >Facilítenos alguna información básica porfavor</p>
                 <form onSubmit={this._onSubmit}>
-                <forms.RenderForm form={BookingForm} component="ul"
+                <forms.RenderForm form=bookingForm component="ul"
                 rowComponent="li"
                 ref="bookingForm"
                 >
@@ -250,6 +259,9 @@ var CheckoutContainer = React.createClass({
 	getInitialState: function() {
     //window.Perf = Perf;
     //Perf.start()
+    this.cookieTestSet();
+    this.cookieTestVerify();
+
 		return {
       loaded: false,
       step: 1,
@@ -276,11 +288,11 @@ var CheckoutContainer = React.createClass({
       url_order_get: 'http://localhost:8000/api/cookies/cookie_order_get/',
 		}
 	},
-
   //Set Test Cookie
   cookieTestSet: function(){
+    var url_cookie_test_set = document.location.origin + '/api/cookies/cookie_test_set/';
     $.ajax({
-         url : "http://localhost:8000/api/cookies/cookie_test_set/", // the endpoint
+         url : url_cookie_test_set, // the endpoint
          type : "POST", // http method
          // handle a successful response
          success : function(data) {
@@ -295,8 +307,9 @@ var CheckoutContainer = React.createClass({
      });
   },
   cookieTestVerify: function(){
+    var url_cookie_test_verify = document.location.origin + '/api/cookies/cookie_test_verify/';
     $.ajax({
-         url : "http://localhost:8000/api/cookies/cookie_test_verify/", // the endpoint
+         url : url_cookie_test_verify , // the endpoint
          type : "POST", // http method
          // handle a successful response
          success : function(data) {
@@ -310,6 +323,79 @@ var CheckoutContainer = React.createClass({
          }
      });
   },
+  cookieOrderIsSet: function(){
+    var url_cookie_order_isset = document.location.origin + '/api/cookies/cookie_order_isset/';
+    $.ajax({
+         url : url_cookie_order_isset, // the endpoint
+         type : "GET", // http method
+         // handle a successful response
+         success : function(data) {
+             console.log(data);
+             console.log(data.OrderIsSet);
+             return data.OrderIsSet;
+         },
+         // handle a non-successful response
+         error : function(xhr,errmsg,err) {
+             $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
+                 " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
+             console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+         }
+     });
+   },
+   cookiePetIsSet: function(){
+     var url_cookie_pet_isset = document.location.origin + '/api/cookies/cookie_pet_isset/';
+     $.ajax({
+          url : url_cookie_pet_isset, // the endpoint
+          type : "GET", // http method
+          // handle a successful response
+          success : function(data) {
+              console.log(data);
+              console.log(data.PetIsSet);
+              return data.PetIsSet;
+          },
+          // handle a non-successful response
+          error : function(xhr,errmsg,err) {
+              $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
+                  " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
+              console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+          }
+      });
+    },
+   CookieOrderGet: function(){
+     var url = document.location.origin + '/api/cookies/cookie_order_get/';
+     $.ajax({
+          url : url, // the endpoint
+          type : "GET", // http method
+          // handle a successful response
+          success : function(data) {
+              console.log(data);
+              return data
+          },
+          // handle a non-successful response
+          error : function(xhr,errmsg,err) {
+              $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
+                  " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
+              console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+          }
+      });
+   },
+   CookiePetGet: function(){
+     var url = document.location.origin + '/api/cookies/cookie_pet_get/';
+     $.ajax({
+          url : url, // the endpoint
+          type : "GET", // http method
+          // handle a successful response
+          success : function(data) {
+              console.log(data);
+          },
+          // handle a non-successful response
+          error : function(xhr,errmsg,err) {
+              $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
+                  " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
+              console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
+          }
+      });
+   },
   dateStringFormat: function(date, hour){
     //Getting Time
     var minutes = hour.getMinutes();
@@ -395,6 +481,8 @@ var CheckoutContainer = React.createClass({
                       <div class="container">
                         <div class="row">
                             <Booking
+                              cookieOrderIsSet={this.cookieOrderIsSet}
+                              cookieOrderGet={this.cookieOrderGet}
                               nextStep={this.nextStep}
                               updateContactFormParams={this.updateContactFormParams}
                               step={this.state.step}
