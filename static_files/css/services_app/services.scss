@@ -30,20 +30,27 @@ section.full-wrapp{
   text-align: center;
   width: 100%;
   height: 450px;
-  & > div{
+  & > div.mask-banner{
+      margin: 0px;
+      padding: 0px;
+      width: 100%;
+      position: absolute;
+      z-index: 1;
+      background-color:rgba(0, 0, 0, 0.3);
+      height: 450px;
+    & > div:first-child{
     position: relative;
-    top: 22%;
+    top: 20%;
+    z-index: 3;
     & > h1{
     font-weight: bold;
     color: white;
     font-size: 2.5rem;
     display: inline;
     }
-
     &  h1:nth-child(2){
       color: #00CCC2;
     }
-
     & > h3{
       text-align: center;
       font-size: 28px;
@@ -56,6 +63,7 @@ section.full-wrapp{
       margin-top: 20px;
     }
   }
+}
 }
 
 .princing-banner{
