@@ -30,11 +30,34 @@ section.full-wrapp{
   text-align: center;
   width: 100%;
   height: 450px;
+  & > div.overlay {
+    position: relative;
+    top: 20%;
+    & > h1{
+    font-weight: bold;
+    color: white;
+    font-size: 2.5rem;
+    display: inline;
+    }
+    &  h1:nth-child(2){
+      color: #00CCC2;
+    }
+    & > h3{
+      text-align: center;
+      font-size: 28px;
+      line-height: 125%;
+      margin: 20px auto 0px;
+      max-width: 780px;
+      color: white;
+    }
+    & > button {
+      margin-top: 20px;
+    }
+  }
   & > div.mask-banner{
       margin: 0px;
       padding: 0px;
       width: 100%;
-      position: absolute;
       z-index: 1;
       background-color:rgba(0, 0, 0, 0.3);
       height: 450px;

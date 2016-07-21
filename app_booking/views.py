@@ -292,20 +292,66 @@ def CookieTestSet(request):
 def CookieTestVerify(request):
     if request.method == "POST":
         cookie_worked = {'CookieWorked': request.session.test_cookie_worked()}
+        print cookie_worked
         return JsonResponse(cookie_worked)
 
 #Check if user already made an order
 @csrf_exempt
 def CookieOrderIsSet(request):
-    if request.method == "POST":
-        exists = request.session.exists('order_id')
-        order_isset = {'OrderIsSet': exists}
+    if request.method == "GET":
+        if 'order_id' in request.session:
+            order_isset = {'OrderIsSet': 'True'}
+        else:
+            order_isset = {'OrderIsSet': 'False'}
+        print JsonResponse(order_isset)
         return JsonResponse(order_isset)
+
+#Check if user has registered any pet
+@csrf_exempt
+def CookiePetIsSet(request):
+    if request.method == "GET":
+        if 'pet_id' in request.session:
+            pet_isset = {'PetIsSet': 'True'}
+        else:
+            order_isset = {'PetIsSet': 'False'}
+        print JsonResponse(pet_isset)
+        return JsonResponse(pet_isset)
 
 #Retrieves the order cookie
 @csrf_exempt
 def CookieOrderGet(request):
-    if request.method == "POST":
+    if request.method == "GET":
+        print 'Cookie Order Get'
+        if 'order_id' in request.session:
+            order_id = request.session.get('order_id')
+            order = get_object_or_404(Order, pk=order_id)
+            order_json = serializers.serialize("json", [order,])
+            order_json = json.loads(order_json)
+            order_json = json.dumps(order_json[0])
+            print order_json
+            return JsonResponse(order_json, safe=False)
+        else:
+            return JsonResponse({'order': 'false'})
+
+#Retrieves the pet cookie
+@csrf_exempt
+def CookiePetGet(request):
+    if request.method == "GET":
+        print 'Cookie Pet Get'
+        if request.session.get('pet_id'):
+            pet_id = request.session.get('pet_id')
+            pet = get_object_or_404(Pet, pk=pet_id)
+            pet_json = serializers.serialize("json", [order,])
+            pet_json = json.loads(pet_json)
+            pet_json = json.dumps(pet_json[0])
+            print pet_json
+            return JsonResponse(pet_json, safe=False)
+        else:
+            return JsonResponse({'pet_json': 'false'})
+
+@csrf_exempt
+def CookieCustomerGet(request):
+    if request.method == "GET":
         print 'Cookie Order Get'
         if request.session.get('order_id'):
             order_id = request.session.get('order_id')
