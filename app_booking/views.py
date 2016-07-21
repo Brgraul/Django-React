@@ -319,7 +319,7 @@ def CookiePetIsSet(request):
 def CookieOrderGet(request):
     if request.method == "GET":
         print 'Cookie Order Get'
-        if request.session.get('order_id'):
+        if 'order_id' in request.session:
             order_id = request.session.get('order_id')
             order = get_object_or_404(Order, pk=order_id)
             order_json = serializers.serialize("json", [order,])
@@ -328,7 +328,7 @@ def CookieOrderGet(request):
             print order_json
             return JsonResponse(order_json, safe=False)
         else:
-            return JsonResponse({'order_json': 'false'})
+            return JsonResponse({'order': 'false'})
 
 #Retrieves the pet cookie
 @csrf_exempt

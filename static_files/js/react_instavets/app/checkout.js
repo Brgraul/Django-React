@@ -101,24 +101,41 @@ var NewPetForm = forms.Form.extend({
 
 //Loads the booking form
 var Booking = React.createClass({
+  getInitialState: function(){
+    return{
+      order : 'false',
+      pato: 'pato',
+      source: document.location.origin + '/api/cookies/cookie_order_get/',
+    }
+  },
   render: function() {
-    var order_isset = this.props.cookieOrderIsSet();
-    console.log(order_isset),
-    if (order_isset){
-      var order = this.props.CookieOrderGet();
-      console.log(order),
-      var bookingForm = new BookingForm({initial: {booking_date:order.customer.booking_date, booking_hour:order.customer.booking_hour,
-        phone_number:order.customer.phone_number, email:order.customer.email, first_name: order.customer.first_name,
-        second_name:order.customer.second_name, adress:order.customer.adress, city:order.customer.city, acceptTerms:order.customer.acceptTerms}, autoId: false});
+    console.log('Order:')
+    console.log(this.state.order);
+    if (!((this.state.order == 'false') || (this.state.order === undefined))){
+      console.log('order in if');
+      console.log(this.state.order);
+      var bookingForm = new BookingForm({initial: {
+        booking_date:this.state.order.customer.booking_date,
+        booking_hour:this.state.order.customer.booking_hour,
+        phone_number:this.state.order.customer.phone_number,
+        email:this.state.order.customer.email,
+        first_name: this.state.order.customer.first_name,
+        second_name: this.state.order.customer.second_name,
+        adress: this.state.order.customer.adress,
+        city: this.state.order.customer.city,
+        acceptTerms: this.state.order.customer.acceptTerms,
+      }, autoId: false});
+    }
+    else{
+      var bookingForm = new BookingForm({onChange:this._onFormChange});
     }
     return <div class="col-md-7 checkout-form-container">
               <p class="form-title" >Reserve su cita</p>
               <p class="form-sub" >Facilítenos alguna información básica porfavor</p>
-                <form onSubmit={this._onSubmit}>
-                <forms.RenderForm form=bookingForm component="ul"
+                <form onSubmit={this._onSubmit} onChange={this._onFormChange}>
+                <forms.RenderForm form={bookingForm} component="ul"
                 rowComponent="li"
-                ref="bookingForm"
-                >
+                ref="bookingForm">
                   <BootstrapForm />
                 </forms.RenderForm>
                 <button class="btn-cta-green">Guardar y continuar</button>
@@ -144,6 +161,18 @@ var Booking = React.createClass({
   },
   componentDidMount: function() {
     this.renderDateSelectWidget();
+    this.serverRequest = $.get(this.state.source, function (result) {
+      order = JSON.parse(result)
+      this.setState({
+        order: order,
+      });
+    }.bind(this));
+  },
+  _onFormChange: function() {
+    this.forceUpdate()
+  },
+  componentWillUnmount: function() {
+    this.serverRequest.abort();
   },
   onSignup: function(cleanedData) {
     console.log('Booking On SignUp')
@@ -261,7 +290,6 @@ var CheckoutContainer = React.createClass({
     //Perf.start()
     this.cookieTestSet();
     this.cookieTestVerify();
-
 		return {
       loaded: false,
       step: 1,
@@ -323,25 +351,6 @@ var CheckoutContainer = React.createClass({
          }
      });
   },
-  cookieOrderIsSet: function(){
-    var url_cookie_order_isset = document.location.origin + '/api/cookies/cookie_order_isset/';
-    $.ajax({
-         url : url_cookie_order_isset, // the endpoint
-         type : "GET", // http method
-         // handle a successful response
-         success : function(data) {
-             console.log(data);
-             console.log(data.OrderIsSet);
-             return data.OrderIsSet;
-         },
-         // handle a non-successful response
-         error : function(xhr,errmsg,err) {
-             $('#results').html("<div class='alert-box alert radius' data-alert>Oops! We have encountered an error: "+errmsg+
-                 " <a href='#' class='close'>&times;</a></div>"); // add the error to the dom
-             console.log(xhr.status + ": " + xhr.responseText); // provide a bit more info about the error to the console
-         }
-     });
-   },
    cookiePetIsSet: function(){
      var url_cookie_pet_isset = document.location.origin + '/api/cookies/cookie_pet_isset/';
      $.ajax({
@@ -361,14 +370,19 @@ var CheckoutContainer = React.createClass({
           }
       });
     },
-   CookieOrderGet: function(){
+   cookieOrderGet: function(){
      var url = document.location.origin + '/api/cookies/cookie_order_get/';
      $.ajax({
           url : url, // the endpoint
           type : "GET", // http method
           // handle a successful response
           success : function(data) {
+              data = JSON.parse(data);
+              console.log('data:');
               console.log(data);
+              console.log(data.model);
+              console.log(data.fields);
+
               return data
           },
           // handle a non-successful response
@@ -481,7 +495,6 @@ var CheckoutContainer = React.createClass({
                       <div class="container">
                         <div class="row">
                             <Booking
-                              cookieOrderIsSet={this.cookieOrderIsSet}
                               cookieOrderGet={this.cookieOrderGet}
                               nextStep={this.nextStep}
                               updateContactFormParams={this.updateContactFormParams}
