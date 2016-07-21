@@ -159,7 +159,7 @@ STATICFILES_DIRS = [
     os.path.join(os.path.dirname(BASE_DIR), "static_files"),
 ]
 
-MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR),"media_files")
+MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR),"static_collected", "static_folder", "media_folder")
 
 MEDIA_URL = '/media/'
 
@@ -246,4 +246,13 @@ LOGGING = {
             'propagate': True,
         },
     }
+}
+
+#CKEDITOR SETTINGS
+CKEDITOR_CONFIGS = {
+    'default': {
+        'toolbar': 'full',
+        'height': 600,
+        'width': 1140,
+    },
 }

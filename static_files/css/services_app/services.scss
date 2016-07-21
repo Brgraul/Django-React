@@ -27,37 +27,47 @@ section.full-wrapp{
   background-size: cover;
   background-repeat: no-repeat;
   color: #fafeff;
-  padding:100px 0px 80px;
   text-align: center;
   width: 100%;
-  height: 470px;
-
-  & > h1{
-  font-weight: bold;
-  color: white;
-  font-size: 2.5rem;
-  display: inline;
-  }
-
-  & > h1:nth-child(2){
-    color: #00CCC2;
-  }
-
-  & > h3{
-    text-align: center;
-    font-size: 28px;
-    line-height: 125%;
-    margin: 20px auto 0px;
-    max-width: 780px;
+  height: 450px;
+  & > div.mask-banner{
+      margin: 0px;
+      padding: 0px;
+      width: 100%;
+      position: absolute;
+      z-index: 1;
+      background-color:rgba(0, 0, 0, 0.3);
+      height: 450px;
+    & > div:first-child{
+    position: relative;
+    top: 20%;
+    z-index: 3;
+    & > h1{
+    font-weight: bold;
     color: white;
+    font-size: 2.5rem;
+    display: inline;
+    }
+    &  h1:nth-child(2){
+      color: #00CCC2;
+    }
+    & > h3{
+      text-align: center;
+      font-size: 28px;
+      line-height: 125%;
+      margin: 20px auto 0px;
+      max-width: 780px;
+      color: white;
+    }
+    & > button {
+      margin-top: 20px;
+    }
   }
-  & > button {
-    margin-top: 20px;
-  }
+}
 }
 
 .princing-banner{
-  padding: 210px 0px 80px !important;
+  padding: 6% 0px 80px !important;
 }
 .aligned{
   text-align: center !important;
@@ -119,18 +129,15 @@ div.container_info{
 
 .image-vet-slider{
   max-height: 300px;
-  border-radius: 50%;
   margin-left: auto;
   margin-right: auto;
   display: block;
-  border: 4px solid $instavets_green;
   height: 300px;
   width: 300px;
 }
 
 .image-customer-slider{
   max-height: 200px;
-  border-radius: 50%;
   margin-left: auto;
   margin-right: auto;
   display: block;
