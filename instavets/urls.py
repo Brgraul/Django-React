@@ -22,6 +22,7 @@ from django.conf.urls import url
 from services_app import views
 
 urlpatterns = [
+    url(r'^admin_tools/', include('admin_tools.urls')),
     url(r'^accounts/', include('allauth.urls')),
     url(r'^sermepa/', include('sermepa.urls')),
     url(r'^', include('app_booking.urls')),

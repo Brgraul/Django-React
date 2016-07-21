@@ -46,6 +46,10 @@ signature_error.connect(sermepa_ipn_error)
 
 #Customer Model
 class Customer(models.Model):
+    class Meta:
+        verbose_name_plural = 'Clientes'
+        verbose_name = 'Cliente'
+
     created = models.DateTimeField(auto_now=False, auto_now_add=True, blank = False, null = False, verbose_name = 'Creado')
     first_name = models.CharField(max_length = 100, null=True, blank = True, verbose_name = 'Nombre')
     last_name = models.CharField(max_length = 100, null=True, blank = True, verbose_name = 'Apellidos')
@@ -53,9 +57,6 @@ class Customer(models.Model):
     adress = models.CharField(max_length = 100, null=True, blank = True, verbose_name = 'Direccion')
     phone_number = models.CharField(max_length = 100, null=True, blank = True, verbose_name = 'Telefono')
     email = models.EmailField(max_length = 100, null=True, blank = True, verbose_name = 'Email')
-    class Meta:
-        verbose_name_plural = 'Clientes'
-        verbose_name = 'Cliente'
 
     def __unicode__(self):              # __unicode__ on Python 2
         return "%s %s" % (self.first_name, self.last_name)
@@ -64,6 +65,8 @@ class Customer(models.Model):
 class Pet(models.Model):
     class Meta:
         verbose_name_plural='Mascotas'
+        verbose_name='Mascota'
+
     name = models.CharField(max_length = 100, blank = False, null = False, verbose_name = 'Nombre')
     species = models.CharField(max_length = 100, blank = False, null = False,verbose_name = 'Especie')
     breed = models.CharField(max_length = 100, blank = False, null = False, verbose_name = 'Raza')
@@ -85,15 +88,18 @@ class Pet(models.Model):
 class Booking(models.Model):
     class Meta:
         verbose_name_plural='Consultas'
+        verbose_name='Consulta'
     created = models.DateTimeField(auto_now=False, auto_now_add=True, blank = False, null = False, verbose_name = 'Creado')
     updated = models.DateTimeField(auto_now=True, auto_now_add=False, blank = False, null = False, verbose_name = 'Actualizado')
     date_booking = models.DateTimeField(auto_now=False, auto_now_add=False, blank = False, null = False, verbose_name = 'Fecha de la Consulta')
-    #user_customer = models.ForeignKey('UserCustomer', null=True , blank = True, verbose_name = 'Cliente' )
-    #pet_customer = models.ForeignKey('Pet', null=True , blank = True, verbose_name = 'Mascota' )
-    #user_veterian = models.ForeignKey('UserVeterian', null=True , blank = True, verbose_name = 'Veterinario' )
     adress = models.CharField(max_length = 500, blank = False, null = False, verbose_name = 'Direccion')
     city = models.CharField(max_length = 100, blank = False, null = False, verbose_name = 'Ciudad')
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, verbose_name = 'Cliente')
+    customer_first_name = models.CharField(max_length = 100, null=True, blank = True, verbose_name = 'Nombre')
+    customer_last_name = models.CharField(max_length = 100, null=True, blank = True, verbose_name = 'Apellidos')
+    customer_email = models.EmailField(max_length = 100, null=True, blank = True, verbose_name = 'Email')
+    customer_phone_number = models.CharField(max_length = 100, null=True, blank = True, verbose_name = 'Telefono')
+    pet = models.ManyToManyField(Pet, blank =True, null = True)
 
     def __unicode__(self):              # __unicode__ on Python 2
       return "%s|%s" % (self.city, self.date_booking )

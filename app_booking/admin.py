@@ -1,16 +1,26 @@
 from django.contrib import admin
 
 # Register your models here.
-
-from .models import Pet, Booking, Order, Customer
+from django.forms import TextInput, Textarea
+from django import forms
+from .models import *
+from django.db import models
 
 #admin.site.register(UserVeterian)
-
 #admin.site.register(UserCustomer)
 
 
+class BookingPetInline(admin.TabularInline):
+    model = Booking.pet.through
+
 class BookingAdminInline(admin.TabularInline):
     model = Booking
+    fields = ['date_booking','adress','city',]
+    readonly_fields = ['date_booking','adress','city',]
+    fk_name = "customer"
+
+class PetAdminInline(admin.TabularInline):
+    model = Pet
     fk_name = "customer"
 
 class CustomerAdminInline(admin.TabularInline):
@@ -22,11 +32,33 @@ class CustomerAdmin(admin.ModelAdmin):
     list_filter = ('first_name', 'last_name', 'id')
     inlines = [
         BookingAdminInline,
+        PetAdminInline,
     ]
 
 class BookingAdmin(admin.ModelAdmin):
     model = Booking
-    list_display = ('created', 'date_booking', 'adress', 'city',)
+    list_display = ('created', 'customer_email', 'date_booking', 'adress', 'city')
+    fieldsets = (
+        ('Datos de la Consulta', {
+            'fields': ('date_booking', 'city', 'adress'),
+            'classes': ('wide'),
+            'description' : 'Consulta:',
+        }),
+        ('Datos del Cliente', {
+            'fields': ('customer_first_name', 'customer_last_name', 'customer_email', 'customer_phone_number'),
+            'classes': ('wide',),
+            'description' : 'Cliente:',
+        }),
+    )
+    formfield_overrides = {
+        models.CharField: {'widget': TextInput(attrs={'size':'50'})},
+        models.EmailField: {'widget': TextInput(attrs={'size':'50'})},
+        models.TextField: {'widget': Textarea(attrs={'rows':2, 'cols':40})},
+    }
+    exclude = ('pet',)
+    inlines = [
+        BookingPetInline,
+    ]
 
 
 class OrderAdmin(admin.ModelAdmin):
