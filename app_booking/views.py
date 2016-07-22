@@ -188,7 +188,6 @@ def PaymentPage(request):
         'debug': settings.DEBUG,
     }
 
-    SendEmail(context)
 
     return HttpResponse(render_to_response('booking_app/payment.html', context))
 #Email Sending
@@ -247,6 +246,7 @@ def PaymentConfirmPage(request):
         'booking': booking,
         'pet': pet,
     }
+    SendEmail(context)
     return render(request, 'booking_app/payment_confirm.html', context )
 
 

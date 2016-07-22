@@ -2,6 +2,10 @@ from django.shortcuts import render
 from django.shortcuts import get_object_or_404
 
 from .models import Service, VetsDisplay, CustomerDisplay
+from django.shortcuts import render_to_response
+from django.template import RequestContext
+
+from django.http import Http404
 
 # Create your views here.
 

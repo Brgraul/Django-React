@@ -18,7 +18,7 @@ settings/prod.py
 static_collected/*
 
 #Deployment
-instavets/manage.py
+manage.py
 instavets/wsgi.py
 instavets/db.sqlite3
 
