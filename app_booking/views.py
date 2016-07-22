@@ -65,7 +65,7 @@ def CheckoutPage(request):
             booking.city = data.__getitem__('data[city]')
             booking.adress = data.__getitem__('data[adress]')
             booking.customer = customer
-            booking_date = datetime.strptime(data.__getitem__('booking_date_django'), "%a, %d %b %Y %H:%M:%S %Z")
+            booking.date_booking = datetime.strptime(data.__getitem__('booking_date_django'), "%a, %d %b %Y %H:%M:%S %Z")
             booking.customer_first_name = data.__getitem__('data[first_name]')
             booking.customer_last_name = data.__getitem__('data[second_name]')
             booking.customer_email = data.__getitem__('data[email]')
