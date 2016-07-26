@@ -79,9 +79,9 @@ var BookingForm = forms.Form.extend({
 })
 
 var SPECIES = [
-  ['dog','Perro'],
-  ['cat','Gato'],
-  ['other','Otro']
+  ['Perro','Perro'],
+  ['Gato','Gato'],
+  ['Otro','Otro']
 ]
 var GENDER = [
   ['macho_normal','Macho Normal'],
@@ -93,7 +93,7 @@ var GENDER = [
 var NewPetForm = forms.Form.extend({
   pet_name: forms.CharField({label: 'Nombre de la mascota:', required: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
   pet_birthday: forms.CharField({label: 'Edad (años):', required: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
-  pet_species: forms.ChoiceField({initial: 'dog', required: true, label: 'Especie:', choices: SPECIES, errorMessages: {required:'Rellena éste campo porfavor.'}}),
+  pet_species: forms.ChoiceField({initial: 'Perro', required: true, label: 'Especie:', choices: SPECIES, errorMessages: {required:'Rellena éste campo porfavor.'}}),
   pet_gender: forms.ChoiceField({initial: 'macho_normal',required: true, choices: GENDER, label: 'Sexo de la mascota:', errorMessages: {required:'Selecciona una de las opciones porfavor.'}}),
   pet_breed: forms.CharField({label: 'Raza:', required: true, errorMessages: {required:'Selecciona una de las opciones porfavor.'}}),
   pet_conditions: forms.CharField({label: '¿Qué le sucede?:', required: false, widget: forms.Textarea})

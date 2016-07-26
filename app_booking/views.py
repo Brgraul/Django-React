@@ -65,7 +65,7 @@ def CheckoutPage(request):
             booking.city = data.__getitem__('data[city]')
             booking.adress = data.__getitem__('data[adress]')
             booking.customer = customer
-            booking_date = datetime.strptime(data.__getitem__('booking_date_django'), "%a, %d %b %Y %H:%M:%S %Z")
+            booking.date_booking = datetime.strptime(data.__getitem__('booking_date_django'), "%a, %d %b %Y %H:%M:%S %Z")
             booking.customer_first_name = data.__getitem__('data[first_name]')
             booking.customer_last_name = data.__getitem__('data[second_name]')
             booking.customer_email = data.__getitem__('data[email]')
@@ -188,7 +188,6 @@ def PaymentPage(request):
         'debug': settings.DEBUG,
     }
 
-    SendEmail(context)
 
     return HttpResponse(render_to_response('booking_app/payment.html', context))
 #Email Sending
@@ -247,6 +246,7 @@ def PaymentConfirmPage(request):
         'booking': booking,
         'pet': pet,
     }
+    SendEmail(context)
     return render(request, 'booking_app/payment_confirm.html', context )
 
 

@@ -20,6 +20,9 @@ from django.conf import settings
 from services_app.views import MeetTheVetsPage
 from django.conf.urls import url
 from services_app import views
+from django.views.generic import TemplateView
+
+
 
 urlpatterns = [
     url(r'^admin_tools/', include('admin_tools.urls')),
@@ -37,8 +40,8 @@ urlpatterns = [
     url(r'^jet/', include('jet.urls', 'jet')),  # Django JET URLS
     url(r'^jet/dashboard/', include('jet.dashboard.urls', 'jet-dashboard')),  # Django JET dashboard URLS
     url(r'^admin/', admin.site.urls),
+    # url(r'^about/', TemplateView.as_view(template_name="500.html")),
     # Meet the vets#
     url(r'^veterinarias/$', MeetTheVetsPage, name='meet_vets_url'),
-
 ]
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

@@ -1,0 +1,20 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load static %}
+{% block body_content %}
+<section class="full-wrapp" style="background-image: url({% static 'images/index/index_slide.jpg' %})">
+  <h1>¡LO SENTIMOS!</h1>
+  <h3>Ha habido un pequeño error con nuestros servidores.</h3>
+  <a class="btn btn-cta-white" href="{% url 'checkout' %}">PIDE TU CITA</a>
+</section>
+<div class="container">
+  <div class="row">
+    <div class="col-md-12">
+      <div style="padding:50px;">
+        <h1>¡Lo sentimos!</h1>
+        <h2>Ha habido un pequeño error con nuestros servidores.</h2>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
