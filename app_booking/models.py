@@ -61,6 +61,26 @@ class Customer(models.Model):
     def __unicode__(self):              # __unicode__ on Python 2
         return "%s %s" % (self.first_name, self.last_name)
 
+#Modelo Consulta
+class Booking(models.Model):
+    class Meta:
+        verbose_name_plural='Consultas'
+        verbose_name='Consulta'
+    created = models.DateTimeField(auto_now=False, auto_now_add=True, blank = False, null = False, verbose_name = 'Creado')
+    updated = models.DateTimeField(auto_now=True, auto_now_add=False, blank = False, null = False, verbose_name = 'Actualizado')
+    date_booking = models.DateTimeField(auto_now=False, auto_now_add=False, blank = False, null = False, verbose_name = 'Fecha de la Consulta')
+    adress = models.CharField(max_length = 500, blank = False, null = False, verbose_name = 'Direccion')
+    city = models.CharField(max_length = 100, blank = False, null = False, verbose_name = 'Ciudad')
+    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, verbose_name = 'Cliente')
+    customer_first_name = models.CharField(max_length = 100, null=True, blank = True, verbose_name = 'Nombre')
+    customer_last_name = models.CharField(max_length = 100, null=True, blank = True, verbose_name = 'Apellidos')
+    customer_email = models.EmailField(max_length = 100, null=True, blank = True, verbose_name = 'Email')
+    customer_phone_number = models.CharField(max_length = 100, null=True, blank = True, verbose_name = 'Telefono')
+
+    def __unicode__(self):              # __unicode__ on Python 2
+      return "%s|%s" % (self.city, self.date_booking )
+
+
 #Pet Model
 class Pet(models.Model):
     class Meta:
@@ -81,28 +101,10 @@ class Pet(models.Model):
     )
     customer = models.ForeignKey(Customer, on_delete=models.CASCADE, verbose_name = 'Cliente')
     gender = models.CharField(max_length=20, choices=GENDER, blank = True, null=True, verbose_name = 'Sexo' )
+    booking = models.ForeignKey(Booking, blank =True, null = True, verbose_name = 'Mascota')
 
     def __unicode__(self):              # __unicode__ on Python 2
       return "%s %s" % (self.name, self.breed)
-
-class Booking(models.Model):
-    class Meta:
-        verbose_name_plural='Consultas'
-        verbose_name='Consulta'
-    created = models.DateTimeField(auto_now=False, auto_now_add=True, blank = False, null = False, verbose_name = 'Creado')
-    updated = models.DateTimeField(auto_now=True, auto_now_add=False, blank = False, null = False, verbose_name = 'Actualizado')
-    date_booking = models.DateTimeField(auto_now=False, auto_now_add=False, blank = False, null = False, verbose_name = 'Fecha de la Consulta')
-    adress = models.CharField(max_length = 500, blank = False, null = False, verbose_name = 'Direccion')
-    city = models.CharField(max_length = 100, blank = False, null = False, verbose_name = 'Ciudad')
-    customer = models.ForeignKey(Customer, on_delete=models.CASCADE, verbose_name = 'Cliente')
-    customer_first_name = models.CharField(max_length = 100, null=True, blank = True, verbose_name = 'Nombre')
-    customer_last_name = models.CharField(max_length = 100, null=True, blank = True, verbose_name = 'Apellidos')
-    customer_email = models.EmailField(max_length = 100, null=True, blank = True, verbose_name = 'Email')
-    customer_phone_number = models.CharField(max_length = 100, null=True, blank = True, verbose_name = 'Telefono')
-    pet = models.ManyToManyField(Pet, blank =True, null = True)
-
-    def __unicode__(self):              # __unicode__ on Python 2
-      return "%s|%s" % (self.city, self.date_booking )
 
 class Order(models.Model):
     class Meta:

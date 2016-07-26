@@ -9,19 +9,21 @@ from django.db import models
 #admin.site.register(UserVeterian)
 #admin.site.register(UserCustomer)
 
-
-class BookingPetInline(admin.TabularInline):
-    model = Booking.pet.through
-
+"""
 class BookingAdminInline(admin.TabularInline):
     model = Booking
     fields = ['date_booking','adress','city',]
     readonly_fields = ['date_booking','adress','city',]
     fk_name = "customer"
+    """
 
-class PetAdminInline(admin.TabularInline):
+class PetCustomerAdminInline(admin.TabularInline):
     model = Pet
     fk_name = "customer"
+
+class PetBookingAdminInline(admin.TabularInline):
+    model = Pet
+    fk_name = "booking"
 
 class CustomerAdminInline(admin.TabularInline):
     model = Customer
@@ -31,8 +33,8 @@ class CustomerAdmin(admin.ModelAdmin):
     list_display_links = ('first_name', 'last_name')
     list_filter = ('first_name', 'last_name', 'id')
     inlines = [
-        BookingAdminInline,
-        PetAdminInline,
+        #BookingAdminInline,
+        PetCustomerAdminInline,
     ]
 
 class BookingAdmin(admin.ModelAdmin):
@@ -55,9 +57,9 @@ class BookingAdmin(admin.ModelAdmin):
         models.EmailField: {'widget': TextInput(attrs={'size':'50'})},
         models.TextField: {'widget': Textarea(attrs={'rows':2, 'cols':40})},
     }
-    exclude = ('pet',)
     inlines = [
-        BookingPetInline,
+        #BookingAdminInline,
+        PetBookingAdminInline,
     ]
 
 

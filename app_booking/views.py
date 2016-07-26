@@ -31,8 +31,8 @@ from django.core.files import File
 #Functions
 def SendEmail(context):
     customer = context['customer']
-    subject = "Tu consulta en Instavets"
-    to=[customer.email]
+    subject = "Tu Consulta en Instavets"
+    to=[customer.email,'info@instavets.com']
     from_email = 'info@instavets.com'
     message = get_template('../templates/email_templates/email_customer.html').render(context)
     msg = EmailMessage(subject, message, to=to, from_email=from_email)
@@ -43,11 +43,9 @@ def SendEmail(context):
 @csrf_exempt
 def CheckoutPage(request):
     if request.method == "POST":
-        print request.POST
         data = request.POST
         #1. Get data
         step = data.__getitem__('step')
-        print step
         if step == '1':
             print 'Step 1: Creating the customer..'
             #Customer
@@ -87,8 +85,10 @@ def CheckoutPage(request):
             return response
         elif step == '2':
             pet = Pet()
+            booking_id = request.session.get('booking_id')
             customer_id = request.session.get('customer_id')
             customer = get_object_or_404(Customer, pk=customer_id)
+            booking = get_object_or_404(Booking, pk=booking_id)
             pet.name = data.__getitem__('data[pet_name]')
             pet.gender = data.__getitem__('data[pet_gender]')
             pet.species = data.__getitem__('data[pet_species]')
@@ -96,6 +96,7 @@ def CheckoutPage(request):
             pet.age = data.__getitem__('data[pet_birthday]')
             pet.conditions = data.__getitem__('data[pet_conditions]')
             pet.customer = customer
+            pet.booking = booking
             pet.save()
             request.session['pet_id'] = pet.pk
             response = HttpResponse('Cookie Set')
