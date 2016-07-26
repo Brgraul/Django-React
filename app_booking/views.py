@@ -31,7 +31,7 @@ from django.core.files import File
 #Functions
 def SendEmail(context):
     customer = context['customer']
-    subject = "tu Consulta en Instavets"
+    subject = "Tu consulta en Instavets"
     to=[customer.email]
     from_email = 'info@instavets.com'
     message = get_template('../templates/email_templates/email_customer.html').render(context)
@@ -108,7 +108,8 @@ def CheckoutPage(request):
 
 @csrf_exempt
 def PaymentPage(request):
-    amount = int(40 * 100) # El precio es en centimos de euro
+    #El precio de consulta básica
+    amount = int(39 * 100) # El precio es en centimos de euro
     trans_type = '0'
     #Getting Order Info
     customer_id = request.session.get('customer_id')
