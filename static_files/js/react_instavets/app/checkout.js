@@ -68,7 +68,7 @@ var Header = React.createClass({
 
 var BookingForm = forms.Form.extend({
   booking_date: forms.DateTimeField({label: 'Fecha de la cita:', requiered: true, custom: 'readonly', requiered: true, errorMessages: {required:'Rellena este campo porfavor.'}, format: '%m/%d/%Y'}),
-  booking_hour: forms.DateTimeField({label:'Hora de la cita:', custom: 'readonly', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}, format: '%H:%M',initial: 'prototype'}),
+  booking_hour: forms.DateTimeField({label:'Hora de la cita:', custom: 'readonly', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}, format: '%H:%M'}),
   phone_number: forms.CharField({ label: 'Número de teléfono:', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
   email: forms.EmailField({label: 'Email:', requiered: true, errorMessages: {invalid: 'Porfavor introduce un email válido.', required:'Rellena éste campo porfavor.'}}),
   first_name: forms.CharField({label: 'Nombre:', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
@@ -103,17 +103,12 @@ var NewPetForm = forms.Form.extend({
 var Booking = React.createClass({
   getInitialState: function(){
     return{
-      order : 'false',
-      pato: 'pato',
       source: document.location.origin + '/api/cookies/cookie_order_get/',
     }
   },
   render: function() {
-    console.log('Order:')
-    console.log(this.state.order);
+    /*
     if (!((this.state.order == 'false') || (this.state.order === undefined))){
-      console.log('order in if');
-      console.log(this.state.order);
       var bookingForm = new BookingForm({initial: {
         booking_date:this.state.order.customer.booking_date,
         booking_hour:this.state.order.customer.booking_hour,
@@ -128,12 +123,12 @@ var Booking = React.createClass({
     }
     else{
       var bookingForm = new BookingForm({onChange:this._onFormChange});
-    }
+    }*/
     return <div class="col-md-7 checkout-form-container">
               <p class="form-title" >Reserve su cita</p>
               <p class="form-sub" >Facilítenos alguna información básica porfavor</p>
                 <form onSubmit={this._onSubmit} onChange={this._onFormChange}>
-                <forms.RenderForm form={bookingForm} component="ul"
+                <forms.RenderForm form={BookingForm} component="ul"
                 rowComponent="li"
                 ref="bookingForm">
                   <BootstrapForm />
@@ -161,18 +156,18 @@ var Booking = React.createClass({
   },
   componentDidMount: function() {
     this.renderDateSelectWidget();
+    /*
     this.serverRequest = $.get(this.state.source, function (result) {
       order = JSON.parse(result)
       this.setState({
         order: order,
       });
-    }.bind(this));
+    }.bind(this));*/
   },
   _onFormChange: function() {
     this.forceUpdate()
   },
   componentWillUnmount: function() {
-    this.serverRequest.abort();
   },
   onSignup: function(cleanedData) {
     console.log('Booking On SignUp')
@@ -207,6 +202,7 @@ var Booking = React.createClass({
     if (isValid) {
       this.onSignup(form.cleanedData)
       this.props.updateContactFormParams(form.cleanedData);
+      console.log('Next Step')
       this.props.nextStep()
     }
   },
@@ -267,10 +263,15 @@ var NewPet = React.createClass({
 /* Shows the status of the payment process */
 var ProgressColumn = React.createClass({
   render: function(){
+    if (this.props.city.length < 1){
+      var city = 'en' + this.props.city;
+    }else{
+
+    }
     return <div class="col-md-3 col-progress col-md-offset-1">
             <h3>Resumen:</h3>
             <h4 class="title">Datos de la cita</h4>
-            <h4>{this.props.date} en {this.props.city}</h4>
+            <h4>{this.props.date} {city}</h4>
             <h4 class="title">Contacto</h4>
             <h4>{this.props.email}</h4>
             <h4>{this.props.phone_number}</h4>
@@ -298,8 +299,8 @@ var CheckoutContainer = React.createClass({
       city: ' ',
       acceptTerms: 'False',
       booking_date: 'Incompleto',
-      phone_number: 'Incompleto',
-      email: '',
+      phone_number: '',
+      email: 'Incompleto',
       first_name: 'Nombre',
       second_name: 'Apellidos',
       adress: 'Dirección',
