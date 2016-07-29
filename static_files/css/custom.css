@@ -2373,6 +2373,12 @@ div.col-xs-6:nth-child(2) > ul:nth-child(2) > li:nth-child(1) {
   margin-top: 18px; }
 
 /*SCSS for the index page*/
+img.index-img {
+  width: 100%; }
+  @media only screen and (max-width: 360px) {
+    img.index-img {
+      display: none !important; } }
+
 div.container.container-slide {
   text-align: center;
   max-width: 100%;
@@ -2598,7 +2604,7 @@ section.full-wrapp {
         margin-top: 20px; }
 
 .princing-banner {
-  padding: 10% 0px 10% !important; }
+  padding: 8% 0px 10% !important; }
 
 .aligned {
   text-align: center !important; }

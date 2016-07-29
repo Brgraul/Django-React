@@ -151,12 +151,12 @@ div.container_info{
 }
 
 .image-vet-slider{
-  max-height: 300px;
   margin-left: auto;
   margin-right: auto;
   display: block;
   height: 300px;
   width: 300px;
+  @include respond-to(mobiles) {height:auto;width:100%;}
 }
 
 .image-customer-slider{
@@ -169,6 +169,7 @@ div.container_info{
 }
 
 .item > div.row > div.col-md-7{
+  text-align: center;
  & > h3{
    color: $instavets_green;
  }

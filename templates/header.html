@@ -5,9 +5,9 @@
         &#9776;
       </button>
       <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
-        <a class="navbar-brand" href="{% url 'index' %}"><img  class="navbar-logo" alt="File logo" src="{% static 'images/index/logo-y-nombre.png' %}"/></a>
+        <a class="navbar-brand col-xs-12" href="{% url 'index' %}"><img  class="navbar-logo" alt="File logo" src="{% static 'images/index/logo-y-nombre.png' %}"/></a>
         <ul class="nav navbar-nav">
-          <li class="nav-item dropdown">
+          <li class="col-xs-12 nav-item dropdown">
             <a class="nav-link dropdown-toggle"  href="{% url 'services_index' %}" >Servicios</a>
             <ul class="dropdown-menu">
               {% for menu_url, menu_link in menu_links.items %}
@@ -17,13 +17,13 @@
               {% endfor %}
             </ul>
           </li>
-          <li class="nav-item">
+          <li class="col-xs-12 nav-item">
             <a class="nav-link" href="{% url 'tarifas' %}">TARIFAS</a>
           </li>
-          <li class="nav-item">
+          <li class="col-xs-12 nav-item">
             <a class="nav-link" href="{% url 'meet_vets_url' %}">LAS VETS</a>
           </li>
-          <li class="nav-item">
+          <li class="col-xs-12 nav-item">
             <a class="nav-link" href="{% url 'contacto' %}">Tel: 912 228 229</a>
           </li>
         </ul>

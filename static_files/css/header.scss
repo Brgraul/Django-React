@@ -19,6 +19,7 @@ header > nav.navbar{
       & > li{
         text-align: center;
         width: 20%;
+        @include respond-to(mobiles) { width: calc !important;}
         margin: auto;
         &.nav-item > a.nav-link{
           font-family: "Gotham-Medium";

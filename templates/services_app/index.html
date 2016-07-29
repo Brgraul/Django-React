@@ -3,6 +3,17 @@
 {% load static %}
 
 {% block body_content %}
+<section class="full-wrapp" style="background-image: url({% static 'images/index/elena.jpg' %})">
+  <div class ="mask-banner">
+    <div>
+      <h1>Veterinario a domicilio</h1>
+      <h3>Menos estrés para tu mascota, mayor comodidad para ti</h3>
+      <br/>
+      <a class="btn btn-cta-white" href="{% url 'checkout' %}">PIDE TU CITA</a>
+    </div>
+  </div>
+</section>
+<!--
 	<div class="container container-slide">
 		<div class="container container-slide-overlay">
 			<h1>Veterinario a domicilio</h1>
@@ -13,7 +24,7 @@
 			<div class="mask-banner">	</div>
 			<img id="index_slide"  alt="Veterinaria a Domicilio" src="{% static 'images/index/elena.jpg' %}"/>
 		</div>
-	</div>
+	</div> -->
 	<!-- Prensa Start-->
 	<div class="container section-green">
 	  <div class="row row-press">
@@ -67,11 +78,13 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-6">
-				<img src="{% static 'images/index/frenchi-gato-cortador.png'%}"/>
+				<img class="index-img" src="{% static 'images/index/frenchi-gato-cortador.png'%}" />
 			</div>
 			<div class="col-md-6 deal-box">
-				<h1>39 €</h1>
+				<h1 class="hidden-mobile">39 €</h1>
 				<h2>CONSULTA A DOMICILIO</h2>
+				<div class="linebreak1"></div>
+				<h1 class="visible-mobile">39 € </h1>
 				<h5>Incluye visita + Revisión completa + Ayudarte con todas las dudas que tengas sobre el cuidado de tu mascota.</h5>
 				<a class="btn btn-cta-green" href="{% url 'checkout' %}">PIDE TU CITA</a>
 			</div>
@@ -82,15 +95,18 @@
 	<!-- NUSETROS CLIENTES START -->
 	<div class="container container-grey-background">
 	  <div class="row">
-	    <!-- <h2>NUESTROS CLIENTES</h2> -->
+	   <h2>NUESTROS CLIENTES</h2>
+		 <div class="linebreak1"></div>
 	    <div class="col-md-12">
 	      <div id="carousel_customers" class="owl-carousel">
 	        {% for customer in customers %}
 	        <div class="item">
+						<div class="hidden-mobile"
 	          <i class="fa fa-quote-left quote-icon"></i>
 	          <h5 class="text-customer-opinion">{{customer.opinion}}</h5>
 	          <i class="fa fa-quote-right quote-icon"></i>
 	          <div class="linebreak"></div>
+						</div>
 	          <p class="text-customer-name">{{customer.name}}</p>
 	          <p class="text-customer-city">{{customer.city}}</p>
 	          <img  class="image-customer-slider" alt="{{customer.name}}"  src="{{ MEDIA_URL }}{{ customer.image }}"/>
@@ -150,7 +166,7 @@
 								<h3>{{vet.name}}</h3>
 								<h4>{{vet.subtitle1}}</h4>
 								<h4>{{vet.subtitle2}}</h4>
-								<h5>{{vet.bio}}</h5>
+								<h5 class="hidden-mobile">{{vet.bio}}</h5>
 							</div>
 							<div class="col-md-3">
 						   <img  class="image-vet-slider" alt="{{vet.name}}"  src="{{ MEDIA_URL }}{{ vet.image }}"/>
@@ -171,6 +187,8 @@
 {% block javascript %}
 <script type="text/javascript">
 	$("#carousel_vets").owlCarousel({
+		itemsDesktopSmall : [900,1], // betweem 900px and 601px
+		itemsTablet: [600,1], //2 items between 600 and 0
 		items:1,
 		pagination:false,
 		navigation:true,
@@ -180,6 +198,8 @@
 		],
 	});
 	$("#carousel_customers").owlCarousel({
+		itemsDesktopSmall : [900,1], // betweem 900px and 601px
+		itemsTablet: [600,1], //2 items between 600 and 0
 		items:1,
     pagination:false,
 		navigation:true,

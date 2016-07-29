@@ -1,4 +1,15 @@
 /*SCSS for the index page*/
+img.index-img{
+  @include respond-to(mobiles) { display:none !important ; width: 100%;}
+}
+
+.visible-mobile{
+  display: none;
+  @include respond-to(mobiles) { display:inherit;}
+}
+.hidden-mobile{
+  @include respond-to(mobiles) { display:none;}
+}
 div{
   &.container.container-slide{
     text-align: center;
@@ -9,13 +20,15 @@ div{
     margin-right: 0px;
     height: 500px;
     overflow-y: hidden;
+    @include respond-to(mobiles) { height: 400px ;}
     & > div.wrapper-banner{
       width: 100%;
       padding: 0px;
       margin: 0px;
       & > img[id="index_slide"]{
-        width: 100%;
         z-index: 0;
+        width: 100%;
+        @include respond-to(mobiles) { width: auto;}
       }
       & > div.mask-banner{
         margin: 0px;
@@ -26,13 +39,16 @@ div{
         background-color: #000;
         opacity: 0.3;
         height: 500px;
+        @include respond-to(mobiles) { height: 400px ;}
       }
     }
     & > div.container.container-slide-overlay{
       z-index: 3;
       max-width: 100%;
       position: absolute;
-      top: 25%;
+      top: 40%;
+      @include respond-to(mobiles) { top: 20%;}
+      @include respond-to(wide-screens) { top: 27%;}
       text-align: center;
       width: 100%;
       & > h3{
@@ -53,6 +69,7 @@ div.section-green{
   max-width: 100%;
   text-align: center;
   background-color: $instavets_green;
+  @include respond-to(mobiles) { display:none !important ;}
   & > div{
     text-align: center;
     &  > div > img{
@@ -133,6 +150,8 @@ div.container.container-ventajas{
 
 .deal-box{
   padding-top: 6%;
+  padding-bottom: 6%;
+  @include respond-to(mobiles) { text-align: center;}
   & > h1{
     color: $instavets_green;
   }
@@ -176,6 +195,5 @@ div.container.terms {
     text-align: justify !important;
   }
 }
-
 
 /* ESTILOS PIDE TU CITA INDEX*/
