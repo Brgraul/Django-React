@@ -67,7 +67,7 @@ var Header = React.createClass({
 })
 
 var BookingForm = forms.Form.extend({
-  booking_date: forms.DateTimeField({label: 'Fecha de la cita:', requiered: true, custom: 'readonly', requiered: true, errorMessages: {required:'Rellena este campo porfavor.'}, format: '%m/%d/%Y'}),
+  booking_date: forms.DateTimeField({label: 'Fecha de la cita:', requiered: true, custom: 'readonly', requiered: true, errorMessages: {required:'Rellena este campo porfavor.'}, format: '%m/%d/%Y',}),
   booking_hour: forms.DateTimeField({label:'Hora de la cita:', custom: 'readonly', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}, format: '%H:%M'}),
   phone_number: forms.CharField({ label: 'Número de teléfono:', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
   email: forms.EmailField({label: 'Email:', requiered: true, errorMessages: {invalid: 'Porfavor introduce un email válido.', required:'Rellena éste campo porfavor.'}}),
@@ -138,6 +138,8 @@ var Booking = React.createClass({
             </div>
   },
   renderDateSelectWidget: function(){
+    var self = this;
+    /*
     $.datetimepicker.setLocale('es');
     $('#id_booking_date').datetimepicker({
       timepicker: false,
@@ -152,7 +154,54 @@ var Booking = React.createClass({
       allowTimes:[ '08:00','08:15','08:30','08:45', '09:00','09:15','09:30','9:45','10:00','10:15','10:30','10:45',
       '11:00','11:15','11:30','11:45', '12:00','12:15','12:30','12:45', '13:00','13:15','13:30','13:45',
       '14:00','14:15','14:30','14:45', '15:00','15:15','15:30','15:45', '16:00','16:15','16:30','16:45'],
+    });*/
+    $('#id_booking_date').pickadate({
+      // Strings and translations
+      monthsFull: ['Enero', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+      monthsShort: ['Enero', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+      weekdaysFull: ['Domingo', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      weekdaysShort: ['Dom', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+      showMonthsShort: undefined,
+      showWeekdaysFull: undefined,
+
+      // Buttons
+      today: 'Hoy',
+      clear: 'Limpiar',
+      close: 'Cerrar',
+
+      //Format:
+      format: 'mm/dd/yyyy',
+      formatSubmit: 'mm/dd/yyyy',
+
+      onStart: function() {
+        console.log('Hello there :)')
+      },
+      onRender: function() {
+        console.log('Whoa.. rendered anew')
+      },
+      onOpen: function() {
+        console.log('Opened up')
+      },
+      onClose: function() {
+        self.forceUpdate();
+        console.log('Rerendered');
+      },
+      onStop: function() {
+        console.log('See ya.')
+      },
+      onSet: function(context) {
+        console.log('Just set stuff:')
+        self.forceUpdate();
+        console.log(this.get())
+        var form = self.refs.bookingForm.getForm()
+        form.updateData({booking_date: this.get()})
+        console.log('update Data called')
+        //UPdate form data
+
+      }
     });
+    $('#id_booking_hour').pickatime({});
+
   },
   componentDidMount: function() {
     this.renderDateSelectWidget();
@@ -165,7 +214,8 @@ var Booking = React.createClass({
     }.bind(this));*/
   },
   _onFormChange: function() {
-    this.forceUpdate()
+    console.log('On changed called');
+    this.forceUpdate();
   },
   componentWillUnmount: function() {
   },

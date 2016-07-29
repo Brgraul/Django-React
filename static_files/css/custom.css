@@ -2598,7 +2598,7 @@ section.full-wrapp {
         margin-top: 20px; }
 
 .princing-banner {
-  padding: 10% 0px 10% !important; }
+  padding: 8% 0px 10% !important; }
 
 .aligned {
   text-align: center !important; }
@@ -2899,7 +2899,8 @@ div.form-group:nth-child(1) {
 
 div.form-group:nth-child(2) {
   width: 45%;
-  display: inline-table; }
+  display: inline-table;
+  position: relative; }
 
 .checkout-col {
   display: inline-block;
