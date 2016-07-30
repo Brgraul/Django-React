@@ -101,6 +101,7 @@
 	      <div id="carousel_customers" class="owl-carousel">
 	        {% for customer in customers %}
 	        <div class="item">
+						<img  class="image-customer-slider" alt="{{customer.name}}"  src="{{ MEDIA_URL }}{{ customer.image }}"/>
 						<div class="hidden-mobile"
 	          <i class="fa fa-quote-left quote-icon"></i>
 	          <h5 class="text-customer-opinion">{{customer.opinion}}</h5>
@@ -109,7 +110,6 @@
 						</div>
 	          <p class="text-customer-name">{{customer.name}}</p>
 	          <p class="text-customer-city">{{customer.city}}</p>
-	          <img  class="image-customer-slider" alt="{{customer.name}}"  src="{{ MEDIA_URL }}{{ customer.image }}"/>
 	        </div>
 	        {% endfor %}
 	      </div>
@@ -162,13 +162,16 @@
 	        {% for vet in vets %}
 	        <div class="item">
 						<div class="row">
+							<div class="col-md-3 visible-mobile">
+							<img  class="image-vet-slider" alt="{{vet.name}}"  src="{{ MEDIA_URL }}{{ vet.image }}"/>
+						</div>
 							<div class="col-md-7">
 								<h3>{{vet.name}}</h3>
 								<h4>{{vet.subtitle1}}</h4>
 								<h4>{{vet.subtitle2}}</h4>
 								<h5 class="hidden-mobile">{{vet.bio}}</h5>
 							</div>
-							<div class="col-md-3">
+							<div class="col-md-3 hidden-mobile">
 						   <img  class="image-vet-slider" alt="{{vet.name}}"  src="{{ MEDIA_URL }}{{ vet.image }}"/>
 	            </div>
 						</div>

@@ -89,7 +89,6 @@ div.section-green{
   border-top: 3px solid #E9E9E9;
   border-bottom: 3px solid #E9E9E9;
   & > div.row > div.col-md-12{
-    margin-top: 20px;
     margin-bottom: 10px
   }
 }
@@ -101,9 +100,6 @@ div.section-green{
   padding-bottom: 2%;
   border-top: 3px solid #E9E9E9;
   border-bottom: 3px solid #E9E9E9;
-  & > div.row:first-child{
-    margin-bottom: 30px;
-  }
 }
 /* Estilos Ventajas Index*/
 div.container.container-ventajas{
@@ -165,7 +161,7 @@ div.container.container-ventajas{
   display: block;
   margin-left: auto;
   margin-right: auto;
-  margin-top: 40px;
+  margin-top: 20px;
   margin-bottom: 20px;
 }
 .linebreak1{

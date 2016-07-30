@@ -153,9 +153,8 @@ div.container_info{
 .image-vet-slider{
   margin-left: auto;
   margin-right: auto;
+  margin-bottom: 20px;
   display: block;
-  height: 300px;
-  width: 300px;
   @include respond-to(mobiles) {height:auto;width:100%;}
 }
 
@@ -164,7 +163,7 @@ div.container_info{
   margin-left: auto;
   margin-right: auto;
   display: block;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
   max-width: 100%;
 }
 
@@ -224,9 +223,6 @@ div.container.container-grey-background{
       line-height: 125%;
       display: block;
       margin-bottom: 15px;
-    }
-    div.linebreak{
-      margin-top: 0px;
     }
   }
 }

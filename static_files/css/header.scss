@@ -12,6 +12,15 @@ header > nav.navbar{
   max-width: 1140px;
   margin-left: auto;
   margin-right: auto;
+  @include respond-to(mobiles) { padding-left: 0px; padding-right: 0px}
+ & > a.hidden-sm-up{
+   float: left;
+   padding-left: 0.5rem ;
+   margin-bottom: 0.5rem ;
+ }
+ & > button.navbar-toggler.hidden-sm-up{
+   float: right;
+ }
   & > div.collapse.navbar-toggleable-xs{
     & > ul.nav.navbar-nav{
       background-color: white;
@@ -19,7 +28,8 @@ header > nav.navbar{
       & > li{
         text-align: center;
         width: 20%;
-        @include respond-to(mobiles) { width: calc !important;}
+        @include respond-to(mobiles) { width: 100% ;border: 3px solid #E9E9E9;
+        border-bottom: none;}
         margin: auto;
         &.nav-item > a.nav-link{
           font-family: "Gotham-Medium";
@@ -41,13 +51,17 @@ header > nav.navbar{
             }
           }
           &.nav-item:nth-child(4){
-            width: 20% !important;
+            width: 20% ;
+            border: 0px;
+            @include respond-to(mobiles) { width: 100%;}
             float: right !important;
             & > a.nav-link{
-              border: 2px solid $instavets_green !important;
-              border-radius: 10px !important;
+              border: 3px solid $instavets_green !important;
+              border-radius: 10px ;
+              @include respond-to(mobiles) { border-radius: 0px ;}
               color: $instavets_green !important;
               font-size: 20px;
+              margin-left: 0px !important;
               &:hover{
                 background-color: $instavets_green !important;
                 color: white !important;

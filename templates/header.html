@@ -1,13 +1,14 @@
 {% load staticfiles %}
 <header>
     <nav class="navbar" role="navigation">
+      <a class="hidden-sm-up" href="{% url 'index' %}"><img  class="navbar-logo" alt="File logo" src="{% static 'images/index/logo-y-nombre.png' %}"/></a>
       <button class="navbar-toggler hidden-sm-up" type="button" data-toggle="collapse" data-target="#exCollapsingNavbar2">
         &#9776;
       </button>
       <div class="collapse navbar-toggleable-xs" id="exCollapsingNavbar2">
-        <a class="navbar-brand col-xs-12" href="{% url 'index' %}"><img  class="navbar-logo" alt="File logo" src="{% static 'images/index/logo-y-nombre.png' %}"/></a>
+        <a class="navbar-brand hidden-sm-down" href="{% url 'index' %}"><img  class="navbar-logo" alt="File logo" src="{% static 'images/index/logo-y-nombre.png' %}"/></a>
         <ul class="nav navbar-nav">
-          <li class="col-xs-12 nav-item dropdown">
+          <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle"  href="{% url 'services_index' %}" >Servicios</a>
             <ul class="dropdown-menu">
               {% for menu_url, menu_link in menu_links.items %}
@@ -17,14 +18,15 @@
               {% endfor %}
             </ul>
           </li>
-          <li class="col-xs-12 nav-item">
+          <li class="nav-item">
             <a class="nav-link" href="{% url 'tarifas' %}">TARIFAS</a>
           </li>
-          <li class="col-xs-12 nav-item">
+          <li class="nav-item">
             <a class="nav-link" href="{% url 'meet_vets_url' %}">LAS VETS</a>
           </li>
-          <li class="col-xs-12 nav-item">
-            <a class="nav-link" href="{% url 'contacto' %}">Tel: 912 228 229</a>
+          <li class="nav-item">
+            <a class="nav-link hidden-sm-down" href="{% url 'contacto' %}">Tel: 912 228 229</a>
+            <a class="nav-link hidden-sm-up" href="tel:+34912228229">¡LLAMA YA!</a>
           </li>
         </ul>
       </div>
