@@ -13,7 +13,6 @@
 	width:100%;
 }
 #seccion {
-	margin-top: 20px;
 	width: 95%;
 	max-width: 1200px;
 	height: auto;
@@ -188,7 +187,7 @@
 }
 @media only screen and (min-width: 320px) and (max-width: 767px) {
 #seccion {
-	width:90%;
+	width:92%;
 	height:auto;
 }
 #seccion #izquierda {
@@ -241,9 +240,13 @@ div.pricingtab {
 	vertical-align: baseline;
 	margin: 0px;
 	padding: 2px;
-	border-left: 0px;
+	border-bottom: 0px;
 }
-
+@media only screen and (min-width: 320px) and (max-width: 767px) {
+div.pricingtab {
+	border: 1px solid white
+	height:auto;
+}
 .pricingtab:active {
 	background-color: #00A099;
 }
@@ -358,7 +361,6 @@ div.pricingtab {
 @media (max-width: 480px) {
 	.pricing-display-h5 {
 		margin-bottom: 0px;
-		font-size: 16px !important;
 	}
 
 	.pricing-display-h6 {

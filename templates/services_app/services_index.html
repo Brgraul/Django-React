@@ -124,57 +124,63 @@ Si necesita reservar una cita, puede hacerlo llamando a nuestro teléfono, a tra
 	<!-- Ventajas END -->
 
 
-<!-- NUSETROS CLIENTES START -->
-<div class="container container-white-background">
-  <div class="row">
-    <!-- <h2>NUESTROS CLIENTES</h2> -->
-    <div class="col-md-12">
-      <div id="carousel_customers" class="owl-carousel">
-        {% for customer in customers %}
-        <div class="item">
-          <i class="fa fa-quote-left quote-icon"></i>
-          <h5 class="text-customer-opinion">{{customer.opinion}}</h5>
-          <i class="fa fa-quote-right quote-icon"></i>
-          <div class="linebreak1"></div>
-          <h5 class="text-customer-name">{{customer.name}}</h5>
-          <h5 class="text-customer-city">{{customer.city}}</h5>
-          <img  class="image-customer-slider" alt="{{customer.name}}"  src="{{ MEDIA_URL }}{{ customer.image }}"/>
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
-</div>
-<!-- NUSETROS CLIENTES END -->
+  <!-- NUSETROS CLIENTES START -->
+	<div class="container container-grey-background">
+	  <div class="row">
+	   <h2>NUESTROS CLIENTES</h2>
+		 <div class="linebreak1"></div>
+	    <div class="col-md-12">
+	      <div id="carousel_customers" class="owl-carousel">
+	        {% for customer in customers %}
+	        <div class="item">
+						<img  class="image-customer-slider" alt="{{customer.name}}"  src="{{ MEDIA_URL }}{{ customer.image }}"/>
+            <div class="hidden-mobile">
+	          <i class="fa fa-quote-left quote-icon"></i>
+	          <h5 class="text-customer-opinion">{{customer.opinion}}</h5>
+	          <i class="fa fa-quote-right quote-icon"></i>
+	          <div class="linebreak"></div>
+						</div>
+	          <p class="text-customer-name">{{customer.name}}</p>
+	          <p class="text-customer-city">{{customer.city}}</p>
+	        </div>
+	        {% endfor %}
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- NUSETROS CLIENTES END -->
 
-<!-- NUSETRAS VETERINARIAS START -->
-<div class="container container-grey-background">
-  <div class="row">
-    <h2>NUESTRAS VETERINARIAS</h2>
-    <div class="linebreak1"></div>
-    </div>
-    <div class="col-md-12">
-      <div id="carousel_vets" class="owl-carousel">
-        {% for vet in vets %}
-        <div class="item">
-          <div class="row">
-            <div class="col-md-7">
-              <h3>{{vet.name}}</h3>
-              <h4>{{vet.subtitle1}}</h4>
-              <h4>{{vet.subtitle2}}</h4>
-              <h5>{{vet.bio}}</h5>
-            </div>
-            <div class="col-md-3">
-             <img  class="image-vet-slider" alt="{{vet.name}}"  src="{{ MEDIA_URL }}{{ vet.image }}"/>
-            </div>
-          </div>
-        </div>
-        {% endfor %}
-      </div>
-    </div>
-  </div>
-</div>
-<!-- NUSETROS VETERINARIAS END -->
+  <!-- NUSETRAS VETERINARIAS START -->
+	<div class="container container-white-background">
+	  <div class="row">
+	    <h2>NUESTRAS VETERINARIAS</h2>
+	    <div class="linebreak1"></div>
+	    </div>
+	    <div class="col-md-12">
+	      <div id="carousel_vets" class="owl-carousel">
+	        {% for vet in vets %}
+	        <div class="item">
+						<div class="row">
+							<div class="col-md-3 visible-mobile">
+							<img  class="image-vet-slider" alt="{{vet.name}}"  src="{{ MEDIA_URL }}{{ vet.image }}"/>
+						</div>
+							<div class="col-md-7">
+								<h3>{{vet.name}}</h3>
+								<h4>{{vet.subtitle1}}</h4>
+								<h4>{{vet.subtitle2}}</h4>
+								<h5 class="hidden-mobile vet-bio-text">{{vet.bio}}</h5>
+							</div>
+							<div class="col-md-3 hidden-mobile">
+						   <img  class="image-vet-slider" alt="{{vet.name}}"  src="{{ MEDIA_URL }}{{ vet.image }}"/>
+	            </div>
+						</div>
+	        </div>
+	        {% endfor %}
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- NUSETROS VETERINARIAS END -->
 
 {% endblock %}
 
@@ -182,6 +188,8 @@ Si necesita reservar una cita, puede hacerlo llamando a nuestro teléfono, a tra
 {% block javascript %}
 <script type="text/javascript">
 	$("#carousel_vets").owlCarousel({
+		itemsDesktopSmall : [900,1], // betweem 900px and 601px
+		itemsTablet: [600,1], //2 items between 600 and 0
 		items:1,
 		pagination:false,
 		navigation:true,
@@ -191,6 +199,8 @@ Si necesita reservar una cita, puede hacerlo llamando a nuestro teléfono, a tra
 		],
 	});
 	$("#carousel_customers").owlCarousel({
+		itemsDesktopSmall : [900,1], // betweem 900px and 601px
+		itemsTablet: [600,1], //2 items between 600 and 0
 		items:1,
     pagination:false,
 		navigation:true,

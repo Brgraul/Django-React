@@ -7,7 +7,7 @@
   <div class ="mask-banner">
     <div>
       <h1>Veterinario a domicilio</h1>
-      <h3>Menos estrés para tu mascota, mayor comodidad para ti</h3>
+      <h3>Menos estrés para tu mascota, mayor comodidad para ti.</h3>
       <br/>
       <a class="btn btn-cta-white" href="{% url 'checkout' %}">PIDE TU CITA</a>
     </div>
@@ -102,7 +102,7 @@
 	        {% for customer in customers %}
 	        <div class="item">
 						<img  class="image-customer-slider" alt="{{customer.name}}"  src="{{ MEDIA_URL }}{{ customer.image }}"/>
-						<div class="hidden-mobile"
+						<div class="hidden-mobile">
 	          <i class="fa fa-quote-left quote-icon"></i>
 	          <h5 class="text-customer-opinion">{{customer.opinion}}</h5>
 	          <i class="fa fa-quote-right quote-icon"></i>
@@ -169,7 +169,7 @@
 								<h3>{{vet.name}}</h3>
 								<h4>{{vet.subtitle1}}</h4>
 								<h4>{{vet.subtitle2}}</h4>
-								<h5 class="hidden-mobile">{{vet.bio}}</h5>
+								<h5 class="hidden-mobile vet-bio-text">{{vet.bio}}</h5>
 							</div>
 							<div class="col-md-3 hidden-mobile">
 						   <img  class="image-vet-slider" alt="{{vet.name}}"  src="{{ MEDIA_URL }}{{ vet.image }}"/>

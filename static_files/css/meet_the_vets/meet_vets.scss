@@ -1,7 +1,3 @@
-.card-img-top {
-    width: 100%;
-}
-
 div.container-vets{
   & > h6{
     text-align: center;
@@ -15,7 +11,28 @@ div.container-vets{
     margin-bottom: 45px;
   }
 }
-
+div.col-md-4{
+  &:last-child{
+    & > div.card{
+      @include respond-to(mobiles) { margin-bottom: 0px;}
+    }
+  }
+  div.card{
+    text-align: center;
+    border: 2px solid #e5e5e5;
+    @include respond-to(mobiles) { margin-bottom: 18%;}
+    & > img{
+      width: 90%;
+      margin: 10px;
+    }
+    & > div.card-block{
+      background-color: $instavets_green;
+      & > h4{
+        color: white;
+      }
+    }
+  }
+}
 .container-vets{
   margin-bottom: 40px;
 }
@@ -46,7 +63,6 @@ div.container-vets{
 }
 
 .why-instavets-title{
-  text-align: justify;
   font-size: 25px;
   line-height: 125%;
 }
@@ -56,9 +72,13 @@ div.container-vets{
   font-size: 15px;
   line-height: 125%;
 }
+.vet-bio-text{
+  text-align: justify;
+}
 
 .why-instavets-text-block{
   padding-left: 50px;
+  @include respond-to(mobiles) { padding-left: 20px;}
 }
 
 .row-vets{

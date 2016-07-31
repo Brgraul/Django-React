@@ -33,6 +33,7 @@ section.full-wrapp{
   & > div.overlay {
     position: relative;
     top: 20%;
+    @include respond-to(mobiles) {top:4%;}
     & > h1{
     font-weight: bold;
     color: white;
@@ -63,7 +64,7 @@ section.full-wrapp{
       height: 450px;
     & > div:first-child{
     position: relative;
-    top: 20%;
+    top: 24.5%;
     z-index: 3;
     & > h1{
     font-weight: bold;
@@ -79,7 +80,7 @@ section.full-wrapp{
       font-size: 28px;
       line-height: 125%;
       margin: 20px auto 0px;
-      max-width: 780px;
+      max-width: 740px;
       color: white;
     }
     & > button {
@@ -155,6 +156,7 @@ div.container_info{
   margin-right: auto;
   margin-bottom: 20px;
   display: block;
+  width: 175%;
   @include respond-to(mobiles) {height:auto;width:100%;}
 }
 
@@ -168,7 +170,7 @@ div.container_info{
 }
 
 .item > div.row > div.col-md-7{
-  text-align: center;
+  @include respond-to(mobiles) {text-align: center;}
  & > h3{
    color: $instavets_green;
  }
@@ -255,4 +257,16 @@ div#container-services-text.container-fluid{
       }
     }
   }
+}
+
+.pricing-wrap {
+	margin-top: 70px;
+	@include respond-to(mobiles) { margin-top: 0px;}
+}
+
+.caution{
+  font-size:12px;
+  margin-top:5px;
+  margin-bottom:35px;
+  @include respond-to(mobiles) { margin-bottom: 0px;}
 }

@@ -125,18 +125,21 @@
 <!-- NUSETROS CLIENTES START -->
 <div class="container container-grey-background">
   <div class="row">
-    <!-- <h2>NUESTROS CLIENTES</h2> -->
+   <h2>NUESTROS CLIENTES</h2>
+   <div class="linebreak1"></div>
     <div class="col-md-12">
       <div id="carousel_customers" class="owl-carousel">
         {% for customer in customers %}
         <div class="item">
+          <img  class="image-customer-slider" alt="{{customer.name}}"  src="{{ MEDIA_URL }}{{ customer.image }}"/>
+          <div class="hidden-mobile"
           <i class="fa fa-quote-left quote-icon"></i>
           <h5 class="text-customer-opinion">{{customer.opinion}}</h5>
           <i class="fa fa-quote-right quote-icon"></i>
           <div class="linebreak"></div>
+          </div>
           <p class="text-customer-name">{{customer.name}}</p>
           <p class="text-customer-city">{{customer.city}}</p>
-          <img  class="image-customer-slider" alt="{{customer.name}}"  src="{{ MEDIA_URL }}{{ customer.image }}"/>
         </div>
         {% endfor %}
       </div>
@@ -149,14 +152,16 @@
 
 {% block javascript %}
 <script type="text/javascript">
-$("#carousel_customers").owlCarousel({
-  items:1,
-  pagination:false,
-  navigation:true,
-  navigationText: [
-    "<i class='icon-arrow-left icon-white'><</i>",
-    "<i class='icon-arrow-right icon-white'>></i>"
-  ],
-});
+	$("#carousel_customers").owlCarousel({
+		itemsDesktopSmall : [900,1], // betweem 900px and 601px
+		itemsTablet: [600,1], //2 items between 600 and 0
+		items:1,
+    pagination:false,
+		navigation:true,
+    navigationText: [
+			"<i class='icon-arrow-left icon-white'><</i>",
+      "<i class='icon-arrow-right icon-white'>></i>"
+		],
+	});
 </script>
 {% endblock javascript %}
