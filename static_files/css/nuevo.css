@@ -240,13 +240,13 @@ div.pricingtab {
 	vertical-align: baseline;
 	margin: 0px;
 	padding: 2px;
-	border-bottom: 0px;
+	border-left: 0px;
+
 }
-@media only screen and (min-width: 320px) and (max-width: 767px) {
-div.pricingtab {
-	border: 1px solid white
-	height:auto;
+div.pricingtab#vacunas{
+	border-top: 0px;
 }
+
 .pricingtab:active {
 	background-color: #00A099;
 }
@@ -376,3 +376,12 @@ div.pricingtab {
 		font-size: 16px !important;
 	}
  }
+
+ @media only screen and (min-width: 320px) and (max-width: 767px) {
+	 div.pricingtab{
+		 border: 1px solid white !important;
+	 }
+	 h5.depa{
+		 font-size: 20px !important;
+	 }
+}
