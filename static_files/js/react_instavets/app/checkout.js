@@ -37,10 +37,10 @@ var Header = React.createClass({
       return  <div class="header-booking">
               <div class="container">
               <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-3 col-sm-6 col-xs-12">
                 <img class="img-responsive checkout-logo" alt="File logo" src='/static/images/index/logo-y-nombre.png'/>
                 </div>
-                <div class="col-md-5 col-md-offset-2">
+                <div class="col-md-5 col-md-offset-2 col-sm-6 col-sm-offset-0 col-xs-12 col-xs-offset-0">
                 <div class="checkout-col">
                   <i class="fa fa-user fa-2x checkout-icon" aria-hidden="true"></i>
                   <p class="checkout-text" >1.Contacto</p>
@@ -67,7 +67,7 @@ var Header = React.createClass({
 })
 
 var BookingForm = forms.Form.extend({
-  booking_date: forms.DateTimeField({label: 'Fecha de la cita:', requiered: true, custom: 'readonly', requiered: true, errorMessages: {required:'Rellena este campo porfavor.'}, format: '%m/%d/%Y'}),
+  booking_date: forms.DateTimeField({label: 'Fecha de la cita:', requiered: true, custom: 'readonly', requiered: true, errorMessages: {required:'Rellena este campo porfavor.'}, format: '%m/%d/%Y',}),
   booking_hour: forms.DateTimeField({label:'Hora de la cita:', custom: 'readonly', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}, format: '%H:%M'}),
   phone_number: forms.CharField({ label: 'Número de teléfono:', requiered: true, errorMessages: {required:'Rellena éste campo porfavor.'}}),
   email: forms.EmailField({label: 'Email:', requiered: true, errorMessages: {invalid: 'Porfavor introduce un email válido.', required:'Rellena éste campo porfavor.'}}),
@@ -104,29 +104,14 @@ var Booking = React.createClass({
   getInitialState: function(){
     return{
       source: document.location.origin + '/api/cookies/cookie_order_get/',
+      order: 'undefined',
     }
   },
   render: function() {
-    /*
-    if (!((this.state.order == 'false') || (this.state.order === undefined))){
-      var bookingForm = new BookingForm({initial: {
-        booking_date:this.state.order.customer.booking_date,
-        booking_hour:this.state.order.customer.booking_hour,
-        phone_number:this.state.order.customer.phone_number,
-        email:this.state.order.customer.email,
-        first_name: this.state.order.customer.first_name,
-        second_name: this.state.order.customer.second_name,
-        adress: this.state.order.customer.adress,
-        city: this.state.order.customer.city,
-        acceptTerms: this.state.order.customer.acceptTerms,
-      }, autoId: false});
-    }
-    else{
-      var bookingForm = new BookingForm({onChange:this._onFormChange});
-    }*/
+    console.log('Render ... ')
     return <div class="col-md-7 checkout-form-container">
-              <p class="form-title" >Reserve su cita</p>
-              <p class="form-sub" >Facilítenos alguna información básica porfavor</p>
+              <p class="form-title">Reserve su cita</p>
+              <p class="form-sub hidden-md-down">Facilítenos alguna información básica porfavor</p>
                 <form onSubmit={this._onSubmit} onChange={this._onFormChange}>
                 <forms.RenderForm form={BookingForm} component="ul"
                 rowComponent="li"
@@ -138,34 +123,76 @@ var Booking = React.createClass({
             </div>
   },
   renderDateSelectWidget: function(){
-    $.datetimepicker.setLocale('es');
-    $('#id_booking_date').datetimepicker({
-      timepicker: false,
-      minDate: '0', //yesterday is minimum date(for today use 0 or -1970/01/01)
-      format:'m/d/Y',
-      lang:'es'
+    var self = this;
+    //Pick a Date
+    $('#id_booking_date').pickadate({
+      // Strings and translations
+      monthsFull: ['Enero', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+      monthsShort: ['Enero', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
+      weekdaysFull: ['Domingo', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
+      weekdaysShort: ['Dom', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
+      showMonthsShort: undefined,
+      showWeekdaysFull: undefined,
+
+      // Buttons
+      today: 'Hoy',
+      clear: 'Limpiar',
+      close: 'Cerrar',
+
+      //Format:
+      format: 'dd/mm/yyyy',
+      formatSubmit: 'mm/dd/yyyy',
+      //On Set
+      onSet: function(context) {
+        self.forceUpdate();
+        var form = self.refs.bookingForm.getForm()
+        form.updateData({booking_date: this.get()})
+
+      }
     });
-    $('#id_booking_hour').datetimepicker({
-      datepicker: false,
-      format:'H:i',
-      lang:'es',
-      allowTimes:[ '08:00','08:15','08:30','08:45', '09:00','09:15','09:30','9:45','10:00','10:15','10:30','10:45',
-      '11:00','11:15','11:30','11:45', '12:00','12:15','12:30','12:45', '13:00','13:15','13:30','13:45',
-      '14:00','14:15','14:30','14:45', '15:00','15:15','15:30','15:45', '16:00','16:15','16:30','16:45'],
+    $('#id_booking_hour').pickatime({
+      //Disabled times
+      /*disable: [
+        [14,0]
+      ],*/
+      //Interval
+      interval: 30,
+      //Min's and Max's
+      min: [8,30],
+      max: [22,0],
+      //Format:
+      format: 'H:i',
+      formatSubmit: 'H:i',
+      //On Set:
+      onSet: function(context) {
+        self.forceUpdate();
+        var form = self.refs.bookingForm.getForm()
+        form.updateData({booking_hour: this.get()})
+      }
     });
+
   },
   componentDidMount: function() {
-    this.renderDateSelectWidget();
+    var self = this;
+    self.renderDateSelectWidget();
+    //Load Old Order
     /*
-    this.serverRequest = $.get(this.state.source, function (result) {
+    self.serverRequest = $.get(self.state.source, function (result) {
+      console.log(result)
+      self.forceUpdate();
       order = JSON.parse(result)
-      this.setState({
-        order: order,
-      });
-    }.bind(this));*/
+      console.log(order)
+      var form = self.refs.bookingForm.getForm()
+      form.updateData({second_name: 'testing',
+                       first_name: 'first_name',})
+    }.bind(self));*/
+  },
+  componentWillUnmount: function() {
+    this.serverRequest.abort();
   },
   _onFormChange: function() {
-    this.forceUpdate()
+    console.log('On changed called');
+    this.forceUpdate();
   },
   componentWillUnmount: function() {
   },
@@ -211,9 +238,9 @@ var Booking = React.createClass({
 /* Renders the pet form */
 var NewPet = React.createClass({
   render: function() {
-    return <div class="col-md-7 checkout-form-container">
+    return <div class="col-md-7 col-sm-12 checkout-form-container">
               <p class="form-title" >Registre a su mascota</p>
-              <p class="form-sub" >Nos preocupamos por su amigo peludo</p>
+              <p class="form-sub hidden-md-down" >Nos preocupamos por su amigo peludo</p>
               <form id = "petform" onSubmit={this._onSubmit} onChange={this.onFormChange}>
               <forms.RenderForm form={NewPetForm} ref="newPetForm">
                 <BootstrapForm form={NewPetForm} />
@@ -268,7 +295,7 @@ var ProgressColumn = React.createClass({
     }else{
 
     }
-    return <div class="col-md-3 col-progress col-md-offset-1">
+    return <div class="col-md-3 col-progress col-md-offset-1 hidden-md-down">
             <h3>Resumen:</h3>
             <h4 class="title">Datos de la cita</h4>
             <h4>{this.props.date} {city}</h4>
@@ -289,8 +316,8 @@ var CheckoutContainer = React.createClass({
 	getInitialState: function() {
     //window.Perf = Perf;
     //Perf.start()
-    this.cookieTestSet();
-    this.cookieTestVerify();
+    //this.cookieTestSet();
+    //this.cookieTestVerify();
 		return {
       loaded: false,
       step: 1,

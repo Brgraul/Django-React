@@ -60,9 +60,17 @@ div.col-md-6 > ul > li{
 
 }
 
+//Header Booking
 .header-booking{
   border-bottom: 1px solid $instavets_green;
   box-shadow: 0px 1px 1px $instavets_green;
+  & > div.container{
+    & > div.row{
+      & > div{
+        text-align: center;
+      }
+    }
+  }
 }
 
 .form-title{
@@ -145,11 +153,12 @@ div.form-group:nth-child(1){
 div.form-group:nth-child(2){
   width: 45%;
   display: inline-table;
+  position: relative;
 }
 
 .checkout-col{
   display: inline-block;
-  width: 20%;
+  width: 17%;
   margin: 0px;
   padding: 0px;
   position: relative;

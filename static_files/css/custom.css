@@ -2905,7 +2905,8 @@ div.form-group:nth-child(1) {
 
 div.form-group:nth-child(2) {
   width: 45%;
-  display: inline-table; }
+  display: inline-table;
+  position: relative; }
 
 .checkout-col {
   display: inline-block;
