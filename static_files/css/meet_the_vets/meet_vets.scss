@@ -74,6 +74,7 @@ div.col-md-4{
 }
 .vet-bio-text{
   text-align: justify;
+  @include respond-to(tablets) {padding-left: 3%;padding-right: 3%;}
 }
 
 .why-instavets-text-block{

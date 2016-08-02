@@ -1,6 +1,5 @@
 #contact{
   height:395px;
-  padding: 150px 0px 80px;
   margin-bottom: 30px;
 }
 .container{
@@ -21,10 +20,15 @@
      & > h5{
        margin-bottom: 10px;
      }
+     & > a{
+       color: $instavets_footer_grey;
+
+     }
      & > i, h3.a{
        display: inline;
        margin-top: 40px;
      }
+     @include respond-to(mobiles) {margin-bottom: 50px; text-align: center;}
  }
  & > div.a.col-md-6{
  & > form{

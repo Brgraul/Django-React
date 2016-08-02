@@ -56,6 +56,9 @@ h5{
   padding-top: 10px;
   padding-bottom: 10px;
   color: white;
+  &:focus{
+    color: white;
+  }
   &:hover{
     background-color: white;
     color: $instavets_green !important;
@@ -73,5 +76,11 @@ h5{
   &:hover{
     background-color: $instavets_green;
     color: white;
+  }
+}
+
+a{
+  &:hover{
+  text-decoration: none;
   }
 }

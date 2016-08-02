@@ -3,9 +3,12 @@
 
 {% block body_content %}
 <section class="full-wrapp" id="contact" style="background-image: url({% static 'images/index/index_slide.jpg' %})">
-  <h1>¡Contáctanos!</h1>
-  <h3>Estamos aquí para resolver todas vuestras dudas.</h3>
-  <br/>
+  <div class="overlay" id="contact">
+    <h1>¡Contáctanos!</h1>
+    <h3>Estamos aquí para resolver todas vuestras dudas.</h3>
+    <br/>
+    <a class="btn btn-cta-white" href="tel:+34914495021">¡LLAMA YA!</a>
+  </div>
 </section>
 
 <div class="container">
@@ -16,7 +19,9 @@
     <h3>Info@instavets.com</h3>
     <h5>Calle de Alonso Cano 66</h5>
     <h5>28003 Madrid</h5>
-    <i class="fa fa-phone fa-2x" aria-hidden="true"></i><h3 class="a">   914 49 50 21</h3>
+    <a href="tel:+34914495021">
+      <i class="fa fa-phone fa-2x" aria-hidden="true"></i><h3 class="a">   914 49 50 21</h3>
+    </a>
   </div>
   <div class="col-md-6 a">
     <form method='POST' action=''>{% csrf_token %}

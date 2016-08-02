@@ -70,11 +70,13 @@ div.section-green{
   text-align: center;
   background-color: $instavets_green;
   @include respond-to(mobiles) { display:none !important ;}
-  & > div{
-    text-align: center;
-    &  > div > img{
-        width: auto;
-        max-height: 80px;
+  & > div.row.row-press{
+    &  > div.col-md-3{
+      height: 40px;
+      & > img{
+        max-width: 100%;
+        height: 100%;
+      }
     }
   }
 }
@@ -139,17 +141,21 @@ div.container.container-ventajas{
       font-weight: 300;
       line-height: 150%;
       margin: 15px 15px;
-      display: block; }
+      display: block;
+      @include respond-to(tablets) { font-size: 16px;}
+     }
     }
     }
   }
 .index-img{
   margin-top: 10px;
+  @include respond-to(tablets) {margin-top: 8%; width: 133%; margin-left: -11%;}
 }
 .deal-box{
   padding-top: 6%;
   padding-bottom: 6%;
   @include respond-to(mobiles) { text-align: center;}
+  @include respond-to(tablets) {margin-right:-8%; margin-left: 8%;}
   & > h1{
     color: $instavets_green;
   }
@@ -193,5 +199,6 @@ div.container.terms {
     text-align: justify !important;
   }
 }
+
 
 /* ESTILOS PIDE TU CITA INDEX*/

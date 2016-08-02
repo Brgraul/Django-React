@@ -30,10 +30,19 @@ section.full-wrapp{
   text-align: center;
   width: 100%;
   height: 450px;
+  & > h1,h3{
+    color: white;
+  }
   & > div.overlay {
     position: relative;
-    top: 20%;
-    @include respond-to(mobiles) {top:4%;}
+    top: 23%;
+    @include respond-to(mobiles) {top:13%;}
+    &#contact{
+    @include respond-to(mobiles) {top:24%;}
+    }
+    &#pricing{
+    @include respond-to(mobiles) {top:6%;}
+    }
     & > h1{
     font-weight: bold;
     color: white;
@@ -50,6 +59,7 @@ section.full-wrapp{
       margin: 20px auto 0px;
       max-width: 780px;
       color: white;
+      @include respond-to(mobiles) {font-size: 24px;}
     }
     & > button {
       margin-top: 20px;
@@ -64,8 +74,16 @@ section.full-wrapp{
       height: 450px;
     & > div:first-child{
     position: relative;
-    top: 24.5%;
     z-index: 3;
+    top:17%;
+    @include respond-to(mobiles) {top:9%;}
+    &#index{
+      top: 25%;
+      @include respond-to(mobiles) {top:21%;}
+    }
+    &#eutanasia{
+      @include respond-to(mobiles) {top:4%;}
+    }
     & > h1{
     font-weight: bold;
     color: white;
@@ -82,6 +100,7 @@ section.full-wrapp{
       margin: 20px auto 0px;
       max-width: 740px;
       color: white;
+      @include respond-to(mobiles) {font-size: 24px;}
     }
     & > button {
       margin-top: 20px;

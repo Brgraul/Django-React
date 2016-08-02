@@ -28,6 +28,7 @@ header > nav.navbar{
       & > li{
         text-align: center;
         width: 20%;
+        @include respond-to(tablets) {width: 17% ;}
         @include respond-to(mobiles) { width: 100% ;border: 3px solid #E9E9E9;
         border-bottom: none;}
         margin: auto;
@@ -50,17 +51,22 @@ header > nav.navbar{
               border-bottom: 4px solid $instavets_green;
             }
           }
+          &.nav-item:first-child{
+            @include respond-to(tablets) {width: 22% ;}
+          }
           &.nav-item:nth-child(4){
             width: 20% ;
             border: 0px;
             @include respond-to(mobiles) { width: 100%;}
+            @include respond-to(tablets) { width: 22%;}
             float: right !important;
             & > a.nav-link{
               border: 3px solid $instavets_green !important;
               border-radius: 10px ;
               @include respond-to(mobiles) { border-radius: 0px ;}
               color: $instavets_green !important;
-              font-size: 20px;
+              font-size: 18px;
+              @include respond-to(tablets) { font-size: 16px;}
               margin-left: 0px !important;
               &:hover{
                 background-color: $instavets_green !important;

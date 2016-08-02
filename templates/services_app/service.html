@@ -6,7 +6,7 @@
 
 <section class="full-wrapp" style="background-image: url({{ MEDIA_URL }}{{ service.image }})">
   <div class ="mask-banner">
-    <div>
+    <div id="{{service.url}}">
       <h1>{{ service.headline}}</h1>
       <h3>{{ service.short_description }}</h3>
       <br/>
@@ -116,7 +116,7 @@
         {% for customer in customers %}
         <div class="item">
           <img  class="image-customer-slider" alt="{{customer.name}}"  src="{{ MEDIA_URL }}{{ customer.image }}"/>
-          <div class="hidden-mobile"
+          <div class="hidden-mobile">
           <i class="fa fa-quote-left quote-icon"></i>
           <h5 class="text-customer-opinion">{{customer.opinion}}</h5>
           <i class="fa fa-quote-right quote-icon"></i>

@@ -384,4 +384,7 @@ div.pricingtab#vacunas{
 	 h5.depa{
 		 font-size: 20px !important;
 	 }
+	 h5.price-cats{
+		 margin-right: 200px;
+	 }
 }
