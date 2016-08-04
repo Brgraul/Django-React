@@ -13,13 +13,13 @@
 </section>
 <!-- VET CARDS -->
 <div class="container container-vets">
-  <h6> Nuestras veterinarias </h6>
-  <div class="linebreak"></div>
+  <h2> Nuestras veterinarias </h2>
+  <div class="linebreak1"></div>
   <div class="card-deck-wrapper">
     <div class="card-deck">
       <div class="row row-vets">
         {% for vet in vets %}
-        <div class="col-md-4">
+        <div class="col-lg-4 col-md-6 col-sm-12">
           <div class="card">
             <img class="img-responsive card-img-top" src="{{ MEDIA_URL }}{{ vet.image }}" alt="Card image cap">
             <div class="card-block">
@@ -125,21 +125,19 @@
 <!-- NUSETROS CLIENTES START -->
 <div class="container container-grey-background">
   <div class="row">
-   <h2>NUESTROS CLIENTES</h2>
-   <div class="linebreak1"></div>
+    <h2>NUESTROS CLIENTES</h2>
+    <div class="linebreak1"></div>
     <div class="col-md-12">
       <div id="carousel_customers" class="owl-carousel">
         {% for customer in customers %}
         <div class="item">
-          <img  class="image-customer-slider" alt="{{customer.name}}"  src="{{ MEDIA_URL }}{{ customer.image }}"/>
-          <div class="hidden-mobile"
           <i class="fa fa-quote-left quote-icon"></i>
           <h5 class="text-customer-opinion">{{customer.opinion}}</h5>
           <i class="fa fa-quote-right quote-icon"></i>
           <div class="linebreak"></div>
-          </div>
           <p class="text-customer-name">{{customer.name}}</p>
           <p class="text-customer-city">{{customer.city}}</p>
+          <img  class="image-customer-slider" alt="{{customer.name}}"  src="{{ MEDIA_URL }}{{ customer.image }}"/>
         </div>
         {% endfor %}
       </div>
@@ -152,16 +150,16 @@
 
 {% block javascript %}
 <script type="text/javascript">
-	$("#carousel_customers").owlCarousel({
-		itemsDesktopSmall : [900,1], // betweem 900px and 601px
-		itemsTablet: [600,1], //2 items between 600 and 0
-		items:1,
-    pagination:false,
-		navigation:true,
-    navigationText: [
-			"<i class='icon-arrow-left icon-white'><</i>",
-      "<i class='icon-arrow-right icon-white'>></i>"
-		],
-	});
+$("#carousel_customers").owlCarousel({
+  itemsDesktopSmall : [900,1], // betweem 900px and 601px
+  itemsTablet: [600,1], //2 items between 600 and 0
+  items:1,
+  pagination:false,
+  navigation:true,
+  navigationText: [
+    "<i class='icon-arrow-left icon-white'><</i>",
+    "<i class='icon-arrow-right icon-white'>></i>"
+  ],
+});
 </script>
 {% endblock javascript %}

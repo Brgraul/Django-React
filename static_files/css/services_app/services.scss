@@ -249,13 +249,15 @@ div.container.container-grey-background{
 }
 
 div#container-services.container{
-  margin-top: 50px;
-  margin-bottom: 25px;
+  margin-top: 4%;
+  margin-bottom: 1%;
+  @include respond-to(tablets) { margin-top: 2%;margin-bottom: -0.5%;}
 }
 
 div#container-services-text.container-fluid{
   margin-top: 30px;
   margin-bottom: 50px;
+  @include respond-to(tablets) { margin-top: 2%;margin-bottom: 2.5%;}
   & > div.row > div.col-md-10{
     & > p, ul {
       margin-bottom: 35px;
@@ -279,13 +281,15 @@ div#container-services-text.container-fluid{
 }
 
 .pricing-wrap {
-	margin-top: 70px;
-	@include respond-to(mobiles) { margin-top: 0px;}
+	margin-top: 80px;
+	@include respond-to(mobiles) { margin-top: -1px;}
+  @include respond-to(tablets) { margin-top: -1px;}
 }
 
 .caution{
   font-size:12px;
   margin-top:5px;
   margin-bottom:35px;
-  @include respond-to(mobiles) { margin-bottom: 0px;}
+  @include respond-to(mobiles) { margin-bottom: 0px; margin-top: 0px;}
+  @include respond-to(tablets) { margin-bottom: 0px; margin-top: 0px;}
 }

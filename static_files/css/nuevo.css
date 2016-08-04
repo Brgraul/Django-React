@@ -377,7 +377,7 @@ div.pricingtab#vacunas{
 	}
  }
 
- @media only screen and (min-width: 320px) and (max-width: 767px) {
+ @media only screen and (max-width: 361px) {
 	 div.pricingtab{
 		 border: 1px solid white !important;
 	 }
@@ -387,4 +387,10 @@ div.pricingtab#vacunas{
 	 h5.price-cats{
 		 margin-right: 200px;
 	 }
+}
+
+@media only screen and (min-width: 362px) and (max-width: 1281px) {
+	#seccion{
+		width: 96.2%;
+	}
 }

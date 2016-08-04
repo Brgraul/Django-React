@@ -123,6 +123,40 @@ Si necesita reservar una cita, puede hacerlo llamando a nuestro teléfono, a tra
 	</div>
 	<!-- Ventajas END -->
 
+  <!-- NUSETRAS VETERINARIAS START -->
+	<div class="container container-white-background">
+	  <div class="row">
+	    <h2>NUESTRAS VETERINARIAS</h2>
+	    <div class="linebreak1"></div>
+	    </div>
+	    <div class="col-md-12">
+	      <div id="carousel_vets" class="owl-carousel">
+	        {% for vet in vets %}
+	        <div class="item">
+						<div class="row">
+							<div class="col-md-3 hidden-md-up">
+							<img  class="image-vet-slider" alt="{{vet.name}}"  src="{{ MEDIA_URL }}{{ vet.image }}"/>
+						</div>
+							<div class="col-md-7">
+								<h3>{{vet.name}}</h3>
+								<h4>{{vet.subtitle1}}</h4>
+								<h4>{{vet.subtitle2}}</h4>
+								<h5 class="hidden-md-down vet-bio-text">{{vet.bio}}</h5>
+							</div>
+							<div class="col-md-3 hidden-sm-down">
+						   <img  class="image-vet-slider" alt="{{vet.name}}"  src="{{ MEDIA_URL }}{{ vet.image }}"/>
+	            </div>
+						</div>
+            <div class="row">
+              <h5 class="hidden-sm-down hidden-lg-up vet-bio-text">{{vet.bio}}</h5>
+            </div>
+	        </div>
+	        {% endfor %}
+	      </div>
+	    </div>
+	  </div>
+	</div>
+	<!-- NUSETROS VETERINARIAS END -->
 
   <!-- NUSETROS CLIENTES START -->
 	<div class="container container-grey-background">
@@ -149,38 +183,6 @@ Si necesita reservar una cita, puede hacerlo llamando a nuestro teléfono, a tra
 	  </div>
 	</div>
 	<!-- NUSETROS CLIENTES END -->
-
-  <!-- NUSETRAS VETERINARIAS START -->
-	<div class="container container-white-background">
-	  <div class="row">
-	    <h2>NUESTRAS VETERINARIAS</h2>
-	    <div class="linebreak1"></div>
-	    </div>
-	    <div class="col-md-12">
-	      <div id="carousel_vets" class="owl-carousel">
-	        {% for vet in vets %}
-	        <div class="item">
-						<div class="row">
-							<div class="col-md-3 visible-mobile">
-							<img  class="image-vet-slider" alt="{{vet.name}}"  src="{{ MEDIA_URL }}{{ vet.image }}"/>
-						</div>
-							<div class="col-md-7">
-								<h3>{{vet.name}}</h3>
-								<h4>{{vet.subtitle1}}</h4>
-								<h4>{{vet.subtitle2}}</h4>
-								<h5 class="hidden-mobile vet-bio-text">{{vet.bio}}</h5>
-							</div>
-							<div class="col-md-3 hidden-mobile">
-						   <img  class="image-vet-slider" alt="{{vet.name}}"  src="{{ MEDIA_URL }}{{ vet.image }}"/>
-	            </div>
-						</div>
-	        </div>
-	        {% endfor %}
-	      </div>
-	    </div>
-	  </div>
-	</div>
-	<!-- NUSETROS VETERINARIAS END -->
 
 {% endblock %}
 

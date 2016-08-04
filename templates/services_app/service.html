@@ -26,7 +26,7 @@
 <!-- Ventajas Start -->
 <div class="container container-ventajas  container-grey-background">
   <div class="row">
-    <h2>LA MEJOR ATENCIÒN SÒLO EN CASA</h2>
+    <h2>LA MEJOR ATENCIÓN SOLO EN CASA</h2>
       <div class="linebreak1"></div>
   </div>
   <div class="row">
@@ -66,18 +66,21 @@
         {% for vet in vets %}
         <div class="item">
           <div class="row">
-            <div class="col-md-3 visible-mobile">
+            <div class="col-md-3 hidden-md-up">
             <img  class="image-vet-slider" alt="{{vet.name}}"  src="{{ MEDIA_URL }}{{ vet.image }}"/>
           </div>
             <div class="col-md-7">
               <h3>{{vet.name}}</h3>
               <h4>{{vet.subtitle1}}</h4>
               <h4>{{vet.subtitle2}}</h4>
-              <h5 class="hidden-mobile vet-bio-text">{{vet.bio}}</h5>
+              <h5 class="hidden-md-down vet-bio-text">{{vet.bio}}</h5>
             </div>
-            <div class="col-md-3 hidden-mobile">
+            <div class="col-md-3 hidden-sm-down">
              <img  class="image-vet-slider" alt="{{vet.name}}"  src="{{ MEDIA_URL }}{{ vet.image }}"/>
             </div>
+          </div>
+          <div class="row">
+            <h5 class="hidden-sm-down hidden-lg-up vet-bio-text">{{vet.bio}}</h5>
           </div>
         </div>
         {% endfor %}
