@@ -172,7 +172,7 @@ Si necesita reservar una cita, puede hacerlo llamando a nuestro teléfono, a tra
 	        {% for customer in customers %}
 	        <div class="item">
 						<img  class="image-customer-slider" alt="{{customer.name}}"  src="{{ MEDIA_URL }}{{ customer.image }}"/>
-            <div class="hidden-mobile">
+						<div class="hidden-mobile" id="vet_text">
 	          <i class="fa fa-quote-left quote-icon"></i>
 	          <h5 class="text-customer-opinion">{{customer.opinion}}</h5>
 	          <i class="fa fa-quote-right quote-icon"></i>
