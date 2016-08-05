@@ -32,7 +32,7 @@ from django.core.files import File
 def SendEmail(context):
     customer = context['customer']
     subject = "Tu Consulta en Instavets"
-    to=[customer.email,'info@instavets.com']
+    to=[customer.email,'info@instavets.com','alex.abando@instavets.com']
     from_email = 'info@instavets.com'
     message = get_template('../templates/email_templates/email_customer.html').render(context)
     msg = EmailMessage(subject, message, to=to, from_email=from_email)
