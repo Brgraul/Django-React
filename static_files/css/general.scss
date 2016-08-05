@@ -84,3 +84,8 @@ a{
   text-decoration: none;
   }
 }
+div.owl-wrapper{
+  & > div.owl-item:nth-child(2){
+    display: none;
+  }
+}

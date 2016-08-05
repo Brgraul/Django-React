@@ -104,7 +104,7 @@
 	        {% for customer in customers %}
 	        <div class="item">
 						<img  class="image-customer-slider" alt="{{customer.name}}"  src="{{ MEDIA_URL }}{{ customer.image }}"/>
-						<div class="hidden-mobile">
+						<div class="hidden-mobile" id="vet_text">
 	          <i class="fa fa-quote-left quote-icon"></i>
 	          <h5 class="text-customer-opinion">{{customer.opinion}}</h5>
 	          <i class="fa fa-quote-right quote-icon"></i>
@@ -167,18 +167,22 @@
 							<div class="col-md-3 hidden-md-up">
 							<img  class="image-vet-slider" alt="{{vet.name}}"  src="{{ MEDIA_URL }}{{ vet.image }}"/>
 						</div>
-							<div class="col-md-7">
+							<div class="col-md-7" id="vet_text">
 								<h3>{{vet.name}}</h3>
 								<h4>{{vet.subtitle1}}</h4>
 								<h4>{{vet.subtitle2}}</h4>
+                <i class="fa fa-quote-left quote-icon hidden-md-down"></i>
 								<h5 class="hidden-md-down vet-bio-text">{{vet.bio}}</h5>
+                <i class="fa fa-quote-right quote-icon hidden-md-down"></i>
 							</div>
 							<div class="col-md-3 hidden-sm-down">
 						   <img  class="image-vet-slider" alt="{{vet.name}}"  src="{{ MEDIA_URL }}{{ vet.image }}"/>
 	            </div>
 						</div>
-            <div class="row">
+            <div class="row" id="vet_text">
+              <i class="fa fa-quote-left quote-icon hidden-sm-down hidden-lg-up"></i>
               <h5 class="hidden-sm-down hidden-lg-up vet-bio-text">{{vet.bio}}</h5>
+              <i class="fa fa-quote-right quote-icon hidden-sm-down hidden-lg-up"></i>
             </div>
 	        </div>
 	        {% endfor %}
@@ -195,8 +199,10 @@
 {% block javascript %}
 <script type="text/javascript">
 	$("#carousel_vets").owlCarousel({
-		itemsDesktopSmall : [900,1], // betweem 900px and 601px
-		itemsTablet: [600,1], //2 items between 600 and 0
+    itemsDesktop : [1000,1], //5 items between 1000px and 901px
+    itemsDesktopSmall : [900,1], // betweem 900px and 601px
+    itemsTablet: [600,1], //2 items between 600 and 0
+    itemsMobile : [300,1],// itemsMobile disabled - inherit from itemsTablet option
 		items:1,
 		pagination:false,
 		navigation:true,
@@ -206,8 +212,10 @@
 		],
 	});
 	$("#carousel_customers").owlCarousel({
-		itemsDesktopSmall : [900,1], // betweem 900px and 601px
-		itemsTablet: [600,1], //2 items between 600 and 0
+    itemsDesktop : [1000,1], //5 items between 1000px and 901px
+    itemsDesktopSmall : [900,1], // betweem 900px and 601px
+    itemsTablet: [600,1], //2 items between 600 and 0
+    itemsMobile : [300,1],// itemsMobile disabled - inherit from itemsTablet option
 		items:1,
     pagination:false,
 		navigation:true,

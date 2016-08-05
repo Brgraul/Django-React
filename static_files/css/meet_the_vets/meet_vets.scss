@@ -71,7 +71,7 @@
 }
 .vet-bio-text{
   text-align: justify;
-  @include respond-to(tablets) {padding-left: 3%;padding-right: 3%;}
+  display: inline;
 }
 
 .why-instavets-text-block{
@@ -81,4 +81,13 @@
 
 .card-block{
   padding: 4%;
+}
+
+#vet_text{
+  margin-left: 0px;
+  margin-right: 0px;
+  text-align: justify;
+  & > i,h5{
+    display: inline;
+  }
 }

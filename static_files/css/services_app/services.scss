@@ -85,6 +85,7 @@ section.full-wrapp{
       }
     }
     &#eutanasia{
+      top: 23%;
       @include respond-to(mobiles) {top:4%;}
     }
     &#landing{
