@@ -1,0 +1,165 @@
+{% extends 'base.html' %}
+{% load staticfiles %}
+{% load static %}
+{% block body_content %}
+
+
+<section class="full-wrapp" style="background-image: url({{ MEDIA_URL }}{{ landing.image }})">
+  <div class ="mask-banner">
+    <div id="landing">
+      <h1>{{ landing.headline}}</h1>
+      <h3>{{ landing.short_description }}</h3>
+      <br/>
+      <a class="btn btn-cta-white" href="{% url 'checkout' %}">PIDE TU CITA</a>
+    </div>
+  </div>
+</section>
+
+<div class="container-fluid" id="container-services-text">
+  <div class="row">
+    <div class="col-md-10 col-md-offset-1">
+      {{ landing.long_description|safe }}
+    </div>
+  </div>
+</div>
+
+<!-- Ventajas Start -->
+<div class="container container-ventajas  container-grey-background">
+  <div class="row">
+    <h2>LA MEJOR ATENCIÓN SOLO EN CASA</h2>
+      <div class="linebreak1"></div>
+  </div>
+  <div class="row">
+  <div class="col-md-3">
+    <img  alt="File logo" src="{% static 'images/index/gato.png' %}"/>
+    <span class="card_title">Menos estrés para tu mascota. Sin otros animales.</span>
+    <div class="linebreak1"></div>
+  </div>
+  <div class="col-md-3">
+    <img  alt="File logo" src="{% static 'images/index/reloj.png' %}"/>
+    <span class="card_title">Cita cuando quieras, sin esperas. En tu casa.</span>
+    <div class="linebreak1"></div>
+  </div>
+  <div class="col-md-3">
+    <img  alt="File logo" src="{% static 'images/index/dias-semana.png' %}"/>
+    <span class="card_title">Abierto los 7 días de la semana al mismo precio.</span>
+    <div class="linebreak1"></div>
+  </div>
+  <div class="col-md-3">
+    <img  alt="File logo" src="{% static 'images/index/credit-card.png' %}"/>
+    <span class="card_title">Paga con tarjeta, efectivo u online.</span>
+    <div class="linebreak1"></div>
+  </div>
+  </div>
+</div>
+<!-- Ventajas END -->
+
+
+<!-- NUSETRAS VETERINARIAS START -->
+<div class="container container-white-background">
+  <div class="row">
+    <h2>NUESTRAS VETERINARIAS</h2>
+    <div class="linebreak1"></div>
+    </div>
+    <div class="col-md-12">
+      <div id="carousel_vets" class="owl-carousel">
+        {% for vet in vets %}
+        <div class="item">
+          <div class="row">
+            <div class="col-md-3 hidden-md-up">
+            <img  class="image-vet-slider" alt="{{vet.name}}"  src="{{ MEDIA_URL }}{{ vet.image }}"/>
+          </div>
+            <div class="col-md-7">
+              <h3>{{vet.name}}</h3>
+              <h4>{{vet.subtitle1}}</h4>
+              <h4>{{vet.subtitle2}}</h4>
+              <h5 class="hidden-md-down vet-bio-text">{{vet.bio}}</h5>
+            </div>
+            <div class="col-md-3 hidden-sm-down">
+             <img  class="image-vet-slider" alt="{{vet.name}}"  src="{{ MEDIA_URL }}{{ vet.image }}"/>
+            </div>
+          </div>
+          <div class="row">
+            <h5 class="hidden-sm-down hidden-lg-up vet-bio-text">{{vet.bio}}</h5>
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+<!-- NUSETROS VETERINARIAS END -->
+
+<!-- Prensa Start-->
+<div class="container section-green">
+  <div class="row row-press">
+    <div class="col-md-3">
+      <img class="img-press" src="{% static 'images/index/logos-02.png'%} "/>
+    </div>
+    <div class="col-md-3">
+      <img class="img-press" src="{% static 'images/index/logos-03.png'%} " />
+    </div>
+    <div class="col-md-3">
+      <img class="img-press" src="{% static 'images/index/logos-04.png'%} " />
+    </div>
+    <div class="col-md-3">
+      <img class="img-press" src="{% static 'images/index/logos-01.png'%} " />
+    </div>
+  </div>
+</div>
+<!-- Prensa END-->
+
+<!-- NUSETROS CLIENTES START -->
+<div class="container container-grey-background">
+  <div class="row">
+   <h2>NUESTROS CLIENTES</h2>
+   <div class="linebreak1"></div>
+    <div class="col-md-12">
+      <div id="carousel_customers" class="owl-carousel">
+        {% for customer in customers %}
+        <div class="item">
+          <img  class="image-customer-slider" alt="{{customer.name}}"  src="{{ MEDIA_URL }}{{ customer.image }}"/>
+          <div class="hidden-mobile">
+          <i class="fa fa-quote-left quote-icon"></i>
+          <h5 class="text-customer-opinion">{{customer.opinion}}</h5>
+          <i class="fa fa-quote-right quote-icon"></i>
+          <div class="linebreak"></div>
+          </div>
+          <p class="text-customer-name">{{customer.name}}</p>
+          <p class="text-customer-city">{{customer.city}}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</div>
+<!-- NUSETROS CLIENTES END -->
+
+{% endblock body_content %}
+
+{% block javascript %}
+<script type="text/javascript">
+	$("#carousel_vets").owlCarousel({
+		itemsDesktopSmall : [900,1], // betweem 900px and 601px
+		itemsTablet: [600,1], //2 items between 600 and 0
+		items:1,
+		pagination:false,
+		navigation:true,
+   	navigationText: [
+			"<i class='icon-arrow-left icon-white'><</i>",
+      "<i class='icon-arrow-right icon-white'>></i>"
+		],
+	});
+	$("#carousel_customers").owlCarousel({
+		itemsDesktopSmall : [900,1], // betweem 900px and 601px
+		itemsTablet: [600,1], //2 items between 600 and 0
+		items:1,
+    pagination:false,
+		navigation:true,
+    navigationText: [
+			"<i class='icon-arrow-left icon-white'><</i>",
+      "<i class='icon-arrow-right icon-white'>></i>"
+		],
+	});
+</script>
+{% endblock javascript %}

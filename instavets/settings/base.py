@@ -46,6 +46,7 @@ INSTALLED_APPS = [
     'services_app',
     'debug_toolbar',
     'app_booking',
+    'app_landings',
     #All Auth
     'allauth',
     'allauth.account',

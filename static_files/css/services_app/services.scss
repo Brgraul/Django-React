@@ -80,9 +80,17 @@ section.full-wrapp{
     &#index{
       top: 25%;
       @include respond-to(mobiles) {top:21%;}
+      & > h3{
+        text-transform: capitalize;
+      }
     }
     &#eutanasia{
       @include respond-to(mobiles) {top:4%;}
+    }
+    &#landing{
+      top:32.5%;
+      @include respond-to(mobiles) {top:20%;}
+      @include respond-to(tablets) {top:25.5%;}
     }
     & > h1{
     font-weight: bold;

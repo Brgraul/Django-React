@@ -35,6 +35,7 @@ urlpatterns = [
     url(r'^', include('app_booking.urls')),
     url(r'^tarifas/', views.Pricing, name='tarifas'),
     url(r'^servicios/', include('services_app.urls')),
+    url(r'^landings/', include('app_landings.urls')),
     url(r'^productos/', include('products_app.urls')),
     url(r'^contacto/', include('contact_app.urls')),
     url(r'^jet/', include('jet.urls', 'jet')),  # Django JET URLS
