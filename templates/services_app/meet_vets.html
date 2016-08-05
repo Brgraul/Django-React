@@ -13,7 +13,7 @@
 </section>
 <!-- VET CARDS -->
 <div class="container container-vets">
-  <h2> Nuestras veterinarias </h2>
+  <h2> NUESTRAS VETERINARIAS </h2>
   <div class="linebreak1"></div>
   <div class="card-deck-wrapper">
     <div class="card-deck">
@@ -148,18 +148,21 @@
 
 {% endblock body_content %}
 
+<!-- custom Javascript -->
 {% block javascript %}
 <script type="text/javascript">
-$("#carousel_customers").owlCarousel({
-  itemsDesktopSmall : [900,1], // betweem 900px and 601px
-  itemsTablet: [600,1], //2 items between 600 and 0
-  items:1,
-  pagination:false,
-  navigation:true,
-  navigationText: [
-    "<i class='icon-arrow-left icon-white'><</i>",
-    "<i class='icon-arrow-right icon-white'>></i>"
-  ],
-});
+	$("#carousel_customers").owlCarousel({
+    itemsDesktop : [1000,1], //5 items between 1000px and 901px
+    itemsDesktopSmall : [900,1], // betweem 900px and 601px
+    itemsTablet: [600,1], //2 items between 600 and 0
+    itemsMobile : [300,1],// itemsMobile disabled - inherit from itemsTablet option
+		items:1,
+    pagination:false,
+		navigation:true,
+    navigationText: [
+			"<i class='icon-arrow-left icon-white'><</i>",
+      "<i class='icon-arrow-right icon-white'>></i>"
+		],
+	});
 </script>
 {% endblock javascript %}
