@@ -186,6 +186,8 @@ div.container_info{
   display: block;
   width: 175%;
   @include respond-to(mobiles) {height:auto;width:100%;}
+  @include respond-to(tablets) {height:auto;width:100%;}
+
 }
 
 .image-customer-slider{
