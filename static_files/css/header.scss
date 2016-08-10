@@ -54,6 +54,25 @@ header > nav.navbar{
           }
           &.nav-item:first-child{
             @include respond-to(tablets) {width: 22% ;}
+              & > ul{
+              padding: 0px;
+               &  > li{
+                text-align: center;
+                & > a {
+                  font-family: "Gotham-Medium";
+                  color: $instavets_grey;
+                  font-size: 18px;
+                  padding: 0px 0px;
+                  border: 1px solid $instavets_grey;
+                  border-bottom: none;
+                  padding-top: 2.1%;
+                  padding-bottom: 0%;
+                }
+                &:last-child > a {
+                  border: 1px solid $instavets_grey;
+                }
+              }
+            }
           }
           &.nav-item:nth-child(4){
             width: 20% ;
