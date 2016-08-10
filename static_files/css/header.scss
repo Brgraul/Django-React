@@ -42,6 +42,7 @@ header > nav.navbar{
           border-top: 4px solid white;
           border-bottom: 4px solid white;
           text-shadow: none;
+          margin-left: 0px !important;
           &:hover,
           &:active,
           &:focus{
@@ -87,7 +88,7 @@ header > nav.navbar{
 .dropdown-menu{
   text-align: center;
   border-radius: 0px;
-  width: 200px;
+  width: 100%;
   width: -moz-available;
   margin-top: 0px;
 }
@@ -98,7 +99,8 @@ header > nav.navbar{
 }
 
 ul.nav li.dropdown:hover ul.dropdown-menu {
-  display: block;
+  @include respond-to(medium-screens) { display: block;}
+  @include respond-to(wide-screens) { display: block;}
 }
 
 .dropdown{
