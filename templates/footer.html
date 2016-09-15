@@ -1,9 +1,8 @@
 {% load staticfiles %}
-
     <footer id="footer">
         <div class="container">
             <div class="row">
-                <div class="col-xs-6 col-sm-6 col-md-4">
+                <div class="column col-md-4 col-sm-6 col-xs-6">
                     <ul class="nav">
                         <li><a href="about-us.html">Servicios</a></li>
                         <li><a href="{% url 'tarifas' %}">Tarifas</a></li>
@@ -15,26 +14,23 @@
                         </li>
                     </ul>
                 </div>
-                <div class="col-xs-6 col-md-4">
+                <div class="column col-md-4 col-sm-6 col-xs-6">
                     <ul class="nav">
                         <li><a href="#">Ciudades</a></li>
                         <li><a href="#">Madrid</a></li>
-                    <!--    <li><a href="#">Barcelona</a></li>
-                        <li><a href="#">Valencia</a></li>  -->
                     </ul>
                     <ul class="nav">
                         <li><a href="{% url 'contacto' %}">Contáctanos</a></li>
                     </ul>
                 </div>
-                <div class="col-xs-6 col-md-4">
+                <div class="column col-md-4 col-sm-6 col-xs-6">
                     <ul class="nav">
                         <li><a href="#">¿Tienes algunas emergencia?</a></li>
                         <li><a href="#">Si tu mascota tiene una emergencia llamanos al 912228229. Te atenderemos en cualquier momento.</a></li>
                     </ul>
                 </div>
             </div>
-            <!--/row-->
-            <div class="row row-footer-last">
+            <div class="row">
               <a href="{% url 'terminos'%}">Términos y condiciones</a>
               <p>|</p>
               <a href="{% url 'privacidad'%}">Política de privacidad</a>

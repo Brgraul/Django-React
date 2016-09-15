@@ -91,3 +91,15 @@
     display: inline;
   }
 }
+
+.why-instavets-image {
+  display: block;
+  text-align: center;
+}
+
+
+@media only screen and (max-width: 500px) {
+  .fa-responsive {
+      font-size: 4em;
+  }
+}

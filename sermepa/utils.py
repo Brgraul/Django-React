@@ -26,7 +26,7 @@ def redsys_generate_request(merchant_parameters):
 
     @return Ds_Signature: Received signature
     @return Ds_MerchantParameters: Received parameters
-    @return: True if signature is confirmed, False if not 
+    @return: True if signature is confirmed, False if not
 """
 def redsys_check_response(Ds_Signature, Ds_MerchantParameters):
     import re
@@ -62,7 +62,7 @@ def encode_parameters(merchant_parameters):
     Given the Ds_MerchantParameters from Redsys, decode it and eval the json file
 
     @var Ds_MerchantParameters: Encoded json structure returned from Redsys
-    @return merchant_parameters: Json structure with all parameters 
+    @return merchant_parameters: Json structure with all parameters
 """
 def decode_parameters(Ds_MerchantParameters):
     import ast
@@ -73,7 +73,7 @@ def decode_parameters(Ds_MerchantParameters):
 
 
 """
-    This method creates a unique key for every request, 
+    This method creates a unique key for every request,
     based on the Ds_Merchant_Order and in the shared secret (SERMEPA_SECRET_KEY).
     This unique key is Triple DES ciphered.
     @var merchant_parameters: Dict with all merchant parameters
@@ -87,7 +87,7 @@ def encrypt_order_with_3DES(Ds_Merchant_Order):
 
 
 """
-    Use the order_encrypted we have to sign the merchant data using a HMAC SHA256 algorithm 
+    Use the order_encrypted we have to sign the merchant data using a HMAC SHA256 algorithm
     and encode the result using Base64
     @var order_encrypted: Encrypted Ds_Merchant_Order
     @var Ds_MerchantParameters: Redsys aleready encoded parameters
@@ -96,5 +96,3 @@ def encrypt_order_with_3DES(Ds_Merchant_Order):
 def sign_hmac256(order_encrypted, Ds_MerchantParameters):
     hmac_value = hmac.new(order_encrypted, Ds_MerchantParameters, hashlib.sha256).digest()
     return base64.b64encode(hmac_value)
-
-

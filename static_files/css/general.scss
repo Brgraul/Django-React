@@ -11,6 +11,36 @@ $break-small: 480px;
 $break-large: 1280px;
 $break-xlarge: 1600px;
 
+
+h1, h2 , h3, h4, h5, h6{
+  font-family: "Gotham-Light";
+  color: $instavets_footer_grey;
+}
+
+h1 {
+  font-size: 36px;
+}
+
+h2 {
+  font-size: 30px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+h4 {
+  font-size: 18px;
+}
+
+h5 {
+  font-size: 14px;
+}
+
+h6 {
+  font-size: 12px;
+}
+
 @mixin respond-to($media) {
   @if $media == mobiles {
     @media only screen and (max-width: $break-small) { @content; }
@@ -25,6 +55,8 @@ $break-xlarge: 1600px;
     @media only screen and (min-width: $break-xlarge) { @content; }
   }
 }
+
+/*
 
 h1, h2 ,h3, h6{
   font-family: "Gotham-Medium";
@@ -45,6 +77,7 @@ h5{
   font-family: "Gotham-Light";
   margin-bottom:25px;
 }
+*/
 
 /* CTA'S */
 .btn-cta-white{
